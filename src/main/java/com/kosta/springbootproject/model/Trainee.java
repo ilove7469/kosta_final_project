@@ -26,9 +26,9 @@ public class Trainee {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int traineeNo;
+	private Long traineeNo;
 	
 	@Column(nullable = false)
-	String traineeName;
+	private String traineeName;
 	
 }

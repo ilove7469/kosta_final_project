@@ -30,12 +30,15 @@ public class Certificate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int certiNo;
+	private Long certiNo;
+	
 	@Column(nullable = false)
-	String certiName;
+	private String certiName;
+	
 	@Column(length = 1000)
-	String certiComment;
+	private String certiComment;
+	
 	@CreatedDate
-	Date certiRegDate;
+	private Date certiRegDate;
 	
 }

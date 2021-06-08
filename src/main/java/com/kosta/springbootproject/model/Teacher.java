@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,18 +29,19 @@ import lombok.ToString;
 public class Teacher {
 
 	@Id
-	private int teacherNo ;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long teacherNo ;
 	
-	@Column(unique = true)
-	private int teacherId;
+	@Column(unique = true, nullable = false)
+	private String teacherId;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String teacherName;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String teacherPhone;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String teacherEmail;
 	
 	@CreatedDate

@@ -3,6 +3,7 @@ package com.kosta.springbootproject.model;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.jetbrains.annotations.NotNull;
+import org.springframework.data.annotation.CreatedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"companyNo", "traineeNo"})
+@ToString//(exclude = {"companyNo", "traineeNo"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -31,7 +32,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int userNo;
+	private Long userNo;
 	
 	@Column(nullable = false)
 	private String userName;
@@ -57,6 +58,8 @@ public class User {
 	private String userBank;
 	private String userBankNoString;
 	private String userIdentity;
+	
+	@CreatedDate
 	private Date userRegDate;
 	private String userDept;
 	private String userPosition;
@@ -64,12 +67,15 @@ public class User {
 	private String deptPhone;
 	
 	@ManyToOne
-	private Company companyNo;
+	private Company company;
 	
 	@ManyToOne
-	private Trainee traineeNo;
+	private Trainee trainee;
 	
-	@OneToMany(mapped = "userHistoryNo"
-			cascade = CascadeType.ALL)
+	
+	/*
+	@OneToMany(mappedBy = "userHistoryNo", cascade = CascadeType.ALL)
 	List<ClassHistory> userHistory;
+	*/
+	
 }

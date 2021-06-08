@@ -28,7 +28,7 @@ public class Company {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int companyNo;
+	private Long companyNo;
 	
 	@Column(nullable = false)
 	private String companyName;

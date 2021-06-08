@@ -26,27 +26,34 @@ import lombok.ToString;
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int courseNo;
-	@Column(nullable = false)
-	String courseName;
+	private Long courseNo;
 	
-	@ManyToOne
-	Subject subject;
 	@Column(nullable = false)
-	int courseTotalTrainTime;
+	private String courseName;
+	
 	@Column(nullable = false)
-	int courseTotalDay;
-	int coursePrice;
+	private int courseTotalTrainTime;
+	
 	@Column(nullable = false)
-	int courseCapacity;
+	private int courseTotalDay;
+	
+	private int coursePrice;
+	
+	@Column(nullable = false)
+	private int courseCapacity;
 
 	@Column(length = 1000)
-	String courseTarget;
+	private String courseTarget;
+	
 	@Column(length = 1000)
-	String coursePurpose;
+	private String coursePurpose;
+	
 	@Column(length = 1000)
-	String courseContent;
+	private String courseContent;
 	
 	@ManyToOne
-	Certificate certificate;
+	private Subject subject;
+
+	@ManyToOne
+	private Certificate certificate;
 }

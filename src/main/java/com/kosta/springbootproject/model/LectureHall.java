@@ -3,6 +3,8 @@ package com.kosta.springbootproject.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,15 +27,16 @@ import lombok.ToString;
 public class LectureHall {
 
 	@Id
-	private int lectureHallNo;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long lectureHallNo;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String lectureHallName;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String lectureHallAddress;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String lectureHallPhone;
 
 }

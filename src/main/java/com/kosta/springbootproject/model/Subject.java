@@ -27,14 +27,15 @@ public class Subject {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int subjectNo;
-	int subPriority;
+	private Long subjectNo;
+	private int subPriority;
 	@Column(nullable = false)
-	String subName;
+	private String subName;
+	
+	@Column(length = 1000)
+	private String subExplain;
 	
 	@ManyToOne
-	Trainee trainee;
-	@Column(length = 1000)
-	String subExplain;
+	private Trainee trainee;
 	
 }

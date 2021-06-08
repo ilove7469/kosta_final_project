@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,12 +28,11 @@ import lombok.ToString;
 public class Lecture {
 	
 	@Id
-	private int lecturePlanNo;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long lecturePlanNo;
 	
-	private int courseNo;
-	
-	@Column(nullable = true)
-	private Date lecturePlanYear;
+	@Column(nullable = false)
+	private int lecturePlanYear;
 	
 	private int lectureOpenCount;
 	
@@ -48,7 +49,7 @@ public class Lecture {
 	
 	private String lectureAsk;
 	
-	@ManyToOne 
-	Course course;
+	@ManyToOne
+	private Course course;
 	
 }

@@ -30,6 +30,8 @@ public class ClassRoom {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long classRoomNo;
 	
+	private String classRoomName;
+	
 	private int classRoomCapacity;
 	
 	@ManyToOne 

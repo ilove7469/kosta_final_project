@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.kosta.springbootproject.model.EducationTime;
 
-public interface EducationTimeRepository extends CrudRepository<Long, EducationTime>{
+public interface EducationTimeRepository extends CrudRepository<EducationTime,Long>{
 
 }

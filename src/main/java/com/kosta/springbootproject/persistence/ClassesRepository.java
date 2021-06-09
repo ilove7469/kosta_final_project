@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.kosta.springbootproject.model.Classes;
 
-public interface ClassesRepository extends CrudRepository<Long, Classes>{
+public interface ClassesRepository extends CrudRepository<Classes,Long>{
 
 }

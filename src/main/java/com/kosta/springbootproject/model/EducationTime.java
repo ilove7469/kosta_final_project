@@ -2,6 +2,8 @@ package com.kosta.springbootproject.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +33,9 @@ public class EducationTime {
 	@Column(nullable = false)
 	private String educationTimeName;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String educationPartType;
+	private EducationPartEnumType educationPartType;
 	
 	@Column(nullable = false)
 	private String educationTimeType;

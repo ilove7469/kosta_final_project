@@ -42,13 +42,13 @@ public class Course {
 	@Column(nullable = false)
 	private int courseCapacity;
 
-	@Column(length = 1000)
+	@Column(length = 4000)
 	private String courseTarget;
 	
-	@Column(length = 1000)
+	@Column(length = 4000)
 	private String coursePurpose;
 	
-	@Column(length = 1000)
+	@Column(length = 4000)
 	private String courseContent;
 	
 	@ManyToOne

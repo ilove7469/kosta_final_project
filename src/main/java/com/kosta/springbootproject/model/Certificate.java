@@ -1,15 +1,19 @@
 package com.kosta.springbootproject.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +30,7 @@ import lombok.ToString;
 @Entity
 @Builder
 @Table
+@EntityListeners(AuditingEntityListener.class)
 public class Certificate {
 
 	@Id
@@ -38,7 +43,8 @@ public class Certificate {
 	@Column(length = 1000)
 	private String certiComment;
 	
+	
 	@CreatedDate
-	private Date certiRegDate;
+	private LocalDateTime certiRegDate;
 	
 }

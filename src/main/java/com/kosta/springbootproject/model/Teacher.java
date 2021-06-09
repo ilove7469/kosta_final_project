@@ -1,15 +1,17 @@
 package com.kosta.springbootproject.model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +28,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @Table
+@EntityListeners(AuditingEntityListener.class)
 public class Teacher {
 
 	@Id
@@ -45,6 +48,6 @@ public class Teacher {
 	private String teacherEmail;
 	
 	@CreatedDate
-	private Date teacherRegDate;
+	private LocalDateTime teacherRegDate;
 	
 }

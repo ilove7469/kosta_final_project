@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -42,6 +43,7 @@ public class Classes {
 	private String classDescription;
 	
 	@ColumnDefault("false")
+	//@Column(columnDefinition = "boolean default false")
 	private Boolean classRecommend;
 	
 	@Enumerated(EnumType.STRING)
@@ -57,5 +59,10 @@ public class Classes {
 	private EducationTime educationTime;
 	@ManyToOne
 	private Admin admin;
+	
+	@PrePersist
+    public void prePersist() {
+        this.classRecommend = this.classRecommend == null ? false : this.classRecommend;
+    }
 	
 }

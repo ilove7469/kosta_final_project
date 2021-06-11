@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+	<h4>강의장 신규등록</h4>
+	<form th:action="@{/admin/lecturehalladd}" method="post">
+    <div class="form-group">
+      <label for="lectureHallName">강의장 이름:</label>
+      <input type="text" class="form-control" id="lectureHallName" name="lectureHallName">
+    </div>
+    <div class="form-group">
+      <label for="lectureHallAddress">강의장 주소:</label>
+	  <textarea class="form-control" rows="5" cols="" id="lectureHallAddress" name="lectureHallAddress"></textarea>    
+    </div>
+    <div class="form-group">
+      <label for="lectureHallPhone">강의장 전화번호:</label>
+      <input type="text" class="form-control" id="lectureHallPhone" name="lectureHallPhone">
+    </div>
+    <button type="submit" class="btn btn-success">등록하기</button>
+  </form>
+</div>
+</body>
+</html>

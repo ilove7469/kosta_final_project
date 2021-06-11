@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -43,8 +44,7 @@ public class Certificate {
 	@Column(length = 1000)
 	private String certiComment;
 	
-	
-	@CreatedDate
+	@CreationTimestamp
 	private LocalDateTime certiRegDate;
 	
 }

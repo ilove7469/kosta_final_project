@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+	<h4>수료증 신규등록</h4>
+	<form th:action="@{/admin/certificateadd}" method="post">
+    <div class="form-group">
+      <label for="certiName">수료증 이름:</label>
+      <input type="text" class="form-control" id="certiName" name="certiName">
+    </div>
+    <div class="form-group">
+      <label for="certiComment">출력문구:</label>
+	  <textarea class="form-control" rows="5" cols="" id="certiComment" name="certiComment"></textarea>    
+    </div>
+    
+    <button type="submit" class="btn btn-success">등록하기</button>
+  </form>
+</div>
+</body>
+</html>

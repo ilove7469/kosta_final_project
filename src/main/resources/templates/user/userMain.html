@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 <body>
-  <h1><a th:href="@{'/course/'+${subject.subjectNo}}">test</a></h1>
+  <div id="buttonBox" th:each="trainee:${trainee}">
+    <button th:value="${trainee.traineeNo}"></button>
+  </div>
+  <div id="here"></div>
+  <!-- <h1><a th:href="@{'/course/'+${subject.subjectNo}}">test</a></h1> -->
+  <!-- <ul th:each="subject:${subjectList}">
+    <li th:text="${subject.subName}"></li>
+  </ul> -->
+  
+  <script>
+	$("#buttonBox button").click(function(){
+		var traineeNo = (this).val;
+		$.getJSON("/user/userMain"+traineeNo,printList);
+	})
+	
+	function printList(sList){
+		var str="<ul>";
+		$.each(sList,function(idx,item){
+			str += `<li>${item['traineeNo']}</li>`;
+		});
+		str +="</ul>";
+		$("#here").html(str);
+	}
+  </script>
+  
 </body>
 </html>

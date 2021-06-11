@@ -8,15 +8,15 @@
 
 <!-- 강의정보 출력 -->
   <div id="classes">
-    <table>
+    <table border="1">
       <tr th:each="class:${classList}">
-        <td th:text="${class.classOpenDate}${class.educationTime.educationTimeName}"></td>
+        <td th:text="${class.classOpenDate}+${class.educationTime.educationTimeName}"></td>
         <!-- 비대면인지 아닌지 -->
         <th:block th:if="${class.lecture.course.courseName.contains('비대면')}">
-          <td th:text="비대면강의-강의실/${class.classRoom.classRoomCapacity}"></td>
+          <td th:text="'비대면강의-강의실/'+${class.classRoom.classRoomCapacity}"></td>
         </th:block>
         <th:block th:unless="${class.lecture.course.courseName.contains('비대면')}">
-          <td th:text="${class.classRoom.classRoomName}/${class.classRoom.classRoomCapacity}"></td>
+          <td th:text="${class.classRoom.classRoomName}+'/'+${class.classRoom.classRoomCapacity}"></td>
         </th:block>
         <!-- 비대면체크 끝 -->
         <td th:text="${class.teacher.teacherName}"></td>

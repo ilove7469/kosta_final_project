@@ -7,5 +7,5 @@ import com.kosta.springbootproject.model.Lecture;
 
 public interface LectureRepository extends CrudRepository<Lecture, Long>{
 	
-	public Lecture findByCourse(Course course); 
+	public Lecture findByCourseAndLecturePlanYearGreaterThanEqual(Course course,int lecturePlanYear); 
 }

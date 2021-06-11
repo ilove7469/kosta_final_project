@@ -25,7 +25,7 @@ public class LectureTests {
 		//강의계획년
 		lecture.setLecturePlanYear(2021);
 		//연간개설횟수
-		lecture.setLectureOpenCount(5); 
+		lecture.setLectureOpenCount(4); 
 		//목표정원
 		lecture.setLectureCapacity(100);
 		//교육대상

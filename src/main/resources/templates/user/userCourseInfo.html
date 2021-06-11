@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 강의정보 출력 -->
+  <div id="classes">
+    <table>
+      <tr th:each="class:${classList}">
+        <td th:text="${class.classOpenDate}${class.educationTime.educationTimeName}"></td>
+        <!-- 비대면인지 아닌지 타입없음 -->
+        <th:block th:if="${class.lecture.course.courseName.contains('비대면')}">
+          <td th:text="${class.classRoom.classRoomName}"></td>
+        </th:block>
+        <td th:text="${class.teacher.teacherName}"></td>
+        <td th:text="${class.classOpenDate}"></td>
+      </tr>
+    </table>
+  </div>
+<!-- 강의정보 출력끝 -->
+
+<!-- 과정+강의계획정보 출력 -->
+<div id="course">
+
+
+</div>
+<!-- 과정+강의계획정보 출력끝 -->
+</body>
+</html>

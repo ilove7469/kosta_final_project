@@ -1,5 +1,6 @@
 package com.kosta.springbootproject;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -10,12 +11,24 @@ import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.persistence.CourseRepository;
+import com.kosta.springbootproject.persistence.SubjectRepository;
 
 @SpringBootTest
 public class CourseTest {
 	
 	@Autowired
 	CourseRepository repo;
+	@Autowired
+	SubjectRepository srepo;
+	@Test
+	public void selectCourseWithLecture() {
+		Subject s = srepo.findById(79L).get();
+		
+		
+		repo.getCourseWithLecture(s).forEach(i->{
+			System.out.println(Arrays.toString(i));
+		});
+	}
 	
 	//@Test
 	public void insertCourse() {
@@ -48,7 +61,7 @@ public class CourseTest {
 		});
 	}
 	
-	@Test
+	//@Test
 	public void updateTest() {
 		 repo.findById(168L).ifPresent(d ->{
 				Subject sub = new Subject();

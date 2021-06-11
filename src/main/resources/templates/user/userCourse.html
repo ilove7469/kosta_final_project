@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>과목명</th>
+      <th>연간횟수</th>
+      <th>훈련시간</th>
+    </tr>
+    <tr th:each="CourseInfo,i:${CourseList}">
+      <td th:text="${CourseInfo[0]}"/>
+      <td th:text="${CourseInfo[1]}"/>
+      <td th:text="${CourseInfo[2]}"/>
+      <!-- <td>[[${CourseInfo[0]}]]</td>
+      <td>[[${CourseInfo[1]}]]</td>
+      <td>[[${CourseInfo[2]}]]</td> -->
+    </tr>
+  </table>
+</body>
+</html>

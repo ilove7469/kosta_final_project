@@ -35,9 +35,9 @@ public class CourseController {
 		return mv;
 	}
 	@GetMapping("/courseInfo/{courseNo}")
-	public ModelAndView searchCourseInfo(@PathVariable Course course) {
+	public ModelAndView searchCourseInfo(@PathVariable Long courseNo) {
 		ModelAndView mv = new ModelAndView("/user/userCourseInfo");
-		Lecture lecture = cservice.findLecturByCourse(course);
+		Lecture lecture = cservice.findLecturByCourse(courseNo);
 		List<Classes> classList = cservice.findClassByLecture(lecture);
 		mv.addObject("lecture", lecture);
 		mv.addObject("classList", classList);

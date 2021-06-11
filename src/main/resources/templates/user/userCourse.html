@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jquery layout만들면 삭제 -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 </head>
 <body>
   <table>
@@ -11,14 +14,18 @@
       <th>연간횟수</th>
       <th>훈련시간</th>
     </tr>
-    <tr th:each="CourseInfo,i:${CourseList}" th:href="@{'/courseInfo/'+${CourseInfo[3]}}">
-      <td th:text="${CourseInfo[0]}"/>
+    <tr id="course" th:each="CourseInfo,i:${CourseList}">
+      <td>
+        <a th:href="@{'/courseInfo/'+${CourseInfo[3]}}" th:text="${CourseInfo[0]}"></a>
+      </td>
       <td th:text="${CourseInfo[1]}"/>
       <td th:text="${CourseInfo[2]}"/>
+      <td th:text="${CourseInfo[3]}"/>
       <!-- <td>[[${CourseInfo[0]}]]</td>
       <td>[[${CourseInfo[1]}]]</td>
       <td>[[${CourseInfo[2]}]]</td> -->
     </tr>
   </table>
+  
 </body>
 </html>

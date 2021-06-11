@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+<script>
+	$(function(){
+		var formObj = $("#form1");
+		
+	});
+</script>
+</head>
+<body>
+	<div>
+		<input type="text" id="searchKeyword">
+		<button id="searchBtn">조건검색</button>
+	</div>
+
+	<form id="form1" th:action="@{/search/search}" method="get">
+		<input type="hidden" name="keyword" th:value=${}>
+
+	</form>
+
+</body>
+</html>

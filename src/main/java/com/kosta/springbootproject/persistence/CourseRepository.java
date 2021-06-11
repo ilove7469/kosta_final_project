@@ -10,7 +10,7 @@ import com.kosta.springbootproject.model.Subject;
 
 public interface CourseRepository extends CrudRepository<Course, Long>{
 	
-	@Query(value="select distinct c.courseName, l.lectureOpenCount, c.courseTotalTrainTime from Course c left outer join Lecture l on (l.course = c.courseNo) where c.subject = ?1")
+	@Query(value="select distinct c.courseName, l.lectureOpenCount, c.courseTotalTrainTime, c.courseNo from Course c left outer join Lecture l on (l.course = c.courseNo) where c.subject = ?1")
 	public List<Object[]> getCourseWithLecture(Subject subjectNo);
 	
 	

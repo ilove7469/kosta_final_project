@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+	<table>
+	<tr>
+	 <th>번호</th>
+	 <th>아이디</th>
+	 <th>이름</th>
+	 <th>전화번호</th>
+	 <th>이메일</th>
+	 <th>소속회사</th>
+	 <th>등록일</th>
+	</tr>
+	<tr th:each="user:${userList}" >
+		<td th:text="${user.userNo}">번호</td>
+		<td th:text="${user.userId}">아이디</td>
+		<td th:text="${user.userName}">이름</td>
+		<td th:text="${user.userPhone}">전화번호</td>
+		<td th:text="${user.userEmail}">이메일</td>
+		<td th:text="${user.userEmail}">소속회사</td>
+		<td th:text="${user.userRegDate}">등록일</td>
+	</tr>
+	</table>
+</div>
+</body>
+</html>

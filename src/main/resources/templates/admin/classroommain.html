@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+	<table>
+	<tr>
+	 <th>강의장</th>
+	 <th>강의실 번호</th>
+	 <th>강의실 정원</th>
+	</tr>
+	<tr th:each="classRoom:${classRoomList}">
+		<td th:text="${classRoom.lectureHall.lectureHallName}">강의장 이름</td>
+		<td th:text="${classRoom.classRoomName}">강의실 번호</td>
+		<td th:text="${classRoom.classRoomCapacity}">강의실 정원</td>
+	</tr>
+	</table>
+</div>
+</body>
+</html>

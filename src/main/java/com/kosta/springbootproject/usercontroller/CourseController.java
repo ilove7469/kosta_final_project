@@ -33,7 +33,8 @@ public class CourseController {
 	@ResponseBody
 	@GetMapping("/user/userMain/{traineeNo}")
 	public ResponseEntity<List<Subject>> userMain(@PathVariable Long traineeNo) {
-			return new ResponseEntity<>(cservice.findSubjectByTraineeNo(traineeNo),HttpStatus.OK);
+		System.out.println("왔니?");	
+		return new ResponseEntity<>(cservice.findSubjectByTraineeNo(traineeNo),HttpStatus.OK);
 			
 	}
 	

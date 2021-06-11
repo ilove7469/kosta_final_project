@@ -35,7 +35,10 @@ public class CourseService {
 		return (List<Trainee>)traineeRepo.findAll();
 	}
 	public List<Subject> findSubjectByTraineeNo(Long traineeNo) {
-		return subjectRepo.findByTraineeOrderBySubPriorityAsc(traineeNo);
+		Trainee trainee = Trainee.builder()
+				.traineeNo(traineeNo)
+				.build();
+		return subjectRepo.findByTraineeOrderBySubPriorityAsc(trainee);
 	}
 	public Subject findSubjectById(Long subjectId) {
 		Subject subject = subjectRepo.findById(subjectId).get();

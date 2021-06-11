@@ -31,15 +31,15 @@ public class ClassesTest {
 	@Autowired
 	AdminRepository arepo;
 	
-	//@Test
+	@Test
 	public void insertClasses() {
-		Long lectureId = 198L;	//198
-		Long teacherId = 70L;	//70~78
-		Long classRoomId = 185L;	//185~190
-		Long educationTimeId = 80L;	//80~85
-		Long adminId = 88L;		//88~96
+		Long lectureId = 215L;	//198
+		Long teacherId = 73L;	//70~78
+		Long classRoomId = 187L;	//185~190
+		Long educationTimeId = 84L;	//80~85
+		Long adminId = 93L;		//88~96
 		Classes classes = Classes.builder()
-				.classOpenDate(Date.valueOf("2021-05-05"))	//시간은 안나오고 날짜만 들어감
+				.classOpenDate(Date.valueOf("2021-07-05"))	//시간은 안나오고 날짜만 들어감
 				.classState(ClassStateEnumType.APPLY)
 				.lecture(lrepo.findById(lectureId).get())
 				.teacher(trepo.findById(teacherId).get())
@@ -79,7 +79,7 @@ public class ClassesTest {
 		});
 	}
 	
-	@Test
+	//@Test
 	public void deleteClasses() {
 		Long classesId = 195L;
 		crepo.deleteById(classesId);

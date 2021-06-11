@@ -9,10 +9,12 @@ import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.Subject;
+import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CourseRepository;
 import com.kosta.springbootproject.persistence.LectureRepository;
 import com.kosta.springbootproject.persistence.SubjectRepository;
+import com.kosta.springbootproject.persistence.TraineeRepository;
 
 @Service
 public class CourseService {
@@ -25,23 +27,34 @@ public class CourseService {
 	LectureRepository lectureRepo;
 	@Autowired
 	ClassesRepository classRepo;
+	@Autowired
+	TraineeRepository traineeRepo;
 	
-	public List<Object[]> findCourseWithLecture(Long subjectNo){
-		
-		//주제id로 course(join lecture)값 검색
-		return courseRepo.getCourseWithLecture(subjectRepo.findById(subjectNo).get());
+	
+	public List<Trainee> findTraineeAll() {
+		return (List<Trainee>)traineeRepo.findAll();
 	}
-	
+	public List<Subject> findSubjectByTraineeNo(Long traineeNo) {
+		return subjectRepo.findByTraineeOrderBySubPriorityAsc(traineeNo);
+	}
 	public Subject findSubjectById(Long subjectId) {
 		Subject subject = subjectRepo.findById(subjectId).get();
 		return subject;
 	}
 	
-	public Lecture findLecturByCourse(Long courseNo) {
+	// >> /course/{subjectNo}
+	public List<Object[]> findCourseWithLecture(Long subjectNo){
+		//주제id로 course(join lecture)값 검색
+		return courseRepo.getCourseWithLecture(subjectRepo.findById(subjectNo).get());
+	}
+	
+	//>>/courseInfo/{courseNo}/{lectureYear}
+	public Lecture findLecturByCourse(Long courseNo, int lectureYear) {
 		Course course = Course.builder()
 				.courseNo(courseNo)
 				.build();
-		Lecture lecture = lectureRepo.findByCourse(course);
+		Lecture lecture = lectureRepo.findByCourseAndLecturePlanYearGreaterThanEqual(course,lectureYear);
+		System.out.println(lecture);
 		return lecture;
 	}
 	public List<Classes> findClassByLecture(Lecture lecture){

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>강사리스트</title>
+</head>
+<body>
+<p>[[${resultMessage}]]</p>
+
+	<h3><a th:href="@{/admin/teacherInsert}">등록</a></h3>
+
+	<table border="1">
+		<tr>
+			<th>강사번호</th>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>전화번호</th>
+			<th>이메일</th>
+			<th>등록일</th>
+			<th>삭제</th>
+		</tr>
+		<tr th:each="teacher:${teacherlist}">
+			<td th:text="${teacher.teacherNo}"></td>
+			<td th:text="${teacher.teacherId}"></td>
+			<td th:text="${teacher.teacherName}"></td>
+			<td th:text="${teacher.teacherPhone}"></td>
+			<td th:text="${teacher.teacherEmail}"></td>
+			<td th:text="${teacher.teacherRegDate}"></td>
+			<td><a th:href="@{/admin/teacherDelete(tno=${teacher.teacherNo})}">삭제하기</a></td>
+		</tr>
+	</table>
+	
+	
+</body>
+</html>

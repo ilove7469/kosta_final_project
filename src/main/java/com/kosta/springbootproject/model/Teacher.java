@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
@@ -47,7 +47,7 @@ public class Teacher {
 	@Column(nullable = false)
 	private String teacherEmail;
 	
-	@CreatedDate
+	@CreationTimestamp
 	private LocalDateTime teacherRegDate;
 	
 }

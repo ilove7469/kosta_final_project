@@ -37,7 +37,10 @@ public class CourseService {
 		return subject;
 	}
 	
-	public Lecture findLecturByCourse(Course course) {
+	public Lecture findLecturByCourse(Long courseNo) {
+		Course course = Course.builder()
+				.courseNo(courseNo)
+				.build();
 		Lecture lecture = lectureRepo.findByCourse(course);
 		return lecture;
 	}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,7 +11,7 @@
       <th>연간횟수</th>
       <th>훈련시간</th>
     </tr>
-    <tr th:each="CourseInfo,i:${CourseList}">
+    <tr th:each="CourseInfo,i:${CourseList}" th:href="@{'/courseInfo/'+${CourseInfo[3]}}">
       <td th:text="${CourseInfo[0]}"/>
       <td th:text="${CourseInfo[1]}"/>
       <td th:text="${CourseInfo[2]}"/>

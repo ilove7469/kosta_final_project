@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div>
-		<input type="text" id="searchKeyword">
+		<input type="text" id="searchKeyword" th:value="${word}">
 		<button id="searchBtn">검색</button>
 	</div>
 
@@ -33,6 +33,22 @@
 		<input type="hidden" name="keyword" value="">
 
 	</form>
+	<table>
+		<tr>
+			<th>과정명</th>
+			<th>개강일</th>
+			<th>종강일</th>
+			<th>교육시간</th>
+			<th>강의장</th>
+		</tr>
+		<tr th:each="class:${result}">
+			<td th:text=${class.lecture.course.courseName}></td>
+			<td th:text=${class.classOpenDate}></td>
+			<td th:text=${class.classCloseDate}></td>
+			<td th:text=${class.educationTime.educationTimeType}></td>
+			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+		</tr>
+	</table>
 
 </body>
 </html>

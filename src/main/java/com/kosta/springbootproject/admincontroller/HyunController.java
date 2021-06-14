@@ -3,6 +3,7 @@ package com.kosta.springbootproject.admincontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import com.kosta.springbootproject.adminservice.UserService;
 import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.ClassRoom;
 import com.kosta.springbootproject.model.LectureHall;
+import com.kosta.springbootproject.model.PageMaker;
+import com.kosta.springbootproject.model.PageVO;
+import com.kosta.springbootproject.model.User;
 
 @Controller
 public class HyunController {
@@ -31,8 +35,11 @@ public class HyunController {
 	ClassRoomService classRoomService;
 	
 	@GetMapping("/admin/usermain")
-	public void selectAllUser(Model model) {
-		model.addAttribute("userList",userService.selectAll());
+	public void selectAllUser(Model model, PageVO pagevo) {
+		Page<User> result = userService.selectAll(pagevo);
+		model.addAttribute("UserResult",result);
+		model.addAttribute("pagevo",pagevo);
+		model.addAttribute("result",new PageMaker<>(result));
 	}
 	
 	@GetMapping("/admin/certificatemain")

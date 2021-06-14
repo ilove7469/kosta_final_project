@@ -8,6 +8,22 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
+	<div id="searchType">
+	<select>
+		<option>전체</option>
+		<option value="Name" th:selected="${pagevo.type=='Name'}">이름</option>
+		<option value="Id" th:selected="${pagevo.type=='Id'}">아이디</option>
+		<option value="Phone" th:selected="${pagevo.type=='Phone'}">전화번호</option>
+		<option value="Email" th:selected="${pagevo.type=='Email'}">이메일</option>
+		<option value="Company" th:selected="${pagevo.type=='Company'}">소속회사</option>
+		
+	</select>
+	<input type="text" id="searchKeyword">
+	<button id="searchBtn">조건검색</button>
+	</div>
+
+
+
 	<table>
 	<tr>
 	 <th>번호</th>
@@ -18,16 +34,73 @@
 	 <th>소속회사</th>
 	 <th>등록일</th>
 	</tr>
-	<tr th:each="user:${userList}" >
+	<tr th:each="user:${UserResult.content}" >
 		<td th:text="${user.userNo}">번호</td>
 		<td th:text="${user.userId}">아이디</td>
 		<td th:text="${user.userName}">이름</td>
 		<td th:text="${user.userPhone}">전화번호</td>
 		<td th:text="${user.userEmail}">이메일</td>
-		<td th:text="${user.userEmail}">소속회사</td>
+		<td th:if="${not #strings.isEmpty(user.company.companyName)}" th:text="${user.company.companyName}">소속회사</td>
+		<td th:if="${#strings.isEmpty(user.company.companyName)}" th:text=" ">빈칸출력</p>
 		<td th:text="${user.userRegDate}">등록일</td>
 	</tr>
 	</table>
+	
+		<!-- 페이징처리 -->
+	<form id="f1" th:action="@{/admin/usermain}" method="get">
+		<input type="hidden" name="page" th:value=${result.currentPageNum}>
+		<input type="hidden" name="size" th:value=${result.currentPage.pageSize}>
+		<input type="hidden" name="type" th:value=${pagevo.type}>
+		<input type="hidden" name="keyword" th:value=${pagevo.keyword}>
+	</form>
+	
+		<!-- 페이지리스트 -->
+	<nav>
+		<div>
+			<ul class="pagination">
+			 <li class="page-item" th:if="${result.prevPage}">
+				<a th:href="${result.prevPage.pageNumber}+1">이전페이지[[${result.prevPage.pageNumber}+1]]</a>
+			 </li>
+			 <li class="page-item" th:each="pg:${result.pageList}" th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''"
+			 >
+				<a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
+			 </li>
+			 <li class="page-item" th:if="${result.nextPage}">
+				<a th:href="${result.nextPage.pageNumber}+1">다음페이지[[${result.nextPage.pageNumber+1}]]</a>
+			 </li>
+			</ul>
+		</div>
+	</nav>
+	
+	
 </div>
+
+	<th:block layout:fragment="script1">
+	<script>
+	$(function(){
+		
+		var formObj = $("#f1");
+		
+		$("#searchBtn").click(function(){
+			var typeStr = $("#searchType").find(":selected").val();
+			var keywordStr = $("#searchKeyword").val();
+			formObj.find("[name='type']").val(typeStr);
+			formObj.find("[name='keyword']").val(keywordStr);
+			formObj.submit();
+		});
+		
+		
+		$(".pagination a").click(function(e){
+			e.preventDefault(); //본래의 기능(link)을 취소
+			formObj.find("[name='page']").val($(this).attr("href"));
+			/*alert($(this).attr("href"));*/
+			formObj.submit();
+		});
+	
+	});
+	</script>
+	</th:block>
+
+
 </body>
 </html>

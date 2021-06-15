@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
 <title>회사등록</title>
 </head>
 <body>
+
+	<div class="pannel panel-default" layout:fragment="content1">
 
 
 	<h1>회사 등록</h1>
@@ -19,8 +23,9 @@
 		</div>
 		<div class="form-group">
 			<label for="content">사업자번호:</label>
-			<textarea class="form-control" rows="3" cols="" id="content"
-				name="companyLicense"></textarea>
+				<input type="text"
+				class="form-control" id="writer" placeholder="Enter writer"
+				name="companyLicense">
 		</div>
 		<div class="form-group">
 			<label for="writer">회사대표:</label> 
@@ -39,5 +44,6 @@
 		<button type="reset" class="btn btn-primary">Reset</button>
 	</form>
 
+</div>
 </body>
 </html>

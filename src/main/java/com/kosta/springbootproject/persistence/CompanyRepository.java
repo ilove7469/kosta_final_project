@@ -22,19 +22,18 @@ QuerydslPredicateExecutor<Company>
 		if(type==null) return builder;
 		switch (type) {
 		case "companyName":
-			builder.and(company.companyName.like("%" + keyword + "%"));  //and title like '%?%'
+			builder.and(company.companyName.like("%" + keyword + "%"));
 			break;	
 		case "companyLicense":
-			builder.and(company.companyLicense.like("%" + keyword + "%"));  //and title like '%?%'
+			builder.and(company.companyLicense.like("%" + keyword + "%"));
 			break;
 		case "companyBoss":
-			builder.and(company.companyBoss.like("%" + keyword + "%"));  //and title like '%?%'
+			builder.and(company.companyBoss.like("%" + keyword + "%")); 
 			break;
 
 		default:
 			break;
 		}
-		//System.out.println("----------------"builder);
 		return builder;
 		
 	}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>과정등록</title>
+</head>
+<body>
+
+	<div class="pannel panel-default" layout:fragment="content1">
+
+	<h1>과정등록</h1>
+
+
+	<form th:action="@{/admin/courseInsert}" method="post">
+		<div class="form-group">
+			<label for="title">과정명:</label> 
+			<input type="text" class="form-control" id="title" placeholder="Enter title" name="courseName" value="태웅과정추가테스트">
+		</div>
+		<div class="form-group">
+			<label for="content">주제:</label>
+			<input type="number" class="form-control" id="title" placeholder="Enter title" name="subjectNo" value="79">
+		</div>
+		<div class="form-group">
+			<label for="writer">총훈련시간:</label> 
+			<input type="number" class="form-control" id="writer" placeholder="Enter writer" name="courseTotalTrainTime" value="01077087469">
+		</div>
+		<div class="form-group">
+			<label for="writer">훈련일수:</label> 
+			<input type="number" class="form-control" id="writer" placeholder="Enter writer" name="courseTotalDay" value="01077087469">
+		</div>
+		<div class="form-group">
+			<label for="writer">훈련대상:</label> 
+				<select name="teacherEmail">
+					<option value="[재직자]">[재직자]</option>
+					<option value="[채용예정자]">[채용예정자]</option>
+				</select>
+			</div>
+		<div class="form-group">
+			<label for="writer">과정단가:</label> 
+			<input type="number" class="form-control" id="writer" placeholder="Enter writer" name="coursePrice" value="01077087469" >
+		</div>
+		<div class="form-group">
+			<label for="writer">정원:</label> 
+			<input type="number" class="form-control" id="writer" placeholder="Enter writer" name="courseCapacity" value="01077087469">
+		</div>
+		<div class="form-group">
+		    <label for="content">교육대상권고사항:</label>
+		    <textarea class="form-control" rows="3" cols="" id="content"  name="courseTarget"></textarea>
+		</div>
+		<div class="form-group">
+		    <label for="content">교육목표:</label>
+		    <textarea class="form-control" rows="3" cols="" id="content"  name="coursePurpose"></textarea>
+		</div>
+		<div class="form-group">
+		    <label for="content">교육내용:</label>
+		    <textarea class="form-control" rows="3" cols="" id="content"  name="courseContent"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="writer">수료증:</label> 
+			<input type="number" class="form-control" id="writer" placeholder="Enter writer" name="certiNo" value="55">
+		</div>
+		    
+			
+		<button type="submit" class="btn btn-success">등록하기</button>
+		<button type="reset" class="btn btn-primary">Reset</button>
+	</form>
+
+</div>
+</body>
+</html>

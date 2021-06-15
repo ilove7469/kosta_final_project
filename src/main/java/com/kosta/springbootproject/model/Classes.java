@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @Builder
@@ -34,26 +33,33 @@ import lombok.ToString;
 @Entity
 @Table
 public class Classes {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long classNo;
-	
+
 	@Column(nullable = false)
 	private Date classOpenDate;
-	
+
 	@Column(nullable = false)
 	private Date classCloseDate;
-	
+
 	@Column(length = 1000)
 	private String classDescription;
-	
+
 	@ColumnDefault("false")
-	//@Column(columnDefinition = "boolean default false")
+	// @Column(columnDefinition = "boolean default false")
 	private Boolean classRecommend;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ClassStateEnumType classState;
+
+	@Column
+	private Integer waitCount;
+	@Column
+	private Integer cancelCount;
+	@Column
+	private Integer commitCount;
 	
 	@ManyToOne
 	@QueryInit("course.*")
@@ -66,10 +72,13 @@ public class Classes {
 	private EducationTime educationTime;
 	@ManyToOne
 	private Admin admin;
-	
+
 	@PrePersist
-    public void prePersist() {
-        this.classRecommend = this.classRecommend == null ? false : this.classRecommend;
-    }
-	
+	public void prePersist() {
+		this.classRecommend = this.classRecommend == null ? false : this.classRecommend;
+		this.waitCount = 0;
+		this.cancelCount = 0;
+		this.commitCount = 0;
+	}
+
 }

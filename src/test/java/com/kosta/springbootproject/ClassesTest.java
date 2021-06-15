@@ -40,6 +40,7 @@ public class ClassesTest {
 		Long adminId = 93L;		//88~96
 		Classes classes = Classes.builder()
 				.classOpenDate(Date.valueOf("2021-07-05"))	//시간은 안나오고 날짜만 들어감
+				.classCloseDate(Date.valueOf("2021-08-05"))
 				.classState(ClassStateEnumType.APPLY)
 				.lecture(lrepo.findById(lectureId).get())
 				.teacher(trepo.findById(teacherId).get())

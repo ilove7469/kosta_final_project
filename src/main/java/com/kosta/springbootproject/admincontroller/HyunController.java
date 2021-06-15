@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.springbootproject.adminservice.AdminManageClassService;
@@ -24,13 +26,12 @@ import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.ClassRoom;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.EducationTime;
+import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.User;
-import com.kosta.springbootproject.persistence.ClassHistoryRepository;
-import com.kosta.springbootproject.persistence.ClassesRepository;
 
 @Controller
 public class HyunController {
@@ -53,7 +54,7 @@ public class HyunController {
 	ClassHistroyService classHistroyService;
 	
 
-//	강의운영 - 수강신청 관리메인	
+//	강의운영 - 수강신청 관리메인
 	@GetMapping("/admin/manageclassmain")
 	public void selectAllClassHistory(Model model) {
 		
@@ -68,6 +69,14 @@ public class HyunController {
 		model.addAttribute("ClassHistroyList",classHistroyResult);
 	}
 	
+//	강의운영 - 수강신청 관리 강의 상세페이지
+	@GetMapping("/admin/manageclassdetail/{classNo}")	
+	public ModelAndView searchClassDetail(@PathVariable Long classNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList", classhistorylist);
+		return mv;
+	}
 	
 //	메타정보 - 주제 메인
 	@GetMapping("/admin/subjectmain")
@@ -102,12 +111,13 @@ public class HyunController {
 		model.addAttribute("certiList",certiService.selectAll());
 	}
 
-//	기본정보 - 수료증 추가	
+//	기본정보 - 수료증 추가 Get
 	@GetMapping("/admin/certificateadd")
 	public String insertCerti() {
 		return "/admin/certificatedetail";
 	}
 	
+//	기본정보 - 수료증 추가 Post
 	@PostMapping("/admin/certificateadd")
 	public String insertCerti(Certificate certi) {
 		certiService.updateOrInsert(certi);

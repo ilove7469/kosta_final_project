@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>회사등록</title>
+<title>강사등록</title>
 </head>
 <body>
 
+	<div class="pannel panel-default" layout:fragment="content1">
 
 	<h1>강사 등록</h1>
 
@@ -40,5 +43,6 @@
 		<button type="reset" class="btn btn-primary">Reset</button>
 	</form>
 
+</div>
 </body>
 </html>

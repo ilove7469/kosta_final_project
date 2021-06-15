@@ -1,129 +1,134 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
-layout:decorate="~{/layout/layoutadmin}">
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
 <title>회사리스트</title>
 </head>
 <body>
 
-<div class="pannel panel-default" layout:fragment="content1">
-	
-	
+	<div class="pannel panel-default" layout:fragment="content1">
 
-	<p>[[${resultMessage}]]</p>
+		<p>[[${resultMessage}]]</p>
 
-	<h3><a th:href="@{/admin/companyInsert}">등록</a></h3>
-
-
-<div id="searchType">
-	<select>
-		<option>전체</option>
-		<option value="companyName" th:selected="${pagevo.type=='companyName'}">회사명</option>
-		<option value="companyLicense" th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
-		<option value="companyBoss" th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
-		
-	</select>
-	<input type="text" id="searchKeyword">
-	<button id="searchBtn">조건검색</button>
-</div>
+		<h3>
+			<a th:href="@{/admin/companyInsert}">등록</a>
+		</h3>
 
 
-	<table border="1">
-		<tr>
-			<th>회사명</th>
-			<th>사업자번호</th>
-			<th>대표자명</th>
-			<th>협약사</th>
-			<th>삭제</th>
-		</tr>
-		<tr th:each="company:${companylist}">
-			<td th:text="${company.companyName}"></td>
-			<td th:text="${company.companyLicense}"></td>
-			<td th:text="${company.companyBoss}"></td>
-			<td th:text="${company.companyConvention}"></td>
-			<td><a th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
-		</tr>
-	</table>
-	
-	
-	
-	
-	
-	
-	  <!-- 페이징처리 -->
-  <form id='f1' th:action="@{/admin/companyList}" method="get">
-    <input type='text' name='page' th:value="${result.currentPageNum}">
-    <input type='text' name='size' th:value="${result.currentPage.pageSize}">
-    <input type='text' name='type' th:value="${pagevo.type}">
-    <input type='text' name='keyword' th:value="${pagevo.keyword}">
-  </form>
-  
-  <!-- 페이지리스트 -->
-  <nav>
-    <div>
-      <ul class="pagination">
-          
-        <li class="page-item" th:if="${result.prevPage}">
-          <a th:href="${result.prevPage.pageNumber}+1">PREV!!</a>
-        </li>
-               
-	    <li class="page-item" th:each="pg:${result.pageList}"
-	    th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''"
-	    > <!-- 현재 페이지가 넘어오면 -1 -->
-	       <a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
-	    </li>
-	      
-        <li class="page-item" th:if="${result.nextPage}">
-          <a th:href="${result.nextPage.pageNumber}+1">
-          NEXT!![[${result.nextPage.pageNumber}+1]]</a>
-        </li>
-         
-      </ul>
-    </div>
-  </nav>
-  
-  
-  
-</div>
+		<div id="searchType">
+			<select>
+				<option>전체</option>
+				<option value="companyName"
+					th:selected="${pagevo.type=='companyName'}">회사명</option>
+				<option value="companyLicense"
+					th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
+				<option value="companyBoss"
+					th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
+
+			</select> <input type="text" id="searchKeyword">
+			<button id="searchBtn">조건검색</button>
+		</div>
+
+
+		<table border="1">
+			<tr>
+				<th>회사명</th>
+				<th>사업자번호</th>
+				<th>대표자명</th>
+				<th>협약사</th>
+				<th>삭제</th>
+			</tr>
+			<tr th:each="company:${companylist}">
+				<td th:text="${company.companyName}"></td>
+				<td th:text="${company.companyLicense}"></td>
+				<td th:text="${company.companyBoss}"></td>
+				<td th:text="${company.companyConvention}"></td>
+				<td><a
+					th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
+			</tr>
+		</table>
 
 
 
 
 
-	
+
+		<!-- 페이징처리 -->
+		<form id='f1' th:action="@{/admin/companyList}" method="get">
+			<input type='text' name='page' th:value="${result.currentPageNum}">
+			<input type='text' name='size'
+				th:value="${result.currentPage.pageSize}"> <input
+				type='text' name='type' th:value="${pagevo.type}"> <input
+				type='text' name='keyword' th:value="${pagevo.keyword}">
+		</form>
+
+		<!-- 페이지리스트 -->
+		<nav>
+			<div>
+				<ul class="pagination">
+
+					<li class="page-item" th:if="${result.prevPage}"><a
+						th:href="${result.prevPage.pageNumber}+1">PREV!!</a></li>
+
+					<li class="page-item" th:each="pg:${result.pageList}"
+						th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''">
+						<!-- 현재 페이지가 넘어오면 -1 --> <a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
+					</li>
+
+					<li class="page-item" th:if="${result.nextPage}"><a
+						th:href="${result.nextPage.pageNumber}+1">
+							NEXT!![[${result.nextPage.pageNumber}+1]]</a></li>
+
+				</ul>
+			</div>
+		</nav>
+
+
+
+	</div>
+
+
+
+
+
+
 	<th:block layout:fragment="script1">
-	<script>
-	$(function(){
-		var formObj = $("#f1");
-		$(".pagination a").click(function(e){
-			e.preventDefault(); //본래의 기능(link)을 취소
-			formObj.find("[name='page']").val($(this).attr("href"));
-			alert($(this).attr("href")); 
-			formObj.submit();
-		});
-	
-	$("#searchBtn").click(function(){
-		var typeStr = $("#searchType").find(":selected").val();
-		var keywordStr = $("#searchKeyword").val();
-		alert(typeStr + ":" + keywordStr);
-		formObj.find("[name='type']").val(typeStr);
-		formObj.find("[name='keyword']").val(keywordStr);
-		formObj.submit();
-	});
-	
-	$(".boardLink").click(function(e){
-		e.preventDefault();
-		var bno = $(this).attr("href");  /*  href 읽어와서  */
-	/* 	수정하고 바꿔라 */
-		formObj.attr("action", "[[@{/webboard/boarddetail}]]");
-		formObj.append("<input type='hidden' name='bno' value='" + bno +"'>")
-		formObj.submit();
-	});
-	
-	});
-	</script>
+		<script>
+			$(function() {
+				var formObj = $("#f1");
+				$(".pagination a").click(function(e) {
+					e.preventDefault(); //본래의 기능(link)을 취소
+					formObj.find("[name='page']").val($(this).attr("href"));
+					alert($(this).attr("href"));
+					formObj.submit();
+				});
+
+				$("#searchBtn").click(function() {
+					var typeStr = $("#searchType").find(":selected").val();
+					var keywordStr = $("#searchKeyword").val();
+					alert(typeStr + ":" + keywordStr);
+					formObj.find("[name='type']").val(typeStr);
+					formObj.find("[name='keyword']").val(keywordStr);
+					formObj.submit();
+				});
+
+				$(".boardLink")
+						.click(
+								function(e) {
+									e.preventDefault();
+									var bno = $(this).attr("href"); /*  href 읽어와서  */
+									/* 	수정하고 바꿔라 */
+									formObj.attr("action",
+											"[[@{/webboard/boarddetail}]]");
+									formObj
+											.append("<input type='hidden' name='bno' value='" + bno +"'>")
+									formObj.submit();
+								});
+
+			});
+		</script>
 	</th:block>
 
 </body>

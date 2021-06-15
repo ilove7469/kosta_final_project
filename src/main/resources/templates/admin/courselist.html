@@ -4,62 +4,62 @@
 	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>강사리스트</title>
+<title>과정리스트</title>
 </head>
 <body>
+
 	<div class="pannel panel-default" layout:fragment="content1">
 
-
+  
+ 	
 		<p>[[${resultMessage}]]</p>
 
-		<h3>
-			<a th:href="@{/admin/teacherInsert}">등록</a>
+	<h3>
+			<a th:href="@{/admin/courseInsert}">등록</a>
 		</h3>
+
 
 		<div id="searchType">
 			<select>
 				<option>전체</option>
-				<option value="teacherId" th:selected="${pagevo.type=='teacherId'}">강사ID</option>
-				<option value="teacherName"
-					th:selected="${pagevo.type=='teacherName'}">강사이름</option>
-				<option value="teacherPhone"
-					th:selected="${pagevo.type=='teacherPhone'}">강사번호</option>
-				<option value="teacherEmail"
-					th:selected="${pagevo.type=='teacherEmail'}">강사이메일</option>
+				<option value="courseName" th:selected="${pagevo.type=='courseName'}">주제명</option>
+				<option value="subName" th:selected="${pagevo.type=='subName'}">과정명</option>
+				<option value="courseTotalTrainTime" th:selected="${pagevo.type=='courseTotalTrainTime'}">훈련일수</option>
+				<option value="courseTotalDay" th:selected="${pagevo.type=='courseTotalDay'}">총훈련시간</option>
+				<option value="coursePrice" th:selected="${pagevo.type=='coursePrice'}">과정단가</option>
+				<option value="courseCapacity" th:selected="${pagevo.type=='courseCapacity'}">정원</option>
 
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
 
+
 		<table border="1">
 			<tr>
-				<th>강사번호</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>전화번호</th>
-				<th>이메일</th>
-				<th>등록일</th>
+				<th>주제명</th>
+				<th>과정명</th>
+				<th>훈련일수</th>
+				<th>총훈련시간</th>
+				<th>과정단가</th>
+				<th>정원</th>
 				<th>삭제</th>
 			</tr>
-			<tr th:each="teacher:${teacherlist}">
-				<td th:text="${teacher.teacherNo}"></td>
-				<td th:text="${teacher.teacherId}"></td>
-				<td th:text="${teacher.teacherName}"></td>
-				<td th:text="${teacher.teacherPhone}"></td>
-				<td th:text="${teacher.teacherEmail}"></td>
-				<td th:text="${teacher.teacherRegDate}"></td>
-				<td><a
-					th:href="@{/admin/teacherDelete(tno=${teacher.teacherNo})}">삭제하기</a></td>
+			<tr th:each="course:${courselist}">
+				<td th:text="${course.courseName}"></td>
+				<td th:text="${course.subject.subName}"></td>
+				<td th:text="${course.courseTotalTrainTime}"></td>
+				<td th:text="${course.courseTotalDay}"></td>
+				<td th:text="${course.coursePrice}"></td>
+				<td th:text="${course.courseCapacity}"></td>
+ 				<td><a th:href="@{/admin/courseDelete(cno=${course.courseNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 
 
 
 
-
-
 		<!-- 페이징처리 -->
-		<form id='f1' th:action="@{/admin/teacherList}" method="get">
+		<form id='f1' th:action="@{/admin/courseList}" method="get">
 			<input type='text' name='page' th:value="${result.currentPageNum}">
 			<input type='text' name='size'
 				th:value="${result.currentPage.pageSize}"> <input
@@ -90,9 +90,6 @@
 
 
 
-	</div>
-
-
 
 
 
@@ -104,14 +101,14 @@
 				$(".pagination a").click(function(e) {
 					e.preventDefault(); //본래의 기능(link)을 취소
 					formObj.find("[name='page']").val($(this).attr("href"));
-					//alert($(this).attr("href")); 
+					alert($(this).attr("href"));
 					formObj.submit();
 				});
 
 				$("#searchBtn").click(function() {
 					var typeStr = $("#searchType").find(":selected").val();
 					var keywordStr = $("#searchKeyword").val();
-					//alert(typeStr + ":" + keywordStr);
+					alert(typeStr + ":" + keywordStr);
 					formObj.find("[name='type']").val(typeStr);
 					formObj.find("[name='keyword']").val(keywordStr);
 					formObj.submit();
@@ -133,8 +130,8 @@
 			});
 		</script>
 	</th:block>
-
-
-	</div>
+  
+  
+  </div>
 </body>
 </html>

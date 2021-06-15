@@ -11,16 +11,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kosta.springbootproject.adminservice.AdminManageClassService;
 import com.kosta.springbootproject.adminservice.CertificateService;
+import com.kosta.springbootproject.adminservice.ClassHistroyService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
+import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.LectureHallService;
+import com.kosta.springbootproject.adminservice.SubjectService;
 import com.kosta.springbootproject.adminservice.UserService;
 import com.kosta.springbootproject.model.Certificate;
+import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.ClassRoom;
+import com.kosta.springbootproject.model.Classes;
+import com.kosta.springbootproject.model.EducationTime;
 import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
+import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.persistence.ClassHistoryRepository;
+import com.kosta.springbootproject.persistence.ClassesRepository;
 
 @Controller
 public class HyunController {
@@ -33,7 +43,51 @@ public class HyunController {
 	LectureHallService lectureHallService;
 	@Autowired
 	ClassRoomService classRoomService;
+	@Autowired
+	SubjectService subjectService;
+	@Autowired
+	EducationTimeService educationTimeService;
+	@Autowired
+	AdminManageClassService adminManageClassService;
+	@Autowired
+	ClassHistroyService classHistroyService;
 	
+
+//	강의운영 - 수강신청 관리메인	
+	@GetMapping("/admin/manageclassmain")
+	public void selectAllClassHistory(Model model) {
+		
+
+		
+		List<Classes> classesResult = adminManageClassService.selectAll();
+		List<ClassHistory> classHistroyResult = classHistroyService.selectAll();
+		model.addAttribute("ClassesList",classesResult);
+		for(ClassHistory classhistroy : classHistroyResult) {
+			classhistroy.getClasses().getClassNo();
+		}
+		model.addAttribute("ClassHistroyList",classHistroyResult);
+	}
+	
+	
+//	메타정보 - 주제 메인
+	@GetMapping("/admin/subjectmain")
+	public void selectAllSubject(Model model, PageVO pagevo) {
+		Page<Subject> result = subjectService.selectAll(pagevo);
+		model.addAttribute("SubjectResult",result);
+		model.addAttribute("pagevo",pagevo);
+		model.addAttribute("result",new PageMaker<>(result));
+	}
+
+//	메타정보 - 교육시간 메인
+	@GetMapping("/admin/educationtimemain")
+	public void selectAllEducationTime(Model model, PageVO pagevo) {
+		Page<EducationTime> result = educationTimeService.selectAll(pagevo);
+		model.addAttribute("EducationTimeResult",result);
+		model.addAttribute("pagevo",pagevo);
+		model.addAttribute("result",new PageMaker<>(result));
+	}
+	
+//	기본정보 - 회원 메인
 	@GetMapping("/admin/usermain")
 	public void selectAllUser(Model model, PageVO pagevo) {
 		Page<User> result = userService.selectAll(pagevo);
@@ -41,12 +95,14 @@ public class HyunController {
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));
 	}
-	
+
+//	기본정보 - 수료증 메인	
 	@GetMapping("/admin/certificatemain")
 	public void selectAllCerti(Model model) {
 		model.addAttribute("certiList",certiService.selectAll());
 	}
-	
+
+//	기본정보 - 수료증 추가	
 	@GetMapping("/admin/certificateadd")
 	public String insertCerti() {
 		return "/admin/certificatedetail";

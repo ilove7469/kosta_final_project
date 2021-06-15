@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+	<table>
+	<tr>
+	 <th>주제명</th>
+	 <th>강의명</th>
+	 <th>강사명</th>
+	 <th>기간</th>
+	 <th>강의장명</th>
+	 <th>상태</th>
+	 <th>대기/확정/취소</th>
+	</tr>
+	<tr th:each="classes:${ClassesList}" >
+		<td th:text="${classes.lecture.course.subject.subName}">주제명</td>
+		<td th:text="${classes.lecture.course.courseName}">강의명</td>
+		<td th:text="${classes.teacher.teacherName}">강사명</td>
+		<td th:text="${classes.classOpenDate}">기간</td>
+		<td th:text="${classes.classRoom.lectureHall.lectureHallName}">강의장명</td>
+		<td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+		<td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+		<td th:if="${#strings.toString(classes.classState)}=='ClOSE'" th:text="종강">상태</td>
+		<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>
+		<td th:text="'0/0/0 == '">대기/확정/취소</td>
+	</tr>
+	</table>
+</div>
+</body>
+</html>

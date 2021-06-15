@@ -24,22 +24,27 @@ public class CourseController {
 	@Autowired
 	CourseService cservice;
 	
-	@GetMapping("/user/userMain")
-	public void userMain(Model model) {
+	@GetMapping("/fragments/headeruser")public void userHeader(Model model) {
 		List<Trainee> traineeList = cservice.findTraineeAll();
 		model.addAttribute("traineeList", traineeList);
+	}
+	
+	@GetMapping("/user/userMain")
+	public void userMain(Model model) {
+		
 	}
 	
 	@ResponseBody
 	@GetMapping("/user/userMain/{traineeNo}")
 	public ResponseEntity<List<Subject>> userMain(@PathVariable Long traineeNo) {
-		System.out.println("왔니?");	
+		System.out.println(traineeNo);
 		return new ResponseEntity<>(cservice.findSubjectByTraineeNo(traineeNo),HttpStatus.OK);
 			
 	}
 	
 	@GetMapping("/course/{subjectNo}")	//주소 네이밍 어떻게 할지
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
+		System.out.println(subjectNo);
 		ModelAndView mv = new ModelAndView("/user/userCourse");
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
 		mv.addObject("CourseList", CourseList);

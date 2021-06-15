@@ -3,11 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+  p{
+    font-size: 40px;
+  }
+</style>
 </head>
 <body>
-
+<h1 th:text="${lecture.course.courseName}"></h1>
 <!-- 강의정보 출력 -->
   <div id="classes">
+    <p>교육일정</p>
     <table border="1">
       <tr th:each="class:${classList}">
         <td th:text="${class.classOpenDate}+${class.educationTime.educationTimeName}"></td>
@@ -30,8 +36,28 @@
 
 <!-- 과정+강의계획정보 출력 -->
 <div id="course">
-
-
+  <div id="courPurpose">
+    <p>교육목표</p>
+    <pre th:text="${lecture.course.coursePurpose}"></pre>
+  </div>
+  <div id="courContent">
+    <p>교육내용</p>
+    <pre th:text="${lecture.course.courseContent}"></pre>
+  </div>
+  <div id="courTarget">
+    <p>교육대상</p>
+    <pre th:text="${lecture.course.courseTarget}"></pre>
+  </div>
+  <div id="courAsk">
+      <!-- 셀렉트로 강의계획에서 문자열으로 합치는지? >> 그럼 그냥 ask에서 가져오기  -->
+    <p>문의센터</p>
+    <pre th:text="${lecture.lectureAsk}"></pre>
+  </div>
+  <!--없음 
+   <div id="courPurpose">
+    <p>연관과정</p>
+    <pre th:text="${lecture.course.coursePurpose}"></pre>
+  </div> -->
 </div>
 <!-- 과정+강의계획정보 출력끝 -->
 </body>

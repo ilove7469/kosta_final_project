@@ -38,6 +38,7 @@ public class CourseService {
 		Trainee trainee = Trainee.builder()
 				.traineeNo(traineeNo)
 				.build();
+		 
 		return subjectRepo.findByTraineeOrderBySubPriorityAsc(trainee);
 	}
 	public Subject findSubjectById(Long subjectId) {

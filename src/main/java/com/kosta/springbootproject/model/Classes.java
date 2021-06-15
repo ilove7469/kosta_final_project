@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.querydsl.core.annotations.QueryInit;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,12 +34,16 @@ import lombok.ToString;
 @Entity
 @Table
 public class Classes {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long classNo;
 	
 	@Column(nullable = false)
 	private Date classOpenDate;
+	
+	@Column(nullable = false)
+	private Date classCloseDate;
 	
 	@Column(length = 1000)
 	private String classDescription;
@@ -50,6 +56,7 @@ public class Classes {
 	private ClassStateEnumType classState;
 	
 	@ManyToOne
+	@QueryInit("course.*")
 	private Lecture lecture;
 	@ManyToOne
 	private Teacher teacher;

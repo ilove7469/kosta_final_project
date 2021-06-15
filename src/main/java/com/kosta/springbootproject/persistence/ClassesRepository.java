@@ -23,11 +23,11 @@ public interface ClassesRepository
 		BooleanBuilder builder = new BooleanBuilder();
 		QClasses classes = QClasses.classes;
 		//강사명
-		builder.or(classes.teacher.teacherName.like("%" + keyword + "%"));
+		builder.or(classes.teacher.teacherName.contains(keyword));
 		//과정명
-		builder.or(classes.lecture.course.courseName.like("%" + keyword + "%"));
+		builder.or(classes.lecture.course.courseName.contains(keyword));
 		//주제
-		builder.or(classes.lecture.course.subject.subName.like("%" + keyword + "%"));
+		builder.or(classes.lecture.course.subject.subName.contains(keyword));
 		
 		return builder;
 		

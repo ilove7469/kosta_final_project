@@ -25,6 +25,8 @@
 				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
 		</select>
 		</div>
+		<div class="form-group">
+
 
 		<div class="form-group">
 			<label for="writer">총훈련시간:</label> 
@@ -41,6 +43,12 @@
 					<option value="[채용예정자]">[채용예정자]</option>
 				</select>
 			</div>
+		<label for="content">훈련대상(테스트중):</label>
+		 <select class="select" name="traineeNo" id="traineeNo">
+				<option value="0">주제</option>
+				<option th:each="tlist : ${subjectlist}" th:value="${tlist.subject.trainee.traineeName}" th:text="${tlist.subject.trainee.traineeName}"></option>
+		</select>
+		</div>
 		<div class="form-group">
 			<label for="writer">과정단가:</label> 
 			<input type="number" class="form-control" id="coursePrice" placeholder="Enter writer" name="coursePrice" value="77087469" >

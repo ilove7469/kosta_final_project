@@ -1,6 +1,8 @@
 package com.kosta.springbootproject.usercontroller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,32 +26,36 @@ public class CourseController {
 	@Autowired
 	CourseService cservice;
 	
-	@GetMapping("/fragments/headeruser")public void userHeader(Model model) {
+	//해더
+	@ResponseBody
+	@GetMapping("/fragments/headerUser")
+	public List<Trainee> userHeader() {
 		List<Trainee> traineeList = cservice.findTraineeAll();
-		model.addAttribute("traineeList", traineeList);
+		return traineeList;
+	}
+	@ResponseBody
+	@GetMapping("/user/userMain/{traineeNo}")
+	public ResponseEntity<List<Subject>> userMain(@PathVariable Long traineeNo) {
+		return new ResponseEntity<>(cservice.findSubjectByTraineeNo(traineeNo),HttpStatus.OK);
+			
 	}
 	
+	//메인
 	@GetMapping("/user/userMain")
 	public void userMain(Model model) {
 		
 	}
 	
-	@ResponseBody
-	@GetMapping("/user/userMain/{traineeNo}")
-	public ResponseEntity<List<Subject>> userMain(@PathVariable Long traineeNo) {
-		System.out.println(traineeNo);
-		return new ResponseEntity<>(cservice.findSubjectByTraineeNo(traineeNo),HttpStatus.OK);
-			
-	}
-	
+	//과목
 	@GetMapping("/course/{subjectNo}")	//주소 네이밍 어떻게 할지
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
-		System.out.println(subjectNo);
 		ModelAndView mv = new ModelAndView("/user/userCourse");
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
 		mv.addObject("CourseList", CourseList);
 		return mv;
 	}
+	
+	//과목 디테일
 	@GetMapping("/courseInfo/{courseNo}/{lectureYear}")
 	public ModelAndView searchCourseInfo(@PathVariable Long courseNo, @PathVariable int lectureYear) {
 		ModelAndView mv = new ModelAndView("/user/userCourseInfo");

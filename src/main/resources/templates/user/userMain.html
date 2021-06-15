@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{/layout/layoutuser}">
+	layout:decorate="~{/layout/layoutUser}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -9,24 +9,8 @@
 </head>
 <body>
 
-
-  <!-- <div id="buttonBox" th:each="trainee:${traineeList}">
-    <button  style="width:350px;height:100px" th:text="${trainee.traineeNo}" th:value="${trainee.traineeNo}">버튼</button>
+  <div class="panel panel-default" layout:fragment="content1">
   </div>
-  <div id="here">
-    <ul id="manuBox">
-    </ul>
-  </div>
-
-  <form id="myfrm" action="" method="get">
-    <input type="text" name="subjectNo">
-  </form>   -->
-  <!-- <h1><a th:href="@{'/course/'+${subject.subjectNo}}">test</a></h1> -->
-  <!-- <ul th:each="subject:${subjectList}">
-    <li th:text="${subject.subName}"></li>
-  </ul> -->
-  
-  
   
 </body>
 </html>

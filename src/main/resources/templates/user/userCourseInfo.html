@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-  p{
-    font-size: 40px;
-  }
-</style>
+  <meta charset="UTF-8"/>
 </head>
 <body>
+<div layout:fragment="content1">
+<th:block layout:fragment="style1">
+  <style>
+    p{
+      font-size: 40px;
+    }
+  </style>
+</th:block>
 <h1 th:text="${lecture.course.courseName}"></h1>
 <!-- 강의정보 출력 -->
   <div id="classes">
@@ -26,9 +30,11 @@
         </th:block>
         <!-- 비대면체크 끝 -->
         <td th:text="${class.teacher.teacherName}"></td>
-        <td>
+        <td th:if="${class.classState.toString.equals('APPLY')}">
           <button>수강신청</button>
         </td>
+        <td th:if="${class.classState.toString.equals('OPENREADY')}">개설예정</td>
+        <td th:if="${class.classState.toString.equals('END')}">종강</td>
       </tr>
     </table>
   </div>
@@ -60,5 +66,6 @@
   </div> -->
 </div>
 <!-- 과정+강의계획정보 출력끝 -->
+</div>
 </body>
 </html>

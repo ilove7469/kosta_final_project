@@ -33,6 +33,27 @@
 		<input type="hidden" name="keyword" value="">
 
 	</form>
+	
+	<hr>
+	
+	<div>
+	<span>주제명</span>
+	<th:block th:each="subject:${sublist}">
+	<div th:text="${subject.subName}"></div>
+	</th:block>
+	</div>
+	
+	<hr>
+	
+	<div>
+	<span>강의장</span>
+	<th:block th:each="hall:${hlist}">
+	<div th:text="${hall.lectureHallName}"></div>
+	</th:block>
+	</div>
+	
+	<hr>
+	
 	<table>
 		<tr>
 			<th>과정명</th>

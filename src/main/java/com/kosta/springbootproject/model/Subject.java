@@ -23,7 +23,7 @@ import lombok.ToString;
 @Entity
 @Builder
 @Table
-public class Subject {
+public class Subject implements Comparable<Subject> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,5 +37,11 @@ public class Subject {
 	
 	@ManyToOne
 	private Trainee trainee;
+
+	@Override
+	public int compareTo(Subject o) {
+		return Long.compare(this.subjectNo, o.subjectNo);
+	}
+	
 	
 }

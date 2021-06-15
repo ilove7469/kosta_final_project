@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @Table
-public class LectureHall {
+public class LectureHall implements Comparable<LectureHall>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,5 +38,10 @@ public class LectureHall {
 	
 	@Column(nullable = false)
 	private String lectureHallPhone;
+
+	@Override
+	public int compareTo(LectureHall o) {
+		return Long.compare(this.lectureHallNo, o.lectureHallNo);
+	}
 
 }

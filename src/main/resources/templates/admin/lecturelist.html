@@ -4,59 +4,53 @@
 	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>회사리스트</title>
+<title>강의계획</title>
 </head>
 <body>
 
 	<div class="pannel panel-default" layout:fragment="content1">
 
-		<p>[[${resultMessage}]]</p>
+  
+ 	
+ 		<p>[[${resultMessage}]]</p> 
 
-		<h3>
-			<a th:href="@{/admin/companyInsert}">등록</a>
+	<h3>
+			<a th:href="@{/admin/lectureInsert}">등록(아직구현안됨)</a> 
 		</h3>
 
 
 		<div id="searchType">
-			<select>
+			<!-- <select>
 				<option>전체</option>
-				<option value="companyName"
-					th:selected="${pagevo.type=='companyName'}">회사명</option>
-				<option value="companyLicense"
-					th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
-				<option value="companyBoss"
-					th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
+				<option value="courseCapacity" th:selected="${pagevo.type=='courseCapacity'}">정원</option>
 
-			</select> <input type="text" id="searchKeyword">
+			</select> --> <input type="text" id="searchKeyword" placeholder="과정명">
 			<button id="searchBtn">조건검색</button>
 		</div>
 
 
 		<table border="1">
 			<tr>
-				<th>회사명</th>
-				<th>사업자번호</th>
-				<th>대표자명</th>
-				<th>협약사</th>
+				<th>과정명</th>
+				<th>강의계획년</th>
+				<th>연간개설횟수</th>
+				<th>목표정원</th>
 				<th>삭제</th>
 			</tr>
-			<tr th:each="company:${companylist}">
-				<td th:text="${company.companyName}"></td>
-				<td th:text="${company.companyLicense}"></td>
-				<td th:text="${company.companyBoss}"></td>
-				<td th:text="${company.companyConvention}"></td>
-				<td><a
-					th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
+			<tr th:each="lecture:${lecturelist}">
+				<td th:text="${lecture.course.courseName}"></td>
+				<td th:text="${lecture.lecturePlanYear}"></td>
+				<td th:text="${lecture.lectureOpenCount}"></td>
+				<td th:text="${lecture.lectureCapacity}"></td>
+ 	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제하기(아직구현안됨)</a></td>
 			</tr>
 		</table>
 
 
 
 
-
-
 		<!-- 페이징처리 -->
-		<form id='f1' th:action="@{/admin/companyList}" method="get">
+		<form id='f1' th:action="@{/admin/lectureList}" method="get">
 			<input type='hidden' name='page' th:value="${result.currentPageNum}">
 			<input type='hidden' name='size' th:value="${result.currentPage.pageSize}"> 
 			<input type='hidden' name='type' th:value="${pagevo.type}"> 
@@ -84,9 +78,6 @@
 			</div>
 		</nav>
 
-
-
-	</div>
 
 
 
@@ -129,6 +120,8 @@
 			});
 		</script>
 	</th:block>
-
+  
+  
+  </div>
 </body>
 </html>

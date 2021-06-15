@@ -1,17 +1,12 @@
 package com.kosta.springbootproject.admincontroller;
 
-import java.io.OutputStream;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,10 +14,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kosta.springbootproject.adminservice.ClassesService;
 import com.kosta.springbootproject.adminservice.CompanyService;
 import com.kosta.springbootproject.adminservice.AdminCourseService;
+import com.kosta.springbootproject.adminservice.CertificateService;
 import com.kosta.springbootproject.adminservice.LectureService;
+import com.kosta.springbootproject.adminservice.SubjectService;
 import com.kosta.springbootproject.adminservice.TeacherService;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
+import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Teacher;
@@ -39,15 +37,19 @@ public class TaeController {
 	AdminCourseService courseService;
 	//@Autowired
 	ClassesService classesService;
-	//@Autowired
+	@Autowired
 	LectureService lectureService;
+	
+	@Autowired
+	SubjectService subjectservice;
+	@Autowired
+	CertificateService certificateservice;
 	
 
 //회사main
 	@RequestMapping("/admin/companyList")
 	public void companySelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
 		Page<Company> result = companyService.selectAll(pagevo);
-		List<Company> companylist = result.getContent();
 		
 		model.addAttribute("companylist", result);
 		model.addAttribute("pagevo",pagevo);
@@ -87,7 +89,7 @@ public class TaeController {
 	public void teacherSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
 		
 		Page<Teacher> result = teacherService.selectAll(pagevo);
-		List<Teacher> teacherlist = result.getContent();
+
 		
 		model.addAttribute("teacherlist", result);
 		model.addAttribute("pagevo",pagevo);
@@ -125,7 +127,7 @@ public class TaeController {
 	@RequestMapping("/admin/courseList")
 	public void courseSelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
 		Page<Course> result = courseService.selectAll(pagevo);
-		List<Course> courselist = result.getContent();
+
 		
 		model.addAttribute("courselist", result);
 		model.addAttribute("pagevo",pagevo);
@@ -136,33 +138,51 @@ public class TaeController {
 //		model.addAttribute("courselist", courseService.courseSelectAll());
 //		
 //	}
+	
 //과정삭제
 	@GetMapping("/admin/courseDelete")
 	public String courseDelete(Long cno,  RedirectAttributes rttr) {
-		int ret = courseService.deleteCompany(cno);
+		int ret = courseService.deleteCourse(cno);
 		System.out.println("삭제:" + ret);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
-		return "redirect:/admin/companyList";
+		return "redirect:/admin/courseList";
 	}
 //과정추가
 	@GetMapping("/admin/courseInsert")
-	public void courseInsert() {
-		
+	public void courseInsert(Model model) {
+		model.addAttribute("certificatelist", certificateservice.selectAll());
+		model.addAttribute("subjectlist", subjectservice.selectAll());
 	}
 	 
 	@PostMapping("/admin/courseInsert")
-	public String courseInsertPost(Course course, RedirectAttributes rttr) {
-		
+	public String courseInsertPost(@ModelAttribute Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
 	
+		System.out.println("회원가입 : " + course);
+		System.out.println("certiNo : " + certiNo);
+		System.out.println("subject_subject_no : " + subjectNo);
+		
+		course.setCertificate(certificateservice.selectById(certiNo)); 
+		course.setSubject(subjectservice.selectById(subjectNo));
 		
 		Course ins_course = courseService.insertCourse(course);
+		System.out.println("incousrse : " + ins_course);
 		
 		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
 		return "redirect:/admin/courseList";
 	}
 	
 //강의계획main
-
+	@RequestMapping("/admin/lectureList")
+	public void lectureSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
+		
+		Page<Lecture> result = lectureService.selectAll(pagevo);
+		
+		
+		model.addAttribute("lecturelist", result);
+		model.addAttribute("pagevo",pagevo);
+		model.addAttribute("result",new PageMaker<>(result));
+		
+	}
 //강의계획삭제
 	
 //강의계획 추가

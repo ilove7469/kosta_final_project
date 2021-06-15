@@ -30,7 +30,7 @@ public class AdminCourseService {
 		return courseRepo.save(course);
 	}
 
-	public int deleteCompany(Long cno) {
+	public int deleteCourse(Long cno) {
 		int ret=0;
 		
 		try {

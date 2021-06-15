@@ -21,4 +21,8 @@ public class CertificateService {
 	public Certificate updateOrInsert(Certificate certi) {
 		return repo.save(certi);
 	}
+	
+	public Certificate selectById(Long certificate_certi_no) {
+		return repo.findById(certificate_certi_no).get();
+	}
 }

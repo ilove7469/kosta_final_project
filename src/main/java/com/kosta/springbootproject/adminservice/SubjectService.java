@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.persistence.SubjectRepository;
@@ -24,6 +25,14 @@ public class SubjectService {
 		Page<Subject> result = repo.findAll(p, pageable);
 		return result;
 
+	}
+	
+	public Subject selectById(Long id) {
+		return repo.findById(id).get();
+	}
+	
+	public List<Subject> selectAll(){
+		return (List<Subject>) repo.findAll();
 	}
 	
 }

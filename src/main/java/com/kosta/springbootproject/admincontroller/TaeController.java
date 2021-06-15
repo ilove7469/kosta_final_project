@@ -44,6 +44,7 @@ public class TaeController {
 	SubjectService subjectservice;
 	@Autowired
 	CertificateService certificateservice;
+
 	
 
 //회사main
@@ -123,7 +124,7 @@ public class TaeController {
 	}
 	
 	
-//과정main
+//과정main 
 	@RequestMapping("/admin/courseList")
 	public void courseSelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
 		Page<Course> result = courseService.selectAll(pagevo);
@@ -152,6 +153,7 @@ public class TaeController {
 	public void courseInsert(Model model) {
 		model.addAttribute("certificatelist", certificateservice.selectAll());
 		model.addAttribute("subjectlist", subjectservice.selectAll());
+
 	}
 	 
 	@PostMapping("/admin/courseInsert")

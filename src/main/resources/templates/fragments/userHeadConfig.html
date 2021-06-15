@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="head1">
+  <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"></title>
+  <meta charset="UTF-8"/>
+  
+  <!--공통 스크립트 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(function(){
+      $.ajax({
+        url:"/fragments/headerUser",
+        type:"get",
+        success:printList
+      });
+      
+      function printList(trainee){
+        var str="";
+        $.each(trainee, function(idx,trainee){
+          str += `<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                      ${trainee.traineeName}
+                      <span class="caret"></span>
+                    </a>
+                    <ul id="dropdown-manu${trainee.traineeNo}" class="dropdown-menu"></ul>
+                  </li>`;
+          $("#navber-manu").html(str);
+          subjectList(trainee);
+        });
+      }
+      function subjectList(trainee){
+        var str="";
+        $.getJSON("/user/userMain/"+trainee.traineeNo,function(subject){
+          $.each(subject,function(idx,subject){
+          	str += `<li><a href='/course/${subject.subjectNo}'>${subject.subName}</a></li>`; 
+          });
+          $("#dropdown-manu"+trainee.traineeNo).html(str);
+        });
+    }
+  });
+  </script>
+  
+  <!--개별 스크립트 -->
+  <th:block layout:fragment="script1">
+  </th:block>
+  
+  <!-- 공통적인 css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+  .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+  }
+  </style>
+  
+  <!-- 개별적인 css -->
+  <th:block layout:fragment="style1">
+  </th:block>
+</head>
+  <!-- [head] 영역 끝 --> 
+</html>

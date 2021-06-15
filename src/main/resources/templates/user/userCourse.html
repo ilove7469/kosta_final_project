@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- jquery layout만들면 삭제 -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 </head>
 <body>
+<div class="panel panel-default" layout:fragment="content1">
   <table>
     <tr>
       <th>과목명</th>
@@ -20,11 +20,8 @@
       </td>
       <td th:text="${CourseInfo[1]}"/>
       <td th:text="${CourseInfo[2]}"/>
-      <!-- <td>[[${CourseInfo[0]}]]</td>
-      <td>[[${CourseInfo[1]}]]</td>
-      <td>[[${CourseInfo[2]}]]</td> -->
     </tr>
   </table>
-  
+ </div> 
 </body>
 </html>

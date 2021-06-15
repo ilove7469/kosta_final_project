@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutuser}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 </head>
 <body>
-  <div id="buttonBox" th:each="trainee:${traineeList}">
+
+
+  <!-- <div id="buttonBox" th:each="trainee:${traineeList}">
     <button  style="width:350px;height:100px" th:text="${trainee.traineeNo}" th:value="${trainee.traineeNo}">버튼</button>
   </div>
   <div id="here">
@@ -15,35 +19,14 @@
   </div>
 
   <form id="myfrm" action="" method="get">
-    <input type="text" name="subName"> <!-- 여기까지했음 -->
-  </form>  
+    <input type="text" name="subjectNo">
+  </form>   -->
   <!-- <h1><a th:href="@{'/course/'+${subject.subjectNo}}">test</a></h1> -->
   <!-- <ul th:each="subject:${subjectList}">
     <li th:text="${subject.subName}"></li>
   </ul> -->
   
-  <script>
-	$("#buttonBox button").click(function(){
-		var traineeNo = $(this).val();
-		alert(traineeNo);
-		$.getJSON("/user/userMain/"+traineeNo,printList);
-	})
-	
-	function printList(sList){
-		var str="";
-		$.each(sList,function(idx,item){
-			str += `<li><a th:href='' th:text=${item['subName']}></a></li>
-					<li style='hidden'>${item['subjectNo']}</li>`;
-		});
-		$("#manuBox").html(str);
-	}
-	
-	$("#manuBox").on("click", function(){
-		var manu = $(this).find("li");
-		manu[0].attr("href",manu[1].innerHTML);
-	})
-	
-  </script>
+  
   
 </body>
 </html>

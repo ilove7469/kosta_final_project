@@ -27,6 +27,10 @@ public class SubjectService {
 
 	}
 	
+	public Subject updateOrInsert(Subject subject) {
+		return repo.save(subject);
+	}
+	
 	public Subject selectById(Long id) {
 		return repo.findById(id).get();
 	}

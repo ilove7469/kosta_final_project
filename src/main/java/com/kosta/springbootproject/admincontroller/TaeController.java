@@ -18,6 +18,7 @@ import com.kosta.springbootproject.adminservice.CertificateService;
 import com.kosta.springbootproject.adminservice.LectureService;
 import com.kosta.springbootproject.adminservice.SubjectService;
 import com.kosta.springbootproject.adminservice.TeacherService;
+import com.kosta.springbootproject.adminservice.TraineeService;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
@@ -44,6 +45,8 @@ public class TaeController {
 	SubjectService subjectservice;
 	@Autowired
 	CertificateService certificateservice;
+	@Autowired
+	TraineeService traineeservice;
 
 	
 
@@ -153,6 +156,7 @@ public class TaeController {
 	public void courseInsert(Model model) {
 		model.addAttribute("certificatelist", certificateservice.selectAll());
 		model.addAttribute("subjectlist", subjectservice.selectAll());
+		model.addAttribute("traineelist", traineeservice.selectAll());
 
 	}
 	 

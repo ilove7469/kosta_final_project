@@ -8,6 +8,8 @@
 </head>
 <body>
 
+   <h1>회사리스트</h1>
+
 	<div class="pannel panel-default" layout:fragment="content1">
 
 		<p>[[${resultMessage}]]</p>
@@ -44,7 +46,9 @@
 				<td th:text="${company.companyName}"></td>
 				<td th:text="${company.companyLicense}"></td>
 				<td th:text="${company.companyBoss}"></td>
-				<td th:text="${company.companyConvention}"></td>
+				<!-- <td th:text="${company.companyConvention}"></td> -->
+				<td th:if="${#strings.toString(company.companyConvention)}=='Convention'" th:text="협약사">상태</td>
+				<td th:if="${#strings.toString(company.companyConvention)}=='NoConvention'" th:text="비협약사">상태</td>
 				<td><a
 					th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
 			</tr>

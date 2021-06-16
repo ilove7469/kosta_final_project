@@ -45,9 +45,9 @@
 				</select>
 			</div>
 			 -->
-		<label for="content">훈련대상(테스트중):</label>
+		<label for="content">훈련대상:</label>
 		 <select class="select" name="trainee1" id="trainee1">
-				<option value="0">주제</option>
+				<option value="">비선택</option>
 				<option th:each="tlist : ${traineelist}" th:value="'['+${tlist.traineeName}+']'" th:text="${tlist.traineeName}"></option>
 		</select>
 		</div>
@@ -85,7 +85,7 @@
 		<div class="form-group">
 		<label for="content">수료증:</label>
 		 <select class="select" name="certiNo" id="certiNo">
-				<option value="0">수료증</option>
+				<option value="">수료증</option>
 				<option th:each="clist : ${certificatelist}" th:value="${clist.certiNo}" th:text="${clist.certiNo} + ' : ' + ${clist.certiName}"></option>
 		</select>
 		</div>

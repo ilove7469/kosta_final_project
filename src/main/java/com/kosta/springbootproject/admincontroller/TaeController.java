@@ -1,5 +1,7 @@
 package com.kosta.springbootproject.admincontroller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import com.kosta.springbootproject.adminservice.LectureService;
 import com.kosta.springbootproject.adminservice.SubjectService;
 import com.kosta.springbootproject.adminservice.TeacherService;
 import com.kosta.springbootproject.adminservice.TraineeService;
+import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
@@ -36,7 +39,7 @@ public class TaeController {
 	TeacherService teacherService;
 	@Autowired
 	AdminCourseService courseService;
-	//@Autowired
+	@Autowired
 	ClassesService classesService;
 	@Autowired
 	LectureService lectureService;
@@ -194,6 +197,14 @@ public class TaeController {
 //강의계획 추가
 	
 //강의main
+	@RequestMapping("/admin/classesList")
+	public void classesSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
+		Page<Classes> result = classesService.selectAll(pagevo);
+		
+		model.addAttribute("classeslist", result);
+		model.addAttribute("pagevo",pagevo);
+		model.addAttribute("result",new PageMaker<>(result));
+	}
 
 //강의삭제
 	

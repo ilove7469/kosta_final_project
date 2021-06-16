@@ -4,53 +4,63 @@
 	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>강의계획</title>
+<title>강의리스트</title>
 </head>
 <body>
 
 	<div class="pannel panel-default" layout:fragment="content1">
 
-  <h1>강의계획</h1>
- 	
- 		<p>[[${resultMessage}]]</p> 
+		<p>[[${resultMessage}]]</p>
 
-	<h3>
-			<a th:href="@{/admin/lectureInsert}">등록(아직구현안됨)</a> 
+		<h3>
+			<a th:href="@{/admin/classesInsert}">등록(구현안됨)</a>
 		</h3>
 
-
+<!--
 		<div id="searchType">
-			<!-- <select>
+			<select>
 				<option>전체</option>
-				<option value="courseCapacity" th:selected="${pagevo.type=='courseCapacity'}">정원</option>
-
-			</select> --> <input type="text" id="searchKeyword" placeholder="과정명">
+				<option value="companyName" th:selected="${pagevo.type=='companyName'}">회사명</option>
+				<option value="companyLicense" th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
+				<option value="companyBoss" th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
+			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
-
+  -->
 
 		<table border="1">
 			<tr>
-				<th>과정명</th>
-				<th>강의계획년</th>
-				<th>연간개설횟수</th>
-				<th>목표정원</th>
+				<th>주제명</th>
+				<th>강의명</th>
+				<th>강사명</th>
+				<th>기간</th>
+				<th>강의장명</th>
+				<th>상태</th>
 				<th>삭제</th>
 			</tr>
-			<tr th:each="lecture:${lecturelist}">
-				<td th:text="${lecture.course.courseName}"></td>
-				<td th:text="${lecture.lecturePlanYear}"></td>
-				<td th:text="${lecture.lectureOpenCount}"></td>
-				<td th:text="${lecture.lectureCapacity}"></td>
- 	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제하기(아직구현안됨)</a></td>
+			<tr th:each="classes:${classeslist}">
+				<td th:text="${classes.lecture.course.subject.subName}">주제명</td>
+				<td th:text="${classes.lecture.Course.courseName}">강의명</td>
+				<td th:text="${classes.teacher.teacherName}">강사명</td>
+				<td th:text="${classes.classOpenDate} + '~'+ ${classes.classCloseDate}">기간</td>
+				<td th:text="${classes.classRoom.lectureHall.lectureHallName}">강의장명</td> 
+				<td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+				<td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+				<td th:if="${#strings.toString(classes.classState)}=='ClOSE'" th:text="종강">상태</td>
+				<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>
+			
+				
+				<td><a th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제하기(구현안됨)</a></td>
 			</tr>
 		</table>
 
 
 
 
+
+
 		<!-- 페이징처리 -->
-		<form id='f1' th:action="@{/admin/lectureList}" method="get">
+		<form id='f1' th:action="@{/admin/classesList}" method="get">
 			<input type='hidden' name='page' th:value="${result.currentPageNum}">
 			<input type='hidden' name='size' th:value="${result.currentPage.pageSize}"> 
 			<input type='hidden' name='type' th:value="${pagevo.type}"> 
@@ -78,6 +88,9 @@
 			</div>
 		</nav>
 
+
+
+	</div>
 
 
 
@@ -120,8 +133,6 @@
 			});
 		</script>
 	</th:block>
-  
-  
-  </div>
+
 </body>
 </html>

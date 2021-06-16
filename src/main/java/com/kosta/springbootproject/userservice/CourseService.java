@@ -53,18 +53,19 @@ public class CourseService {
 	}
 	
 	//>>/courseInfo/{courseNo}/{lectureYear}
-	public Lecture findLecturByCourse(Long courseNo, int lectureYear) {
-		Course course = Course.builder()
-				.courseNo(courseNo)
-				.build();
+	public Lecture findLecturByCourse(Course course, int lectureYear) {
 		Lecture lecture = lectureRepo.findByCourseAndLecturePlanYearGreaterThanEqual(course,lectureYear);
-		System.out.println(lecture);
 		return lecture;
 	}
+	
 	public List<Classes> findClassByLecture(Lecture lecture){
 		List<Classes> classList = classRepo.findByLecture(lecture);
 		return classList;
-		
+	}
+	
+	//>>/enroll/{classNo}
+	public Classes findClassByClassNO(Long classNo) {
+		return classRepo.findById(classNo).get();
 	}
 	
 }

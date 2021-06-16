@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/layout/layoutUser}">
@@ -11,42 +12,41 @@
   <div class="panel panel-default" layout:fragment="content1">
     <table>
       <tr>
-        <td>훈련일정</td>
+        <th>훈련일정</th>
+        <td th:text="%{#dates.format(${class.classOpenDate}),'yyyy-MM-dd'}+'~'+${class.classCloseDate}"></td>
+      <tr>
+      <tr>
+        <th>교육시간</th>
         <td>
       <tr>
       <tr>
-        <td>교육시간</td>
+        <th>훈련일수</th>
         <td>
       <tr>
       <tr>
-        <td>훈련일수</td>
+        <th>훈련시간</th>
         <td>
       <tr>
       <tr>
-        <td>훈련시간</td>
+        <th>강사</th>
         <td>
       <tr>
       <tr>
-        <td>강사</td>
+        <th>강의장</th>
         <td>
       <tr>
       <tr>
-        <td>강의장</td>
+        <th>강의실번호</th>
         <td>
       <tr>
       <tr>
-        <td>강의실번호</td>
+        <th>주제명</th>
         <td>
       <tr>
       <tr>
-        <td>주제명</td>
+        <th>정원</th>
         <td>
       <tr>
-      <tr>
-        <td>정원</td>
-        <td>
-      <tr>
-      
     </table>
   </div>
 </body>

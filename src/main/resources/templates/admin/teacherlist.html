@@ -9,6 +9,7 @@
 <body>
 	<div class="pannel panel-default" layout:fragment="content1">
 
+<h1>강사리스트</h1>
 
 		<p>[[${resultMessage}]]</p>
 
@@ -20,12 +21,9 @@
 			<select>
 				<option>전체</option>
 				<option value="teacherId" th:selected="${pagevo.type=='teacherId'}">강사ID</option>
-				<option value="teacherName"
-					th:selected="${pagevo.type=='teacherName'}">강사이름</option>
-				<option value="teacherPhone"
-					th:selected="${pagevo.type=='teacherPhone'}">강사번호</option>
-				<option value="teacherEmail"
-					th:selected="${pagevo.type=='teacherEmail'}">강사이메일</option>
+				<option value="teacherName" th:selected="${pagevo.type=='teacherName'}">강사이름</option>
+				<option value="teacherPhone" th:selected="${pagevo.type=='teacherPhone'}">강사번호</option>
+				<option value="teacherEmail" th:selected="${pagevo.type=='teacherEmail'}">강사이메일</option>
 
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
@@ -60,11 +58,10 @@
 
 		<!-- 페이징처리 -->
 		<form id='f1' th:action="@{/admin/teacherList}" method="get">
-			<input type='text' name='page' th:value="${result.currentPageNum}">
-			<input type='text' name='size'
-				th:value="${result.currentPage.pageSize}"> <input
-				type='text' name='type' th:value="${pagevo.type}"> <input
-				type='text' name='keyword' th:value="${pagevo.keyword}">
+			<input type='hidden' name='page' th:value="${result.currentPageNum}">
+			<input type='hidden' name='size' th:value="${result.currentPage.pageSize}"> 
+			<input type='hidden' name='type' th:value="${pagevo.type}"> 
+			<input type='hidden' name='keyword' th:value="${pagevo.keyword}">
 		</form>
 
 		<!-- 페이지리스트 -->

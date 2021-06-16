@@ -20,6 +20,7 @@ import com.kosta.springbootproject.adminservice.ClassRoomService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.LectureHallService;
 import com.kosta.springbootproject.adminservice.SubjectService;
+import com.kosta.springbootproject.adminservice.TraineeService;
 import com.kosta.springbootproject.adminservice.UserService;
 import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.ClassHistory;
@@ -52,14 +53,13 @@ public class HyunController {
 	AdminManageClassService adminManageClassService;
 	@Autowired
 	ClassHistroyService classHistroyService;
-	
+	@Autowired
+	TraineeService traineeService;
 
 //	강의운영 - 수강신청 관리메인
 	@GetMapping("/admin/manageclassmain")
 	public void selectAllClassHistory(Model model) {
-		
 
-		
 		List<Classes> classesResult = adminManageClassService.selectAll();
 		List<ClassHistory> classHistroyResult = classHistroyService.selectAll();
 		model.addAttribute("ClassesList",classesResult);
@@ -70,7 +70,7 @@ public class HyunController {
 	}
 	
 //	강의운영 - 수강신청 관리 강의 상세페이지
-	@GetMapping("/admin/manageclassdetail/{classNo}")	
+	@GetMapping("/admin/manageclassdetail/{classNo}")
 	public ModelAndView searchClassDetail(@PathVariable Long classNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
@@ -86,6 +86,22 @@ public class HyunController {
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));
 	}
+	
+//	메타정보 - 주제 추가 Get
+	@GetMapping("/admin/subjectadd")
+	public String insertSubject(Model model) {
+		model.addAttribute("traineeList",traineeService.selectAll());
+		return "/admin/subjectInsert";
+	}
+	
+//	메타정보 - 주제 추가 Post
+	@PostMapping("/admin/subjectadd")
+	public String insertSubject(Subject subject, Long trainee) {
+
+		subjectService.updateOrInsert(subject);
+		return "redirect:/admin/subjectmain";
+	}	
+
 
 //	메타정보 - 교육시간 메인
 	@GetMapping("/admin/educationtimemain")
@@ -95,6 +111,21 @@ public class HyunController {
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));
 	}
+	
+//	메타정보 - 교육시간 추가 Get
+	@GetMapping("/admin/educationtimeadd")
+	public String insertEducationTime() {
+		return "/admin/educationTimeInsert";
+	}
+	
+//	메타정보 - 교육시간 추가 Post
+	@PostMapping("/admin/educationtimeadd")
+	public String insertEducationTime(Subject subject, Long trainee) {
+
+		subjectService.updateOrInsert(subject);
+		return "redirect:/admin/subjectmain";
+	}		
+
 	
 //	기본정보 - 회원 메인
 	@GetMapping("/admin/usermain")
@@ -131,35 +162,41 @@ public class HyunController {
 	}
 	*/
 
+//	기본정보 - 강의장 메인
 	@GetMapping("/admin/lecturehallmain")
 	public void selectAllLectureHall(Model model) {
 		model.addAttribute("lectureHallList",lectureHallService.selectAll());
 	}
-	
+
+//	기본정보 - 강의장 추가 Get
 	@GetMapping("/admin/lecturehalladd")
 	public String insertLectureHall() {
 		return "/admin/lecturehalldetail";
 	}
 	
+//	기본정보 - 강의장 추가 Post
 	@PostMapping("/admin/lecturehalladd")
 	public String insertLectureHall(LectureHall lectureHall) {
 		lectureHallService.updateOrInsert(lectureHall);
 		return "redirect:/admin/lecturehallmain";
 	}
 	
+	
+//	기본정보 - 강의실 메인
 	@RequestMapping("/admin/classroommain")
 	public void selectAllClassRoom(Model model) {
-		System.out.println(classRoomService.selectAll());
 		model.addAttribute("classRoomList",classRoomService.selectAll());
 	}
-	
+
+//	기본정보 - 강의실 추가 Get
 	@GetMapping("/admin/classroomadd")
 	public String insertClassRoom(Model model) {
 		List<LectureHall> lectureHallList = lectureHallService.selectAll();
 		model.addAttribute("lectureHallList",lectureHallList);
 		return "/admin/classroomdetail";
 	}
-	
+
+//	기본정보 - 강의실 추가 Post
 	@PostMapping("/admin/classroomadd")
 	public String insertClassRoom(ClassRoom classRoom) {
 		classRoomService.updateOrInsert(classRoom);

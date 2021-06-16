@@ -8,20 +8,20 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<h4>주제 신규등록</h4>
+	<h4>교육시간 신규등록</h4>
 	
-	<form th:action="@{/admin/subjectadd}" method="post">
+	<form th:action="@{/admin/educationtimeadd}" method="post">
 	    <div class="form-group">
-	      <label for="subName">주제명:</label>
-	      <input type="text" class="form-control" id="subName" name="subName">
+	      <label for="educationTimeName">이름:</label>
+	      <input type="text" class="form-control" id="educationTimeName" name="educationTimeName">
 	    </div>
 	    <div class="form-group">
-	      <label for="subPriority">순서:</label>
-	      <input type="number" class="form-control" id="subPriority" name="subPriority">
+	      <label for="subPriority">유형:</label>
+	      <input type="number" class="form-control" id="educationPartType" name="educationPartType">
 	    </div>
 	    <div class="form-group">
-	      <label for="subExplain">설명:</label>
-		  <textarea class="form-control" rows="5" cols="" id="subExplain" name="subExplain"></textarea>    
+	      <label for="educationTimeType">시간대:</label>
+		  <input type="text" class="form-control" id="educationTimeType" name="educationTimeType">
 	    </div>
 	    <div>
 		  <label for="trainee">훈련대상</label>

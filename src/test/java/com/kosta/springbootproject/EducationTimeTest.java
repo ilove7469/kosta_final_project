@@ -21,7 +21,7 @@ public class EducationTimeTest {
 		IntStream.range(5, 9).forEach(i->{
 			EducationTime et = EducationTime.builder()
 					.educationTimeName("주말("+i+"시간)")
-					.educationPartType(EducationPartEnumType.MORNING)
+					.educationPartType(EducationPartEnumType.DAY)
 					.educationTimeType(i+"시~"+(i+3)+"시")
 					.build();
 			repo.save(et);
@@ -32,7 +32,7 @@ public class EducationTimeTest {
 	public void updateET() {
 		Long id = 80L;
 		repo.findById(id).ifPresent(et->{
-			et.setEducationPartType(EducationPartEnumType.EVENING);
+			et.setEducationPartType(EducationPartEnumType.NIGHT);
 			repo.save(et);
 		});
 	}

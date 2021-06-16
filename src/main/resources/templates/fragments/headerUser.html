@@ -6,6 +6,9 @@
 </head>
 
 <header class="page-header" th:fragment="header1">
+ <th:block layout:fragment="style1">
+  
+ </th:block>
   <h1>
     KOSTA프로젝트 <small>Designed by yoon</small>
   </h1>
@@ -16,7 +19,7 @@
       </div>
       <ul id="navber-manu" class="nav navbar-nav">
       </ul>
-      <form class="navbar-form navbar-left" action="/action_page.php">
+      <form class="navbar-form navbar-right" action="/action_page.php">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search" name="search">
           <div class="input-group-btn">

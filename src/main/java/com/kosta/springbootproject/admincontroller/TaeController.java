@@ -28,6 +28,9 @@ import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Teacher;
+import com.kosta.springbootproject.adminservice.AdminService;
+import com.kosta.springbootproject.adminservice.EducationTimeService;
+import com.kosta.springbootproject.adminservice.ClassRoomService;
 
 
 @Controller

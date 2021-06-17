@@ -10,11 +10,13 @@ import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Trainee;
+import com.kosta.springbootproject.model.User;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CourseRepository;
 import com.kosta.springbootproject.persistence.LectureRepository;
 import com.kosta.springbootproject.persistence.SubjectRepository;
 import com.kosta.springbootproject.persistence.TraineeRepository;
+import com.kosta.springbootproject.persistence.UserRepository;
 
 @Service
 public class CourseService {
@@ -29,7 +31,8 @@ public class CourseService {
 	ClassesRepository classRepo;
 	@Autowired
 	TraineeRepository traineeRepo;
-	
+	@Autowired
+	UserRepository userRepo;
 	
 	public List<Trainee> findTraineeAll() {
 		return (List<Trainee>)traineeRepo.findAll();
@@ -66,6 +69,11 @@ public class CourseService {
 	//>>/enroll/{classNo}
 	public Classes findClassByClassNO(Long classNo) {
 		return classRepo.findById(classNo).get();
+	}
+	
+	//>>/course/enroll/info/{classNo}
+	public User findUserByUserID(String userId) {
+		return userRepo.findByUserId(userId);
 	}
 	
 }

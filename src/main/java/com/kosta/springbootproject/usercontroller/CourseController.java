@@ -17,6 +17,7 @@ import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Trainee;
+import com.kosta.springbootproject.model.User;
 import com.kosta.springbootproject.userservice.CourseService;
 
 @Controller
@@ -65,7 +66,7 @@ public class CourseController {
 		return mv;
 	}
 	
-	//강의신청 1단계
+	//강의신청 1단계(신청하기)
 	@GetMapping("/course/enroll/{classNo}")
 	public ModelAndView searchEnroll(@PathVariable Long classNo) {
 		ModelAndView mv = new ModelAndView("/user/userEnroll");
@@ -74,16 +75,19 @@ public class CourseController {
 		return mv;
 	}
 	
-	//강의신청 2단계
+	//강의신청 2단계(접수하기)
 	@GetMapping("/course/enroll/info/{classNo}")
 	public ModelAndView searchEnrollDetail(@PathVariable Long classNo) {
 		ModelAndView mv;
 		//id체크
 		//id있으면
-		mv = new ModelAndView("/user/userEnrollInfo");
+		mv = new ModelAndView("/user/userEnrollDetail");
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		mv.addObject("class",classInfo);
-		//id로 유저찾기
+		//id로 유저찾기 >>repo에서 유저정보 찾아서 뿌리기 밑에꺼 시큐리티만들어지면 바꿔야함
+		String userId = "아이디1";
+		User userInfo = cservice.findUserByUserID(userId);
+		mv.addObject("user",userInfo);
 		//mv.addObject("userNo",userNo);
 		//id 없으면
 		//mv = new ModelAndView("/user/login");

@@ -1,6 +1,8 @@
 package com.kosta.springbootproject.adminservice;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,10 @@ public class EducationTimeService {
 	
 	public EducationTime updateOrInsert(EducationTime educationTime) {
 		return repo.save(educationTime);
+	}
+	
+	public List<EducationTime> selectAll(){
+		return (List<EducationTime>) repo.findAll();
 	}
 	
 }

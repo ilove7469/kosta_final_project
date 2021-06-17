@@ -72,6 +72,5 @@ public class CourseController {
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		mv.addObject("class",classInfo);
 		return mv;
-		
 	}
 }

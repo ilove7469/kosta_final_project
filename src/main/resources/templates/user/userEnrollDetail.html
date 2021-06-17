@@ -13,41 +13,43 @@
     <table>
       <tr>
         <th>훈련일정</th>
-        <td th:text="%{#dates.format(${class.classOpenDate}),'yyyy-MM-dd'}+'~'+${class.classCloseDate}"></td>
+        <td th:text="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}"></td>
       <tr>
       <tr>
         <th>교육시간</th>
-        <td>
+        <td th:text="${class.educationTime.educationTimeName}+' '+${class.educationTime.educationTimeType}"></td>
       <tr>
       <tr>
         <th>훈련일수</th>
-        <td>
+        <td th:text="${class.lecture.course.courseTotalDay}+일"></td>
       <tr>
       <tr>
         <th>훈련시간</th>
-        <td>
+        <td th:text="${class.lecture.course.courseTotalTrainTime}+시간"></td>
       <tr>
       <tr>
         <th>강사</th>
-        <td>
+        <td th:text="${class.teacher.teacherName}"></td>
       <tr>
       <tr>
         <th>강의장</th>
-        <td>
+        <td th:text="${class.classRoom.lectureHall.lectureHallName}"></td>
       <tr>
       <tr>
         <th>강의실번호</th>
-        <td>
+        <td th:text="${class.classRoom.classRoomName}"></td>
       <tr>
       <tr>
         <th>주제명</th>
-        <td>
+        <td th:text="${class.lecture.course.subject.subName}"></td>
       <tr>
       <tr>
         <th>정원</th>
-        <td>
+        <td th:text="${class.lecture.course.courseCapacity}+명"></td>
       <tr>
     </table>
+    
+    
   </div>
 </body>
 </html>

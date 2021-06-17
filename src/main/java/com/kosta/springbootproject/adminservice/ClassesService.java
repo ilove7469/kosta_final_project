@@ -31,4 +31,18 @@ public class ClassesService {
 	public Classes updateOrInsert(Classes classes) {
 		return classesRepo.save(classes);
 	}
+
+
+		public int deleteClasses(Long cno) {
+			
+			int ret=0;
+			
+			try {
+				classesRepo.deleteById(cno);
+			ret=1;
+			}catch(Exception ex) {
+			
+			}
+			return ret;
+		}
 }

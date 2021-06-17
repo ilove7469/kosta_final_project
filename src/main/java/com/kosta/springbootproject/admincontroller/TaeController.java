@@ -253,6 +253,15 @@ public class TaeController {
 
 //강의삭제
 	
+	@GetMapping("/admin/classesDelete")
+	public String classesDelete(Long cno,  RedirectAttributes rttr) {
+		int ret = classesService.deleteClasses(cno);
+	
+		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
+		return "redirect:/admin/classesList";
+	}
+	
+	
 //강의추가
 	@GetMapping("/admin/classesInsert")
 	   public void classesInsert(Model model) {

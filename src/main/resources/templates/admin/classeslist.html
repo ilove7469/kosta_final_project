@@ -8,12 +8,14 @@
 </head>
 <body>
 
+<h1>강의리스트</h1>
+
 	<div class="pannel panel-default" layout:fragment="content1">
 
 		<p>[[${resultMessage}]]</p>
 
 		<h3>
-			<a th:href="@{/admin/classesInsert}">등록(구현안됨)</a>
+			<a th:href="@{/admin/classesInsert}">등록</a>
 		</h3>
 
 <!--
@@ -50,7 +52,7 @@
 				<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>
 			
 				
-				<td><a th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제하기(구현안됨)</a></td>
+				<td><a th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 

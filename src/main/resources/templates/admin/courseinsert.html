@@ -15,13 +15,12 @@
 
 	<form th:action="@{/admin/courseInsert}" method="post" onSubmit="return sub()">
 		<div class="form-group">
-			<label for="title">과정명:</label> 
-			<input type="text" class="form-control" id="courseName1" placeholder="Enter title" name="courseName1" value="태웅과정추가테스트">
+			<label for="title">과정명:</label>
+			<input type="text" class="form-control" id="courseName1" name="courseName1" value="태웅과정추가테스트" required>
 		</div>
 		<div class="form-group">
-		<label for="content">주제:</label>
+		<label for="content">주제:</label><br>
 		 <select class="select" name="subjectNo" id="subjectNo">
-				<option value="0">주제</option>
 				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
 		</select>
 		</div>
@@ -30,34 +29,26 @@
 
 		<div class="form-group">
 			<label for="writer">총훈련시간:</label> 
-			<input type="number" class="form-control" id="courseTotalTrainTime" placeholder="Enter writer" name="courseTotalTrainTime" value="1004">
+			<input type="number" class="form-control" id="courseTotalTrainTime" name="courseTotalTrainTime" required>
+
 		</div>
 		<div class="form-group">
 			<label for="writer">훈련일수:</label> 
-			<input type="number" class="form-control" id="courseTotalDay" placeholder="Enter writer" name="courseTotalDay" value="1004">
+			<input type="number" class="form-control" id="courseTotalDay" name="courseTotalDay" required>
 		</div>
-		<!-- 
-		<div class="form-group">
-			<label for="writer">훈련대상:</label> 
-				<select name="trainee1" id="trainee1">
-					<option value="[재직자]">[재직자]</option>
-					<option value="[채용예정자]">[채용예정자]</option>
-				</select>
-			</div>
-		-->
-		<label for="content">훈련대상:</label>
+
+		<label for="content">훈련대상:</label><br>
 		 <select class="select" name="trainee1" id="trainee1">
-				<option value="">비선택</option>
 				<option th:each="tlist : ${traineelist}" th:value="'['+${tlist.traineeName}+']'" th:text="${tlist.traineeName}"></option>
 		</select>
 		</div>
 		<div class="form-group">
 			<label for="writer">과정단가:</label> 
-			<input type="number" class="form-control" id="coursePrice" placeholder="Enter writer" name="coursePrice" value="1004">
+			<input type="number" class="form-control" id="coursePrice" name="coursePrice" required>
 		</div>
 		<div class="form-group">
 			<label for="writer">정원:</label> 
-			<input type="number" class="form-control" id="courseCapacity" placeholder="Enter writer" name="courseCapacity" value="1004">
+			<input type="number" class="form-control" id="courseCapacity" name="courseCapacity" required>
 		</div>
 		<div class="form-group">
 		    <label for="content">교육대상권고사항:</label>
@@ -71,21 +62,10 @@
 		    <label for="content">교육내용:</label>
 		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent"></textarea>
 		</div>
-		<!-- 
-		<div class="form-group">
-			<label for="writer">수료증:</label> 
-			<input type="number" class="form-control" id="certiNo" placeholder="Enter writer" name="certificate_certi_no" value="55">
-		</div>
-		<div class="form-group">
-			<label for="content">주제:</label>
-			<input type="number" class="form-control" id="subjectNo" placeholder="Enter title" name="subject_subject_no" value="79">
-		</div>
-		-->
 
 		<div class="form-group">
-		<label for="content">수료증:</label>
+		<label for="content">수료증:</label><br>
 		 <select class="select" name="certiNo" id="certiNo">
-				<option value="">수료증</option>
 				<option th:each="clist : ${certificatelist}" th:value="${clist.certiNo}" th:text="${clist.certiNo} + ' : ' + ${clist.certiName}"></option>
 		</select>
 		</div>

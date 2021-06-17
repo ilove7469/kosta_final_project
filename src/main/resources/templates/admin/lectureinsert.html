@@ -16,48 +16,45 @@
 	<form th:action="@{/admin/lectureInsert}" method="post">
 
 		<div class="form-group">
-		<label for="writer">과정명(과정번호):</label>
+		<label for="writer">과정명:</label><br>
 		 <select class="select" name="courseNo" id="courseNo">
-				<option th:each="clist : ${courselist}" th:value="${clist.courseNo}" th:text="${clist.courseNo} + ' : ' + ${clist.courseName}"></option>
+				<option th:each="clist : ${courselist}" th:value="${clist.courseNo}" th:text="${clist.courseName}"></option>
 		</select>
 		</div>
 
-
 		<div class="form-group">
 			<label for="writer">강의계획년:</label> 
-			<input type="number" class="form-control" id="lecturePlanYear" placeholder="Enter writer" name="lecturePlanYear" value="1004">
+			<input type="number" class="form-control" id="lecturePlanYear" name="lecturePlanYear" required>
 		</div>
 		
 		<div class="form-group">
 			<label for="writer">연간개설횟수:</label> 
-			<input type="number" class="form-control" id="lectureOpenCount" placeholder="Enter writer" name="lectureOpenCount" value="1004">
+			<input type="number" class="form-control" id="lectureOpenCount" name="lectureOpenCount" required>
 		</div>
-
-
 		
 		<div class="form-group">
 			<label for="writer">목표정원:</label> 
-			<input type="number" class="form-control" id="lectureCapacity" placeholder="Enter writer" name="lectureCapacity" value="1004">
+			<input type="number" class="form-control" id="lectureCapacity" name="lectureCapacity" required>
 		</div>
 
 		<div class="form-group">
 		    <label for="writer">교육대상:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureTarget"  name="lectureTarget"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lectureTarget" name="lectureTarget"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">패널티안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lecturePenalty"  name="lecturePenalty"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lecturePenalty" name="lecturePenalty"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">비대면안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureOnline"  name="lectureOnline"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lectureOnline" name="lectureOnline"></textarea>
 		</div>
 
 		<div class="form-group">
 			<label for="writer">문의센터:</label> 
-			<input type="text" class="form-control" id="lectureAsk" placeholder="Enter writer" name="lectureAsk" value="555-555-5555">
+			<input type="text" class="form-control" id="lectureAsk" name="lectureAsk" required>
 		</div>
 
 

@@ -45,7 +45,8 @@
 				<td th:text="${teacher.teacherName}"></td>
 				<td th:text="${teacher.teacherPhone}"></td>
 				<td th:text="${teacher.teacherEmail}"></td>
-				<td th:text="${teacher.teacherRegDate}"></td>
+
+				<td th:text="${#temporals.format(teacher.teacherRegDate,'yyyy-MM-dd')}"></td>
 				<td><a
 					th:href="@{/admin/teacherDelete(tno=${teacher.teacherNo})}">삭제하기</a></td>
 			</tr>

@@ -28,6 +28,9 @@ import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Teacher;
+import com.kosta.springbootproject.adminservice.AdminService;
+import com.kosta.springbootproject.adminservice.EducationTimeService;
+import com.kosta.springbootproject.adminservice.ClassRoomService;
 
 
 @Controller
@@ -50,6 +53,14 @@ public class TaeController {
 	CertificateService certificateservice;
 	@Autowired
 	TraineeService traineeservice;
+	
+	@Autowired
+	AdminService adminService;
+	@Autowired
+	EducationTimeService educationTimeService;
+	@Autowired
+	ClassRoomService classRoomService;
+	
 
 	
 
@@ -206,26 +217,25 @@ public class TaeController {
 //강의계획 추가
 	@GetMapping("/admin/lectureInsert")
 	public void lectureInsert(Model model) {
-		model.addAttribute("certificatelist", certificateservice.selectAll());
+		model.addAttribute("courselist", courseService.courseSelectAll());
 
 
 	}
 	 
 	@PostMapping("/admin/lectureInsert")
-	public String lectureInsertPost(@ModelAttribute Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
+	public String lectureInsertPost(@ModelAttribute Lecture lecture, Long courseNo, RedirectAttributes rttr) {
 	
 		//System.out.println("회원가입 : " + course);
 		//System.out.println("certiNo : " + certiNo);
 		//System.out.println("subject_subject_no : " + subjectNo);
 		
-		course.setCertificate(certificateservice.selectById(certiNo)); 
-		course.setSubject(subjectservice.selectById(subjectNo));
+		lecture.setCourse(courseService.selectById(courseNo)); 
 		
-		Course ins_course = courseService.insertCourse(course);
+		Lecture ins_course = lectureService.insertLecture(lecture);
 		System.out.println("incousrse : " + ins_course);
 		
 		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
-		return "redirect:/admin/courseList";
+		return "redirect:/admin/lectureList";
 	}
 	
 	
@@ -244,7 +254,20 @@ public class TaeController {
 //강의삭제
 	
 //강의추가
-
+	@GetMapping("/admin/classesInsert")
+	   public void classesInsert(Model model) {
+	      model.addAttribute("lecturelist", lectureService.selectAll());
+	      model.addAttribute("teacherlist", teacherService.selectAll());
+	      model.addAttribute("adminlist", adminService.selectAll());
+	      model.addAttribute("educationTimelist", educationTimeService.selectAll());
+	      model.addAttribute("classRoomlist", classRoomService.selectAll());
+	   }
+	    
+	   @PostMapping("/admin/classesInsert")
+	   public String classesInsertPost(Classes classes) {
+	      classesService.updateOrInsert(classes);
+	      return "redirect:/admin/classesList";
+	   }
 
 	
 }

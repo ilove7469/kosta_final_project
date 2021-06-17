@@ -10,6 +10,8 @@ import com.querydsl.core.types.Predicate;
 
 public interface UserRepository extends CrudRepository<User, Long>,QuerydslPredicateExecutor<User>{
 	
+	//사용자 아이디로 사용자 조회
+	public User findByUserId(String userId);
 	
 	//사용자 조건 조회 메서드
 	public default Predicate makePredicate(String type, String keyword) {

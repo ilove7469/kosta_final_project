@@ -79,6 +79,7 @@ public class Classes {
 		this.waitCount = 0;
 		this.cancelCount = 0;
 		this.commitCount = 0;
+		this.classState = ClassStateEnumType.OPENREADY;
 	}
 
 }

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.ClassesRepository;
@@ -24,5 +25,10 @@ public class ClassesService {
 		Page<Classes> result = classesRepo.findAll(p, pageable);
 		return result;
 		 
+	}
+	
+//강의추가
+	public Classes updateOrInsert(Classes classes) {
+		return classesRepo.save(classes);
 	}
 }

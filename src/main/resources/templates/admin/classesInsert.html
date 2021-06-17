@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>과정등록</title>
+</head>
+<body>
+
+	<div class="pannel panel-default" layout:fragment="content1">
+
+	<h1>강의 등록</h1>
+
+	<form th:action="@{/admin/classesInsert}" method="post" onSubmit="return sub()">
+		<div class="form-group">
+			<label for="lecture">강의계획:</label> 
+				<select class="select" name="lecture" id="lecture">
+					<option th:each="lecture : ${lecturelist}" th:value="${lecture.lecturePlanNo}" th:text="${lecture.course.courseName} + '(' + ${lecture.lecturePlanYear}+')'"></option>
+				</select>
+		</div>
+		
+		<div class="form-group">
+		<label for="classOpenDate">개강일:</label>
+			<input type="Date" class="form-control" id="classOpenDate" name="classOpenDate">
+		</div>
+		<div class="form-group">
+		<label for="classCloseDate">종강일:</label>
+			<input type="Date" class="form-control" id=classCloseDate name="classCloseDate">
+		</div>
+		<div class="form-group">
+			<label for="teacher">강사:</label> 
+				<select class="select" name="teacher" id="teacher">
+					<option th:each="teacher : ${teacherlist}" th:value="${teacher.teacherNo}" th:text="${teacher.teacherName}"></option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label for="classRoom">강의장 및 강의실</label> 
+				<select class="select" name="classRoom" id="classRoom">
+					<option th:each="classRoom : ${classRoomlist}" th:value="${classRoom.classRoomNo}" th:text="${classRoom.lectureHall.lectureHallName}+' '+${classRoom.classRoomName}"></option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label for="admin">교육시간:</label> 
+				<select class="select" name="educationTime" id="educationTime">
+					<option th:each="educationTime : ${educationTimelist}" th:value="${educationTime.educationTimeNo}" th:text="${educationTime.educationTimeName}+' '+${educationTime.educationTimeType}"></option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label for="admin">담당자:</label> 
+				<select class="select" name="admin" id="admin">
+					<option th:each="admin : ${adminlist}" th:value="${admin.adminNo}" th:text="${admin.adminName}+' : '+${admin.adminId}"></option>
+				</select>
+		</div>
+		<div class="form-group">
+	      <label for="classDescription">설명:</label>
+		  <textarea class="form-control" rows="5" cols="" id="classDescription" name="classDescription"></textarea>    
+	    </div>
+	    
+		<div class="form-group">
+	    <input type="checkbox" name="classRecommend">
+	    </div>
+	    <button type="submit" class="btn btn-success">등록하기</button>
+	</form>
+	</div>
+</body>
+</html>

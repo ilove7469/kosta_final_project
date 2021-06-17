@@ -1,10 +1,13 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.TeacherRepository;
@@ -41,5 +44,11 @@ public class TeacherService {
 		
 		}
 		return ret;
+	}
+	
+	
+//	teacher List 전체조회	
+	public List<Teacher> selectAll(){
+		return (List<Teacher>) teacherRepository.findAll();
 	}
 }

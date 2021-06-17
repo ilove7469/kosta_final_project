@@ -22,4 +22,17 @@ public class LectureHallService {
 	public LectureHall updateOrInsert(LectureHall lectureHall) {
 		return repo.save(lectureHall);
 	}
+	
+	public int deleteLectureHall(Long no) {
+		
+		int result=0;
+		
+		try {
+		repo.deleteById(no);
+		result=1;
+		}catch(Exception ex) {
+		
+		}
+		return result;
+	}
 }

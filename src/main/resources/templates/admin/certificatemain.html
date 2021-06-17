@@ -8,18 +8,25 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<table>
+	<h1>수료증</h1>
+	<h3>
+		<a th:href="@{/admin/certificateInsert}">등록</a>
+	</h3>
+	
+	<table border="1">
 	<tr>
 	 <th>번호</th>
 	 <th>수료증명</th>
 	 <th>출력문구</th>
 	 <th>등록일</th>
+	 <th>삭제</th>
 	</tr>
 	<tr th:each="certi:${certiList}" >
 		<td th:text="${certi.certiNo}">번호</td>
 		<td th:text="${certi.certiName}">수료증명</td>
 		<td th:text="${certi.certiComment}">출력문구</td>
-		<td th:text="${certi.certiRegDate}">등록일</td>
+		<td th:text="${#temporals.format(certi.certiRegDate,'yyyy-MM-dd')}">등록일</td>
+		<td><a th:href="@{/admin/certificateDelete(no=${certi.certiNo})}">삭제</a></td>
 	</tr>
 	</table>
 </div>

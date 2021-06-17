@@ -25,4 +25,17 @@ public class CertificateService {
 	public Certificate selectById(Long certificate_certi_no) {
 		return repo.findById(certificate_certi_no).get();
 	}
+	
+	public int deleteCertificate(Long no) {
+		
+		int result=0;
+		
+		try {
+		repo.deleteById(no);
+		result=1;
+		}catch(Exception ex) {
+		
+		}
+		return result;
+	}
 }

@@ -17,7 +17,9 @@
 	</tr>
 	<tr th:each="educationTime:${EducationTimeResult.content}" >
 		<td th:text="${educationTime.educationTimeName}">이름</td>
-		<td th:text="${educationTime.educationPartType}">유형</td>
+		<td th:if="${#strings.toString(educationTime.educationPartType)}=='DAY'" th:text="주간">유형</td>
+		<td th:if="${#strings.toString(educationTime.educationPartType)}=='NIGHT'" th:text="야간">유형</td>
+		<td th:if="${#strings.toString(educationTime.educationPartType)}=='WEEKEND'" th:text="주말">유형</td>
 		<td th:text="${educationTime.educationTimeType}">시간대</td>
 	</tr>
 	</table>

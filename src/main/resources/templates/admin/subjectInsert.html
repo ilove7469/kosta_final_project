@@ -26,7 +26,7 @@
 	    <div>
 		  <label for="trainee">훈련대상</label>
 	      <select class="select" name="trainee" id="trainee">
-				<option th:each="trainee:${traineeList}" th:value="${trainee.traineNo}" th:utext="${trainee.traineeName}"></option>
+				<option th:each="trainee:${traineeList}" th:value="${trainee.traineeNo}" th:utext="${trainee.traineeName}"></option>
 		  </select>
 		</div>
 	    <button type="submit" class="btn btn-success">등록하기</button>

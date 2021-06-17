@@ -96,7 +96,7 @@ public class HyunController {
 	
 //	메타정보 - 주제 추가 Post
 	@PostMapping("/admin/subjectadd")
-	public String insertSubject(Subject subject, Long trainee) {
+	public String insertSubject(Subject subject) {
 
 		subjectService.updateOrInsert(subject);
 		return "redirect:/admin/subjectmain";
@@ -120,10 +120,10 @@ public class HyunController {
 	
 //	메타정보 - 교육시간 추가 Post
 	@PostMapping("/admin/educationtimeadd")
-	public String insertEducationTime(Subject subject, Long trainee) {
+	public String insertEducationTime(EducationTime educationTime) {
 
-		subjectService.updateOrInsert(subject);
-		return "redirect:/admin/subjectmain";
+		educationTimeService.updateOrInsert(educationTime);
+		return "redirect:/admin/educationtimemain";
 	}		
 
 	

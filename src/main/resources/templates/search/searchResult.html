@@ -1,41 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<th:block layout:fragment="script1">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-<script>
-	$(function(){
-		var formObj = $("#form1");
-		
-		$("#searchBtn").click(function(){
-			var keyword = $("#searchKeyword").val();
-			
-			formObj.find("[name='keyword']").val(keyword);
-			formObj.submit();
-		});
-		
-	});
-</script>
+<th:block layout:fragment="script1">
+
+</th:block>
+</th:block>
+ <th:block layout:fragment="style1">
+ </th:block>
 </head>
 <body>
+<div layout:fragment="content1">
 	<div>
-		<input type="text" id="searchKeyword" th:value="${word}">
-		<button id="searchBtn">검색</button>
+		<input type="text" class="searchKeyword" th:value="${word}">
+		<button class="searchBtn">검색</button>
 	</div>
 
-	<form id="form1" th:action="@{/search/searchResult}" method="get">
-		<input type="hidden" name="keyword" value="">
-
-	</form>
+	
 	
 	<hr>
-	
+		
 	<div>
 	<span>주제명</span>
 	<th:block th:each="subject:${sublist}">
@@ -71,5 +64,6 @@
 		</tr>
 	</table>
 
+</div>
 </body>
 </html>

@@ -11,25 +11,25 @@
 <title>Insert title here</title>
 <script>
 	$(function(){
-		var formObj = $("#form1");
+		var formObj = $(".form1");
 		
-		$("#searchBtn").click(function(){
-			var keyword = $("#searchKeyword").val();
+		$(".searchBtn").click(function(){
+			var keyword = $(".searchKeyword").val();
 			
 			formObj.find("[name='keyword']").val(keyword);
 			formObj.submit();
 		});
-		
+			
 	});
 </script>
 </head>
 <body>
 	<div>
-		<input type="text" id="searchKeyword">
-		<button id="searchBtn">검색</button>
+		<input type="text" class="searchKeyword">
+		<button class="searchBtn">검색</button>
 	</div>
 
-	<form id="form1" th:action="@{/search/searchResult}" method="get">
+	<form class="form1" th:action="@{/search/searchResult}" method="get">
 		<input type="hidden" name="keyword" value="">
 
 	</form>

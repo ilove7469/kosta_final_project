@@ -71,6 +71,11 @@
     <p>문의센터</p>
     <pre th:text="${lecture.lectureAsk}"></pre>
   </div>
+  <div id="courPenalty" th:if="${lecture.lecturePenalty!=null}">
+    <p>패널티안내</p>
+    <pre th:text="${lecture.lecturePenalty}"></pre>
+  </div>
+  
   <!--없음 
    <div id="courPurpose">
     <p>연관과정</p>

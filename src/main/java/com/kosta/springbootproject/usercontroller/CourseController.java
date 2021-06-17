@@ -65,12 +65,30 @@ public class CourseController {
 		return mv;
 	}
 	
-	//신청디테일
+	//강의신청 1단계
 	@GetMapping("/course/enroll/{classNo}")
-	public ModelAndView searchEnrollDetail(@PathVariable Long classNo) {
-		ModelAndView mv = new ModelAndView("/user/userEnrollDetail");
+	public ModelAndView searchEnroll(@PathVariable Long classNo) {
+		ModelAndView mv = new ModelAndView("/user/userEnroll");
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		mv.addObject("class",classInfo);
 		return mv;
 	}
+	
+	//강의신청 2단계
+	@GetMapping("/course/enroll/info/{classNo}")
+	public ModelAndView searchEnrollDetail(@PathVariable Long classNo) {
+		ModelAndView mv;
+		//id체크
+		//id있으면
+		mv = new ModelAndView("/user/userEnrollInfo");
+		Classes classInfo = cservice.findClassByClassNO(classNo);
+		mv.addObject("class",classInfo);
+		//id로 유저찾기
+		//mv.addObject("userNo",userNo);
+		//id 없으면
+		//mv = new ModelAndView("/user/login");
+		
+		return mv;
+	}
+	
 }

@@ -11,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -44,11 +46,14 @@ public class ClassHistory {
 	@CreatedDate
 	private LocalDateTime classHistoryDate;
 	
-	//양방향
 	@ManyToOne
 	private User user;
 	
-	//양방향
 	@ManyToOne
 	private Classes classes;
+	
+	@PrePersist
+	public void prePersist() {
+		this.classHistoryState = ClassHistoryEnumType.WAIT;
+	}
 }

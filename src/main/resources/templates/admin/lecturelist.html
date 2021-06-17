@@ -15,7 +15,7 @@
  		<p>[[${resultMessage}]]</p> 
 
 	<h3>
-			<a th:href="@{/admin/lectureInsert}">등록(아직구현안됨)</a> 
+			<a th:href="@{/admin/lectureInsert}">등록</a> 
 		</h3>
 
 
@@ -42,7 +42,7 @@
 				<td th:text="${lecture.lecturePlanYear}"></td>
 				<td th:text="${lecture.lectureOpenCount}"></td>
 				<td th:text="${lecture.lectureCapacity}"></td>
- 	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제하기(아직구현안됨)</a></td>
+ 	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 

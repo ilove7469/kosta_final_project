@@ -1,9 +1,12 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.CourseRepository;
@@ -43,7 +46,12 @@ public class AdminCourseService {
 	}
 	
 
-//	public List<Course> courseSelectAll(){
-//		return (List<Course>)courseRepo.findAll();
-//	}
+	public List<Course> courseSelectAll(){
+		return (List<Course>)courseRepo.findAll();
+	}
+	
+	public Course selectById(Long courseNo) {
+		return courseRepo.findById(courseNo).get();
+	}
+	
 }

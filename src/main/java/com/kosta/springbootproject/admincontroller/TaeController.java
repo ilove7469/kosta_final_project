@@ -103,7 +103,7 @@ public class TaeController {
 		model.addAttribute("result",new PageMaker<>(result));
 		
 	}
-
+ 
 //강사추가
 	@GetMapping("/admin/teacherInsert")
 	public void teacherInsert() {
@@ -163,13 +163,14 @@ public class TaeController {
 
 	}
 	 
+	
 	@PostMapping("/admin/courseInsert")
-	public String courseInsertPost(@ModelAttribute Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
+	public String courseInsertPost(Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
 	
 		System.out.println("회원가입 : " + course);
 		System.out.println("certiNo : " + certiNo);
 		System.out.println("subject_subject_no : " + subjectNo);
-		
+
 		course.setCertificate(certificateservice.selectById(certiNo)); 
 		course.setSubject(subjectservice.selectById(subjectNo));
 		
@@ -194,7 +195,41 @@ public class TaeController {
 	}
 //강의계획삭제
 	
+	@GetMapping("/admin/lectureDelete")
+	public String lectureDelete(Long cno,  RedirectAttributes rttr) {
+		int ret = lectureService.deleteLecture(cno);
+		System.out.println("삭제:" + ret);
+		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
+		return "redirect:/admin/lectureList";
+	}
+	
 //강의계획 추가
+	@GetMapping("/admin/lectureInsert")
+	public void lectureInsert(Model model) {
+		model.addAttribute("certificatelist", certificateservice.selectAll());
+
+
+	}
+	 
+	@PostMapping("/admin/lectureInsert")
+	public String lectureInsertPost(@ModelAttribute Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
+	
+		//System.out.println("회원가입 : " + course);
+		//System.out.println("certiNo : " + certiNo);
+		//System.out.println("subject_subject_no : " + subjectNo);
+		
+		course.setCertificate(certificateservice.selectById(certiNo)); 
+		course.setSubject(subjectservice.selectById(subjectNo));
+		
+		Course ins_course = courseService.insertCourse(course);
+		System.out.println("incousrse : " + ins_course);
+		
+		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
+		return "redirect:/admin/courseList";
+	}
+	
+	
+	
 	
 //강의main
 	@RequestMapping("/admin/classesList")

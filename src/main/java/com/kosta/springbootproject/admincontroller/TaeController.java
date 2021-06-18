@@ -31,7 +31,7 @@ import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
-
+ 
 
 @Controller
 public class TaeController {
@@ -156,6 +156,14 @@ public class TaeController {
 //		model.addAttribute("courselist", courseService.courseSelectAll());
 //		
 //	}
+	
+// 과정상세보기
+	@GetMapping("/admin/coursedetail")
+	public void selectById(Model model, Long bno) {
+		
+		model.addAttribute("courselist",courseService.selectById(bno));
+		
+	}
 	
 //과정삭제
 	@GetMapping("/admin/courseDelete")

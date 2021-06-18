@@ -162,7 +162,8 @@ public class TaeController {
 	public void selectById(Model model, Long bno) {
 		
 		model.addAttribute("courselist",courseService.selectById(bno));
-		
+		model.addAttribute("subjectlist", subjectservice.selectById(bno));
+	
 	}
 	
 //과정삭제

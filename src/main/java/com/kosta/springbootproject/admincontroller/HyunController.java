@@ -91,7 +91,7 @@ public class HyunController {
 	@GetMapping("/admin/subjectInsert")
 	public String insertSubject(Model model) {
 		model.addAttribute("traineeList",traineeService.selectAll());
-		return "/admin/subjectInsert";
+		return "/admin/subjectdetail";
 	}
 	
 //	주제 추가 Post
@@ -100,7 +100,31 @@ public class HyunController {
 
 		subjectService.updateOrInsert(subject);
 		return "redirect:/admin/subjectmain";
-	}	
+	}
+
+//	주제 수정 Get
+	@GetMapping("/admin/subjectModify/{subjectNo}")
+	public ModelAndView modifySubject(@PathVariable Long subjectNo,Model model) {
+		ModelAndView mv = new ModelAndView("/admin/subjectdetail");
+		model.addAttribute("traineeList",traineeService.selectAll());
+		Subject subject = subjectService.findSubjectBySubjectNo(subjectNo);
+		mv.addObject("subject", subject);
+		return mv;
+	}
+	
+//	주제 수정 Post
+	@PostMapping("/admin/subjectModify")
+	public String modifySubject(Subject subject) {
+		subjectService.updateOrInsert(subject);
+		return "redirect:/admin/subjectmain";
+	}		
+	
+//	주제 삭제 Get
+	@GetMapping("/admin/subjectDelete")
+	public String deleteSubject(Long subjectNo) {
+		subjectService.deleteSubject(subjectNo);
+		return "redirect:/admin/subjectmain";
+	}
 
 
 //	교육시간 메인
@@ -115,7 +139,7 @@ public class HyunController {
 //	교육시간 추가 Get
 	@GetMapping("/admin/educationtimeInsert")
 	public String insertEducationTime() {
-		return "/admin/educationTimeInsert";
+		return "/admin/educationTimedetail";
 	}
 	
 //	교육시간 추가 Post
@@ -126,6 +150,31 @@ public class HyunController {
 		return "redirect:/admin/educationtimemain";
 	}		
 
+//	교육시간 수정 Get
+	@GetMapping("/admin/educationTimeModify/{subjectNo}")
+	public ModelAndView modifyEducationTime(@PathVariable Long educationTimeNo,Model model) {
+		ModelAndView mv = new ModelAndView("/admin/educationTimedetail");
+		model.addAttribute("traineeList",traineeService.selectAll());
+		Subject subject = subjectService.findSubjectBySubjectNo(educationTimeNo);
+		mv.addObject("subject", subject);
+		return mv;
+	}
+	
+//	교육시간 수정 Post
+	@PostMapping("/admin/educationTimeModify")
+	public String modifyEducationTime(Subject subject) {
+		subjectService.updateOrInsert(subject);
+		return "redirect:/admin/subjectmain";
+	}		
+	
+//	교육시간 삭제
+	@GetMapping("/admin/educationtimeDelete")
+	public String deleteEducationTime(Long no) {
+		educationTimeService.deleteEducationTime(no);
+		return "redirect:/admin/educationtimemain";
+	}	
+	
+	
 	
 //	회원 메인
 	@GetMapping("/admin/usermain")

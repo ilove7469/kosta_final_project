@@ -22,7 +22,9 @@
 	</tr>
 	<tr th:each="subject:${SubjectResult.content}" >
 		<td th:text="${subject.subPriority}">순서</td>
-		<td th:text="${subject.subName}">주제명</td>
+		<td>
+		 <a th:href="@{'/admin/subjectModify/'+${subject.subjectNo}}" th:text="${subject.subName}">주제명</a>
+		 </td>
 		<td th:text="${subject.trainee.traineeName}">훈련대상</td>
 		<td th:if="${not #strings.isEmpty(subject.subExplain)}" th:text="${subject.subExplain}">설명</td>
 		<td th:if="${#strings.isEmpty(subject.subExplain)}" th:text=" ">설명빈칸출력</p>

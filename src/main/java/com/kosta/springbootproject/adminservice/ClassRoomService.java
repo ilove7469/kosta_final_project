@@ -22,4 +22,17 @@ public class ClassRoomService {
 	public ClassRoom updateOrInsert(ClassRoom classRoom) {
 		return repo.save(classRoom);
 	}
+	
+	public int deleteClassRoom(Long no) {
+		
+		int result=0;
+		
+		try {
+		repo.deleteById(no);
+		result=1;
+		}catch(Exception ex) {
+		
+		}
+		return result;
+	}
 }

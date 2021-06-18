@@ -8,16 +8,25 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<table>
+	<h1>강의실</h1>
+	<h3>
+		<a th:href="@{/admin/classroomInsert}">등록</a>
+	</h3>
+	
+	
+	<table border="1">
 	<tr>
 	 <th>강의장</th>
 	 <th>강의실 번호</th>
 	 <th>강의실 정원</th>
+	 <th>삭제</th>
+	 
 	</tr>
 	<tr th:each="classRoom:${classRoomList}">
 		<td th:text="${classRoom.lectureHall.lectureHallName}">강의장 이름</td>
 		<td th:text="${classRoom.classRoomName}">강의실 번호</td>
 		<td th:text="${classRoom.classRoomCapacity}">강의실 정원</td>
+		<td><a th:href="@{/admin/classRoomDelete(no=${classRoom.classRoomNo})}">삭제</a></td>
 	</tr>
 	</table>
 </div>

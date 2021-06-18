@@ -8,14 +8,22 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<table>
+	
+	<h1>강의장</h1>
+	<h3>
+		<a th:href="@{/admin/lecturehallInsert}">등록</a>
+	</h3>
+	
+	<table border="1">
 	<tr>
 	 <th>이름</th>
 	 <th>주소</th>
+	 <th>삭제</th>
 	</tr>
 	<tr th:each="lectureHall:${lectureHallList}" >
-		<td th:text="${lectureHall.lectureHallName}">번호</td>
-		<td th:text="${lectureHall.lectureHallAddress}">아이디</td>
+		<td th:text="${lectureHall.lectureHallName}">이름</td>
+		<td th:text="${lectureHall.lectureHallAddress}">주소</td>
+		<td><a th:href="@{/admin/lectureHallDelete(no=${lectureHall.lectureHallNo})}">삭제</a></td>
 	</tr>
 	</table>
 </div>

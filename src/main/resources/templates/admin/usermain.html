@@ -24,7 +24,7 @@
 
 
 
-	<table>
+	<table border="1">
 	<tr>
 	 <th>번호</th>
 	 <th>아이디</th>
@@ -42,7 +42,7 @@
 		<td th:text="${user.userEmail}">이메일</td>
 		<td th:if="${not #strings.isEmpty(user.company.companyName)}" th:text="${user.company.companyName}">소속회사</td>
 		<td th:if="${#strings.isEmpty(user.company.companyName)}" th:text=" ">빈칸출력</p>
-		<td th:text="${user.userRegDate}">등록일</td>
+		<td th:text="${#temporals.format(user.userRegDate,'yyyy-MM-dd')}">등록일</td>
 	</tr>
 	</table>
 	

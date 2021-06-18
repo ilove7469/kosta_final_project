@@ -10,11 +10,11 @@
 <div class="panel panel-default" layout:fragment="content1">
 	<h4>강의실 신규등록</h4>
 	
-	<form th:action="@{/admin/classroomadd}" method="post">
+	<form th:action="@{/admin/classroomInsert}" method="post">
     <div class="form-group">
       <label>강의장 이름:</label>
-      <select>
-			<option th:each="lectureHall:${lectureHallList}" th:value="${lectureHall}" th:utext="${lectureHall.lectureHallName}"></option>
+      <select name="lectureHall">
+			<option th:each="lectureHall:${lectureHallList}" th:value="${lectureHall.lectureHallNo}" th:utext="${lectureHall.lectureHallName}"></option>
 	  </select>
     </div>
     

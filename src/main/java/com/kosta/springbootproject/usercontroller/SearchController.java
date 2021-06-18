@@ -47,4 +47,13 @@ public class SearchController {
 		model.addAttribute("result", result);
 	}
 
+	@GetMapping("/search/searchSubject")
+	public String searchSubject(Model model, String keyword, Long subNo) {
+		List<Classes> result = service.selectSubClasses(keyword, subNo);
+		
+		model.addAttribute("subNo", subNo);
+		model.addAttribute("word", keyword);
+		model.addAttribute("result", result);
+		return "/search/table_con";
+	}
 }

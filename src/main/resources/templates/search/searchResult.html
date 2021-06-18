@@ -7,63 +7,140 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <th:block layout:fragment="script1">
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
-<th:block layout:fragment="script1">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<title>Insert title here</title>
+	<script>
+		$(function() {
+			var formObj = $(".form2");
+
+			$(".searchBtn2").click(function() {
+				var keyword = $(".searchKeyword2").val();
+
+				formObj.find("[name='keyword']").val(keyword);
+				formObj.submit();
+			});
+
+		});
+		
+		$(function(){
+			
+			var formObj = $(".form2");
+			
+			$("#sub ul li.smenu").click(function(){
+				alert($(this).html());
+				
+				$.ajax({
+					url : "searchSubject",
+					data : {"subNo":$(this).attr("value"), "keyword":formObj.find("[name='keyword']").val()},
+					method : "get",
+					success : function(response){
+						$("#table_content").html(response);
+					}
+				});
+			});
+		});
+		
+		
+	</script>
 
 </th:block>
+<th:block layout:fragment="style1">
+	<style>
+#sub ul li {
+	display: inline-block;
+	width: 120px;
+	color: #2F55AA;
+	border: 2.5px solid #2F55AA;
+}
+
+#sub ul li:hover {
+	background-color: #2F55AA;
+	color: white;
+}
+
+#sub a {
+	display: block;
+}
+
+#space ul li {
+	display: inline-block;
+	width: 120px;
+	color: #2F55AA;
+	border: 2.5px solid #2F55AA;
+}
+
+#space ul li:hover {
+	background-color: #2F55AA;
+	color: white;
+}
+
+#space a {
+	display: block;
+}
+</style>
 </th:block>
- <th:block layout:fragment="style1">
- </th:block>
 </head>
 <body>
-<div layout:fragment="content1">
-	<div>
-		<input type="text" class="searchKeyword" th:value="${word}">
-		<button class="searchBtn">검색</button>
-	</div>
+	<div layout:fragment="content1">
+		<div>
+			<input type="text" class="searchKeyword2" th:value=${word}>
+			<button class="searchBtn2">검색</button>
+		</div>
 
-	
-	
-	<hr>
-		
-	<div>
-	<span>주제명</span>
-	<th:block th:each="subject:${sublist}">
-	<div th:text="${subject.subName}"></div>
-	</th:block>
-	</div>
-	
-	<hr>
-	
-	<div>
-	<span>강의장</span>
-	<th:block th:each="hall:${hlist}">
-	<div th:text="${hall.lectureHallName}"></div>
-	</th:block>
-	</div>
-	
-	<hr>
-	
-	<table>
-		<tr>
-			<th>과정명</th>
-			<th>개강일</th>
-			<th>종강일</th>
-			<th>교육시간</th>
-			<th>강의장</th>
-		</tr>
-		<tr th:each="class:${result}">
-			<td th:text=${class.lecture.course.courseName}></td>
-			<td th:text=${class.classOpenDate}></td>
-			<td th:text=${class.classCloseDate}></td>
-			<td th:text=${class.educationTime.educationTimeType}></td>
-			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-		</tr>
-	</table>
+		<form class="form2" th:action="@{/search/searchResult}" method="get">
+			<input type="hidden" name="keyword" value="">
 
-</div>
+		</form>
+
+
+		<hr>
+
+		<div id="sub">
+			<span>주제명</span>
+			<th:block th:each="subject:${sublist}">
+				<ul>
+					<li class="smenu" th:text="${subject.subName}" th:value="${subject.subjectNo}"></li>
+				</ul>
+			</th:block>
+		</div>
+
+		<hr>
+
+		<div id="space">
+			<span>강의장</span>
+			<th:block th:each="hall:${hlist}">
+				<ul>
+					<li class="hmenu" th:text="${hall.lectureHallName}"></li>
+				</ul>
+			</th:block>
+		</div>
+
+		<hr>
+
+		<div id="table_content">
+			<table>
+				<tr>
+					<th>과정명</th>
+					<th>개강일</th>
+					<th>종강일</th>
+					<th>교육시간</th>
+					<th>강의장</th>
+				</tr>
+				<tr th:each="class:${result}">
+					<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+						th:text=${class.lecture.course.courseName}></a></td>
+					<td th:text=${class.classOpenDate}></td>
+					<td th:text=${class.classCloseDate}></td>
+					<td th:text=${class.educationTime.educationTimeType}></td>
+					<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+				</tr>
+			</table>
+		</div>
+
+
+
+	</div>
 </body>
 </html>

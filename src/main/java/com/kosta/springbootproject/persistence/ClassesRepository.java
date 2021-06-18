@@ -20,6 +20,19 @@ public interface ClassesRepository
 	
 	public List<Classes> findByLecture(Lecture lecture);
 	
+	public default Predicate makePredicateSubClasses(String keyword, Long subNo) {
+		BooleanBuilder builder = new BooleanBuilder();
+		QClasses classes = QClasses.classes;
+		//강사명
+		builder.or(classes.teacher.teacherName.contains(keyword));
+		//과정명
+		builder.or(classes.lecture.course.courseName.contains(keyword));
+		//주제
+		builder.and(classes.lecture.course.subject.subjectNo.eq(subNo));
+				
+		return builder;
+	}
+	
 	public default Predicate makePredicate(String keyword) {
 		BooleanBuilder builder = new BooleanBuilder();
 		QClasses classes = QClasses.classes;

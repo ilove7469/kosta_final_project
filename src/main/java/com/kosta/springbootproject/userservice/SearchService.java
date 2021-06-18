@@ -20,5 +20,11 @@ public class SearchService {
 		List<Classes> result = (List<Classes>)crepo.findAll(p);
 		return result;
 	}
+	
+	public List<Classes> selectSubClasses(String keyword, Long subNo){
+		Predicate p = crepo.makePredicateSubClasses(keyword, subNo);
+		List<Classes> result = (List<Classes>)crepo.findAll(p);
+		return result;
+	} 
 
 }

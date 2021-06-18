@@ -4,19 +4,19 @@
 	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>과정등록</title>
+<title>과정상세보기</title>
 </head>
 <body>
 
 	<div class="pannel panel-default" layout:fragment="content1">
 
-	<h1>과정등록</h1>
+	<h1>과정상세보기</h1>
 
 
 	<form th:action="@{/admin/courseInsert}" method="post" onSubmit="return sub()">
 		<div class="form-group">
 			<label for="title">과정명:</label>
-			<input type="text" class="form-control" id="courseName1" name="courseName1" value="태웅과정추가테스트" required>
+			<input type="text" class="form-control" id="courseName1" name="courseName1" th:value="${#strings.substringAfter(courselist.courseName,']')}" required>
 		</div>
 		<div class="form-group">
 		<label for="content">주제:</label><br>
@@ -52,15 +52,15 @@
 		</div>
 		<div class="form-group">
 		    <label for="content">교육대상권고사항:</label>
-		    <textarea class="form-control" rows="3" cols="" id="courseTarget"  name="courseTarget" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="courseTarget"  name="courseTarget" th:text="${courselist.courseTarget}"></textarea>
 		</div>
 		<div class="form-group">
 		    <label for="content">교육목표:</label>
-		    <textarea class="form-control" rows="3" cols="" id="coursePurpose"  name="coursePurpose" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="coursePurpose"  name="coursePurpose"></textarea>
 		</div>
 		<div class="form-group">
 		    <label for="content">교육내용:</label>
-		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent"></textarea>
 		</div>
 
 		<div class="form-group">

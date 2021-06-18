@@ -17,7 +17,7 @@
 	<form th:action="@{/admin/classesInsert}" method="post" onSubmit="return sub()">
 		<div class="form-group">
 			<label for="lecture">강의계획:</label> 
-				<select class="select" name="lecture" id="lecture">
+				<select class="form-control" name="lecture" id="lecture">
 					<option th:each="lecture : ${lecturelist}" th:value="${lecture.lecturePlanNo}" th:text="${lecture.course.courseName} + '(' + ${lecture.lecturePlanYear}+')'"></option>
 				</select>
 		</div>
@@ -32,31 +32,31 @@
 		</div>
 		<div class="form-group">
 			<label for="teacher">강사:</label> 
-				<select class="select" name="teacher" id="teacher">
+				<select class="form-control" name="teacher" id="teacher">
 					<option th:each="teacher : ${teacherlist}" th:value="${teacher.teacherNo}" th:text="${teacher.teacherName}"></option>
 				</select>
 		</div>
 		<div class="form-group">
 			<label for="classRoom">강의장 및 강의실</label> 
-				<select class="select" name="classRoom" id="classRoom">
+				<select class="form-control" name="classRoom" id="classRoom">
 					<option th:each="classRoom : ${classRoomlist}" th:value="${classRoom.classRoomNo}" th:text="${classRoom.lectureHall.lectureHallName}+' '+${classRoom.classRoomName}"></option>
 				</select>
 		</div>
 		<div class="form-group">
 			<label for="admin">교육시간:</label> 
-				<select class="select" name="educationTime" id="educationTime">
+				<select class="form-control" name="educationTime" id="educationTime">
 					<option th:each="educationTime : ${educationTimelist}" th:value="${educationTime.educationTimeNo}" th:text="${educationTime.educationTimeName}+' '+${educationTime.educationTimeType}"></option>
 				</select>
 		</div>
 		<div class="form-group">
 			<label for="admin">담당자:</label> 
-				<select class="select" name="admin" id="admin">
+				<select class="form-control" name="admin" id="admin">
 					<option th:each="admin : ${adminlist}" th:value="${admin.adminNo}" th:text="${admin.adminName}+' : '+${admin.adminId}"></option>
 				</select>
 		</div>
 		<div class="form-group">
 	      <label for="classDescription">설명:</label>
-		  <textarea class="form-control" rows="5" cols="" id="classDescription" name="classDescription"></textarea>    
+		  <textarea class="form-control" rows="5" cols="" id="classDescription" name="classDescription" wrap="hard"></textarea>    
 	    </div>
 	    
 		<div class="form-group">

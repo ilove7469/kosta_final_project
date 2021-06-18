@@ -44,8 +44,8 @@
 				<th>정원</th>
 				<th>삭제</th>
 			</tr>
-			<tr th:each="course:${courselist}">
-				<td th:text="${course.courseName}"></td>
+			<tr th:each="course:${courselist}">				     
+        		<td><a th:href="@{/admin/coursedetail(bno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
 				<td th:text="${course.subject.subName}"></td>
 				<td th:text="${course.courseTotalTrainTime}"></td>
 				<td th:text="${course.courseTotalDay}"></td>

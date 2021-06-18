@@ -18,7 +18,7 @@
 </head>
 <body>
   <div class="panel panel-default" layout:fragment="content1">
-    <table>
+    <table class="table">
       <tr>
         <th>훈련일정</th>
         <td th:text="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}"></td>
@@ -60,30 +60,31 @@
     <div id="course">
       <div id="courPurpose">
         <p>교육목표</p>
-        <pre th:text="${class.lecture.course.coursePurpose}"></pre>
+        <p class="preBox" th:text="${class.lecture.course.coursePurpose}">
+        </p>
       </div>
       <div id="courContent">
         <p>교육내용</p>
-        <pre th:text="${class.lecture.course.courseContent}"></pre>
+        <p class="preBox" th:text="${class.lecture.course.courseContent}"></p>
       </div>
       <div id="courTarget">
         <p>교육대상</p>
-        <pre th:text="${class.lecture.course.courseTarget}"></pre>
+        <p class="preBox" th:text="${class.lecture.course.courseTarget}"></p>
       </div>
       <div id="courAsk">
           <!-- 셀렉트로 강의계획에서 문자열으로 합치는지? >> 그럼 그냥 ask에서 가져오기  -->
         <p>문의센터</p>
-        <pre th:text="${class.lecture.lectureAsk}"></pre>
+        <p class="preBox" th:text="${class.lecture.lectureAsk}"></p>
       </div>
       <div id="courPenalty" th:if="${class.lecture.lecturePenalty!=null}">
         <p>패널티안내</p>
-        <pre th:text="${class.lecture.lecturePenalty}"></pre>
+        <p class="preBox" th:text="${class.lecture.lecturePenalty}"></p>
       </div>
     </div>
     <!-- 과정+강의계획정보 출력끝 -->
     <!-- 오른쪽 사이드바 -->
     <div id=right-sidebar>
-      <table>
+      <table class="table">
         <tr th:if="${#strings.contains(class.lecture.course.courseName,']')}">
           <th>과정명</th>
           <td th:text="${#strings.substringAfter(class.lecture.course.courseName,']')}">

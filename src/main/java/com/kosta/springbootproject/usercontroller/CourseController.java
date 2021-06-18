@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
@@ -85,14 +88,25 @@ public class CourseController {
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		mv.addObject("class",classInfo);
 		//id로 유저찾기 >>repo에서 유저정보 찾아서 뿌리기 밑에꺼 시큐리티만들어지면 바꿔야함
+		//Principal principal을 매개변수로 받아서 정보 가져오면 된다고 함
 		String userId = "아이디1";
 		User userInfo = cservice.findUserByUserID(userId);
 		mv.addObject("user",userInfo);
 		//mv.addObject("userNo",userNo);
 		//id 없으면
 		//mv = new ModelAndView("/user/login");
-		
 		return mv;
 	}
 	
+	@PostMapping("/course/enroll/info")
+	public String insertClassHistory(ClassHistory ch) {
+		//System.out.println(ch.getUser());
+		ClassHistory result = cservice.updateClassHistory(ch);
+		return "redirect:/user/userEnrollSuccess";
+	}
+	
+	@GetMapping("user/userEnrollSuccess")
+	public void userEnrollSuccess() {
+		
+	}
 }

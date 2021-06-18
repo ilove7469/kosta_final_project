@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.persistence.ClassHistoryRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CourseRepository;
 import com.kosta.springbootproject.persistence.LectureRepository;
@@ -33,6 +35,8 @@ public class CourseService {
 	TraineeRepository traineeRepo;
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	ClassHistoryRepository classHistoryRepo;
 	
 	public List<Trainee> findTraineeAll() {
 		return (List<Trainee>)traineeRepo.findAll();
@@ -76,4 +80,7 @@ public class CourseService {
 		return userRepo.findByUserId(userId);
 	}
 	
+	public ClassHistory updateClassHistory(ClassHistory ch) {
+		return classHistoryRepo.save(ch);
+	}
 }

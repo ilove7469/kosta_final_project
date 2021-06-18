@@ -32,7 +32,7 @@ public class ClassHistoryTest {
 	public void insertClassHistory() {
 		IntStream.range(12, 21).forEach(i -> {
 			ClassHistory ch = ClassHistory.builder()
-					.classHistoryState(ClassHistoryEnumType.COMMIT)
+					//.classHistoryState(ClassHistoryEnumType.COMMIT)
 					.user(urepo.findById(140L + i).get())
 					.classes(crepo.findById(203L).get()) //class만들어지면
 					.build();

@@ -6,40 +6,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<th:block layout:fragment="style1">
+  <style>
+    .contentBox{
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+    }
+    #mainContent{
+      width:600px;
+    }
+    #right-sidebar{
+      width:600px;
+    }
+  </style>
+</th:block>
+<th:block layout:fragment="script1">
+  <script>
+  	$(function(){
+  		$("#enrollBtn2").click(function(){
+  			$("#enrollfrm").submit();
+  		});
+  	});
+  	
+  	
+  	
+  </script>
+</th:block>
 
 </head>
 <body>
   <div class="panel panel-default" layout:fragment="content1">
-    
-    <div id=right-sidebar>
-      <table>
-        <tr th:if="${#strings.contains(class.lecture.course.courseName,']')}">
-          <th>과정명</th>
-          <td th:text="${#strings.substringAfter(class.lecture.course.courseName,']')}">
+    <div id = "mainContent" class="contentBox">
+      <table class="table table-striped">
+      	<tr>
+          <th>휴대전화번호</th>         
+          <td th:text="${user.userPhone}"></td>
         </tr>
-        <tr th:unless="${#strings.contains(class.lecture.course.courseName,']')}">
-          <th>과정명</th>
-          <td th:text="${class.lecture.course.courseName}"></td>
+      	<tr>
+          <th>이메일</th>         
+          <td th:text="${user.userEmail}"></td>
         </tr>
-        <tr>
-          <th>강사명</th>
-          <td th:text="${class.teacher.teacherName}"></td>
-        </tr>
-        <tr>
-          <th>기간</th>
-          <td th:text="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}"></td>
-        </tr>
-        <tr>
-          <th>총훈련시간</th>
-          <td th:text="${class.lecture.course.courseTotalTrainTime}+시간"></td>
-        </tr>
-        <tr>
-          <th>문의센터</th>
-          <td th:text="${class.lecture.lectureAsk}"></td>
+      	<tr>
+          <th>이름</th>         
+          <td th:text="${user.userName}"></td>
         </tr>
       </table>
-      <button id="enrollBtn2">수강신청</button>  
-    </div>
   </div>
+    <div id=right-sidebar class="contentBox">
+    </div>
+    
+    <!--접수시 넘겨줄 데이터 -->
+    <form id="enrollfrm" action="/course/enroll/info" method="post">
+      <input type="hidden" name="classes" th:value="${class.classNo}">
+      <input type="hidden" name="user" th:value="${user.userNo}">
+    </form>
+  </div>
+  
+  
 </body>
 </html>

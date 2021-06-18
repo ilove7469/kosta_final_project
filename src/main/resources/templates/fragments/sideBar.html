@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Insert title here</title>
+
+<th:block layout:fragment="style1">
+<style>
+.page-header{
+ background-color:white;
+margin:0px !important;
+padding: 0px !important;
+
+}
+
+body {
+  font-family: "Lato", sans-serif;
+
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #c8cbcc;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 2px 8px 5px 8px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+ /* font-size: 20px;  Increased text to enable scrolling */
+  padding: 20px 20px 20px 20px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #aaadad;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+/*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠 */
+  display: block;
+  background-color: #dcdfe0;
+  padding-left: 10px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</th:block>
+
+</head>
+<body>
+
+
+<th:block th:fragment="sidebarFragment">
+
+
+<!-- 사이드메뉴 -->
+
+	<div class="sidenav">
+	
+		<a href="#">메인</a>
+		
+	<!-- 드랍다운 메뉴 한셋트 -->
+		<button class="dropdown-btn">과정기획 
+		    <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-container">
+		    <a href="http://localhost:8888/admin/courseList">과정</a>
+		    <a href="http://localhost:8888/admin/lectureList">강의계획</a>
+		    <a href="http://localhost:8888/admin/classesList">강의</a>
+		</div>
+	<!-- 드랍다운 메뉴 한셋트 여기까지-->
+		  
+		<button class="dropdown-btn">기본정보
+		    <i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-container">
+		    <a href="http://localhost:8888/admin/usermain">회원</a>
+		    <a href="http://localhost:8888/admin/teacherList">강사</a>
+		    <a href="http://localhost:8888/admin/companyList">회사</a>
+		    <a href="http://localhost:8888/admin/lecturehallmain">강의장</a>
+		    <a href="http://localhost:8888/admin/classroommain">강의실</a>
+		    <a href="http://localhost:8888/admin/certificatemain">수료증</a>
+		</div>
+		
+		<button class="dropdown-btn">메타정보
+		    <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
+	    <a href="http://localhost:8888/admin/subjectmain">주제</a>
+	    <a href="http://localhost:8888/admin/educationtimemain">교육시간</a>
+	</div>
+	
+	<button class="dropdown-btn">강의운영
+	    <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
+	    <a href="http://localhost:8888/admin/manageclassmain">수강신청 관리</a>
+	</div>
+ 
+		<!-- 메뉴추가시사용 -->
+	    <!-- <a href="#">기타메뉴</a> -->
+	</div>
+
+	<!-- 사이드메뉴 여기까지-->
+	
+	
+</th:block>
+
+
+
+<!-- 사이드메뉴 스크립트-->
+	<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+<!-- 사이드메뉴 스크립트 여기까지-->
+
+
+</body>
+</html>

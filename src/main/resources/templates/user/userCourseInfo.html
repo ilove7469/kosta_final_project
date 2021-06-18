@@ -8,18 +8,12 @@
     <script>
     	$(function(){
     		$(".enrollBtn").click(function(){
-    			alert($(this).val());
     			location.href = $(this).val();
     		});
     	});
     </script>
   </th:block>
   <th:block layout:fragment="style1">
-    <style>
-      p{
-        font-size: 40px;
-      }
-    </style>
   </th:block>
 </head>
 <body>
@@ -30,7 +24,7 @@
 <!-- 강의정보 출력 -->
   <div id="classes">
     <p>교육일정</p>
-    <table border="1">
+    <table class="table">
       <tr th:each="class:${classList}">
         <td th:text="${class.classOpenDate}+${class.educationTime.educationTimeName}"></td>
         <!-- 비대면인지 아닌지 -->
@@ -56,24 +50,25 @@
 <div id="course">
   <div id="courPurpose">
     <p>교육목표</p>
-    <pre th:text="${lecture.course.coursePurpose}"></pre>
+    <!-- <span th:utext="${#strings.replace(lecture.course.coursePurpose,T(System).getProperty('line.separator'),'&lt;br /&gt;')}"></span> -->
+    <p class="preBox" th:text="${lecture.course.coursePurpose}"></p>
   </div>
   <div id="courContent">
     <p>교육내용</p>
-    <pre th:text="${lecture.course.courseContent}"></pre>
+    <p class="preBox" th:text="${lecture.course.courseContent}"></p>
   </div>
   <div id="courTarget">
     <p>교육대상</p>
-    <pre th:text="${lecture.course.courseTarget}"></pre>
+    <p class="preBox" th:text="${lecture.course.courseTarget}"></pre>
   </div>
   <div id="courAsk">
       <!-- 셀렉트로 강의계획에서 문자열으로 합치는지? >> 그럼 그냥 ask에서 가져오기  -->
     <p>문의센터</p>
-    <pre th:text="${lecture.lectureAsk}"></pre>
+    <p class="preBox" th:text="${lecture.lectureAsk}"></pre>
   </div>
   <div id="courPenalty" th:if="${lecture.lecturePenalty!=null}">
     <p>패널티안내</p>
-    <pre th:text="${lecture.lecturePenalty}"></pre>
+    <p class="preBox" th:text="${lecture.lecturePenalty}"></pre>
   </div>
   
   <!--없음 

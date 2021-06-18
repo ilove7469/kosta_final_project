@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+			<tr>
+				<th>과정명</th>
+				<th>개강일</th>
+				<th>종강일</th>
+				<th>교육시간</th>
+				<th>강의장</th>
+			</tr>
+			<tr th:each="class:${result}">
+				<td><a th:href="@{'/course/enroll/'+${class.classNo}}" th:text=${class.lecture.course.courseName}></a></td>
+				<td th:text=${class.classOpenDate}></td>
+				<td th:text=${class.classCloseDate}></td>
+				<td th:text=${class.educationTime.educationTimeType}></td>
+				<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+			</tr>
+		</table>
+
+</body>
+</html>

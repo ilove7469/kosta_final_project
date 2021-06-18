@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.persistence.SubjectRepository;
@@ -37,6 +36,24 @@ public class SubjectService {
 	
 	public List<Subject> selectAll(){
 		return (List<Subject>) repo.findAll();
+	}
+	
+	public Subject findSubjectBySubjectNo(Long subjectNo){
+		Subject subject = repo.findById(subjectNo).get();
+		return subject;
+	}
+	
+	public int deleteSubject(Long no) {
+		
+		int result=0;
+		
+		try {
+		repo.deleteById(no);
+		result=1;
+		}catch(Exception ex) {
+		
+		}
+		return result;
 	}
 	
 }

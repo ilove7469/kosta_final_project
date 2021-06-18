@@ -35,4 +35,18 @@ public class EducationTimeService {
 		return (List<EducationTime>) repo.findAll();
 	}
 	
+public int deleteEducationTime(Long no) {
+		
+		int result=0;
+		
+		try {
+		repo.deleteById(no);
+		result=1;
+		}catch(Exception ex) {
+		
+		}
+		return result;
+	}
+	
+	
 }

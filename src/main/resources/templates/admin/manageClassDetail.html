@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<table>
+	<table border="1">
 	<tr>
 	 <th>상태</th>
 	 <th>아이디</th>
@@ -35,9 +35,10 @@
 		<td th:text="${classHistory.user.userPhone}">전화번호</td>
 		<td th:text="${classHistory.user.userEmail}">이메일</td>
 		<td th:text="${classHistory.user.userIdentity}">주민번호</td>
-		<td th:text="${classHistory.user.company.companyConvention}">협약사</td>
+		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='Convention'" th:text="협약사">협약사</td>
+		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='NoConvention'" th:text="비협약사">협약사</td>
 		<td th:text="${classHistory.user.company.companyName}">소속회사</td>
-		<td th:text="${classHistory.classHistoryDate}">수강신청일</td>
+		<td th:text="${#temporals.format(classHistory.classHistoryDate,'yyyy-MM-dd hh:mm:ss')}">수강신청일</td>
 	</tr>
 	</table>
 </div>

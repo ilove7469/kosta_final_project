@@ -7,7 +7,7 @@
   <th:block layout:fragment="script1">
     <script>
     	$(function(){
-    		$("#enrollBtn").click(function(){
+    		$(".enrollBtn").click(function(){
     			alert($(this).val());
     			location.href = $(this).val();
     		});
@@ -43,7 +43,7 @@
         <!-- 비대면체크 끝 -->
         <td th:text="${class.teacher.teacherName}"></td>
         <td th:if="${class.classState.toString.equals('APPLY')}">
-          <button id="enrollBtn" th:value="'/course/enroll/'+${class.classNo}">수강신청</button>
+          <button class="enrollBtn" th:value="'/course/enroll/'+${class.classNo}">수강신청</button>
         </td>
         <td th:if="${class.classState.toString.equals('OPENREADY')}">개설예정</td>
         <td th:if="${class.classState.toString.equals('END')}">종강</td>

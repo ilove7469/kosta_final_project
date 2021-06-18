@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+  <div class="panel panel-default" layout:fragment="content1">
+    
+    <div id=right-sidebar>
+      <table>
+        <tr th:if="${#strings.contains(class.lecture.course.courseName,']')}">
+          <th>과정명</th>
+          <td th:text="${#strings.substringAfter(class.lecture.course.courseName,']')}">
+        </tr>
+        <tr th:unless="${#strings.contains(class.lecture.course.courseName,']')}">
+          <th>과정명</th>
+          <td th:text="${class.lecture.course.courseName}"></td>
+        </tr>
+        <tr>
+          <th>강사명</th>
+          <td th:text="${class.teacher.teacherName}"></td>
+        </tr>
+        <tr>
+          <th>기간</th>
+          <td th:text="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}"></td>
+        </tr>
+        <tr>
+          <th>총훈련시간</th>
+          <td th:text="${class.lecture.course.courseTotalTrainTime}+시간"></td>
+        </tr>
+        <tr>
+          <th>문의센터</th>
+          <td th:text="${class.lecture.lectureAsk}"></td>
+        </tr>
+      </table>
+      <button id="enrollBtn2">수강신청</button>  
+    </div>
+  </div>
+</body>
+</html>

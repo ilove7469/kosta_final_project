@@ -7,13 +7,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <th:block layout:fragment="script1">
-    <script>
-      $(function(){
-         $("#enrollBtn").click(function(){
-        	 location.href = $(this).val();
-         });
-      });
-    </script>
+    <script th:inline="javascript">
+    $(function(){
+    	var classNo ="[[${class.classNo}]]";
+        $.ajax({
+          url:"/user/userEnrollSidebar",
+          data:{"classNo":classNo},
+          method:"get",
+          success:function(response){
+            $("#right-sidebar").html(response);
+          }
+        });
+    });
+    
+    $(document).on("click","#enrollBtn",function(){
+    	alert($(this).val());
+      	 location.href = "/course/enroll/info/"+$(this).val();
+       });
+  </script>
   </th:block>
 </head>
 <body>
@@ -84,33 +95,6 @@
     <!-- 과정+강의계획정보 출력끝 -->
     <!-- 오른쪽 사이드바 -->
     <div id=right-sidebar>
-      <table class="table">
-        <tr th:if="${#strings.contains(class.lecture.course.courseName,']')}">
-          <th>과정명</th>
-          <td th:text="${#strings.substringAfter(class.lecture.course.courseName,']')}">
-        </tr>
-        <tr th:unless="${#strings.contains(class.lecture.course.courseName,']')}">
-          <th>과정명</th>
-          <td th:text="${class.lecture.course.courseName}"></td>
-        </tr>
-        <tr>
-          <th>강사명</th>
-          <td th:text="${class.teacher.teacherName}"></td>
-        </tr>
-        <tr>
-          <th>기간</th>
-          <td th:text="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}"></td>
-        </tr>
-        <tr>
-          <th>총훈련시간</th>
-          <td th:text="${class.lecture.course.courseTotalTrainTime}+시간"></td>
-        </tr>
-        <tr>
-          <th>문의센터</th>
-          <td th:text="${class.lecture.lectureAsk}"></td>
-        </tr>
-      </table>
-      <button id="enrollBtn" th:value="'/course/enroll/info/'+${class.classNo}">수강신청</button>      
     </div>
   </div>
 

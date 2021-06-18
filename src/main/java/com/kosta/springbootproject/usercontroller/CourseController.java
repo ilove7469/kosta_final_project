@@ -78,7 +78,7 @@ public class CourseController {
 		return mv;
 	}
 	
-	//강의신청 2단계(접수하기)
+	//강의신청 2단계(접수하기) (enrollDetail)
 	@GetMapping("/course/enroll/info/{classNo}")
 	public ModelAndView searchEnrollDetail(@PathVariable Long classNo) {
 		ModelAndView mv;
@@ -101,12 +101,21 @@ public class CourseController {
 	@PostMapping("/course/enroll/info")
 	public String insertClassHistory(ClassHistory ch) {
 		//System.out.println(ch.getUser());
-		ClassHistory result = cservice.updateClassHistory(ch);
+		ClassHistory check = cservice.updateClassHistory(ch);
+		String result = check!=null?"성공":"실패";
+		System.out.println(result);
 		return "redirect:/user/userEnrollSuccess";
 	}
 	
-	@GetMapping("user/userEnrollSuccess")
+	@GetMapping("/user/userEnrollSuccess")
 	public void userEnrollSuccess() {
 		
+	}
+	
+	@GetMapping("/user/userEnrollSidebar")
+	public String enrollSidebar(Model model,Long classNo) {
+		Classes classInfo = cservice.findClassByClassNO(classNo);
+		model.addAttribute("class",classInfo);
+		return "/user/userEnrollSidebar";
 	}
 }

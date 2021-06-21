@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.Company;
+import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.CompanyRepository;
 import com.querydsl.core.types.Predicate;
@@ -34,6 +35,10 @@ public class CompanyService {
 		return companyrepo.save(company);
 	}
 	
+	public Company selectById(Long companyNo) {
+		return companyrepo.findById(companyNo).get();
+	}
+	
 	public int deleteCompany(Long cno) {
 		
 		int ret=0;
@@ -45,5 +50,10 @@ public class CompanyService {
 		
 		}
 		return ret;
+	}
+
+
+	public Company updateCourse(Company company) {
+		return companyrepo.save(company);
 	}
 }

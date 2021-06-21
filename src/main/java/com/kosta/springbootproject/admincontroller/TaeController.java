@@ -76,6 +76,22 @@ public class TaeController {
 		model.addAttribute("result",new PageMaker<>(result));
 	}
 	
+//회사 상세보기
+		@GetMapping("/admin/companyDetail/{cno}")
+		public ModelAndView companySelectById(@PathVariable Long cno) {
+			ModelAndView mv = new ModelAndView("/admin/companyDetail");
+			Company company = companyService.selectById(cno);
+			mv.addObject("company",company);
+			return mv;
+		}
+//회사수정
+		@PostMapping("/admin/companyUpdate")
+		public String companyUpdate(Company company, RedirectAttributes rttr) {
+			Company update_company = companyService.updateCourse(company);
+			rttr.addFlashAttribute("resultMessage", update_company==null?"수정실패":"수정성공");
+			return "redirect:/admin/companyList";
+		}
+	
 //회사추가
 	@GetMapping("/admin/companyInsert")
 	public void companyInsert() {
@@ -114,7 +130,23 @@ public class TaeController {
 		model.addAttribute("teacherlist", result);
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));
-		
+	}
+	
+//강사 상세보기
+	@GetMapping("/admin/teacherDetail/{tno}")
+	public ModelAndView teacherSelectById(@PathVariable Long tno) {
+		ModelAndView mv = new ModelAndView("/admin/teacherDetail");
+		Teacher teacher = teacherService.selectById(tno);
+		mv.addObject("teacher",teacher);
+		return mv;
+	}
+	
+//강사 수정	
+	@PostMapping("/admin/teacherUpdate")
+	public String teacherUpdate(Teacher teacher, RedirectAttributes rttr) {
+		Teacher update_teacher = teacherService.updateTeacher(teacher);
+		rttr.addFlashAttribute("resultMessage", update_teacher==null?"수정실패":"수정성공");
+		return "redirect:/admin/teacherList";
 	}
  
 //강사추가
@@ -158,7 +190,7 @@ public class TaeController {
 //		
 //	}
 	
-// 과정상세보기 및 수정
+// 과정상세보기
 	@GetMapping("/admin/coursedetail")
 	public void selectById(Model model, Long cno) {
 		Course course = courseService.selectById(cno);

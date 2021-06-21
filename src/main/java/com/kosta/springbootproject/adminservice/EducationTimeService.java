@@ -35,7 +35,7 @@ public class EducationTimeService {
 		return (List<EducationTime>) repo.findAll();
 	}
 	
-public int deleteEducationTime(Long no) {
+	public int deleteEducationTime(Long no) {
 		
 		int result=0;
 		
@@ -48,5 +48,10 @@ public int deleteEducationTime(Long no) {
 		return result;
 	}
 	
+	public EducationTime findEducationTimeByNo(Long educationTimeNo){
+		EducationTime educationTime = repo.findById(educationTimeNo).get();
+		return educationTime;
+	}	
+
 	
 }

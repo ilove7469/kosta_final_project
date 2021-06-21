@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Classes;
@@ -81,7 +82,14 @@ public class CourseService {
 		return userRepo.findByUserId(userId);
 	}
 	
+	@Transactional
 	public ClassHistory updateClassHistory(ClassHistory ch) {
-		return classHistoryRepo.save(ch);
+		
+		classRepo.findById(ch.getClasses().getClassNo()).ifPresent(cInfo->{
+			cInfo.setWaitCount(cInfo.getWaitCount()+1);
+			classRepo.save(cInfo);
+		});
+		ClassHistory classHistory = classHistoryRepo.save(ch);
+		return classHistory;
 	}
 }

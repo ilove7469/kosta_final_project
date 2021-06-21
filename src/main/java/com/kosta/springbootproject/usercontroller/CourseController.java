@@ -104,12 +104,7 @@ public class CourseController {
 		ClassHistory check = cservice.updateClassHistory(ch);
 		String result = check!=null?"성공":"실패";
 		System.out.println(result);
-		return "redirect:/user/userEnrollSuccess";
-	}
-	
-	@GetMapping("/user/userEnrollSuccess")
-	public void userEnrollSuccess() {
-		
+		return "/user/userEnrollSuccess";
 	}
 	
 	@GetMapping("/user/userEnrollSidebar")
@@ -117,5 +112,13 @@ public class CourseController {
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		model.addAttribute("class",classInfo);
 		return "/user/userEnrollSidebar";
+	}
+	@GetMapping("/user/userInsert")
+	public void userInsert() {
+		
+	}
+	@GetMapping("/user/userInfo")
+	public void userInfo() {
+		
 	}
 }

@@ -20,7 +20,7 @@ public class CourseTest {
 	CourseRepository repo;
 	@Autowired
 	SubjectRepository srepo;
-	@Test
+	//@Test
 	public void selectCourseWithLecture() {
 		Subject s = srepo.findById(79L).get();
 		
@@ -30,13 +30,13 @@ public class CourseTest {
 		});
 	}
 	
-	//@Test
+	@Test
 	public void insertCourse() {
 		Subject sub = new Subject();
-		sub.setSubjectNo(79L);
+		sub.setSubjectNo(15L);
 		
 		Certificate certi = new Certificate();
-		certi.setCertiNo(56L);
+		certi.setCertiNo(4L);
 		
 		Course course = Course.builder()
 				.courseName("대용량 웹서비스를 위한 MSA Full-Stack SW 개발자 양성과정")

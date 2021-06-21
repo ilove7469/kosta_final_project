@@ -33,11 +33,11 @@ public class ClassesTest {
 	
 	@Test
 	public void insertClasses() {
-		Long lectureId = 215L;	//198
-		Long teacherId = 73L;	//70~78
-		Long classRoomId = 187L;	//185~190
-		Long educationTimeId = 84L;	//80~85
-		Long adminId = 93L;		//88~96
+		Long lectureId = 58L;	//198
+		Long teacherId = 9L;	//70~78
+		Long classRoomId = 29L;	//185~190
+		Long educationTimeId = 2L;	//80~85
+		Long adminId = 59L;		//88~96
 		Classes classes = Classes.builder()
 				.classOpenDate(Date.valueOf("2021-07-05"))	//시간은 안나오고 날짜만 들어감
 				.classCloseDate(Date.valueOf("2021-08-05"))

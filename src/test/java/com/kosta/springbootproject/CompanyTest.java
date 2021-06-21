@@ -20,7 +20,7 @@ public class CompanyTest {
 	@Autowired
 	CompanyRepository repo;
 	
-//	@Test
+	@Test
 	public void insertCompany() {
 		IntStream.range(1, 20).forEach(i -> {
 			Company c = Company.builder()
@@ -31,15 +31,7 @@ public class CompanyTest {
 					.build();
 			repo.save(c);
 		});
-		IntStream.range(21, 30).forEach(i -> {
-			Company c = Company.builder()
-					.companyName("회사"+i)
-					.companyLicense("000"+i+"3355"+i)
-					.companyBoss("사장" + i)
-					.companyConvention(ConventionEnumType.NoConvention)
-					.build();
-			repo.save(c);
-		});
+
 	}
 	
 //	@Test
@@ -63,7 +55,7 @@ public class CompanyTest {
 		});
 	}
 	
-	@Test
+	//@Test
 	public void delete() {
 		repo.deleteById(44L);
 	}

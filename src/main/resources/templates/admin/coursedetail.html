@@ -13,18 +13,14 @@
 	<h1>과정상세보기</h1>
 
 
-	<form th:action="@{/admin/courseInsert}" method="post" onSubmit="return sub()">
+	<form th:action="@{/admin/courseUpdate}" method="post" onSubmit="return sub()">
+	
+	<input type="hidden" id="courseNo" name="courseNo" th:value="${courselist.courseNo}">
+	
 		<div class="form-group">
 			<label for="title">과정명:</label>
 			<input type="text" class="form-control" id="courseName1" name="courseName1" th:value="${#strings.substringAfter(courselist.courseName,']')}" required>
 		</div>
-		
-<!-- 		<div class="form-group">
-		<label for="content">주제:</label><br>
-		 <select class="form-control" name="subjectNo" id="subjectNo">
-				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
-		</select>
-		</div> -->
 		
 		
 		<label for="content">주제:</label><br>
@@ -36,14 +32,10 @@
 		</select>
 		
 		
-		
-			<p>-----------------------------------</p>
 		<div class="form-group">
 			<label for="title">주제->훈련대상:</label>
 			<input type="text" class="form-control" id="traineeName" name="traineeName"  readonly>
 		</div>
-		<p>-----------------------------------</p>
-
 
 
 		<div class="form-group">
@@ -86,15 +78,14 @@
 				<label for="content">수료증:</label><br>
 		 <select class="form-control" name="certificate" id="certiNo">
 				<option th:each="clist : ${certificatelistall}" 
-				th:value="'['+${clist.certiName}+']'" 
+				th:value="${clist.certiNo}" 
 				th:text="${clist.certiName}" 
 				th:selected="${certificatelist.certiName==clist.certiName}"></option>
 		</select>
 		
 		<INPUT TYPE="hidden" id="tranineeCourseName" name="courseName">
 			
-		<button type="submit" class="btn btn-success">등록하기</button>
-		<button type="reset" class="btn btn-primary">Reset</button>
+		<button type="submit" class="btn btn-success">저장</button>
 	</form>
 
 <script>

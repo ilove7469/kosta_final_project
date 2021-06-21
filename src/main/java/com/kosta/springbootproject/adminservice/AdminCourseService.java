@@ -53,4 +53,13 @@ public class AdminCourseService {
 		return courseRepo.findById(courseNo).get();
 	}
 	
+	public Course updateOrInsert(Course course) {
+		return courseRepo.save(course);
+	}
+
+	public Course updateCourse(Course course) {
+		return courseRepo.save(course);
+	}
+	
+	
 }

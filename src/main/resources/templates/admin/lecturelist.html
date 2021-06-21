@@ -38,7 +38,7 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="lecture:${lecturelist}">
-				<td th:text="${lecture.course.courseName}"></td>
+				<td><a th:href="@{'/admin/lecturedetail/'+${lecture.lecturePlanNo}}" th:text="${lecture.course.courseName}"></a></td>
 				<td th:text="${lecture.lecturePlanYear}"></td>
 				<td th:text="${lecture.lectureOpenCount}"></td>
 				<td th:text="${lecture.lectureCapacity}"></td>

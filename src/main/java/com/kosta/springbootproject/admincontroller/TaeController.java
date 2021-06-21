@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.springbootproject.adminservice.ClassesService;
@@ -172,6 +174,7 @@ public class TaeController {
 	
 	
 	
+	
 //과정삭제
 	@GetMapping("/admin/courseDelete")
 	public String courseDelete(Long cno,  RedirectAttributes rttr) {
@@ -200,18 +203,18 @@ public class TaeController {
 //과정추가
 	@PostMapping("/admin/courseInsert")
 	public String courseInsertPost(Course course, RedirectAttributes rttr) {
-	 
-//		System.out.println("회원가입 : " + course);
-//		System.out.println("certiNo : " + certiNo);
-//		System.out.println("subject_subject_no : " + subjectNo);
-
-//		course.setCertificate(certificateservice.selectById(certiNo)); 
-//		course.setSubject(subjectservice.selectById(subjectNo));
 		
 		Course ins_course = courseService.insertCourse(course);
-		System.out.println("--------------------incousrse : " + ins_course);
 		
 		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
+		return "redirect:/admin/courseList";
+	}
+	
+//과정수정
+	@PostMapping("/admin/courseUpdate")
+	public String courseUpdate(Course course, RedirectAttributes rttr) {
+		Course update_course = courseService.updateCourse(course);
+		rttr.addFlashAttribute("resultMessage", update_course==null?"수정실패":"수정성공");
 		return "redirect:/admin/courseList";
 	}
 	
@@ -247,21 +250,26 @@ public class TaeController {
 	 
 	@PostMapping("/admin/lectureInsert")
 	public String lectureInsertPost(@ModelAttribute Lecture lecture, Long courseNo, RedirectAttributes rttr) {
-	
-		//System.out.println("회원가입 : " + course);
-		//System.out.println("certiNo : " + certiNo);
-		//System.out.println("subject_subject_no : " + subjectNo);
 		
 		lecture.setCourse(courseService.selectById(courseNo)); 
 		
-		Lecture ins_course = lectureService.insertLecture(lecture);
+		Lecture ins_course = lectureService.updateOrInsert(lecture);
 		System.out.println("incousrse : " + ins_course);
 		
 		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
 		return "redirect:/admin/lectureList";
 	}
 	
-	
+//강의계획 상세보기
+	@GetMapping("/admin/lecturedetail/{lno}")
+	public ModelAndView selectById( @PathVariable Long lno) {
+		ModelAndView mv = new ModelAndView("/admin/lecturedetail");
+		Lecture lectrue = lectureService.selectById(lno);
+		//Course course = courseService.selectById();
+		mv.addObject("lecture",lectrue);
+		mv.addObject("courselist",courseService.courseSelectAll());
+		return mv;
+	}
 	
 	
 //강의main
@@ -275,7 +283,6 @@ public class TaeController {
 	}
 
 //강의삭제
-	
 	@GetMapping("/admin/classesDelete")
 	public String classesDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = classesService.deleteClasses(cno);

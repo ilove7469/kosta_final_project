@@ -26,12 +26,10 @@
 		</select>
 		</div>
 		
-	<p>-----------------------------------</p>
 		<div class="form-group">
 			<label for="title">주제->훈련대상:</label>
 			<input type="text" class="form-control" id="traineeName" name="traineeName"  readonly>
 		</div>
-		<p>-----------------------------------</p>
 		
 
 		<div class="form-group">
@@ -43,12 +41,6 @@
 			<label for="writer">훈련일수:</label> 
 			<input type="number" class="form-control" id="courseTotalDay" name="courseTotalDay" required>
 		</div>
-
-<!-- 		<label for="content">훈련대상:</label><br>
-		 <select class="form-control" name="trainee1" id="trainee1">
-				<option th:each="tlist : ${traineelist}" th:value="'['+${tlist.traineeName}+']'" th:text="${tlist.traineeName}"></option>
-		</select> -->
-
 		
 		<div class="form-group">
 			<label for="writer">과정단가:</label> 
@@ -112,8 +104,6 @@
 				success:function(responseData){
 					var traineename = responseData.trainee.traineeName;
 				$("#traineeName").attr("value",'['+traineename+']');
-				/* $("#temp").html(responseData); */
-				/* document.getElementById("#traineeName").value = traineename;  */
 					}
 				});
 	}); 
@@ -131,8 +121,6 @@
 				success:function(responseData){
 					var traineename = responseData.trainee.traineeName;
 				$("#traineeName").attr("value",'['+traineename+']');
-				/* $("#temp").html(responseData); */
-				/* document.getElementById("#traineeName").value = traineename;  */
 					}
 				});
 	

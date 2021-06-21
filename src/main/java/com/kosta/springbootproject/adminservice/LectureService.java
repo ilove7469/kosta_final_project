@@ -48,5 +48,13 @@ public class LectureService {
 		}
 		return ret;
 	}
+	
+	public Lecture selectById(Long lecturePlanNo) {
+		return lectureRepo.findById(lecturePlanNo).get();
+	}
+	
+	public Lecture updateOrInsert(Lecture lecture) {
+		return lectureRepo.save(lecture);
+	}
 
 }

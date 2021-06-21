@@ -4,6 +4,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+<th:block layout:fragment="script1">
+    <script>
+      $(function(){
+        $(".enrollBtn").click(function(){
+          location.href = $(this).val();
+        });
+      });
+    </script>
+  </th:block>
 </head>
 <body>
   <!-- <div class="panel panel-default" layout:fragment="content1"> -->

@@ -11,4 +11,5 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 	
 	public List<ClassHistory> findByClasses(Classes classes); 
 	
+	//유저, 강의로 강의신청 찾기
 }

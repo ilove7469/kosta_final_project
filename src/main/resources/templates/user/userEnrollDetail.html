@@ -35,7 +35,6 @@
   	  	});
   	});
   	 $(document).on("click","#enrollBtn",function(){
-  		alert($("#enrollfrm input:first-child").val());
 		$("#enrollfrm").submit();
 	});
   	
@@ -70,7 +69,5 @@
       <input type="hidden" name="user" th:value="${user.userNo}">
     </form>
   </div>
-  
-  
 </body>
 </html>

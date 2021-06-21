@@ -22,14 +22,22 @@
   </style>
 </th:block>
 <th:block layout:fragment="script1">
-  <script>
+  <script th:inline="javascript">
   	$(function(){
-  		$("#enrollBtn2").click(function(){
-  			$("#enrollfrm").submit();
-  		});
+  		var classNo ="[[${class.classNo}]]";
+  	  	$.ajax({
+  	  		url:"/user/userEnrollSidebar",
+  	  		data:{"classNo":classNo},
+  	  		method:"get",
+  	  		success:function(response){
+  	  			$("#right-sidebar").html(response);
+  	  		}
+  	  	});
   	});
-  	
-  	
+  	 $(document).on("click","#enrollBtn",function(){
+  		alert($("#enrollfrm input:first-child").val());
+		$("#enrollfrm").submit();
+	});
   	
   </script>
 </th:block>

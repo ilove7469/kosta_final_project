@@ -71,6 +71,7 @@ public class CourseService {
 	}
 	
 	//>>/enroll/{classNo}
+	//>>/search/searchSubject
 	public Classes findClassByClassNO(Long classNo) {
 		return classRepo.findById(classNo).get();
 	}

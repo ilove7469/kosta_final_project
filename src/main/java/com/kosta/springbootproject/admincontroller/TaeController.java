@@ -1,7 +1,5 @@
 package com.kosta.springbootproject.admincontroller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +28,6 @@ import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
-import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
@@ -138,7 +135,6 @@ public class TaeController {
 	@GetMapping("/admin/teacherDelete")
 	public String teacherDelete(Long tno,  RedirectAttributes rttr) {
 		int ret = teacherService.deleteteacher(tno);
-		System.out.println("삭제:" + ret);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/teacherList";
 	}
@@ -160,15 +156,21 @@ public class TaeController {
 //		
 //	}
 	
-// 과정상세보기
+// 과정상세보기 및 수정
 	@GetMapping("/admin/coursedetail")
-	public void selectById(Model model, Long bno) {
+	public void selectById(Model model, Long cno) {
+		Course course = courseService.selectById(cno);
+		model.addAttribute("courselist",course);
 		
-		model.addAttribute("courselist",courseService.selectById(bno));
-		model.addAttribute("subjectlist", subjectservice.selectAll());
-		model.addAttribute("traineelist", traineeservice.selectAll());
-		model.addAttribute("certificatelist",certificateservice.selectAll());
+		model.addAttribute("certificatelist",certificateservice.selectById(course.getCertificate().getCertiNo()));
+		model.addAttribute("certificatelistall",certificateservice.selectAll());
+			
+		model.addAttribute("subjectlist", subjectservice.selectById(course.getSubject().getSubjectNo()));
+		model.addAttribute("subjectlistall", subjectservice.selectAll());
+		
 	}
+	
+	
 	
 //과정삭제
 	@GetMapping("/admin/courseDelete")
@@ -195,7 +197,7 @@ public class TaeController {
 		return traineeName;
 	}
 	 
-	
+//과정추가
 	@PostMapping("/admin/courseInsert")
 	public String courseInsertPost(Course course, RedirectAttributes rttr) {
 	 
@@ -207,7 +209,7 @@ public class TaeController {
 //		course.setSubject(subjectservice.selectById(subjectNo));
 		
 		Course ins_course = courseService.insertCourse(course);
-		System.out.println("incousrse : " + ins_course);
+		System.out.println("--------------------incousrse : " + ins_course);
 		
 		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
 		return "redirect:/admin/courseList";

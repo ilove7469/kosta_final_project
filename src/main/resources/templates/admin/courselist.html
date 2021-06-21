@@ -45,7 +45,7 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="course:${courselist}">				     
-        		<td><a th:href="@{/admin/coursedetail(bno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
+        		<td><a th:href="@{/admin/coursedetail(cno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
 				<td th:text="${course.subject.subName}"></td>
 				<td th:text="${course.courseTotalTrainTime}"></td>
 				<td th:text="${course.courseTotalDay}"></td>
@@ -100,14 +100,14 @@
 				$(".pagination a").click(function(e) {
 					e.preventDefault(); //본래의 기능(link)을 취소
 					formObj.find("[name='page']").val($(this).attr("href"));
-					alert($(this).attr("href"));
+					/* alert($(this).attr("href")); */
 					formObj.submit();
 				});
 
 				$("#searchBtn").click(function() {
 					var typeStr = $("#searchType").find(":selected").val();
 					var keywordStr = $("#searchKeyword").val();
-					alert(typeStr + ":" + keywordStr);
+					/* alert(typeStr + ":" + keywordStr); */
 					formObj.find("[name='type']").val(typeStr);
 					formObj.find("[name='keyword']").val(keywordStr);
 					formObj.submit();

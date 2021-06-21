@@ -3,20 +3,20 @@ package com.kosta.springbootproject.persistence;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
-import com.kosta.springbootproject.model.QUser;
-import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.model.QUsers;
+import com.kosta.springbootproject.model.Users;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
-public interface UserRepository extends CrudRepository<User, Long>,QuerydslPredicateExecutor<User>{
+public interface UserRepository extends CrudRepository<Users, Long>,QuerydslPredicateExecutor<Users>{
 	
 	//사용자 아이디로 사용자 조회
-	public User findByUserId(String userId);
+	public Users findByUserId(String userId);
 	
 	//사용자 조건 조회 메서드
 	public default Predicate makePredicate(String type, String keyword) {
 		BooleanBuilder builder = new BooleanBuilder();
-		QUser user = QUser.user;
+		QUsers user = QUsers.users;
 		builder.and(user.userNo.gt(0)); //and userNo>0
 		if(type==null)return builder;
 		switch (type) {

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.model.Users;
 import com.kosta.springbootproject.persistence.CompanyRepository;
 import com.kosta.springbootproject.persistence.TraineeRepository;
 import com.kosta.springbootproject.persistence.UserRepository;
@@ -32,7 +32,7 @@ public class UserTest {
 //	@Test
 	public void insertUser() {
 		IntStream.range(1, 21).forEach(i -> {
-			User user = User.builder()
+			Users user = Users.builder()
 					.userName("이름"+i)
 					.userId("아이디"+i)
 					.userPw("비밀번호"+i)
@@ -46,7 +46,7 @@ public class UserTest {
 			repo.save(user);
 		});
 		IntStream.range(21, 31).forEach(i -> {
-			User user = User.builder()
+			Users user = Users.builder()
 					.userName("이름"+i)
 					.userId("아이디"+i)
 					.userPw("비밀번호"+i)

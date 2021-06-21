@@ -47,7 +47,7 @@ public class ClassHistory {
 	private LocalDateTime classHistoryDate;
 	
 	@ManyToOne
-	private User user;
+	private Users user;
 	
 	@ManyToOne
 	private Classes classes;

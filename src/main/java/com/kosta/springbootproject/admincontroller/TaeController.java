@@ -1,6 +1,17 @@
 package com.kosta.springbootproject.admincontroller;
 
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -340,5 +351,34 @@ public class TaeController {
 	      return "redirect:/admin/classesList";
 	   }
 
+	 //엑셀다운로드
+		@RequestMapping("/admin/exceldownload")
+	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
+	        
+			 System.out.println("--------------------엑셀확인------------------");
+			 System.out.println(pagevo.getKeyword() +"----------------"+pagevo.getType());
+			 
+	        OutputStream out = null;
+	        
+	        try {
+	        	
+	        	XSSFWorkbook workbook = companyService.listExcelDownload(param, model, pagevo);
+	         
+	            
+	            response.reset();
+	            response.setHeader("Content-Disposition", "attachment;filename=kosta_history.xls");
+	            response.setContentType("application/vnd.ms-excel");
+	            out = new BufferedOutputStream(response.getOutputStream());
+	            
+	            workbook.write(out);
+	            out.flush();
+	            
+	        } catch (Exception e) {
+	           //logger.error("exception during downloading excel file : {}", e);
+	        } finally {
+	            if(out != null) out.close();
+	        }    
+	    }
+		//엑셀다운로드 여기까지
 	
 }

@@ -32,6 +32,15 @@
 			<button id="searchBtn">조건검색</button>
 		</div>
 
+	<!-- 엑셀 다운용 코드 -->
+	<div class="panel-body pull-right">
+		<form th:action="@{/admin/exceldownload}" method="get">
+	    <input type='hidden' name='type' th:value="${pagevo.type}">
+	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
+	    <button type="submit" class="btn btn-success">test</button>
+		</form>
+	</div>
+	<!-- 엑셀 다운용 코드 끝-->
 
 		<table border="1">
 			<tr>
@@ -109,7 +118,7 @@
 				$("#searchBtn").click(function() {
 					var typeStr = $("#searchType").find(":selected").val();
 					var keywordStr = $("#searchKeyword").val();
-					alert(typeStr + ":" + keywordStr);
+					/* alert(typeStr + ":" + keywordStr); */
 					formObj.find("[name='type']").val(typeStr);
 					formObj.find("[name='keyword']").val(keywordStr);
 					formObj.submit();

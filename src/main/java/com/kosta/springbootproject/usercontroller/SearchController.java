@@ -51,8 +51,15 @@ public class SearchController {
 	public String searchSubject(Model model, String keyword, Long subNo) {
 		List<Classes> result = service.selectSubClasses(keyword, subNo);
 		
-		model.addAttribute("subNo", subNo);
-		model.addAttribute("word", keyword);
+		
+		HashSet<LectureHall> hallset = new HashSet<>();
+		for(Classes c:result) {
+			hallset.add(c.getClassRoom().getLectureHall());
+		}
+		List<LectureHall> hlist = new ArrayList<>(hallset);
+		hlist.sort(null);
+		
+		model.addAttribute("hlist", hlist);
 		model.addAttribute("result", result);
 		return "/search/table_con";
 	}

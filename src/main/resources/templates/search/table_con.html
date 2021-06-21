@@ -6,22 +6,32 @@
 </head>
 <body>
 
-<table>
-			<tr>
-				<th>과정명</th>
-				<th>개강일</th>
-				<th>종강일</th>
-				<th>교육시간</th>
-				<th>강의장</th>
-			</tr>
-			<tr th:each="class:${result}">
-				<td><a th:href="@{'/course/enroll/'+${class.classNo}}" th:text=${class.lecture.course.courseName}></a></td>
-				<td th:text=${class.classOpenDate}></td>
-				<td th:text=${class.classCloseDate}></td>
-				<td th:text=${class.educationTime.educationTimeType}></td>
-				<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-			</tr>
-		</table>
+	<div id="space">
+		<span>강의장</span>
+		<th:block th:each="hall:${hlist}">
+			<ul>
+				<li class="hmenu" th:text="${hall.lectureHallName}"></li>
+			</ul>
+		</th:block>
+	</div>
+
+	<table>
+		<tr>
+			<th>과정명</th>
+			<th>개강일</th>
+			<th>종강일</th>
+			<th>교육시간</th>
+			<th>강의장</th>
+		</tr>
+		<tr th:each="class:${result}">
+			<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+				th:text=${class.lecture.course.courseName}></a></td>
+			<td th:text=${class.classOpenDate}></td>
+			<td th:text=${class.classCloseDate}></td>
+			<td th:text=${class.educationTime.educationTimeType}></td>
+			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+		</tr>
+	</table>
 
 </body>
 </html>

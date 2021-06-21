@@ -23,26 +23,27 @@
 			});
 
 		});
-		
-		$(function(){
-			
+
+		$(function() {
+
 			var formObj = $(".form2");
-			
-			$("#sub ul li.smenu").click(function(){
+
+			$("#sub ul li.smenu").click(function() {
 				alert($(this).html());
-				
+
 				$.ajax({
 					url : "searchSubject",
-					data : {"subNo":$(this).attr("value"), "keyword":formObj.find("[name='keyword']").val()},
+					data : {
+						"subNo" : $(this).attr("value"),
+						"keyword" : formObj.find("[name='keyword']").val()
+					},
 					method : "get",
-					success : function(response){
+					success : function(response) {
 						$("#table_content").html(response);
 					}
 				});
 			});
 		});
-		
-		
 	</script>
 
 </th:block>
@@ -101,18 +102,8 @@
 			<span>주제명</span>
 			<th:block th:each="subject:${sublist}">
 				<ul>
-					<li class="smenu" th:text="${subject.subName}" th:value="${subject.subjectNo}"></li>
-				</ul>
-			</th:block>
-		</div>
-
-		<hr>
-
-		<div id="space">
-			<span>강의장</span>
-			<th:block th:each="hall:${hlist}">
-				<ul>
-					<li class="hmenu" th:text="${hall.lectureHallName}"></li>
+					<li class="smenu" th:text="${subject.subName}"
+						th:value="${subject.subjectNo}"></li>
 				</ul>
 			</th:block>
 		</div>
@@ -120,26 +111,38 @@
 		<hr>
 
 		<div id="table_content">
-			<table>
-				<tr>
-					<th>과정명</th>
-					<th>개강일</th>
-					<th>종강일</th>
-					<th>교육시간</th>
-					<th>강의장</th>
-				</tr>
-				<tr th:each="class:${result}">
-					<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
-						th:text=${class.lecture.course.courseName}></a></td>
-					<td th:text=${class.classOpenDate}></td>
-					<td th:text=${class.classCloseDate}></td>
-					<td th:text=${class.educationTime.educationTimeType}></td>
-					<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-				</tr>
-			</table>
+			<div id="space">
+				<span>강의장</span>
+				<th:block th:each="hall:${hlist}">
+					<ul>
+						<li class="hmenu" th:text="${hall.lectureHallName}"></li>
+					</ul>
+				</th:block>
+			</div>
+
+			<hr>
+
+			<div id="final_content">
+				<table>
+					<tr>
+						<th>과정명</th>
+						<th>개강일</th>
+						<th>종강일</th>
+						<th>교육시간</th>
+						<th>강의장</th>
+					</tr>
+					<tr th:each="class:${result}">
+						<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+							th:text=${class.lecture.course.courseName}></a></td>
+						<td th:text=${class.classOpenDate}></td>
+						<td th:text=${class.classCloseDate}></td>
+						<td th:text=${class.educationTime.educationTimeType}></td>
+						<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+					</tr>
+				</table>
+			</div>
+
 		</div>
-
-
 
 	</div>
 </body>

@@ -12,7 +12,7 @@ import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Trainee;
-import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.model.Users;
 import com.kosta.springbootproject.persistence.ClassHistoryRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CourseRepository;
@@ -78,7 +78,7 @@ public class CourseService {
 	}
 	
 	//>>/course/enroll/info/{classNo}
-	public User findUserByUserID(String userId) {
+	public Users findUserByUserID(String userId) {
 		return userRepo.findByUserId(userId);
 	}
 	

@@ -32,7 +32,7 @@ import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
-import com.kosta.springbootproject.model.User;
+import com.kosta.springbootproject.model.Users;
 
 @Controller
 public class HyunController {
@@ -178,7 +178,7 @@ public class HyunController {
 //	회원 메인
 	@GetMapping("/admin/usermain")
 	public void selectAllUser(Model model, PageVO pagevo) {
-		Page<User> result = userService.selectAll(pagevo);
+		Page<Users> result = userService.selectAll(pagevo);
 		model.addAttribute("UserResult",result);
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));

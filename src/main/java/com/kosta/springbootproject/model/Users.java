@@ -34,7 +34,7 @@ import lombok.ToString;
 @Table
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

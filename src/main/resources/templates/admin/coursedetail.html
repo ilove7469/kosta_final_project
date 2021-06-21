@@ -19,12 +19,30 @@
 			<input type="text" class="form-control" id="courseName1" name="courseName1" th:value="${#strings.substringAfter(courselist.courseName,']')}" required>
 		</div>
 		
-		<div class="form-group">
+<!-- 		<div class="form-group">
 		<label for="content">주제:</label><br>
 		 <select class="form-control" name="subjectNo" id="subjectNo">
 				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
 		</select>
+		</div> -->
+		
+		
+		<label for="content">주제:</label><br>
+		 <select class="form-control" name="subject" id="subjectNo">
+				<option th:each="slist : ${subjectlistall}" 
+				th:value="${slist.subjectNo}" 
+				th:text="${slist.subName}" 
+				th:selected="${subjectlist.subName==slist.subName}"></option>
+		</select>
+		
+		
+		
+			<p>-----------------------------------</p>
+		<div class="form-group">
+			<label for="title">주제->훈련대상:</label>
+			<input type="text" class="form-control" id="traineeName" name="traineeName"  readonly>
 		</div>
+		<p>-----------------------------------</p>
 
 
 
@@ -37,15 +55,6 @@
 			<label for="writer">훈련일수:</label> 
 			<input type="number" class="form-control" id="courseTotalDay" name="courseTotalDay" th:value="${courselist.courseTotalDay}">
 		</div>
-
-
-		<label for="content">훈련대상:</label><br>
-		 <select class="form-control" name="trainee1" id="trainee1">
-				<option th:each="tlist : ${traineelist}" 
-				th:value="'['+${tlist.traineeName}+']'" 
-				th:text="${tlist.traineeName}" 
-				th:selected="${courselist.subject.trainee.traineeName==tlist.traineeName}"></option>
-		</select>
 	
 	
 		<div class="form-group">
@@ -73,12 +82,14 @@
 		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent" th:text="${courselist.courseContent}"></textarea>
 		</div>
 
-		<div class="form-group">
-		<label for="content">수료증:</label><br>
-		 <select class="form-control" name="certiNo" id="certiNo">
-				<option th:each="clist : ${certificatelist}" th:value="${clist.certiNo}" th:text="${clist.certiNo} + ' : ' + ${clist.certiName}"></option>
+		
+				<label for="content">수료증:</label><br>
+		 <select class="form-control" name="certificate" id="certiNo">
+				<option th:each="clist : ${certificatelistall}" 
+				th:value="'['+${clist.certiName}+']'" 
+				th:text="${clist.certiName}" 
+				th:selected="${certificatelist.certiName==clist.certiName}"></option>
 		</select>
-		</div>
 		
 		<INPUT TYPE="hidden" id="tranineeCourseName" name="courseName">
 			
@@ -88,13 +99,52 @@
 
 <script>
 function sub(){
-	var a=document.getElementById('trainee1').value;
-	var b=document.getElementById('courseName1').value
+	var a=document.getElementById('traineeName').value;
+	var b=document.getElementById('courseName1').value;
 	var c=a+b;
 	$('#tranineeCourseName').val(c);
-
 	document.form.submit();
 	}
+	
+	
+$(function(){
+	var no1 =  $("#subjectNo").val();
+	/* alert(no1); */
+	
+		 $.ajax({
+			url:"/admin/courseInsert1",
+			data:{"no":no1},
+			type:"get",
+			success:function(responseData){
+				var traineename = responseData.trainee.traineeName;
+			$("#traineeName").attr("value",'['+traineename+']');
+			/* $("#temp").html(responseData); */
+			/* document.getElementById("#traineeName").value = traineename;  */
+				}
+			});
+}); 
+
+
+
+$("#subjectNo").change(function(){
+    var no1 =  $(this).val();
+	/* alert(no1); */
+	
+		 $.ajax({
+			url:"/admin/courseInsert1",
+			data:{"no":no1},
+			type:"get",
+			success:function(responseData){
+				var traineename = responseData.trainee.traineeName;
+			$("#traineeName").attr("value",'['+traineename+']');
+			/* $("#temp").html(responseData); */
+			/* document.getElementById("#traineeName").value = traineename;  */
+				}
+			});
+
+	
+	
+});
 </script>
 </div>
 </body>

@@ -41,6 +41,7 @@ public class SearchController {
 		sublist.sort(null);
 		hlist.sort(null);
 		
+		model.addAttribute("word", keyword);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("sublist", sublist);
 		model.addAttribute("word", keyword);
@@ -50,8 +51,7 @@ public class SearchController {
 	@GetMapping("/search/searchSubject")
 	public String searchSubject(Model model, String keyword, Long subNo) {
 		List<Classes> result = service.selectSubClasses(keyword, subNo);
-		
-		
+			
 		HashSet<LectureHall> hallset = new HashSet<>();
 		for(Classes c:result) {
 			hallset.add(c.getClassRoom().getLectureHall());
@@ -59,8 +59,21 @@ public class SearchController {
 		List<LectureHall> hlist = new ArrayList<>(hallset);
 		hlist.sort(null);
 		
+		model.addAttribute("word", keyword);
+		model.addAttribute("subNo", subNo);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("result", result);
 		return "/search/table_con";
+	}
+	
+	@GetMapping("/search/searchHall")
+	public String searchHall(Model model, String keyword, Long subNo, Long lecHallNo) {
+		List<Classes> result = service.selectSubHall(keyword, subNo, lecHallNo);
+		
+		model.addAttribute("word", keyword);
+		model.addAttribute("subNo", subNo);
+		model.addAttribute("lecHallNo", lecHallNo);
+		model.addAttribute("result", result);
+		return "/search/table_con2";
 	}
 }

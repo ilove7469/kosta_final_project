@@ -67,6 +67,7 @@ public class Classes {
 	@ManyToOne
 	private Teacher teacher;
 	@ManyToOne
+	@QueryInit("lectureHall.*")
 	private ClassRoom classRoom;
 	@ManyToOne
 	private EducationTime educationTime;

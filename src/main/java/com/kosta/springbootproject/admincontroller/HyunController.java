@@ -77,7 +77,14 @@ public class HyunController {
 		mv.addObject("classHistoryList", classhistorylist);
 		return mv;
 	}
-	
+
+//	수강신청 관리 상세페이지 - 확정
+	@GetMapping("/admin/manageClassDetailCommit/{classHistoryNo}")
+	public String commitManageClassDetail(@PathVariable Long classHistoryNo) {
+		classHistroyService.commitManageClassDetail(classHistoryNo);
+		return "gg";
+	}
+
 //	주제 메인
 	@GetMapping("/admin/subjectmain")
 	public void selectAllSubject(Model model, PageVO pagevo) {
@@ -111,13 +118,6 @@ public class HyunController {
 		mv.addObject("subject", subject);
 		return mv;
 	}
-	
-//	주제 수정 Post
-	@PostMapping("/admin/subjectModify")
-	public String modifySubject(Subject subject) {
-		subjectService.updateOrInsert(subject);
-		return "redirect:/admin/subjectmain";
-	}		
 	
 //	주제 삭제 Get
 	@GetMapping("/admin/subjectDelete")
@@ -159,13 +159,6 @@ public class HyunController {
 		return mv;
 	}
 	
-//	교육시간 수정 Post
-	@PostMapping("/admin/educationTimeModify")
-	public String modifyEducationTime(Subject subject) {
-		subjectService.updateOrInsert(subject);
-		return "redirect:/admin/subjectmain";
-	}		
-	
 //	교육시간 삭제
 	@GetMapping("/admin/educationtimeDelete")
 	public String deleteEducationTime(Long no) {
@@ -203,6 +196,16 @@ public class HyunController {
 		return "redirect:/admin/certificatemain";
 	}
 	
+//	수료증 수정 Get
+	@GetMapping("/admin/certificateModify/{certiNo}")
+	public ModelAndView modifyCerti(@PathVariable Long certiNo) {
+		ModelAndView mv = new ModelAndView("/admin/certificatedetail");
+		Certificate certi = certiService.findCertificateByNo(certiNo);
+		mv.addObject("certi", certi);
+		return mv;
+	}		
+	
+	
 //	수료증 삭제
 	@GetMapping("/admin/certificateDelete")
 	public String deleteCerti(Long no) {
@@ -236,6 +239,18 @@ public class HyunController {
 		return "redirect:/admin/lecturehallmain";
 	}
 
+//	강의장 수정 Get
+	@GetMapping("/admin/lectureHallModify/{lectureHallNo}")
+	public ModelAndView modifyLectureHall(@PathVariable Long lectureHallNo) {
+		ModelAndView mv = new ModelAndView("/admin/lecturehalldetail");
+		LectureHall lectureHall = lectureHallService.findLectureHallByNo(lectureHallNo);
+		mv.addObject("lectureHall", lectureHall);
+		return mv;
+	}	
+	
+	
+	
+	
 //	강의장 삭제
 	@GetMapping("/admin/lectureHallDelete")
 	public String deleteLectureHall(Long no) {
@@ -263,6 +278,18 @@ public class HyunController {
 		classRoomService.updateOrInsert(classRoom);
 		return "redirect:/admin/classroommain";
 	}
+	
+//	강의실 수정 Get
+	@GetMapping("/admin/classRoomModify/{classRoomNo}")
+	public ModelAndView modifyClassRoom(@PathVariable Long classRoomNo) {
+		ModelAndView mv = new ModelAndView("/admin/classroomdetail");
+		ClassRoom classRoom = classRoomService.findClassRoomByNo(classRoomNo);
+		List<LectureHall> lectureHallList = lectureHallService.selectAll();
+		mv.addObject("lectureHallList",lectureHallList);
+		mv.addObject("classRoom", classRoom);
+		return mv;
+	}
+
 	
 //	강의실 삭제
 	@GetMapping("/admin/classRoomDelete")

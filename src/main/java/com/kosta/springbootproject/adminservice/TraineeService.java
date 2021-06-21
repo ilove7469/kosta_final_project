@@ -18,4 +18,9 @@ public class TraineeService {
 	public List<Trainee> selectAll(){
 		return (List<Trainee>) traineerepository.findAll();
 	}
+	
+	public Trainee selectById(Long traineeNo) {
+		return traineerepository.findById(traineeNo).get();
+	}
+	
 }

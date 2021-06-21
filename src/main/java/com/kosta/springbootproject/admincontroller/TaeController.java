@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.springbootproject.adminservice.ClassesService;
@@ -27,7 +28,9 @@ import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
+import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
+import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
@@ -162,8 +165,9 @@ public class TaeController {
 	public void selectById(Model model, Long bno) {
 		
 		model.addAttribute("courselist",courseService.selectById(bno));
-		model.addAttribute("subjectlist", subjectservice.selectById(bno));
-	
+		model.addAttribute("subjectlist", subjectservice.selectAll());
+		model.addAttribute("traineelist", traineeservice.selectAll());
+		model.addAttribute("certificatelist",certificateservice.selectAll());
 	}
 	
 //과정삭제
@@ -179,20 +183,28 @@ public class TaeController {
 	public void courseInsert(Model model) {
 		model.addAttribute("certificatelist", certificateservice.selectAll());
 		model.addAttribute("subjectlist", subjectservice.selectAll());
-		model.addAttribute("traineelist", traineeservice.selectAll());
+	}
 
+//과정추가 훈련대상 찾기위한 ajax 메소드
+	@ResponseBody
+	@GetMapping("/admin/courseInsert1")
+	public Subject findtraineeName(Long no) {
+		System.out.println("-------------"+no);
+		Subject traineeName = subjectservice.selectById(no);
+		System.out.println("-------------"+traineeName);
+		return traineeName;
 	}
 	 
 	
 	@PostMapping("/admin/courseInsert")
-	public String courseInsertPost(Course course, Long certiNo, Long subjectNo, RedirectAttributes rttr) {
-	
-		System.out.println("회원가입 : " + course);
-		System.out.println("certiNo : " + certiNo);
-		System.out.println("subject_subject_no : " + subjectNo);
+	public String courseInsertPost(Course course, RedirectAttributes rttr) {
+	 
+//		System.out.println("회원가입 : " + course);
+//		System.out.println("certiNo : " + certiNo);
+//		System.out.println("subject_subject_no : " + subjectNo);
 
-		course.setCertificate(certificateservice.selectById(certiNo)); 
-		course.setSubject(subjectservice.selectById(subjectNo));
+//		course.setCertificate(certificateservice.selectById(certiNo)); 
+//		course.setSubject(subjectservice.selectById(subjectNo));
 		
 		Course ins_course = courseService.insertCourse(course);
 		System.out.println("incousrse : " + ins_course);

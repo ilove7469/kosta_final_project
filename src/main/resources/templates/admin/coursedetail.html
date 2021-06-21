@@ -18,46 +18,56 @@
 			<label for="title">과정명:</label>
 			<input type="text" class="form-control" id="courseName1" name="courseName1" th:value="${#strings.substringAfter(courselist.courseName,']')}" required>
 		</div>
+		
 		<div class="form-group">
 		<label for="content">주제:</label><br>
 		 <select class="form-control" name="subjectNo" id="subjectNo">
 				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
 		</select>
 		</div>
-		<div class="form-group">
+
 
 
 		<div class="form-group">
 			<label for="writer">총훈련시간:</label> 
 			<input type="number" class="form-control" id="courseTotalTrainTime" name="courseTotalTrainTime" th:value="${courselist.courseTotalTrainTime}">
-
 		</div>
+		
 		<div class="form-group">
 			<label for="writer">훈련일수:</label> 
 			<input type="number" class="form-control" id="courseTotalDay" name="courseTotalDay" th:value="${courselist.courseTotalDay}">
 		</div>
 
+
 		<label for="content">훈련대상:</label><br>
 		 <select class="form-control" name="trainee1" id="trainee1">
-				<option th:each="tlist : ${traineelist}" th:value="'['+${tlist.traineeName}+']'" th:value="${tlist.traineeName}"></option>
+				<option th:each="tlist : ${traineelist}" 
+				th:value="'['+${tlist.traineeName}+']'" 
+				th:text="${tlist.traineeName}" 
+				th:selected="${courselist.subject.trainee.traineeName==tlist.traineeName}"></option>
 		</select>
-		</div>
+	
+	
 		<div class="form-group">
 			<label for="writer">과정단가:</label> 
 			<input type="number" class="form-control" id="coursePrice" name="coursePrice" th:value="${courselist.coursePrice}">
 		</div>
+		
 		<div class="form-group">
 			<label for="writer">정원:</label> 
-			<input type="number" class="form-control" id="courseCapacity" name="courseCapacity" required>
+			<input type="number" class="form-control" id="courseCapacity" name="courseCapacity" th:value="${courselist.courseCapacity}">
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육대상권고사항:</label>
 		    <textarea class="form-control" rows="3" cols="" id="courseTarget"  name="courseTarget" th:text="${courselist.courseTarget}"></textarea>
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육목표:</label>
 		    <textarea class="form-control" rows="3" cols="" id="coursePurpose"  name="coursePurpose" th:text="${courselist.coursePurpose}"></textarea>
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육내용:</label>
 		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent" th:text="${courselist.courseContent}"></textarea>

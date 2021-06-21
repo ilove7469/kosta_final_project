@@ -18,20 +18,28 @@
 			<label for="title">과정명:</label>
 			<input type="text" class="form-control" id="courseName1" name="courseName1" value="태웅과정추가테스트" required>
 		</div>
+		
 		<div class="form-group">
 		<label for="content">주제:</label><br>
 		 <select class="form-control" name="subjectNo" id="subjectNo">
 				<option th:each="slist : ${subjectlist}" th:value="${slist.subjectNo}" th:text="${slist.subjectNo} + ' : ' + ${slist.subName}"></option>
 		</select>
 		</div>
+		
+	
 		<div class="form-group">
-
+			<label for="title">주제->훈련대상:</label>
+			<input type="text" class="form-control" id="traineeName" name="traineeName" value="ddd" readonly>
+		</div>
+		
+		<div id="temp">여기</div>
+		
 
 		<div class="form-group">
 			<label for="writer">총훈련시간:</label> 
 			<input type="number" class="form-control" id="courseTotalTrainTime" name="courseTotalTrainTime" required>
-
 		</div>
+		
 		<div class="form-group">
 			<label for="writer">훈련일수:</label> 
 			<input type="number" class="form-control" id="courseTotalDay" name="courseTotalDay" required>
@@ -41,23 +49,28 @@
 		 <select class="form-control" name="trainee1" id="trainee1">
 				<option th:each="tlist : ${traineelist}" th:value="'['+${tlist.traineeName}+']'" th:text="${tlist.traineeName}"></option>
 		</select>
-		</div>
+
+		
 		<div class="form-group">
 			<label for="writer">과정단가:</label> 
 			<input type="number" class="form-control" id="coursePrice" name="coursePrice" required>
 		</div>
+		
 		<div class="form-group">
 			<label for="writer">정원:</label> 
 			<input type="number" class="form-control" id="courseCapacity" name="courseCapacity" required>
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육대상권고사항:</label>
 		    <textarea class="form-control" rows="3" cols="" id="courseTarget"  name="courseTarget" wrap="hard"></textarea>
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육목표:</label>
 		    <textarea class="form-control" rows="3" cols="" id="coursePurpose"  name="coursePurpose" wrap="hard"></textarea>
 		</div>
+		
 		<div class="form-group">
 		    <label for="content">교육내용:</label>
 		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent" wrap="hard"></textarea>
@@ -77,14 +90,38 @@
 	</form>
 
 <script>
-function sub(){
-	var a=document.getElementById('trainee1').value;
-	var b=document.getElementById('courseName1').value
-	var c=a+b;
-	$('#tranineeCourseName').val(c);
+	function sub(){
+		var a=document.getElementById('trainee1').value;
+		var b=document.getElementById('courseName1').value
+		var c=a+b;
+		$('#tranineeCourseName').val(c);
+		document.form.submit();
+		}
+	
 
-	document.form.submit();
-	}
+	$("#subjectNo").change(function(){
+	    var no1 =  $(this).val();
+		alert(no1);
+		
+	
+			 $.ajax({
+				url:"/admin/courseInsert1",
+				data:{"no":no1},
+				type:"get",
+				success:function(responseData){
+					var traineename = responseData.trainee.traineeName;
+				$("#traineeName").attr("value",traineename);
+				/* $("#temp").html(responseData); */
+				/* document.getElementById("#traineeName").value = traineename;  */
+					}
+				});
+	 
+		
+		
+	});
+
+
+
 </script>
 </div>
 </body>

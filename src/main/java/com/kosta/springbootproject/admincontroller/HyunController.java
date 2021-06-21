@@ -151,12 +151,11 @@ public class HyunController {
 	}		
 
 //	교육시간 수정 Get
-	@GetMapping("/admin/educationTimeModify/{subjectNo}")
-	public ModelAndView modifyEducationTime(@PathVariable Long educationTimeNo,Model model) {
+	@GetMapping("/admin/educationTimeModify/{educationTimeNo}")
+	public ModelAndView modifyEducationTime(@PathVariable Long educationTimeNo) {
 		ModelAndView mv = new ModelAndView("/admin/educationTimedetail");
-		model.addAttribute("traineeList",traineeService.selectAll());
-		Subject subject = subjectService.findSubjectBySubjectNo(educationTimeNo);
-		mv.addObject("subject", subject);
+		EducationTime educationTime = educationTimeService.findEducationTimeByNo(educationTimeNo);
+		mv.addObject("EducationTime", educationTime);
 		return mv;
 	}
 	

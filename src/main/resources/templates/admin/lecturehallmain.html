@@ -21,7 +21,9 @@
 	 <th>삭제</th>
 	</tr>
 	<tr th:each="lectureHall:${lectureHallList}" >
-		<td th:text="${lectureHall.lectureHallName}">이름</td>
+		<td>
+		<a th:href="@{'/admin/lectureHallModify/'+${lectureHall.lectureHallNo}}" th:text="${lectureHall.lectureHallName}">이름</a>
+		</td>
 		<td th:text="${lectureHall.lectureHallAddress}">주소</td>
 		<td><a th:href="@{/admin/lectureHallDelete(no=${lectureHall.lectureHallNo})}">삭제</a></td>
 	</tr>

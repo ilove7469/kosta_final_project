@@ -24,7 +24,9 @@
 	</tr>
 	<tr th:each="classRoom:${classRoomList}">
 		<td th:text="${classRoom.lectureHall.lectureHallName}">강의장 이름</td>
-		<td th:text="${classRoom.classRoomName}">강의실 번호</td>
+		<td>
+			<a th:href="@{'/admin/classRoomModify/'+${classRoom.classRoomNo}}" th:text="${classRoom.classRoomName}">강의실 번호</a>
+		</td>
 		<td th:text="${classRoom.classRoomCapacity}">강의실 정원</td>
 		<td><a th:href="@{/admin/classRoomDelete(no=${classRoom.classRoomNo})}">삭제</a></td>
 	</tr>

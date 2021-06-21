@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default" layout:fragment="content1">
+  <table class="table">
+    <tr>
+      <th>과목명</th>
+      <th>연간횟수</th>
+      <th>훈련시간</th>
+    </tr>
+    <tr id="course" th:each="CourseInfo,i:${CourseList}">
+      <td>
+        <a th:href="@{'/courseInfo/'+${CourseInfo[3]}+'/'+${CourseInfo[4]}}" th:text="${CourseInfo[0]}"></a>
+      </td>
+      <td th:text="${CourseInfo[1]}"/>
+      <td th:text="${CourseInfo[2]}"/>
+    </tr>
+  </table>
+ </div> 
+</body>
+</html>

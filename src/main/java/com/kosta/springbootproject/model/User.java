@@ -50,13 +50,22 @@ public class User {
 	private String userPw;
 	
 	@Column(nullable = false)
+	private char sex;
+	
+	@Column(nullable = false)
 	private String userPhone;
 	
 	@Column(nullable = false)
 	private String userEmail;
 	
 	@Column(nullable = false)
+	private String zipCode;
+	
+	@Column(nullable = false)
 	private String userAddress;
+	
+	@Column(nullable = false)
+	private String detailAddress;
 	
 	@Column(nullable = false)
 	private Date userBirth;

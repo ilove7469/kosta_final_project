@@ -1,6 +1,6 @@
 package com.kosta.springbootproject.model;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +42,6 @@ public class Certificate {
 	private String certiComment;
 	
 	@CreationTimestamp
-	private LocalDateTime certiRegDate;
+	private Timestamp certiRegDate;
 	
 }

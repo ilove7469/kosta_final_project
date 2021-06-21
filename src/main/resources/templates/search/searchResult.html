@@ -12,9 +12,10 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<title>Insert title here</title>
 	<script>
+
 		$(function() {
 			var formObj = $(".form2");
-
+			
 			$(".searchBtn2").click(function() {
 				var keyword = $(".searchKeyword2").val();
 
@@ -25,21 +26,45 @@
 		});
 
 		$(function() {
-
 			var formObj = $(".form2");
-
+			
+			
 			$("#sub ul li.smenu").click(function() {
-				alert($(this).html());
-
+		
+				subNo = $(this).attr("value");
+				alert("[[${word}]]")
+				alert($(this).attr("value"))
 				$.ajax({
 					url : "searchSubject",
 					data : {
 						"subNo" : $(this).attr("value"),
-						"keyword" : formObj.find("[name='keyword']").val()
+						"keyword" : "[[${word}]]"
 					},
 					method : "get",
 					success : function(response) {
 						$("#table_content").html(response);
+					}
+				});
+			});
+		});
+		
+		$(function(){
+			var formObj = $(".form2");
+			
+			$(".space ul li.hmenu").click(function(){
+				alert("[[${word}]]")
+				alert($(this).attr("value"))
+				alert("[[${subNo}]]")
+				$.ajax({
+					url: "searchHall",
+					data : {
+						"subNo" : "[[${subNo}]]",
+						"lecHallNo" : $(this).attr("value"),
+						"keyword" : "[[${word}]]"
+					},
+					method : "get",
+					success : function(response) {
+						$("#final_content").html(response);
 					}
 				});
 			});
@@ -65,19 +90,19 @@
 	display: block;
 }
 
-#space ul li {
+.space ul li {
 	display: inline-block;
 	width: 120px;
 	color: #2F55AA;
 	border: 2.5px solid #2F55AA;
 }
 
-#space ul li:hover {
+.space ul li:hover {
 	background-color: #2F55AA;
 	color: white;
 }
 
-#space a {
+.space a {
 	display: block;
 }
 </style>
@@ -100,24 +125,25 @@
 
 		<div id="sub">
 			<span>주제명</span>
+			<ul>
 			<th:block th:each="subject:${sublist}">
-				<ul>
-					<li class="smenu" th:text="${subject.subName}"
+				<li class="smenu" th:text="${subject.subName}"
 						th:value="${subject.subjectNo}"></li>
-				</ul>
 			</th:block>
+			</ul>
 		</div>
 
 		<hr>
 
 		<div id="table_content">
-			<div id="space">
+			<div class="space">
 				<span>강의장</span>
+				<ul>
 				<th:block th:each="hall:${hlist}">
-					<ul>
-						<li class="hmenu" th:text="${hall.lectureHallName}"></li>
-					</ul>
+						<li class="hmenu" th:text="${hall.lectureHallName}"
+							th:value="${hall.lectureHallNo}"></li>
 				</th:block>
+				</ul>
 			</div>
 
 			<hr>

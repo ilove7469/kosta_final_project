@@ -13,21 +13,56 @@
 	<form th:action="@{/admin/classroomInsert}" method="post">
     <div class="form-group">
       <label>강의장 이름:</label>
-      <select name="lectureHall">
-			<option th:each="lectureHall:${lectureHallList}" th:value="${lectureHall.lectureHallNo}" th:utext="${lectureHall.lectureHallName}"></option>
-	  </select>
+      <th:block th:if="${classRoom == null}">
+	      <select name="lectureHall">
+				<option 
+				th:each="lectureHall:${lectureHallList}" 
+				th:value="${lectureHall.lectureHallNo}" 
+				th:utext="${lectureHall.lectureHallName}">
+				</option>
+		  </select>
+	  </th:block>
+	  <th:block th:unless="${classRoom == null}">
+	      <select name="lectureHall">
+				<option 
+				th:each="lectureHall:${lectureHallList}" 
+				th:value="${lectureHall.lectureHallNo}" 
+				th:utext="${lectureHall.lectureHallName}"
+				th:selected="${classRoom.lectureHall.lectureHallNo==lectureHall.lectureHallNo}">
+				</option>
+		  </select>
+	  </th:block>
     </div>
     
     <div class="form-group">
       <label for="classRoomName">강의실 이름:</label>
-	  <textarea class="form-control" rows="5" cols="" id="classRoomName" name="classRoomName"></textarea>    
+      <th:block th:if="${classRoom == null}">
+		  <input
+		  type="text"
+		  class="form-control" 
+		  id="classRoomName" 
+		  name="classRoomName">
+      </th:block>
+      <th:block th:unless="${classRoom == null}">
+		  <input
+		  type="text"
+		  class="form-control" 
+		  id="classRoomName" 
+		  name="classRoomName"
+		  th:value="${classRoom.classRoomName}">
+	  </th:block>    
     </div>
     
     <div class="form-group">
       <label for="classRoomCapacity">강의실 정원:</label>
-      <input type="number" class="form-control" id="classRoomCapacity" name="classRoomCapacity">
+      <th:block th:if="${classRoom == null}">
+      	<input type="number" class="form-control" id="classRoomCapacity" name="classRoomCapacity">
+      </th:block>
+      <th:block th:unless="${classRoom == null}">
+      	<input type="number" class="form-control" id="classRoomCapacity" name="classRoomCapacity" th:value="${classRoom.classRoomCapacity}">
+      </th:block>
     </div>
-    
+    <button type="button" class="btn btn-success" onclick = "location.href = '/admin/classroommain'">취소</button>
     <button type="submit" class="btn btn-success">등록하기</button>
   </form>
 </div>

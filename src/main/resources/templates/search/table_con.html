@@ -3,35 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	$(function() {
+
+		$(".space ul li.hmenu2").click(function() {
+			alert("[[${word}]]")
+			alert($(this).attr("value"))
+			alert("[[${subNo}]]")
+			$.ajax({
+				url : "searchHall",
+				data : {
+					"subNo" : "[[${subNo}]]",
+					"lecHallNo" : $(this).attr("value"),
+					"keyword" : "[[${word}]]"
+				},
+				method : "get",
+				success : function(response) {
+					$("#final_content").html(response);
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 
-	<div id="space">
+	<div class="space">
 		<span>강의장</span>
-		<th:block th:each="hall:${hlist}">
-			<ul>
-				<li class="hmenu" th:text="${hall.lectureHallName}"></li>
-			</ul>
-		</th:block>
+		<ul>
+			<th:block th:each="hall:${hlist}">
+				<li class="hmenu2" th:text="${hall.lectureHallName}"
+					th:value="${hall.lectureHallNo}"></li>
+			</th:block>
+		</ul>
 	</div>
 
-	<table>
-		<tr>
-			<th>과정명</th>
-			<th>개강일</th>
-			<th>종강일</th>
-			<th>교육시간</th>
-			<th>강의장</th>
-		</tr>
-		<tr th:each="class:${result}">
-			<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
-				th:text=${class.lecture.course.courseName}></a></td>
-			<td th:text=${class.classOpenDate}></td>
-			<td th:text=${class.classCloseDate}></td>
-			<td th:text=${class.educationTime.educationTimeType}></td>
-			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-		</tr>
-	</table>
+	<hr>
+
+	<div id="final_content">
+		<table>
+			<tr>
+				<th>과정명</th>
+				<th>개강일</th>
+				<th>종강일</th>
+				<th>교육시간</th>
+				<th>강의장</th>
+			</tr>
+			<tr th:each="class:${result}">
+				<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+					th:text=${class.lecture.course.courseName}></a></td>
+				<td th:text=${class.classOpenDate}></td>
+				<td th:text=${class.classCloseDate}></td>
+				<td th:text=${class.educationTime.educationTimeType}></td>
+				<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+			</tr>
+		</table>
+	</div>
 
 </body>
 </html>

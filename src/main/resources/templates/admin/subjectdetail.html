@@ -12,10 +12,10 @@
 	
 	<form id="frm" th:action="@{/admin/subjectInsert}" method="post">
 	    <div class="form-group">
+	      <label for="subName">주제명:</label>
 	       <th:block th:unless="${subject == null}">
 	       <input type="hidden" id="subjectNo" name="subjectNo" th:value="${subject.subjectNo}">
 	       </th:block>
-	      <label for="subName">주제명:</label>
 	 	  <th:block th:if="${subject == null}">
 	      	<input 
 	      	type="text" 

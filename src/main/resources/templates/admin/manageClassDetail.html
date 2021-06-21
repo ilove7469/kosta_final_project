@@ -39,8 +39,62 @@
 		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='NoConvention'" th:text="비협약사">협약사</td>
 		<td th:text="${classHistory.user.company.companyName}">소속회사</td>
 		<td th:text="${#temporals.format(classHistory.classHistoryDate,'yyyy-MM-dd hh:mm:ss')}">수강신청일</td>
+		<td>
+		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'">
+			<td><button onclick='commit(this,"${classHistory.classHistoryNo}");'>확정</button></td>
+			<td><button onclick='cancel(this,"${classHistory.classHistoryNo}");'>취소</button></td>
+		</th:block>
+		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='CANCEL'">
+			<td><button onclick='commit(this,"${classHistory.classHistoryNo}");'>확정</button></td>
+			<td><button onclick='wait(this,"${classHistory.classHistoryNo}");'>대기</button></td>
+		</th:block>
+		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='COMMIT'">
+			<td><button onclick='wait(this,"${classHistory.classHistoryNo}");'>대기</button></td>
+			<td><button onclick='cancel(this,"${classHistory.classHistoryNo}");'>취소</button></td>
+		</th:block>
+		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETE'">
+			<div>완료</div>
+		</th:block>
+		</td>
 	</tr>
 	</table>
 </div>
+<th:block layout:fragment="script1">
+	<script>
+	$(function(){
+		 function commit(obj,classHistoryNo){
+			  $.ajax({
+				  url:"adminStudioApprove",
+				  data:{"studio_no":studio_no},
+				  success:function(responsedata){
+					  $(obj).parent().prev().html("승인완료");
+				  }
+			  });
+		  }
+		  function wait(obj,studio_no){
+			  $.ajax({
+				  url:"adminStudioDisapprove",
+				  data:{"studio_no":studio_no},
+				  success:function(){
+					  location.reload();
+					  //$("#studioAll").trigger("click");
+					  //$("#content").load("adminSearchStudioAll");
+				  }
+			  });
+		 }
+		  function cancel(obj,studio_no){
+			  $.ajax({
+				  url:"adminStudioDisapprove",
+				  data:{"studio_no":studio_no},
+				  success:function(){
+					  location.reload();
+					  //$("#studioAll").trigger("click");
+					  //$("#content").load("adminSearchStudioAll");
+				  }
+			  });
+		 }
+	});
+	</script>
+</th:block>
 </body>
 </html>

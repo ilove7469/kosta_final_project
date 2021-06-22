@@ -101,9 +101,11 @@ public class CourseController {
 	@PostMapping("/course/enroll/info")
 	public String insertClassHistory(ClassHistory ch) {
 		//System.out.println(ch.getUser());
-		ClassHistory check = cservice.updateClassHistory(ch);
-		String result = check!=null?"성공":"실패";
-		System.out.println(result);
+		Boolean check = cservice.updateClassHistory(ch);
+		if(!check) {
+			//주소 변경 고려(나중에 수강신청 이미 했다고 메세지 창 or 다른 페이지) 
+			return "redirect:/course/enroll/info/"+ch.getClasses().getClassNo();
+		}
 		return "/user/userEnrollSuccess";
 	}
 	

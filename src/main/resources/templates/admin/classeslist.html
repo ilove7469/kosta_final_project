@@ -44,7 +44,8 @@
 			</tr>
 			<tr th:each="classes:${classeslist}">
 				<td th:text="${classes.lecture.course.subject.subName}">주제명</td>
-				<td th:text="${classes.lecture.Course.courseName}">강의명</td>
+				<!-- <td th:text="${classes.lecture.course.courseName}">강의명</td> -->
+				<td><a th:href="@{'/admin/classesdetail/'+${classes.classNo}}" th:text="${classes.lecture.course.courseName}"></a></td>
 				<td th:text="${classes.teacher.teacherName}">강사명</td>
 				<td th:text="${classes.classOpenDate} + '~'+ ${classes.classCloseDate}">기간</td>
 				<td th:text="${classes.classRoom.lectureHall.lectureHallName}">강의장명</td> 

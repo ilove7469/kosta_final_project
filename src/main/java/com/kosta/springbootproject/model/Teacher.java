@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -48,6 +49,6 @@ public class Teacher {
 	private String teacherEmail;
 	
 	@CreationTimestamp
-	private LocalDateTime teacherRegDate;
+	private Timestamp teacherRegDate;
 	
 }

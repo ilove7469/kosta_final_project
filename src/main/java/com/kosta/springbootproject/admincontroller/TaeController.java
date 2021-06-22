@@ -292,16 +292,18 @@ public class TaeController {
 	}
 	 
 	@PostMapping("/admin/lectureInsert")
-	public String lectureInsertPost(@ModelAttribute Lecture lecture, Long courseNo, RedirectAttributes rttr) {
-		
-		lecture.setCourse(courseService.selectById(courseNo)); 
-		
-		Lecture ins_course = lectureService.updateOrInsert(lecture);
-		System.out.println("incousrse : " + ins_course);
-		
-		rttr.addFlashAttribute("resultMessage", ins_course==null?"입력실패":"입력성공");
-		return "redirect:/admin/lectureList";
-	}
+	   public String lectureInsertPost(Lecture lecture, RedirectAttributes rttr) {
+	      System.out.println(lecture.getCourse());
+	      System.out.println(lecture.getCourse().getCourseNo());
+	      boolean lecture_check = lectureService.insertOrUpdate(lecture);
+	      System.out.println("incousrse : " + lecture_check);
+	      String message = "";
+	      if(!lecture_check) message = "해당년도에 이미 있는 과정입니다";
+	      else message ="생성이 가능합니다";
+	      
+	      rttr.addFlashAttribute("resultMessage", message);
+	      return "redirect:/admin/lectureList";
+	   }
 	
 //강의계획 상세보기
 	@GetMapping("/admin/lecturedetail/{lno}")
@@ -323,6 +325,28 @@ public class TaeController {
 		model.addAttribute("classeslist", result);
 		model.addAttribute("pagevo",pagevo);
 		model.addAttribute("result",new PageMaker<>(result));
+	}
+//강의 상세보기
+	@GetMapping("/admin/classesdetail/{cno}")
+	public ModelAndView SelectByIdteacher(@PathVariable Long cno) {
+		ModelAndView mv = new ModelAndView("/admin/classesdetail");
+		Classes classes = classesService.selectById(cno);
+		mv.addObject("classes",classes);
+			
+		mv.addObject("teacherlist",teacherService.selectAll());
+		mv.addObject("classRoomlist",classRoomService.selectAll());
+		mv.addObject("lecturelist",lectureService.selectAll());
+		mv.addObject("educationTimelist",educationTimeService.selectAll());
+		mv.addObject("adminlist",adminService.selectAll());
+		return mv;
+	}
+
+//강의 수정
+	@PostMapping("/admin/classesUpdate")
+	public String classesUpdate(Classes classes, RedirectAttributes rttr) {
+		Classes update_classes = classesService.updateClasses(classes);
+		rttr.addFlashAttribute("resultMessage", update_classes==null?"수정실패":"수정성공");
+		return "redirect:/admin/classesList";
 	}
 
 //강의삭제
@@ -351,7 +375,7 @@ public class TaeController {
 	      return "redirect:/admin/classesList";
 	   }
 
-	 //엑셀다운로드
+//엑셀다운로드
 		@RequestMapping("/admin/exceldownload")
 	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
 	        

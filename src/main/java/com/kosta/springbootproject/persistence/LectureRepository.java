@@ -1,5 +1,7 @@
 package com.kosta.springbootproject.persistence;
 
+import java.util.Optional;
+
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -10,6 +12,8 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
 public interface LectureRepository extends CrudRepository<Lecture, Long>, QuerydslPredicateExecutor<Lecture>{
+	
+	public Optional<Lecture> findByCourseAndLecturePlanYear(Course course, int lecturePlanYear);
 	
 	public Lecture findByCourseAndLecturePlanYearGreaterThanEqual(Course course,int lecturePlanYear); 
 	

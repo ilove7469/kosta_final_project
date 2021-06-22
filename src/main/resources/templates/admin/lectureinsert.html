@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>강의계획등록</title>
+
+<style>
+#resultMessage{
+color: red;
+font-weight :bold;
+}
+</style>
 </head>
 <body>
 
@@ -23,38 +30,38 @@
 		</div>
 
 		<div class="form-group">
-			<label for="writer">강의계획년:</label> 
+			<label for="writer">강의계획년:</label> <p id="resultMessage">[[${resultMessage}]]</p> 
 			<input type="number" class="form-control" id="lecturePlanYear" name="lecturePlanYear" required>
 		</div>
 		
 		<div class="form-group">
 			<label for="writer">연간개설횟수:</label> 
-			<input type="number" class="form-control" id="lectureOpenCount" name="lectureOpenCount" required>
+			<input type="number" class="form-control" id="lectureOpenCount" name="lectureOpenCount" th:value ="${lecture.lectureOpenCount}" required>
 		</div>
 		
 		<div class="form-group">
 			<label for="writer">목표정원:</label> 
-			<input type="number" class="form-control" id="lectureCapacity" name="lectureCapacity" required>
+			<input type="number" class="form-control" id="lectureCapacity" name="lectureCapacity" th:value ="${lecture.lectureCapacity}" required>
 		</div>
 
 		<div class="form-group">
 		    <label for="writer">교육대상:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureTarget" name="lectureTarget" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lectureTarget" name="lectureTarget" th:text ="${lecture.lectureTarget}" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">패널티안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lecturePenalty" name="lecturePenalty" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lecturePenalty" name="lecturePenalty" th:text ="${lecture.lecturePenalty}" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">비대면안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureOnline" name="lectureOnline" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="3" cols="" id="lectureOnline" name="lectureOnline" th:text ="${lecture.lectureOnline}" wrap="hard"></textarea>
 		</div>
 
 		<div class="form-group">
 			<label for="writer">문의센터:</label> 
-			<input type="text" class="form-control" id="lectureAsk" name="lectureAsk" required>
+			<input type="text" class="form-control" id="lectureAsk" name="lectureAsk" th:value ="${lecture.lectureAsk}" required>
 		</div>
 
 

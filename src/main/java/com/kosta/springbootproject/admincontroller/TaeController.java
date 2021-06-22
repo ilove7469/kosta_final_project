@@ -285,29 +285,48 @@ public class TaeController {
 	
 //강의계획 추가
 	@GetMapping("/admin/lectureInsert")
-	public void lectureInsert(Model model) {
+	public void lectureInsert(Lecture lecture, Model model) {
 		model.addAttribute("courselist", courseService.courseSelectAll());
-
+		
+		model.addAttribute("lecture", lecture);
 
 	}
 	 
 	@PostMapping("/admin/lectureInsert")
 	   public String lectureInsertPost(Lecture lecture, RedirectAttributes rttr) {
-	      System.out.println(lecture.getCourse());
-	      System.out.println(lecture.getCourse().getCourseNo());
 	      boolean lecture_check = lectureService.insertOrUpdate(lecture);
-	      System.out.println("incousrse : " + lecture_check);
-	      String message = "";
-	      if(!lecture_check) message = "해당년도에 이미 있는 과정입니다";
-	      else message ="생성이 가능합니다";
 	      
-	      rttr.addFlashAttribute("resultMessage", message);
-	      return "redirect:/admin/lectureList";
+
+	      String rd ="";
+	      String message = "";
+	      if(!lecture_check) {
+	    	  message = "해당년도에 이미 있는 과정입니다";
+	    	  rttr.addFlashAttribute("resultMessage", message);
+	    	  rttr.addFlashAttribute("lecture", lecture);
+	    	  rd = "redirect:/admin/lectureInsert";
+	      }
+	      else {
+	    	  message ="생성이 가능합니다"; //인서트, 업데이트 성공
+	    	  rttr.addFlashAttribute("resultMessage", message);
+	    	  rd = "redirect:/admin/lectureList";
+	      }
+	      return rd;
+	      
+	      
+	      //업데이트는 무조건 가능  업데이트는 실패가 불가능
+	     
+			/*
+			 * if(!lecture_check) { return "redirect:/admin/lectureInsert"; }else {
+			 * 
+			 * }
+			 */
+	    
+	    
 	   }
 	
 //강의계획 상세보기
 	@GetMapping("/admin/lecturedetail/{lno}")
-	public ModelAndView selectById( @PathVariable Long lno) {
+	public ModelAndView selectById(@PathVariable Long lno) {
 		ModelAndView mv = new ModelAndView("/admin/lecturedetail");
 		Lecture lectrue = lectureService.selectById(lno);
 		//Course course = courseService.selectById();
@@ -320,6 +339,7 @@ public class TaeController {
 //강의main
 	@RequestMapping("/admin/classesList")
 	public void classesSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
+		System.out.println("----------------------------------------------"+ pagevo.getKeyword() + pagevo.getType());
 		Page<Classes> result = classesService.selectAll(pagevo);
 		
 		model.addAttribute("classeslist", result);

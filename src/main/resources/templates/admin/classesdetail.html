@@ -50,7 +50,7 @@
 					<option th:each="classRoom : ${classRoomlist}" 
 					th:value="${classRoom.classRoomNo}" 
 					th:text="${classRoom.lectureHall.lectureHallName}+' '+${classRoom.classRoomName}"
-					></option>
+					th:selected="${classes.classRoom.classRoomNo==classRoom.classRoomNo}"></option>
 				</select>
 		</div>
 		<div class="form-group">

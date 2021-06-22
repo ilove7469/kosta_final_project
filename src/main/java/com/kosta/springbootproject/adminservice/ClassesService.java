@@ -5,9 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.Classes;
-import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.querydsl.core.types.Predicate;
@@ -23,7 +21,9 @@ public class ClassesService {
 	
 		Pageable pageable = pvo.makePaging(0, "classNo");
 		
+		
 		Page<Classes> result = classesRepo.findAll(p, pageable);
+		System.out.println("------------여기까지 -----------------" + result.getContent());
 		return result;
 		 
 	}
@@ -32,7 +32,7 @@ public class ClassesService {
 		return classesRepo.findById(classNo).get();
 	}
 	
-//강의추가
+
 	public Classes updateOrInsert(Classes classes) {
 		return classesRepo.save(classes);
 	}

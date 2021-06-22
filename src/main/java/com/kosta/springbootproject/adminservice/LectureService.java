@@ -63,9 +63,8 @@ public class LectureService {
 			if(lecture.getLecturePlanNo()!=null) {
 				check =lectureRepo.findById(lecture.getLecturePlanNo()).isPresent();
 				if(check) {
-					lectureRepo.save(lecture);
-					result = true;
-				}else result = false;
+					lectureRepo.save(lecture);	
+				}
 			}
 		}
 		return result;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.Certificate;
 import com.kosta.springbootproject.model.Classes;
+import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.querydsl.core.types.Predicate;
@@ -27,6 +28,10 @@ public class ClassesService {
 		 
 	}
 	
+	public Classes selectById(Long classNo) {
+		return classesRepo.findById(classNo).get();
+	}
+	
 //강의추가
 	public Classes updateOrInsert(Classes classes) {
 		return classesRepo.save(classes);
@@ -44,6 +49,10 @@ public class ClassesService {
 		
 		}
 		return ret;
+	}
+
+	public Classes updateClasses(Classes classes) {
+		return classesRepo.save(classes);
 	}
 
 }

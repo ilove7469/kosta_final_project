@@ -18,12 +18,12 @@
 
 		<div class="form-group">
 		<label for="writer">과정명:</label><br>
-		 <select class="form-control" name="courseNo" id="courseNo">
+		 <select class="form-control" name="course" id="courseNo">
 				<option th:each="clist : ${courselist}" 
 				th:value="${clist.courseNo}" 
 				th:text="${clist.courseName}"
 				th:selected="${lecture.course.courseName==clist.courseName}">
-				></option>
+				</option>
 		</select>
 		</div>
 

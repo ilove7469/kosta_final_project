@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.springbootproject.model.ClassHistory;
+import com.kosta.springbootproject.model.ClassHistoryEnumType;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
@@ -83,13 +84,20 @@ public class CourseService {
 	}
 	
 	@Transactional
-	public ClassHistory updateClassHistory(ClassHistory ch) {
+	public Boolean updateClassHistory(ClassHistory ch) {
+		Boolean check = classHistoryRepo.findByUserAndClasses(ch.getUser(),ch.getClasses()).isEmpty();
+		Boolean result = false; 
 		
-		classRepo.findById(ch.getClasses().getClassNo()).ifPresent(cInfo->{
-			cInfo.setWaitCount(cInfo.getWaitCount()+1);
-			classRepo.save(cInfo);
-		});
-		ClassHistory classHistory = classHistoryRepo.save(ch);
-		return classHistory;
+		//classHistory 없으면 생성 후 카운트 증가
+		if(check) {
+			classHistoryRepo.save(ch);
+			classRepo.findById(ch.getClasses().getClassNo()).ifPresent(cInfo->{
+				cInfo.setWaitCount(cInfo.getWaitCount()+1);
+				classRepo.save(cInfo);
+			});
+			result = true;
+		}
+		 
+		return result;
 	}
 }

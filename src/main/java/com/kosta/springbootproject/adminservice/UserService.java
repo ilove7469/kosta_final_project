@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.PageVO;
+import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Users;
 import com.kosta.springbootproject.persistence.UserRepository;
 import com.querydsl.core.types.Predicate;
@@ -28,7 +29,10 @@ public class UserService {
 		Pageable pageable = pvo.makePaging(0, "userNo");
 		Page<Users> result = repo.findAll(p, pageable);
 		return result;
-
 	}
 	
+	public Users findUsersByUsersNo(Long usersNo){
+		Users users = repo.findById(usersNo).get();
+		return users;
+	}
 }

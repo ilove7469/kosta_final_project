@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body class="landing-page" data-google-affiliate-annotated="1">
+<div layout:fragment="content1">
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NML75DM"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+
+		<div class="container kt-mt-22">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hpanel">
+						<ul class="nav nav-tabs">
+							<li>
+								<a class="btn-link" th:href="@{'/admin/userdetail/'+${user.userNo}}">
+									<i class="fa fa-user text-info"></i>
+									회원정보
+								</a>
+							</li>
+							<li class="active">
+								<a class="btn-link" th:href="@{'/admin/userclasshistory/'+${user.userNo}}">
+									<i class="fa fa-id-card-o text-success"></i>
+									수강현황
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content tab-pane">
+							<div class="panel-body">
+								<table class="table table-read">
+									<colgroup>
+										<col width="15%">
+										<col width="35%">
+										<col width="15%">
+										<col width="35%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-center readTh">이름</td>
+											<td colspan="3">[[${user.userName}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">아이디</td>
+											<td colspan="3">[[${user.userId}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">휴대전화 번호</td>
+											<td colspan="3">[[${user.userPhone}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">이메일</td>
+											<td colspan="3">[[${user.userEmail}]]</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="font-bold m-b-sm">
+			   수강정보
+			</div>
+			
+<div class="row">
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>전체</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-info">1</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>미수료</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success">0</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>수강중</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success">0</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>신청중</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success">0</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+
+				<div class="stats-title pull-left">
+					<h4>취소</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-danger">1</h1>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+			<div class="row">
+				  <div class="col-md-12">
+					
+
+
+
+
+<div class="hpanel hgreen kt-mb-30">
+	<div class="panel-heading">
+	수강신청목록
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover table-striped">
+			<colgroup>
+				<col width="30%">
+				<col width="15%">
+				<col width="25%">
+				<col width="10%">
+				<col width="20%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">강의명</th>
+					<th scope="col" class="text-center">강사명</th>
+					<th scope="col" class="text-center">기간</th>
+					<th scope="col" class="text-center">신청상태</th>
+					<th scope="col" class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				
+					
+					<tr><td class="text-center"><a class="btn-link" href="/enroll?courseId=648&amp;year=2021&amp;orderNumber=5">대용량 웹서비스를 위한 MSA Full-Stack SW 개발자 양성과정</a></td>
+					<td class="text-center">이선민
+						
+	
+</td>
+					<td class="text-center">05월31일~ 10월26일</td>
+					<td class="text-center">
+						<span class="label label-danger">취소</span>
+					</td>
+					<td class="text-center">
+					</td>
+					
+					</tr>
+				
+			
+			</tbody>
+		</table>
+	</div>
+</div>
+					
+
+
+
+
+    <div class="panel-body">
+        <table class="table table-hover table-striped">
+            <colgroup>
+                <col width="25%">
+                <col width="10%">
+                <col width="25%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">강의명</th>
+                    <th scope="col" class="text-center">강사명</th>
+                    <th scope="col" class="text-center">기간</th>
+                    <th scope="col" class="text-center">강의상태</th>
+                    <th scope="col" class="text-center">수료여부</th>
+                    <th scope="col" class="text-center">만족도 조사</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+        
+        <tr>
+            <td class="text-center">대용량 웹서비스를 위한 MSA Full-Stack SW 개발자 양성과정</td>
+            <td class="text-center">이선민
+                
+    
+</td>
+            <td class="text-center">05월31일~ 10월26일</td>
+            <td class="text-center">
+                <span class="label label-secondary">마감</span>
+            </td>
+            <td class="text-center">미수료</td>
+            <td class="text-center">
+            
+            </td>
+            <td>
+            
+            </td>
+        </tr>
+    
+
+            </tbody>
+        </table>
+    </div>
+
+			 </div>
+		 </div>
+	 </div>
+  </div>
+</body>
+</html>

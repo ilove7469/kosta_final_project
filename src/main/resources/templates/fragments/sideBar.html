@@ -21,25 +21,29 @@ body {
 
 }
 
-/* Fixed sidenav, full height */
+/* Fixed sidenav, full height 배경 */
 .sidenav {
+  border-right: 2px solid #e7e7e7;
   height: 100%;
   width: 250px;
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   top: 0;
   left: 0;
-  background-color: #c8cbcc;
+  background-color: #f8faf9;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 80px;
+  margin-top: 0px;
+/*   box-shadow: 0 2px 2px 2px grey; */
+
 }
 
-/* Style the sidenav links and the dropdown button */
+/* Style the sidenav links and the dropdown button  글자색*/
 .sidenav a, .dropdown-btn {
-  padding: 2px 8px 5px 8px;
+  padding: 8px 8px 5px 8px;
   text-decoration: none;
-  font-size: 14px;
-  color: #818181;
+  font-size: 15px;
+  color: #5b6068;
   display: block;
   border: none;
   background: none;
@@ -51,13 +55,14 @@ body {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
+ /*  color: #f1f1f1; */
+  background-color: #e7f1ed;
 }
 
 /* Main content */
 .main {
-margin-top : 50px;
-  margin-left: 250px; /* Same as the width of the sidenav */
+  margin-top : 80px;
+  margin-left: 260px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
   padding: 20px 20px 20px 20px;
 }
@@ -70,10 +75,14 @@ margin-top : 50px;
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-/*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠 */
+/*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠   팝업 안쪽 */
   display: block;
-  background-color: #dcdfe0;
-  padding-left: 10px;
+  background-color: #f8faf9;
+
+}
+.dropdown-container a{
+/* color :red; */
+padding-left: 40px;
 }
 
 /* Optional: Style the caret down icon */

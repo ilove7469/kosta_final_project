@@ -7,7 +7,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
 import com.kosta.springbootproject.model.Course;
-import com.kosta.springbootproject.model.QCompany;
 import com.kosta.springbootproject.model.QCourse;
 import com.kosta.springbootproject.model.Subject;
 import com.querydsl.core.BooleanBuilder;
@@ -18,7 +17,7 @@ public interface CourseRepository extends CrudRepository<Course, Long>, Querydsl
 	@Query(value="select c.courseName, l.lectureOpenCount, c.courseTotalTrainTime, c.courseNo, l.lecturePlanYear from Course c left outer join Lecture l on (l.course = c.courseNo) where c.subject = ?1 AND l.lecturePlanYear=YEAR(CURDATE())")
 	public List<Object[]> getCourseWithLecture(Subject subjectNo);
 	
-	
+
 	//관리자과정페이지 조건검색과 페이징 처리
 	public default Predicate makePredicate(String type, String keyword) {
 

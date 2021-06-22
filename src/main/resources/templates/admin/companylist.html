@@ -24,17 +24,23 @@
 		<div id="searchType">
 			<select>
 				<option>전체</option>
-				<option value="companyName"
-					th:selected="${pagevo.type=='companyName'}">회사명</option>
-				<option value="companyLicense"
-					th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
-				<option value="companyBoss"
-					th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
+				<option value="companyName" th:selected="${pagevo.type=='companyName'}">회사명</option>
+				<option value="companyLicense" th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
+				<option value="companyBoss" th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
 
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
 
+	<!-- 엑셀 다운용 코드 -->
+	<div class="panel-body pull-right">
+		<form th:action="@{/admin/exceldownload}" method="get">
+	    <input type='hidden' name='type' th:value="${pagevo.type}">
+	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
+	    <button type="submit" class="btn btn-success">test</button>
+		</form>
+	</div>
+	<!-- 엑셀 다운용 코드 끝-->
 
 		<table border="1">
 			<tr>
@@ -45,14 +51,13 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="company:${companylist}">
-				<td th:text="${company.companyName}"></td>
+				<td><a th:href="@{'/admin/companyDetail/'+${company.companyNo}}" th:text="${company.companyName}"></a></td>
 				<td th:text="${company.companyLicense}"></td>
 				<td th:text="${company.companyBoss}"></td>
 				<!-- <td th:text="${company.companyConvention}"></td> -->
 				<td th:if="${#strings.toString(company.companyConvention)}=='Convention'" th:text="협약사">상태</td>
 				<td th:if="${#strings.toString(company.companyConvention)}=='NoConvention'" th:text="비협약사">상태</td>
-				<td><a
-					th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
+				<td><a th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 
@@ -106,14 +111,14 @@
 				$(".pagination a").click(function(e) {
 					e.preventDefault(); //본래의 기능(link)을 취소
 					formObj.find("[name='page']").val($(this).attr("href"));
-					alert($(this).attr("href"));
+					/* alert($(this).attr("href")); */
 					formObj.submit();
 				});
 
 				$("#searchBtn").click(function() {
 					var typeStr = $("#searchType").find(":selected").val();
 					var keywordStr = $("#searchKeyword").val();
-					alert(typeStr + ":" + keywordStr);
+					/* alert(typeStr + ":" + keywordStr); */
 					formObj.find("[name='type']").val(typeStr);
 					formObj.find("[name='keyword']").val(keywordStr);
 					formObj.submit();

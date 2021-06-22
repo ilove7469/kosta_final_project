@@ -45,7 +45,7 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="course:${courselist}">				     
-        		<td><a th:href="@{/admin/coursedetail(cno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
+        		<td><a th:href="@{/admin/courseDetail(cno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
 				<td th:text="${course.subject.subName}"></td>
 				<td th:text="${course.courseTotalTrainTime}"></td>
 				<td th:text="${course.courseTotalDay}"></td>

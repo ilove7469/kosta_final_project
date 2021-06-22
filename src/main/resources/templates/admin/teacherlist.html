@@ -40,15 +40,14 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="teacher:${teacherlist}">
-				<td th:text="${teacher.teacherNo}"></td>
+				<td><a th:href="@{'/admin/teacherDetail/'+${teacher.teacherNo}}" th:text="${teacher.teacherNo}"></a></td>
 				<td th:text="${teacher.teacherId}"></td>
 				<td th:text="${teacher.teacherName}"></td>
 				<td th:text="${teacher.teacherPhone}"></td>
 				<td th:text="${teacher.teacherEmail}"></td>
 
 				<td th:text="${#temporals.format(teacher.teacherRegDate,'yyyy-MM-dd')}"></td>
-				<td><a
-					th:href="@{/admin/teacherDelete(tno=${teacher.teacherNo})}">삭제하기</a></td>
+				<td><a th:href="@{/admin/teacherDelete(tno=${teacher.teacherNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 

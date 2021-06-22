@@ -16,7 +16,7 @@ import com.kosta.springbootproject.persistence.UserRepository;
 
 
 @SpringBootTest
-@EnableJpaAuditing
+//@EnableJpaAuditing
 public class ClassHistoryTest {
 	
 	@Autowired
@@ -28,13 +28,13 @@ public class ClassHistoryTest {
 	@Autowired
 	ClassesRepository crepo;
 	
-	//@Test
+	@Test
 	public void insertClassHistory() {
-		IntStream.range(12, 21).forEach(i -> {
+		IntStream.range(1, 2).forEach(i -> {
 			ClassHistory ch = ClassHistory.builder()
 					//.classHistoryState(ClassHistoryEnumType.COMMIT)
-					.user(urepo.findById(140L + i).get())
-					.classes(crepo.findById(203L).get()) //class만들어지면
+					.user(urepo.findById(73L).get())
+					.classes(crepo.findById(68L).get()) //class만들어지면
 					.build();
 			repo.save(ch);
 			
@@ -48,7 +48,7 @@ public class ClassHistoryTest {
 		});
 	}
 	
-	@Test
+//	@Test
 	public void updateClassHistory() {
 		repo.findById(360L).ifPresent(ch -> {
 			ch.setClassHistoryState(ClassHistoryEnumType.COMMIT);
@@ -56,7 +56,7 @@ public class ClassHistoryTest {
 		});
 	}
 	
-	//@Test
+//	@Test
 	public void delete() {
 		repo.deleteById(214L);
 	}

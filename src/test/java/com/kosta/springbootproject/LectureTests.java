@@ -19,7 +19,7 @@ public class LectureTests {
 	@Autowired
 	CourseRepository courseRepo;
 	
-	//@Test
+	@Test
 	public void insertClassRoom() {
 		Lecture lecture = new Lecture();
 		//강의계획년
@@ -72,7 +72,7 @@ public class LectureTests {
 		//문의
 		lecture.setLectureAsk("[판교 교육장] 031-606-9337, [가산 교육장] 02-6278-9352");  
 		//코스 아이디 87,136,168,169
-		lecture.setCourse(courseRepo.findById(136L).get());
+		lecture.setCourse(courseRepo.findById(36L).get());
 		
 		lectureRepo.save(lecture);
 	

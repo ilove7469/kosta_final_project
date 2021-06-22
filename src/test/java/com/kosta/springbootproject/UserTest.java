@@ -16,7 +16,7 @@ import com.kosta.springbootproject.persistence.UserRepository;
 import lombok.extern.java.Log;
 
 @Log
-@EnableJpaAuditing
+//@EnableJpaAuditing
 @SpringBootTest
 public class UserTest {
 	
@@ -29,37 +29,43 @@ public class UserTest {
 	@Autowired
 	TraineeRepository trepo;
 	
-//	@Test
-	public void insertUser() {
-		IntStream.range(1, 21).forEach(i -> {
-			Users user = Users.builder()
-					.userName("이름"+i)
-					.userId("아이디"+i)
-					.userPw("비밀번호"+i)
-					.userPhone("전화번호"+i)
-					.userEmail("이메일"+i)
-					.userAddress("서울시")
-					.userBirth(Date.valueOf("2000-06-"+i))
-					.company(crepo.findById(20L).get())
-					.trainee(trepo.findById(2L).get())
-					.build();
-			repo.save(user);
-		});
-		IntStream.range(21, 31).forEach(i -> {
-			Users user = Users.builder()
-					.userName("이름"+i)
-					.userId("아이디"+i)
-					.userPw("비밀번호"+i)
-					.userPhone("전화번호"+i)
-					.userEmail("이메일"+i)
-					.userAddress("부산시")
-					.userBirth(Date.valueOf("2012-07-"+i))
-					.company(crepo.findById(36L).get())
-					.trainee(trepo.findById(3L).get())
-					.build();
-			repo.save(user);
-		});
-	}
+	@Test
+	   public void insertUser() {
+	      IntStream.range(1, 21).forEach(i -> {
+	         Users user = Users.builder()
+	               .userName("이름"+i)
+	               .userId("아이디"+i)
+	               .userPw("비밀번호"+i)
+	               .userPhone("전화번호"+i)
+	               .userEmail("이메일"+i)
+	               .sex('M')
+	               .zipCode("15149")
+	               .userAddress("서울시")
+	               .detailAddress("금천구")
+	               .userBirth(Date.valueOf("2000-06-"+i))
+	               .company(crepo.findById(38L).get())
+	               .trainee(trepo.findById(11L).get())
+	               .build();
+	         repo.save(user);
+	      });
+	      IntStream.range(21, 31).forEach(i -> {
+	         Users user = Users.builder()
+	               .userName("이름"+i)
+	               .userId("아이디"+i)
+	               .userPw("비밀번호"+i)
+	               .userPhone("전화번호"+i)
+	               .userEmail("이메일"+i)
+	               .sex('F')
+	               .zipCode("15149")
+	               .userAddress("서울시")
+	               .detailAddress("강남구")
+	               .userBirth(Date.valueOf("2012-07-"+i))
+	               .company(crepo.findById(36L).get())
+	               .trainee(trepo.findById(3L).get())
+	               .build();
+	         repo.save(user);
+	      });
+	   }
 	
 //	@Test
 	public void selectAll() {
@@ -73,7 +79,7 @@ public class UserTest {
 		repo.deleteById(167L);
 	}
 	
-	@Test
+//	@Test
 	public void update() {
 		repo.findById(138L).ifPresent(user -> {
 			user.setUserAddress("인천시");

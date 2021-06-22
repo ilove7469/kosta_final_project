@@ -81,8 +81,20 @@ public class HyunController {
 //	수강신청 관리 상세페이지 - 확정
 	@GetMapping("/admin/manageClassDetailCommit/{classHistoryNo}")
 	public String commitManageClassDetail(@PathVariable Long classHistoryNo) {
-		classHistroyService.commitManageClassDetail(classHistoryNo);
-		return "gg";
+		Long classNo = classHistroyService.commitManageClassDetail(classHistoryNo);
+		return "redirect:/admin/manageclassmain";
+	}
+//	수강신청 관리 상세페이지 - 대기
+	@GetMapping("/admin/manageClassDetailWait/{classHistoryNo}")
+	public String waitManageClassDetail(@PathVariable Long classHistoryNo) {
+		Long classNo = classHistroyService.waitManageClassDetail(classHistoryNo);
+		return "redirect:/admin/manageclassmain";
+	}
+//	수강신청 관리 상세페이지 - 취소
+	@GetMapping("/admin/manageClassDetailCancel/{classHistoryNo}")
+	public String cancelManageClassDetail(@PathVariable Long classHistoryNo) {
+		Long classNo = classHistroyService.cancelManageClassDetail(classHistoryNo);
+		return "redirect:/admin/manageclassmain";
 	}
 
 //	주제 메인

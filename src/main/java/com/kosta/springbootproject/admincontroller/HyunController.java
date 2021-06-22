@@ -80,21 +80,31 @@ public class HyunController {
 
 //	수강신청 관리 상세페이지 - 확정
 	@GetMapping("/admin/manageClassDetailCommit/{classHistoryNo}")
-	public String commitManageClassDetail(@PathVariable Long classHistoryNo) {
+	public ModelAndView commitManageClassDetail(@PathVariable Long classHistoryNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.commitManageClassDetail(classHistoryNo);
-		return "redirect:/admin/manageclassmain";
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList",classhistorylist );
+		return mv;
 	}
 //	수강신청 관리 상세페이지 - 대기
 	@GetMapping("/admin/manageClassDetailWait/{classHistoryNo}")
-	public String waitManageClassDetail(@PathVariable Long classHistoryNo) {
+	public ModelAndView waitManageClassDetail(@PathVariable Long classHistoryNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.waitManageClassDetail(classHistoryNo);
-		return "redirect:/admin/manageclassmain";
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList",classhistorylist );
+		return mv;
 	}
+	
 //	수강신청 관리 상세페이지 - 취소
 	@GetMapping("/admin/manageClassDetailCancel/{classHistoryNo}")
-	public String cancelManageClassDetail(@PathVariable Long classHistoryNo) {
+	public ModelAndView cancelManageClassDetail(@PathVariable Long classHistoryNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.cancelManageClassDetail(classHistoryNo);
-		return "redirect:/admin/manageclassmain";
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList",classhistorylist );
+		return mv;
 	}
 
 //	주제 메인
@@ -189,6 +199,26 @@ public class HyunController {
 		model.addAttribute("result",new PageMaker<>(result));
 	}
 
+//	회원 상세페이지 - 회원정보
+	@GetMapping("/admin/userdetail/{userNo}")
+	public ModelAndView showUserDetail(@PathVariable Long userNo) {
+		ModelAndView mv = new ModelAndView("/admin/userInfoAdmin");
+		Users user = userService.findUsersByUsersNo(userNo);
+		mv.addObject("user", user);
+		return mv;
+	}
+	
+//	회원 상세페이지 - 수강신청 내역
+	@GetMapping("/admin/userclasshistory/{userNo}")
+	public ModelAndView showUserClassHistory(@PathVariable Long userNo) {
+		ModelAndView mv = new ModelAndView("/admin/userClassHistory");
+		Users user = userService.findUsersByUsersNo(userNo);
+		mv.addObject("user", user);
+		return mv;
+	}	
+
+	
+	
 //	수료증 메인	
 	@GetMapping("/admin/certificatemain")
 	public void selectAllCerti(Model model) {
@@ -309,12 +339,6 @@ public class HyunController {
 		classRoomService.deleteClassRoom(no);
 		return "redirect:/admin/classroommain";
 	}
-	
-	
-	
-	
-
-	
 	
 	
 }

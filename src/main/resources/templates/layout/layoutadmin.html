@@ -12,15 +12,57 @@
 <th:block layout:fragment="style1"></th:block>
 
 <style>
+body{
+  background-color: #e7ebf6 !important;
+}
+#headerdiv{
+position: fixed;
+height :50px !important;
+width : 100%;
+background-color: #dbdfea !important;
+color:white;
+/* border-bottom: 2px solid #e7e7e7; */
+
+}
+#headerLogoDiv{
+/* border-right: 2px solid #e7e7e7; */
+background: #677799;
+height: 100%;
+width: 250px;
+color : white;
+text-align: center;
+font-size: 20px;
+  z-index: 0;
+}
+/* 677799    e7e7e7  #2f3539*/
+
+#headerLogoDiv p{
+padding: 10px !important;
+margin:0px !important;
+width: 250px;
+height: 100%;
+/* box-shadow: 0 2px 2px 2px grey; */
+}
+
+
 .page-header h1{
 margin:0px;
-margin-left: 200px;
+font-size: 20px;
+/* margin-left: 200px; */
 
 }
 .page-header {
 background-color: greay !important;
 }
 
+.sidenav{
+margin-top: 50px;
+}
+
+.panel{
+padding : 20px !important;
+box-shadow: 10px 10px 10px #c7cfe2;
+}
 </style>
 
 </head>
@@ -32,6 +74,7 @@ background-color: greay !important;
 		
         <div class="main">
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
+			
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
 			<footer th:replace="fragments/footeradmin::footer1"></footer>

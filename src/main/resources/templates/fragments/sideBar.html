@@ -10,9 +10,9 @@
 <th:block layout:fragment="style1">
 <style>
 .page-header{
- background-color:white;
-margin:0px !important;
-padding: 0px !important;
+  background-color:white;
+  margin:0px !important;
+  padding: 0px !important;
 
 }
 
@@ -21,25 +21,30 @@ body {
 
 }
 
-/* Fixed sidenav, full height */
+/* Fixed sidenav, full height 배경 */
 .sidenav {
+  /* border-right: 2px solid #e7e7e7; */
   height: 100%;
-  width: 200px;
+  width: 250px;
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   top: 0;
   left: 0;
-  background-color: #c8cbcc;
+  background-color: #6a7ca2;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 80px;
+  margin-top: 0px;
+/*   box-shadow: 0 2px 2px 2px grey; */
+/* 6a7ca2   f8faf9*/
+
 }
 
-/* Style the sidenav links and the dropdown button */
+/* Style the sidenav links and the dropdown button  글자색*/
 .sidenav a, .dropdown-btn {
-  padding: 2px 8px 5px 8px;
+  padding: 8px 8px 5px 20px;
   text-decoration: none;
-  font-size: 14px;
-  color: #818181;
+  font-size: 15px;
+  color: white;
   display: block;
   border: none;
   background: none;
@@ -48,17 +53,21 @@ body {
   cursor: pointer;
   outline: none;
 }
+/* #5b6068 */
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
+ /*  color: #f1f1f1; */
+  background-color: #e7f1ed;
 }
 
 /* Main content */
 .main {
-  margin-left: 200px; /* Same as the width of the sidenav */
+  margin-top : 80px;
+  margin-left: 260px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
   padding: 20px 20px 20px 20px;
+
 }
 
 /* Add an active class to the active dropdown button */
@@ -69,10 +78,15 @@ body {
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-/*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠 */
+/*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠   팝업 안쪽 */
   display: block;
-  background-color: #dcdfe0;
-  padding-left: 10px;
+  background-color: #6a7ca2;
+  
+
+}
+.dropdown-container a{
+/* color :red; */
+padding-left: 40px;
 }
 
 /* Optional: Style the caret down icon */
@@ -85,6 +99,15 @@ body {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+#divline{
+background-color: #939db3;
+height: 1px;
+width: 200px;
+margin: auto;
+
+
 }
 </style>
 </th:block>
@@ -100,7 +123,7 @@ body {
 
 	<div class="sidenav">
 	
-		<a href="#">메인</a>
+		<a href="http://localhost:8888/admin/adminMain">메인</a>
 		
 	<!-- 드랍다운 메뉴 한셋트 -->
 		<button class="dropdown-btn">과정기획 
@@ -112,6 +135,10 @@ body {
 		    <a href="http://localhost:8888/admin/classesList">강의</a>
 		</div>
 	<!-- 드랍다운 메뉴 한셋트 여기까지-->
+	
+	<!-- 메뉴분리용 div -->
+		<div id="divline"></div>
+	<!-- 메뉴분리용 div 끝-->
 		  
 		<button class="dropdown-btn">기본정보
 		    <i class="fa fa-caret-down"></i>
@@ -125,6 +152,10 @@ body {
 		    <a href="http://localhost:8888/admin/certificatemain">수료증</a>
 		</div>
 		
+	<!-- 메뉴분리용 div -->
+		<div id="divline"></div>
+	<!-- 메뉴분리용 div 끝-->
+		
 		<button class="dropdown-btn">메타정보
 		    <i class="fa fa-caret-down"></i>
 	</button>
@@ -132,6 +163,10 @@ body {
 	    <a href="http://localhost:8888/admin/subjectmain">주제</a>
 	    <a href="http://localhost:8888/admin/educationtimemain">교육시간</a>
 	</div>
+	
+	<!-- 메뉴분리용 div -->
+		<div id="divline"></div>
+	<!-- 메뉴분리용 div 끝-->
 	
 	<button class="dropdown-btn">강의운영
 	    <i class="fa fa-caret-down"></i>

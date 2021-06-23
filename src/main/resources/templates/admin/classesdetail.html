@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div class="pannel panel-default" layout:fragment="content1">
+	<div class="panel panel-default" layout:fragment="content1">
 
 	<h1>강의 상세보기</h1>
 
@@ -50,7 +50,7 @@
 					<option th:each="classRoom : ${classRoomlist}" 
 					th:value="${classRoom.classRoomNo}" 
 					th:text="${classRoom.lectureHall.lectureHallName}+' '+${classRoom.classRoomName}"
-					></option>
+					th:selected="${classes.classRoom.classRoomNo==classRoom.classRoomNo}"></option>
 				</select>
 		</div>
 		<div class="form-group">

@@ -10,7 +10,7 @@
 
 
 
-	<div class="pannel panel-default" layout:fragment="content1">
+	<div class="panel panel-default" layout:fragment="content1">
 	
 <h1>강의리스트</h1>
 
@@ -20,17 +20,19 @@
 			<a th:href="@{/admin/classesInsert}">등록</a>
 		</h3>
 
-<!--
+
 		<div id="searchType">
 			<select>
 				<option>전체</option>
-				<option value="companyName" th:selected="${pagevo.type=='companyName'}">회사명</option>
-				<option value="companyLicense" th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
-				<option value="companyBoss" th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
+				<option value="subName" th:selected="${pagevo.type=='subName'}">주제명</option>
+				<option value="courseName" th:selected="${pagevo.type=='courseName'}">강의명</option>
+				<option value="teacherName" th:selected="${pagevo.type=='teacherName'}">강사명</option>
+				<option value="lectureHallName" th:selected="${pagevo.type=='lectureHallName'}">강의장명</option>
+				<option value="classState" th:selected="${pagevo.type=='classState'}">상태</option>
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
-  -->
+
 
 		<table border="1">
 			<tr>

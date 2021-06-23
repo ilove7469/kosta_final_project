@@ -66,29 +66,31 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 	}
 
 	public default Predicate makePredicateClasses(String type, String keyword) {
-
+		System.out.println("-------여기까지 오네-----------"+type+"-----------"+keyword);
 		BooleanBuilder builder = new BooleanBuilder();
-		QTeacher company = QTeacher.teacher;
-		builder.and(company.teacherNo.gt(0));
+		QClasses classes = QClasses.classes;
+		builder.and(classes.classNo.gt(0));
 		if (type == null)
 			return builder;
+
 		switch (type) {
-		case "teacherId":
-			builder.and(company.teacherId.like("%" + keyword + "%"));
+		case "subName":
+			builder.and(classes.lecture.course.subject.subName.like("%" + keyword + "%"));
+			break;	
+		case "courseName":
+			builder.and(classes.lecture.course.courseName.like("%" + keyword + "%"));
 			break;
 		case "teacherName":
-			builder.and(company.teacherName.like("%" + keyword + "%"));
+			builder.and(classes.teacher.teacherName.like("%" + keyword + "%")); 
 			break;
-		case "teacherPhone":
-			builder.and(company.teacherPhone.like("%" + keyword + "%"));
-			break;
-		case "teacherEmail":
-			builder.and(company.teacherEmail.like("%" + keyword + "%"));
+		case "lectureHallName":
+			builder.and(classes.classRoom.lectureHall.lectureHallName.like("%" + keyword + "%")); 
 			break;
 
 		default:
 			break;
 		}
+
 		return builder;
 
 	}

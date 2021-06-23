@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Hello Spring Security</title>
+<meta charset="utf-8" />
+</head>
+<body>
+
+		
+			<h2>CUSTOM LOGIN PAGE</h2>
+			<!-- 
+			<div th:if="${param.error != null}">
+			    <h2>아이디와 비밀번호 틀림</h2>
+			    <h2 th:value="${param.error}"></h2>
+			</div>
+			<div th:if="${param.logout!= null}">
+			    <h2>로그아웃됨</h2>    
+			</div>
+			 -->
+			 
+			<form method="post"  >
+				<p>
+					<label for="username">Username</label> <input type="text"
+						id="username" name="username" value="admin" />  <!-- 이름변경불가  : username -->
+				</p>
+				<p>
+					<label for="password">Password</label> 
+					<input type="password"
+						id="password" name="password" value="1234" /> <!-- 이름변경불가  : password -->
+				</p>			
+
+				<!-- <input type="hidden" th:name="${_csrf.parameterName}" 	th:value="${_csrf.token}" />   -->
+				<button type="submit" class="btn btn-primary" >Log in</button>
+			</form>
+
+
+</body>
+</html>
+
+

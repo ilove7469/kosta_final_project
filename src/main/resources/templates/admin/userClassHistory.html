@@ -88,7 +88,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-info">1</h1>
+					<h1 class="text-info" th:text="${countobj[0] != null}?${countobj[0]}+${countobj[1]}+${countobj[2]}+${countobj[3]}:'0'">전체</h1>
 				</div>
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-success" id="UncompletedCount" th:text="${countobj[0] != null}?${countobj[0]}:'0'">미수료카운트</h1>
+					<h1 class="text-success" th:text="${countobj[0] != null}?${countobj[0]}:'0'">미수료카운트</h1>
 				</div>
 			</div>
 		</div>

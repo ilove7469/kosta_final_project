@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -220,11 +221,21 @@ public class HyunController {
 		mv.addObject("user", user);
 		mv.addObject("classHistoryList",ClassHistoryList);
 		mv.addObject("countobj",countobj);
-
-		
 		return mv;
-	}	
+	}
 
+//	회원 "채용예정자" 혹은 "재직자"로 변경
+/*	@GetMapping("/admin/changetrainee")
+	public void changeTrainee(@RequestParam Long userNo) {
+		Users user = userService.findUsersByUsersNo(userNo);
+		String a = user.getTrainee().getTraineeName();
+		if(a.equals("채용예정자")) {
+			userService.changeToUnemp(userNo);
+		}else if(a.equals("재직자")){
+			userService.changeToEmp(userNo);
+		}
+	}
+*/
 	
 	
 //	수료증 메인	

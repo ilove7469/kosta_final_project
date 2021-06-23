@@ -5,9 +5,14 @@
 
 <!-- 공통layout만들기 -->
 <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<script>
+	$(function(){  
+		$("table").addClass("table table-striped table-bordered table-hover");
+	});
+</script>
 <!-- 하위 html에서 css 재정의할 예정 -->
 <th:block layout:fragment="style1"></th:block>
 
@@ -63,6 +68,9 @@ margin-top: 50px;
 padding : 20px !important;
 box-shadow: 10px 10px 10px #c7cfe2;
 }
+
+
+
 </style>
 
 </head>
@@ -91,7 +99,9 @@ box-shadow: 10px 10px 10px #c7cfe2;
 
 	
 	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
-	<th:block layout:fragment="script1"></th:block>
+	<th:block layout:fragment="script1">
+
+	</th:block>
 	
 
 	

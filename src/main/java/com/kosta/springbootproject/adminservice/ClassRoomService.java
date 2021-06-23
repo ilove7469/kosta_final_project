@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.ClassRoom;
-import com.kosta.springbootproject.model.EducationTime;
-import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.persistence.ClassRoomRepository;
 
 @Service

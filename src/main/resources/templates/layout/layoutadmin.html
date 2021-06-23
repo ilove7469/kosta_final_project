@@ -5,14 +5,15 @@
 
 <!-- 공통layout만들기 -->
 <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <script>
 	$(function(){  
 		$("table").addClass("table table-striped table-bordered table-hover");
 	});
 </script>
+
 <!-- 하위 html에서 css 재정의할 예정 -->
 <th:block layout:fragment="style1"></th:block>
 
@@ -21,56 +22,67 @@ body{
   background-color: #e7ebf6 !important;
 }
 #headerdiv{
-position: fixed;
-height :50px !important;
-width : 100%;
-background-color: #dbdfea !important;
-color:white;
-/* border-bottom: 2px solid #e7e7e7; */
+  position: fixed;
+  height :50px !important;
+  width : 100%;
+  background-color: #dbdfea !important;
+  color:white;
+  z-index: 1;
 
 }
 #headerLogoDiv{
-/* border-right: 2px solid #e7e7e7; */
-background: #677799;
-height: 100%;
-width: 250px;
-color : white;
-text-align: center;
-font-size: 20px;
-  z-index: 0;
+  /* border-right: 2px solid #e7e7e7; */
+  background: #677799;
+  height: 100%;
+  width: 250px;
+  color : white;
+  text-align: center;
+  font-size: 20px;
+  float: left;
 }
-/* 677799    e7e7e7  #2f3539*/
 
 #headerLogoDiv p{
-padding: 10px !important;
-margin:0px !important;
-width: 250px;
-height: 100%;
-/* box-shadow: 0 2px 2px 2px grey; */
+  padding: 10px !important;
+  margin:0px !important;
+  width: 250px;
+  height: 100%;
 }
 
+#headerDivRight{
+  float: right;
+  height: 100%;
+}
+
+#headerDivRight p{
+  padding: 15px 30px 0px 0px !important;
+  margin:0px !important;
+  height: 100%;
+}
+
+#headerDivCenter{
+  color : #6a7ca2;
+  float : left;
+  height : 100%;
+  width : 300px;
+  margin: 20px 0 0 15px;
+}
 
 .page-header h1{
-margin:0px;
-font-size: 20px;
-/* margin-left: 200px; */
-
+  margin:0px;
+  font-size: 20px;
 }
 .page-header {
-background-color: greay !important;
+  background-color: greay !important;
 }
 
 .sidenav{
-margin-top: 50px;
+  margin-top: 50px;
 }
 
 .panel{
-padding : 20px !important;
-box-shadow: 10px 10px 10px #c7cfe2;
+  padding : 20px !important;
+  box-shadow: 10px 10px 10px #c7cfe2;
 }
-
-
-
 </style>
 
 </head>
@@ -79,31 +91,19 @@ box-shadow: 10px 10px 10px #c7cfe2;
         <div th:block th:replace="fragments/sideBar"></div>
 		<!-- 헤더 -->
 		<header th:replace="fragments/headeradmin::header1"></header>
-		
         <div class="main">
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
-			
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
 			<footer th:replace="fragments/footeradmin::footer1"></footer>
 		</div>
-		
-	
 
-	
-	<div class="main">
-
-
-	</div>
-	
-
+	<div class="main"></div>
 	
 	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
 	<th:block layout:fragment="script1">
 
 	</th:block>
-	
-
 	
 </body>
 </html>

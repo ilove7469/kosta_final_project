@@ -16,11 +16,6 @@
 		<p>[[${resultMessage}]]</p>
 		
 
-
-
-
-
-
 		<div id="searchType">
 			<select>
 				<option>전체</option>
@@ -35,13 +30,6 @@
 
 				<div class="pull-right">
 				<h3><a class="label label-default" th:href="@{/admin/companyInsert}">등록</a></h3>
-	<!-- 엑셀 다운용 코드 -->
-		<form th:action="@{/admin/exceldownload}" method="get">
-	    <input type='hidden' name='type' th:value="${pagevo.type}">
-	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
-	    <button type="submit" class="label label-default">test</button>
-		</form>
-	<!-- 엑셀 다운용 코드 끝-->
 				</div>
 		
 		

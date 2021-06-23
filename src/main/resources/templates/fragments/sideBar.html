@@ -8,35 +8,29 @@
 <title>Insert title here</title>
 
 <th:block layout:fragment="style1">
+
 <style>
 .page-header{
   background-color:white;
   margin:0px !important;
   padding: 0px !important;
-
 }
 
 body {
   font-family: "Lato", sans-serif;
-
 }
 
 /* Fixed sidenav, full height 배경 */
 .sidenav {
-  /* border-right: 2px solid #e7e7e7; */
   height: 100%;
   width: 250px;
   position: fixed;
-  z-index: 0;
   top: 0;
   left: 0;
   background-color: #6a7ca2;
   overflow-x: hidden;
   padding-top: 80px;
   margin-top: 0px;
-/*   box-shadow: 0 2px 2px 2px grey; */
-/* 6a7ca2   f8faf9*/
-
 }
 
 /* Style the sidenav links and the dropdown button  글자색*/
@@ -57,7 +51,6 @@ body {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
- /*  color: #f1f1f1; */
   background-color: #e7f1ed;
 }
 
@@ -67,12 +60,11 @@ body {
   margin-left: 260px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
   padding: 20px 20px 20px 20px;
-
 }
 
 /* Add an active class to the active dropdown button */
 .active {
-  background-color: #aaadad;
+  background-color: #6a7ca2;
   color: white;
 }
 
@@ -81,8 +73,6 @@ body {
 /*기본은 none 상태로 팝업이 닫혀있고 클릭하면 팝업됐었는데 새로고침되면 닫혀진상태로 돌아가서 일단 block으로 다 보이게 해둠   팝업 안쪽 */
   display: block;
   background-color: #6a7ca2;
-  
-
 }
 .dropdown-container a{
 /* color :red; */
@@ -113,27 +103,24 @@ background-color: #939db3;
 height: 1px;
 width: 100%;
 margin: 20px 0 20px 0;
+float: left;
 }
-
-
 </style>
 </th:block>
 
 </head>
 <body>
 
-
 <th:block th:fragment="sidebarFragment">
-
 
 <!-- 사이드메뉴 -->
 
 	<div class="sidenav">
 	
-		<a href="http://localhost:8888/admin/adminMain">메인</a>
+		<a href="http://localhost:8888/admin/adminMain"><span class="glyphicon glyphicon-home"> 메인</span></a>
 		
 	<!-- 드랍다운 메뉴 한셋트 -->
-		<button class="dropdown-btn">과정기획 
+		<button class="dropdown-btn"><span class="glyphicon glyphicon-folder-open"> 과정기획</span>
 		    <i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
@@ -147,7 +134,7 @@ margin: 20px 0 20px 0;
 		<div id="divline"></div>
 	<!-- 메뉴분리용 div 끝-->
 		  
-		<button class="dropdown-btn">기본정보
+		<button class="dropdown-btn"><span class="glyphicon glyphicon-folder-open"> 기본정보</span>
 		    <i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
@@ -163,7 +150,7 @@ margin: 20px 0 20px 0;
 		<div id="divline"></div>
 	<!-- 메뉴분리용 div 끝-->
 		
-		<button class="dropdown-btn">메타정보
+		<button class="dropdown-btn"><span class="glyphicon glyphicon-folder-open"> 메타정보</span>
 		    <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
@@ -175,7 +162,7 @@ margin: 20px 0 20px 0;
 		<div id="divline"></div>
 	<!-- 메뉴분리용 div 끝-->
 	
-	<button class="dropdown-btn">강의운영
+	<button class="dropdown-btn"><span class="glyphicon glyphicon-folder-open"> 강의운영</span>
 	    <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
@@ -185,13 +172,9 @@ margin: 20px 0 20px 0;
 		<!-- 메뉴추가시사용 -->
 	    <!-- <a href="#">기타메뉴</a> -->
 	</div>
-
 	<!-- 사이드메뉴 여기까지-->
 	
-	
 </th:block>
-
-
 
 <!-- 사이드메뉴 스크립트-->
 	<script>
@@ -212,7 +195,6 @@ for (i = 0; i < dropdown.length; i++) {
 }
 </script>
 <!-- 사이드메뉴 스크립트 여기까지-->
-
 
 </body>
 </html>

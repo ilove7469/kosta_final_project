@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.QClasses;
-import com.kosta.springbootproject.model.QTeacher;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
@@ -66,7 +65,7 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 	}
 
 	public default Predicate makePredicateClasses(String type, String keyword) {
-		System.out.println("-------여기까지 오네-----------"+type+"-----------"+keyword);
+		
 		BooleanBuilder builder = new BooleanBuilder();
 		QClasses classes = QClasses.classes;
 		builder.and(classes.classNo.gt(0));

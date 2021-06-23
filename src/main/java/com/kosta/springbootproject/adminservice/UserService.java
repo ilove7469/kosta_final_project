@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.PageVO;
-import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.model.Users;
 import com.kosta.springbootproject.persistence.TraineeRepository;

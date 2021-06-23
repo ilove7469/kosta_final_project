@@ -13,9 +13,7 @@
 
 		<p>[[${resultMessage}]]</p>
 
-		<h3>
-			<a th:href="@{/admin/teacherInsert}">등록</a>
-		</h3>
+
 
 		<div id="searchType">
 			<select>
@@ -28,6 +26,12 @@
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
+		
+		
+		<h3>
+			<a class="label label-default" th:href="@{/admin/teacherInsert}">등록</a>
+		</h3>
+		
 
 		<table border="1">
 			<tr>

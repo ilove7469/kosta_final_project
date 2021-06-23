@@ -21,11 +21,9 @@ public class ClassesService {
 	
 		Pageable pageable = pvo.makePaging(0, "classNo");
 		
-		
 		Page<Classes> result = classesRepo.findAll(p, pageable);
-		System.out.println("------------여기까지 -----------------" + result.getContent());
+
 		return result;
-		 
 	}
 	
 	public Classes selectById(Long classNo) {

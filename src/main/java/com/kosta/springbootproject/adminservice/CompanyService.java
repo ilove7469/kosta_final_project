@@ -67,8 +67,8 @@ public class CompanyService {
 	//엑셀다운로드
 	 public XSSFWorkbook listExcelDownload(Company param, Model model,PageVO pvo) throws Exception {
 	        
-		 System.out.println("--------------------엑셀확인------------------");
-		 System.out.println(pvo.getKeyword() +"----------------"+pvo.getType());
+		 //System.out.println("--------------------엑셀확인------------------");
+		 //System.out.println(pvo.getKeyword() +"----------------"+pvo.getType());
 		 
 		 XSSFWorkbook workbook = new XSSFWorkbook();
 	        
@@ -80,13 +80,13 @@ public class CompanyService {
    
 	     //param.setPager(false);
 	     //param.setNullText(NULL_TEXT);
-	     // param.setSeparator(DELI_EXCEL);
+	     //param.setSeparator(DELI_EXCEL);
 	     Predicate p = companyrepo.makePredicate(pvo.getType(),pvo.getKeyword()); 
-	     System.out.println("동적조회 p :"+p);
+	     //System.out.println("동적조회 p :"+p);
 	        
 	     List<Company> list = (List<Company>) companyrepo.findAll(p);
 	        
-	     System.out.println(list);
+	     //System.out.println(list);
 	        
 	     row = sheet.createRow(0);
 	     String[] headerKey = {"회사명", "사업자번호", "대표", "협약사"};

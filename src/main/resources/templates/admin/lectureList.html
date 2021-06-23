@@ -14,9 +14,7 @@
  	
  		<p>[[${resultMessage}]]</p> 
 
-	<h3>
-			<a th:href="@{/admin/lectureInsert}">등록</a> 
-		</h3>
+
 
 
 		<div id="searchType">
@@ -29,6 +27,12 @@
 		</div>
 
 
+	<h3>
+			<a class="label label-default" th:href="@{/admin/lectureInsert}">등록</a> 
+		</h3>
+		
+		
+
 		<table border="1">
 			<tr>
 				<th>과정명</th>
@@ -38,7 +42,7 @@
 				<th>삭제</th>
 			</tr>
 			<tr th:each="lecture:${lecturelist}">
-				<td><a th:href="@{'/admin/lecturedetail/'+${lecture.lecturePlanNo}}" th:text="${lecture.course.courseName}"></a></td>
+				<td><a th:href="@{'/admin/lectureDetail/'+${lecture.lecturePlanNo}}" th:text="${lecture.course.courseName}"></a></td>
 				<td th:text="${lecture.lecturePlanYear}"></td>
 				<td th:text="${lecture.lectureOpenCount}"></td>
 				<td th:text="${lecture.lectureCapacity}"></td>

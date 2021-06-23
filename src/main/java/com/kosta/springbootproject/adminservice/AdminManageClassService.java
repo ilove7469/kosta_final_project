@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Classes;
-import com.kosta.springbootproject.model.Course;
+import com.kosta.springbootproject.model.Users;
 import com.kosta.springbootproject.persistence.ClassHistoryRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 
@@ -30,4 +30,18 @@ public class AdminManageClassService {
 		List<ClassHistory> HistoryList = classhistoryrepo.findByClasses(classes);
 		return HistoryList;
 	}
+	
+	public List<ClassHistory> findClassHistoryByUser(Long userNo){
+		Users user = Users.builder()
+				.userNo(userNo)
+				.build();
+		List<ClassHistory> HistoryList = classhistoryrepo.findByUser(user);
+		return HistoryList;
+	}
+	
+	public List<Object[]> selectClassHistoryCountByUser(Long userNo){
+		List<Object[]> classHistoryCount = classhistoryrepo.FindClassHistoryCountByUser(userNo);
+		return classHistoryCount;
+	}
+	
 }

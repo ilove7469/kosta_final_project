@@ -103,7 +103,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-success">0</h1>
+					<h1 class="text-success" id="UncompletedCount" th:text="${countobj[0]}">미수료카운트</h1>
 				</div>
 			</div>
 		</div>
@@ -118,7 +118,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-success">0</h1>
+					<h1 class="text-success" id="CommitCount">[[${#strings.toString(countobj[1])}]]</h1>
 				</div>
 			</div>
 		</div>
@@ -133,7 +133,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-success">0</h1>
+					<h1 class="text-success" id="WaitCount" th:text="${countobj[2]}">대기카운트</h1>
 				</div>
 			</div>
 		</div>
@@ -149,8 +149,7 @@
 					<i class="pe-7s-display2 fa-4x"></i>
 				</div>
 				<div class="m-t-xl">
-					<h1 class="text-danger">1</h1>
-
+					<h1 class="text-danger" id="CancelCount" th:text="${countobj[3]}">취소카운트</h1>
 				</div>
 			</div>
 		</div>
@@ -188,85 +187,29 @@
 				</tr>
 			</thead>
 			<tbody>
-			
-				
-					
-					<tr><td class="text-center"><a class="btn-link" href="/enroll?courseId=648&amp;year=2021&amp;orderNumber=5">대용량 웹서비스를 위한 MSA Full-Stack SW 개발자 양성과정</a></td>
-					<td class="text-center">이선민
-						
-	
-</td>
-					<td class="text-center">05월31일~ 10월26일</td>
-					<td class="text-center">
-						<span class="label label-danger">취소</span>
-					</td>
-					<td class="text-center">
-					</td>
-					
-					</tr>
-				
-			
+				<tr th:each="classHistory:${classHistoryList}"> 
+					<td th:text="${classHistory.classes.lecture.course.courseName}" class="text-center"><a class="btn-link" href="#">과정명</a></td>
+					<td th:text="${classHistory.classes.teacher.teacherName}" class="text-center">강사명</td>
+					<td th:text="${classHistory.classes.classOpenDate}+' ~ '+${classHistory.classes.classOpenDate}" class="text-center">기간</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'" th:text="대기" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='CANCEL'" th:text="취소" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMMIT'" th:text="확정" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'" th:text="수강완료" class="text-center">신청상태</td>
+					<td class="text-center"></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
-					
-
-
-
-
-    <div class="panel-body">
-        <table class="table table-hover table-striped">
-            <colgroup>
-                <col width="25%">
-                <col width="10%">
-                <col width="25%">
-                <col width="10%">
-                <col width="10%">
-                <col width="10%">
-                <col width="10%">
-            </colgroup>
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">강의명</th>
-                    <th scope="col" class="text-center">강사명</th>
-                    <th scope="col" class="text-center">기간</th>
-                    <th scope="col" class="text-center">강의상태</th>
-                    <th scope="col" class="text-center">수료여부</th>
-                    <th scope="col" class="text-center">만족도 조사</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-
-        
-        <tr>
-            <td class="text-center">대용량 웹서비스를 위한 MSA Full-Stack SW 개발자 양성과정</td>
-            <td class="text-center">이선민
-                
-    
-</td>
-            <td class="text-center">05월31일~ 10월26일</td>
-            <td class="text-center">
-                <span class="label label-secondary">마감</span>
-            </td>
-            <td class="text-center">미수료</td>
-            <td class="text-center">
-            
-            </td>
-            <td>
-            
-            </td>
-        </tr>
-    
-
-            </tbody>
-        </table>
-    </div>
 
 			 </div>
 		 </div>
 	 </div>
   </div>
+<th:block layout:fragment="script1">
+	<script>
+		
+	</script>
+</th:block>
 </body>
 </html>

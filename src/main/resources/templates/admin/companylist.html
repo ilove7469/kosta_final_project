@@ -15,10 +15,21 @@
    <h1>회사리스트</h1>
    
 		<p>[[${resultMessage}]]</p>
+		
+			<!-- 엑셀 다운용 코드 -->
+	<div class="panel-body pull-right">
+		<form th:action="@{/admin/exceldownload}" method="get">
+	    <input type='hidden' name='type' th:value="${pagevo.type}">
+	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
+	    <button type="submit" class="btn btn-success">test</button>
+		</form>
+	</div>
+	<!-- 엑셀 다운용 코드 끝-->
 
 		<h3>
-			<a th:href="@{/admin/companyInsert}">등록</a>
+			<a class="label label-default" th:href="@{/admin/companyInsert}">등록</a>
 		</h3>
+
 
 
 		<div id="searchType">
@@ -32,17 +43,9 @@
 			<button id="searchBtn">조건검색</button>
 		</div>
 
-	<!-- 엑셀 다운용 코드 -->
-	<div class="panel-body pull-right">
-		<form th:action="@{/admin/exceldownload}" method="get">
-	    <input type='hidden' name='type' th:value="${pagevo.type}">
-	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
-	    <button type="submit" class="btn btn-success">test</button>
-		</form>
-	</div>
-	<!-- 엑셀 다운용 코드 끝-->
 
-		<table border="1">
+
+		<table class="table table-striped table-bordered table-hover">
 			<tr>
 				<th>회사명</th>
 				<th>사업자번호</th>

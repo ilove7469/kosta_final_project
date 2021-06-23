@@ -27,15 +27,13 @@
 		<div class="form-group">
 			<label for="writer">회사대표:</label> 
 			<input type="text" class="form-control" id="writer" name="companyBoss" th:value="${company.companyBoss}" required>
-		</div>
-			
-			<br>
+		</div>		
+		
 			<input type="radio" name="companyConvention" value="Convention" th:checked="${#strings.toString(company.companyConvention)}=='Convention'">협약사
 			<input type="radio" name="companyConvention" value="NoConvention" th:checked="${#strings.toString(company.companyConvention)}=='NoConvention'">비협약사
-			<br>
+		<br>
 
-		<button type="submit" class="btn btn-success">등록하기</button>
-		<button type="reset" class="btn btn-primary">Reset</button>
+		<button type="submit" class="btn btn-success">저장</button>
 	</form>
 
 </div>

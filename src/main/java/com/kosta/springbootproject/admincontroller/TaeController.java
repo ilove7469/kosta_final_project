@@ -100,6 +100,7 @@ public class TaeController {
 		public String companyUpdate(Company company, RedirectAttributes rttr) {
 			Company update_company = companyService.updateCourse(company);
 			rttr.addFlashAttribute("resultMessage", update_company==null?"수정실패":"수정성공");
+
 			return "redirect:/admin/companyList";
 		}
 	
@@ -202,7 +203,7 @@ public class TaeController {
 //	}
 	
 // 과정상세보기
-	@GetMapping("/admin/coursedetail")
+	@GetMapping("/admin/courseDetail")
 	public void selectById(Model model, Long cno) {
 		Course course = courseService.selectById(cno);
 		model.addAttribute("courselist",course);
@@ -325,9 +326,9 @@ public class TaeController {
 	   }
 	
 //강의계획 상세보기
-	@GetMapping("/admin/lecturedetail/{lno}")
+	@GetMapping("/admin/lectureDetail/{lno}")
 	public ModelAndView selectById(@PathVariable Long lno) {
-		ModelAndView mv = new ModelAndView("/admin/lecturedetail");
+		ModelAndView mv = new ModelAndView("/admin/lectureDetail");
 		Lecture lectrue = lectureService.selectById(lno);
 		//Course course = courseService.selectById();
 		mv.addObject("lecture",lectrue);
@@ -339,7 +340,7 @@ public class TaeController {
 //강의main
 	@RequestMapping("/admin/classesList")
 	public void classesSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
-		System.out.println("----------------------------------------------"+ pagevo.getKeyword() + pagevo.getType());
+		System.out.println("----------------------클래시스-----------------------"+ pagevo.getKeyword() + pagevo.getType());
 		Page<Classes> result = classesService.selectAll(pagevo);
 		
 		model.addAttribute("classeslist", result);
@@ -347,9 +348,9 @@ public class TaeController {
 		model.addAttribute("result",new PageMaker<>(result));
 	}
 //강의 상세보기
-	@GetMapping("/admin/classesdetail/{cno}")
+	@GetMapping("/admin/classesDetail/{cno}")
 	public ModelAndView SelectByIdteacher(@PathVariable Long cno) {
-		ModelAndView mv = new ModelAndView("/admin/classesdetail");
+		ModelAndView mv = new ModelAndView("/admin/classesDetail");
 		Classes classes = classesService.selectById(cno);
 		mv.addObject("classes",classes);
 			
@@ -399,16 +400,15 @@ public class TaeController {
 		@RequestMapping("/admin/exceldownload")
 	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
 	        
-			 System.out.println("--------------------엑셀확인------------------");
-			 System.out.println(pagevo.getKeyword() +"----------------"+pagevo.getType());
+			//System.out.println("--------------------엑셀확인------------------");
+			//System.out.println(pagevo.getKeyword() +"----------------"+pagevo.getType());
 			 
 	        OutputStream out = null;
 	        
 	        try {
 	        	
 	        	XSSFWorkbook workbook = companyService.listExcelDownload(param, model, pagevo);
-	         
-	            
+	        	
 	            response.reset();
 	            response.setHeader("Content-Disposition", "attachment;filename=kosta_history.xls");
 	            response.setContentType("application/vnd.ms-excel");

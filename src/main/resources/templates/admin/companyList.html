@@ -1,70 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
 	layout:decorate="~{/layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
-<title>과정리스트</title>
+<title>회사리스트</title>
 </head>
 <body>
 
 
 	<div class="panel panel-default" layout:fragment="content1">
-
-    <h1>과정리스트</h1>
- 	
+	
+   <h1>회사리스트</h1>
+   
 		<p>[[${resultMessage}]]</p>
+		
 
-	<h3>
-			<a th:href="@{/admin/courseInsert}">등록</a>
-		</h3>
+
+
+
 
 
 		<div id="searchType">
 			<select>
 				<option>전체</option>
-				<option value="courseName" th:selected="${pagevo.type=='courseName'}">주제명</option>
-				<option value="subName" th:selected="${pagevo.type=='subName'}">과정명</option>
-				<option value="courseTotalTrainTime" th:selected="${pagevo.type=='courseTotalTrainTime'}">훈련일수</option>
-				<option value="courseTotalDay" th:selected="${pagevo.type=='courseTotalDay'}">총훈련시간</option>
-				<option value="coursePrice" th:selected="${pagevo.type=='coursePrice'}">과정단가</option>
-				<option value="courseCapacity" th:selected="${pagevo.type=='courseCapacity'}">정원</option>
+				<option value="companyName" th:selected="${pagevo.type=='companyName'}">회사명</option>
+				<option value="companyLicense" th:selected="${pagevo.type=='companyLicense'}">사업자번호</option>
+				<option value="companyBoss" th:selected="${pagevo.type=='companyBoss'}">회사대표</option>
 
 			</select> <input type="text" id="searchKeyword">
 			<button id="searchBtn">조건검색</button>
 		</div>
 
 
-		<table border="1">
+				<div class="pull-right">
+				<h3><a class="label label-default" th:href="@{/admin/companyInsert}">등록</a></h3>
+	<!-- 엑셀 다운용 코드 -->
+		<form th:action="@{/admin/exceldownload}" method="get">
+	    <input type='hidden' name='type' th:value="${pagevo.type}">
+	    <input type='hidden' name='keyword' th:value="${pagevo.keyword}">
+	    <button type="submit" class="label label-default">test</button>
+		</form>
+	<!-- 엑셀 다운용 코드 끝-->
+				</div>
+		
+		
+
+		<table class="table table-striped table-bordered table-hover">
 			<tr>
-				<th>주제명</th>
-				<th>과정명</th>
-				<th>훈련일수</th>
-				<th>총훈련시간</th>
-				<th>과정단가</th>
-				<th>정원</th>
+				<th>회사명</th>
+				<th>사업자번호</th>
+				<th>대표자명</th>
+				<th>협약사</th>
 				<th>삭제</th>
 			</tr>
-			<tr th:each="course:${courselist}">				     
-        		<td><a th:href="@{/admin/coursedetail(cno=${course.courseNo})}" th:text="${course.courseName}"></a></td>
-				<td th:text="${course.subject.subName}"></td>
-				<td th:text="${course.courseTotalTrainTime}"></td>
-				<td th:text="${course.courseTotalDay}"></td>
-				<td th:text="${course.coursePrice}"></td>
-				<td th:text="${course.courseCapacity}"></td>
- 				<td><a th:href="@{/admin/courseDelete(cno=${course.courseNo})}">삭제하기</a></td>
+			<tr th:each="company:${companylist}">
+				<td><a th:href="@{'/admin/companyDetail/'+${company.companyNo}}" th:text="${company.companyName}"></a></td>
+				<td th:text="${company.companyLicense}"></td>
+				<td th:text="${company.companyBoss}"></td>
+				<!-- <td th:text="${company.companyConvention}"></td> -->
+				<td th:if="${#strings.toString(company.companyConvention)}=='Convention'" th:text="협약사">상태</td>
+				<td th:if="${#strings.toString(company.companyConvention)}=='NoConvention'" th:text="비협약사">상태</td>
+				<td><a th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제하기</a></td>
 			</tr>
 		</table>
 
 
 
 
+
+
 		<!-- 페이징처리 -->
-		<form id='f1' th:action="@{/admin/courseList}" method="get">
-			<input type='hidden' name='page' th:value="${result.currentPageNum}">
-			<input type='hidden' name='size' th:value="${result.currentPage.pageSize}"> 
-			<input type='hidden' name='type' th:value="${pagevo.type}"> 
-			<input type='hidden' name='keyword' th:value="${pagevo.keyword}">
+		<form id='f1' th:action="@{/admin/companyList}" method="get">
+			<input type='text' name='page' th:value="${result.currentPageNum}">
+			<input type='text' name='size' th:value="${result.currentPage.pageSize}"> 
+			<input type='text' name='type' th:value="${pagevo.type}"> 
+			<input type='text' name='keyword' th:value="${pagevo.keyword}">
 		</form>
 
 		<!-- 페이지리스트 -->
@@ -90,8 +101,11 @@
 
 
 
+	</div>
 
-  </div>
+
+
+
 
 
 	<th:block layout:fragment="script1">
@@ -130,8 +144,6 @@
 			});
 		</script>
 	</th:block>
-  
-  
 
 </body>
 </html>

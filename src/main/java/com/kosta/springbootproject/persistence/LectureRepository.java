@@ -15,8 +15,6 @@ public interface LectureRepository extends CrudRepository<Lecture, Long>, Queryd
 	
 	public Optional<Lecture> findByCourseAndLecturePlanYear(Course course, int lecturePlanYear);
 	
-	public Lecture findByCourseAndLecturePlanYearGreaterThanEqual(Course course,int lecturePlanYear); 
-	
 	public default Predicate makePredicate(String type, String keyword) {
 		
 		BooleanBuilder builder = new BooleanBuilder();

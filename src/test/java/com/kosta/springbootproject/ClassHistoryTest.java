@@ -1,6 +1,7 @@
 package com.kosta.springbootproject;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -64,8 +65,9 @@ public class ClassHistoryTest {
 	
 	@Test
 	public void test111() {
-		repo.FindClassHistoryCountByUser(71L).forEach(arr->{
-			System.out.println(Arrays.toString(arr));
-		});
+		List<Object[]> list = repo.FindClassHistoryCountByUser(71L);
+		Object[] objarr = list.get(0);
+		System.out.println(Arrays.toString(objarr));
+		
 	}
 }

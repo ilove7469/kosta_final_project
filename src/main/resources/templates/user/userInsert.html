@@ -6,82 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <th:block layout:fragment="script1">
-  <script>
-  	$(function(){
-  		 //값 초기화. 회원가입 버튼 비활성화
-	    $("#btnConfirm").prop("disabled",true);
-	    var idOk = false;
-	    var pw1Ok = true;
-	    var pw2Ok = true;
-	    var nameOk = true;
-	    var emailOk = true;
-	    var isOk = false;    
-	    
-	    //정규식 활용 id 체크(영소문자+숫자 5자 이상)
-	    $("#inputUserId").keyup(function(){    
-	        
-	        //배열 초기화
-	        var viewData = {};        
-	        var inputTxt = $("#inputUserId").val();
-	        //data[키] = 밸류
-	        viewData["userId"] = inputTxt;
-	        alert(JSON.stringify(viewData));
-	        var chkOnlyEngNum = /^[a-zA-Z0-9_-]{4,20}$/;
-	 
-	        if( chkOnlyEngNum.test(inputTxt) || inputTxt.length > 3){
-	            //정규식 조건을 통과한 경우
-	            $("#signupWarn").text( '　' );    
-	            //Ajax 활용 ID 중복체크, 중복이 아니면? true = 사용가능 ID            
-	            var varIsNotDupId = false;
-	            //초기값 valid 적용
-	            
-	            $.ajax({
-	                type: "POST"
-	                //동기식으로 변경 >> ajax에서 리턴값을 이용하기 위해
-	                , async: false
-	                , contentType:'application/json'
-	                , url: '/user/userIdChk'
-	                , datatype: "json"
-	                , data: JSON.stringify(viewData)
-	                , success: function( data ){
-	 
-	                    if( data === 0 ){
-	                        //컨트롤러에서 넘어온 결과가 0인 경우 사용 가능한 아이디로 판단
-	                        //alert('ok data 트루라고 했다');
-	                        $("#idEnable").removeClass("is-invalid");
-	                        $("#idEnable").addClass("is-valid");
-	                        varIsNotDupId = true;
-	                        idOk = true;
-	                        $("#signupWarn").text( '　' );            
-	                        isOk = allOk( idOk, pw1Ok, pw2Ok, nameOk, emailOk );
-	                        if( isOk == true ){
-	                            $("#btnConfirm").prop("disabled",false);
-	                        }
-	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
-	                    }else{
-	                        //중복된 ID인 경우
-	                        $("#idDisable").removeClass("is-invalid");
-	                        $("#idDisable").addClass("is-valid");
-	                        idOk = false;
-	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
-	                        $("#signupWarn").text( '중복된 ID입니다. 다른 ID를 입력해 주세요.' );
-	                        $("#btnConfirm").prop("disabled",true);
-	                    }
-	                }, error: function( error ){
-	                    alert('error : ' + error);
-	                }
-	            });                    
-	        }else{
-	            //조건에 맞지 않는 경우
-	            idOk = false;
-	            $("#btnConfirm").prop("disabled",true);
-	            $("#idEnable").removeClass("is-valid");
-	            $("#idDisable").addClass("is-invalid");
-	        }
-	    });
-  		
-  	});
-  </script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script th:src="@{/js/addressPop.js}"></script>
+  <script th:src="@{/js/userInsert.js}"></script>
 </th:block>
 
 <th:block layout:fragment="style1">
@@ -99,11 +26,20 @@
     .col-md-12 {
     	width: 100%;
     }
-    .isvalid{
-      display:inline-block;
+    .control-label{
+      width:100%;
+    }
+    .is-valid{
+      font-size:5px;
+      align-content:right;
+      display:block;
+      float:right;
     }
     .is-invalid{
       display:none;
+    }
+    .cust-form .buttonset {
+        display: block;
     }
   </style>
 </th:block>
@@ -126,20 +62,20 @@
                 
                   <div class="col-lg-6">
                       <div id="userId" class="userId-group">
-                        <div class="form-group cust-form has-feedback ">
+                        <div class="form-group cust-form has-feedback">
                           <label for="inputUserId" class="control-label">
                             아이디 
                             <span class="help-inline">*</span>
-                          </label >
+                            <span id="idEnable" class="is-invalid" style="color:#27ae60;">
+                              사용 가능한 아이디입니다.
+                             </span>
+                             <span id="idDisable" class="is-invalid" style="color:#e74c3c;">
+                                사용할 수 없는 아이디입니다.
+                             </span>
+                          </label>
                           <input type="text" id="inputUserId" name="userId" placeholder="4~20자 소문자 또는 숫자" class="form-control" required="required" autofocus="autofocus">
-                          <span class="help-block"></span>
+                          <span id="idMessage" class="help-block"></span>
                         </div>
-                        <div id="idEnable" class="is-invalid">
-                          사용 가능한 아이디입니다.
-                        </div>
-                       <div id="idDisable" class="is-invalid">
-                          사용할 수 없는 아이디입니다.
-                      </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -168,9 +104,16 @@
                       <label for="confirmPassword" class="control-label">
                         비밀번호 확인
                         <span class="help-inline">*</span>
+                        <span id="pwEnable" class="is-invalid" style="color:#27ae60;">
+                          사용 가능한 비밀번호입니다.
+                        </span>
+                        <span id="pwDisable" class="is-invalid" style="color:#e74c3c;">
+                          비밀번호가 일치하지 않습니다.
+                       </span>
                       </label>
                       <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="8~16자 숫자,소문자,대문자를 포함">
-                      <span class="help-block"></span>
+                      
+                     <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -190,9 +133,9 @@
                         <span class="help-inline">*</span>
                       </label>
                       <span class="buttonset" id="sex">
-                        <input type="radio" id="sex_true" name="sex" value="M" class="radio-inline">
+                        <input type="radio" id="sex_true" name="sex" value="M" checked="checked" class="radio-inline">
                         <label for="sex_true">남</label>
-                        <input type="radio" id="sex_false" name="sex" value="F" checked="checked" class="radio-inline">
+                        <input type="radio" id="sex_false" name="sex" value="F" class="radio-inline">
                         <label for="sex_false">여</label>
                       </span>
                       <span class="help-block"></span>
@@ -284,7 +227,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>  
               </div>
             </div>
             <div class="text-center kt-mb-50">

@@ -37,7 +37,7 @@
         var str="";
         $.getJSON("/user/userMain/"+trainee.traineeNo,function(subject){
           $.each(subject,function(idx,subject){
-          	str += `<li><a href='/course/${subject.subjectNo}'>${subject.subName}</a></li>`; 
+          	str += `<li><a href='/courseInfo/${subject.subjectNo}'>${subject.subName}</a></li>`; 
           });
           $("#dropdown-manu"+trainee.traineeNo).html(str);
         });

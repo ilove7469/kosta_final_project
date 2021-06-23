@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content1">
+		<ul class="nav nav-tabs">
+			<li class="active"><a class="btn-link"
+				th:href="@{'/admin/userdetail/'+${user.userNo}}"> <i
+					class="fa fa-user text-info"></i>회원정보
+			</a></li>
+			<li><a class="btn-link"
+				th:href="@{'/admin/userclasshistory/'+${user.userNo}}"> <i
+					class="fa fa-id-card-o text-success"></i> 수강현황
+			</a></li>
+		</ul>
+
+		<div class="tab-content tab-pane">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hpanel">
+						<div class="panel-body">
+
+							<form action="/profile/update" method="POST"
+								enctype="multipart/form-data" id="updateForm"
+								novalidate="novalidate">
+
+								<div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a role="button" data-toggle="collapse"
+													data-parent="#accordion" href="#collapseOne"
+													aria-expanded="true" aria-controls="collapseOne"> 기본정보<span
+													class="caret"></span>
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in">
+
+											<!-- 개인정보 수정 -->
+											<div class="panel-body">
+												<div class="form-group cust-form has-feedback ">
+													<label for="userId" class="control-label"> 아이디 <span
+														class="help-inline">*</span>
+													</label> <input type="hidden" id="userNo" name="userNo"
+														th:value="${user.userNo}" class="form-control"
+														readonly="readonly"> <input type="text"
+														id="userId" name="userId" th:value="${user.userId}"
+														class="form-control" readonly="readonly"> <span
+														class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="name" class="control-label"> 이름 <span
+														class="help-inline">*</span>
+													</label> <input type="text" id="name" name="name"
+														th:value=${user.userName} class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="sex" class="control-label"> 성별 <span
+														class="help-inline">*</span>
+													</label> <span class="buttonset" id="sex"> <input
+														type="radio" id="sex_true" name="sex" value="true"
+														checked="checked" class="radio-inline"> <label
+														for="sex_true">남</label> <input type="radio"
+														id="sex_false" name="sex" value="false"
+														class="radio-inline"> <label for="sex_false">여</label>
+													</span> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="birthDate" class="control-label"> 생년월일
+														<span class="help-inline">*</span>
+													</label> <input type="date" id="birthDate" name="userBirth"
+														th:value="${user.userBirth}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="row">
+													<div class="col-md-2">
+														<div class="form-group has-feedback ">
+															<label for="zipCode" class="control-label"> 우편번호
+																<span class="help-inline">*</span>
+															</label> <input type="text" id="zipCode" name="zipCode"
+																th:value="${user.zipCode}" class="form-control "
+																readonly="readonly"> <span class="help-block"></span>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group has-feedback ">
+															<label for="address" class="control-label"> 주소 <span
+																class="help-inline">*</span>
+															</label> <input type="text" id="address" name="userAddress"
+																th:value="${user.userAddress}" class="form-control "
+																readonly="readonly"> <span class="help-block"></span>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group has-feedback ">
+															<label for="detailAddress" class="control-label">
+																상세주소 <span class="help-inline">*</span>
+															</label> <input type="text" id="detailAddress"
+																name="detailAddress" th:value="${user.detailAddress}"
+																class="form-control" readonly="readonly"> <span
+																class="help-block"></span>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="cellPhone" class="control-label"> 휴대전화
+														번호 <span class="help-inline">*</span>
+													</label> <input type="text" id="cellPhone" name="cellPhone"
+														th:value="${user.userPhone}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="row">
+													<div class="col-md-10">
+														<div class="form-group cust-form has-feedback ">
+															<label for="email" class="control-label"> 이메일 <span
+																class="help-inline">*</span>
+															</label> <input type="text" id="email" name="email"
+																th:value="${user.userEmail}" class="form-control"
+																readonly="readonly"> <span class="help-block"></span>
+														</div>
+													</div>
+												</div>
+												<div class="form-group cust-form has-feedback ">
+													<label for="bank" class="control-label"> 은행 <span
+														class="help-inline"></span>
+													</label> <input type="text" id="bank" name="bank" value=""
+														class="form-control" placeholder="ex) 한국은행"
+														th:value="${user.userBank}" readonly="readonly"> <span
+														class="help-block"></span>
+
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="bankAccount" class="control-label">
+														계좌번호 <span class="help-inline"></span>
+													</label> <input type="text" id="bankAccount" name="bankAccount"
+														th:value="${user.userBankNoString}" class="form-control"
+														placeholder="ex) 111111111111 -없이" readonly="readonly">
+													<span class="help-block"></span>
+												</div>
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group cust-form has-feedback ">
+															<label for="ssn" class="control-label"> 주민번호 <span
+																class="help-inline"></span>
+															</label>
+															<div class="row">
+																<div class="col-md-3">
+																	<input type="text" id="ssn1" name="ssn1"
+																		th:value="${#strings.substring(user.userIdentity,0,6)}"
+																		class="form-control" maxlength="6" readonly="readonly">
+																</div>
+																<div class="col-md-3">
+																	<input type="text" id="ssn2" name="ssn2"
+																		th:value="${#strings.substring(user.userIdentity,6,13)}"
+																		class="form-control" maxlength="7" readonly="readonly">
+																</div>
+															</div>
+															<span class="help-block"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a role="button" data-toggle="collapse"
+													data-parent="#accordion" href="#collapseTwo"
+													aria-expanded="false" aria-controls="collapseTwo"> 회사정보<span
+													class="caret"></span>
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse">
+											<div class="panel-body">
+
+												<div class="row ng-scope" ng-modules="corpApp"
+													ng-controller="corpController">
+													<div class="col-md-3">
+														<div class="form-group has-feedback kt-mb-0">
+															<label for="corpName" class="control-label"> 소속회사
+															</label> <input type="text" name="corporateName"
+																ng-init="corpName=''"
+																th:value="${user.company.companyName}"
+																ng-model="corpName" ng-value="corpName"
+																class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+																readonly="readonly">
+														</div>
+													</div>
+
+													<!-- Modal -->
+												</div>
+												<span class="help-block kt-mb-15">회사를 추가하거나 삭제하고
+													저장버튼을 눌러야 반영됩니다.</span>
+
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="department" class="control-label"> 소속부서
+														<span class="help-inline"></span>
+													</label> <input type="text" id="department" name="department"
+														th:value="${user.userDept}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="position" class="control-label"> 직함 <span
+														class="help-inline"></span>
+													</label> <input type="text" id="position" name="position"
+														th:value="${user.userPosition}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="duty" class="control-label"> 직무 <span
+														class="help-inline"></span>
+													</label> <input type="text" id="duty" name="duty"
+														th:value="${user.userJob}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="officePhone" class="control-label">
+														사무실전화번호 <span class="help-inline"></span>
+													</label> <input type="text" id="officePhone" name="officePhone"
+														th:value="${user.deptPhone}" class="form-control"
+														readonly="readonly"> <span class="help-block"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="text-right">
+									<a class="btn btn-success" role="button"
+										onclick='traineeBtn_isConfirmed(this);'
+										th:text="${user.trainee.traineeName == '채용예정자'}?'재직자 전환':'채용예정자 전환'"></a>
+
+									<th:block layout:fragment="script1">
+										<script type="text/javascript">
+											function traineeBtn_isConfirmed(obj) {
+												var userNo = $("#userNo").val();
+
+												$
+														.ajax({
+															url : "/admin/changetrainee",
+															data : {
+																"userNo" : userNo
+															},
+															success : function() {
+																if ($(obj)
+																		.html() == "채용예정자 전환") {
+																	$(obj)
+																			.html(
+																					"재직자 전환");
+																} else if ($(
+																		obj)
+																		.html() == "재직자 전환") {
+																	$(obj)
+																			.html(
+																					"채용예정자 전환");
+																}
+															}
+														});
+											}
+										</script>
+									</th:block>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

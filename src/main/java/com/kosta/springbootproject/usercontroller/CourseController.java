@@ -1,6 +1,7 @@
 package com.kosta.springbootproject.usercontroller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Classes;
@@ -50,7 +51,7 @@ public class CourseController {
 	}
 	
 	//과목
-	@GetMapping("/course/{subjectNo}")	//주소 네이밍 어떻게 할지
+	@GetMapping("/courseInfo/{subjectNo}")	//주소 네이밍 어떻게 할지
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
 		ModelAndView mv = new ModelAndView("/user/userCourse");
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
@@ -127,10 +128,11 @@ public class CourseController {
 	//>>userInsert 각종 체크
 	@ResponseBody
 	@PostMapping("/user/userIdChk")
-	public int userIdChk(String userId) {
-		System.out.println(userId);
+	public int userIdChk(@RequestBody Map<String, String> userId) {
+		System.out.println(userId.get("userId"));
+		System.out.println(userId.values());
 		int result;
-		result = cservice.findUserByUserID(userId)==null?0:1;
+		result = cservice.findUserByUserID(userId.get("userId"))==null?0:1;
 		System.out.println(result);
 		return result;
 	}

@@ -32,6 +32,23 @@ public class ClassesTest {
 	AdminRepository arepo;
 	
 	@Test
+	public void test() {
+		String[] s = new String[ClassStateEnumType.values().length];
+		ClassStateEnumType[] list = ClassStateEnumType.values();
+		for(ClassStateEnumType si : list) {
+			switch (si) {
+			case APPLY:
+				System.out.println("등록");
+				break;
+			case END:
+				System.out.println("등록");
+				break;		
+			default:
+				break;
+			}
+		}
+	}
+	//@Test
 	public void insertClasses() {
 		Long lectureId = 58L;	//198
 		Long teacherId = 9L;	//70~78

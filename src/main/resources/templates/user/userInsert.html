@@ -24,8 +24,8 @@
 	        var viewData = {};        
 	        var inputTxt = $("#inputUserId").val();
 	        //data[키] = 밸류
-	        viewData["inputUserId"] = inputTxt;
-	        
+	        viewData["userId"] = inputTxt;
+	        alert(JSON.stringify(viewData));
 	        var chkOnlyEngNum = /^[a-zA-Z0-9_-]{4,20}$/;
 	 
 	        if( chkOnlyEngNum.test(inputTxt) || inputTxt.length > 3){
@@ -49,7 +49,7 @@
 	                        //컨트롤러에서 넘어온 결과가 0인 경우 사용 가능한 아이디로 판단
 	                        //alert('ok data 트루라고 했다');
 	                        $("#idEnable").removeClass("is-invalid");
-	                        $("#idDisable").addClass("is-valid");
+	                        $("#idEnable").addClass("is-valid");
 	                        varIsNotDupId = true;
 	                        idOk = true;
 	                        $("#signupWarn").text( '　' );            
@@ -60,14 +60,13 @@
 	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
 	                    }else{
 	                        //중복된 ID인 경우
-	                        $("#idEnable").removeClass("is-valid");
-	                        $("#idDisable").addClass("is-invalid");
+	                        $("#idDisable").removeClass("is-invalid");
+	                        $("#idDisable").addClass("is-valid");
 	                        idOk = false;
 	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
 	                        $("#signupWarn").text( '중복된 ID입니다. 다른 ID를 입력해 주세요.' );
 	                        $("#btnConfirm").prop("disabled",true);
 	                    }
-	                    
 	                }, error: function( error ){
 	                    alert('error : ' + error);
 	                }
@@ -76,8 +75,8 @@
 	            //조건에 맞지 않는 경우
 	            idOk = false;
 	            $("#btnConfirm").prop("disabled",true);
-	            $("#inputIdInSignup").removeClass("is-valid");
-	            $("#inputIdInSignup").addClass("is-invalid");
+	            $("#idEnable").removeClass("is-valid");
+	            $("#idDisable").addClass("is-invalid");
 	        }
 	    });
   		
@@ -124,8 +123,9 @@
             <div class="hpanel">
               <div class="panel-body">
                 <div class="row">
+                
                   <div class="col-lg-6">
-                      <div id="userId" class=" input-group">
+                      <div id="userId" class="userId-group">
                         <div class="form-group cust-form has-feedback ">
                           <label for="inputUserId" class="control-label">
                             아이디 
@@ -134,10 +134,10 @@
                           <input type="text" id="inputUserId" name="userId" placeholder="4~20자 소문자 또는 숫자" class="form-control" required="required" autofocus="autofocus">
                           <span class="help-block"></span>
                         </div>
-                        <div id="idEnable"class="is-invalid">
+                        <div id="idEnable" class="is-invalid">
                           사용 가능한 아이디입니다.
                         </div>
-                       <div id="idDisable"class="is-invalid">
+                       <div id="idDisable" class="is-invalid">
                           사용할 수 없는 아이디입니다.
                       </div>
                     </div>

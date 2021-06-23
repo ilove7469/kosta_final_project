@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("security config..........");
 		http.authorizeRequests()
-				.antMatchers("/auth/**","/search/**", "/fragments/**", "/user/**", "/courseInfo").permitAll()
+				.antMatchers("/auth/**","/search/**", "/fragments/**", "/user/**", "/courseInfo/**").permitAll()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/course/enroll/**").hasRole("USER")
 				.anyRequest().authenticated()
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/auth/login")
+				.logoutSuccessUrl("/user/userMain")
 				.invalidateHttpSession(true)
 			.and().csrf().disable();
 		http.exceptionHandling().accessDeniedPage("/accessDenied");

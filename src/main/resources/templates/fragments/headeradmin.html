@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-html{
-margin-left: 0px !important;
-padding: 0 !important;
-
+html {
+	margin-left: 0px !important;
+	padding: 0 !important;
 }
-
 </style>
 </head>
 
 <body>
 
 	<header class="page-header" th:fragment="header1">
-	
 
-	<div id="headerdiv">
-	<div id="headerLogoDiv"><p>BOB 관리콘솔</p></div>
-<!-- 		<h1>
-			<small>for Spring MVC + JPA</small>
-		</h1> -->
-	</div>
+		<div id="headerdiv">
+			<div id="headerLogoDiv">
+				<p>BOB 관리콘솔</p>
+			</div>
+			<div style="float:right">
+				<p><a href="/admin/adminInfo">관리자페이지</a></p>
+			</div>
+		</div>
+
 	</header>
-	
+
 	<div th:fragment="header2">
 		<h1>header의 2번째 조각이다.</h1>
 	</div>
-	
+
 	<div th:fragment="header3">
 		<h1>header의 3번째 조각이다.</h1>
 	</div>
-	
+
+
+
 </body>
 </html>

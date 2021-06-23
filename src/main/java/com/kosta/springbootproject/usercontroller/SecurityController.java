@@ -30,22 +30,11 @@ public class SecurityController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		authorities = auth.getAuthorities();
 		String Role = authorities.toArray()[0].toString();
-		System.out.println(Role);
+		
 		if(Role.equals("ROLE_ADMIN")) {
 			return "redirect:/admin/courseList";
 		}
 		return "redirect:/user/userMain";
-	}
-	
-	@GetMapping("/auth/joinForm")
-	public void joinUser() {
-		
-	}
-	
-	@PostMapping("/auth/joinProc")
-	public String joinProc(@ModelAttribute MemberDTO member) {
-		service.joinUser(member);
-		return "redirect:/auth/login";
 	}
 	
 	@GetMapping("/logout")

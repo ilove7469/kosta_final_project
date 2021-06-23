@@ -63,7 +63,7 @@ public class CourseService {
 	
 	//>>/courseInfo/{courseNo}/{lectureYear}
 	public Lecture findLecturByCourse(Course course, int lectureYear) {
-		Lecture lecture = lectureRepo.findByCourseAndLecturePlanYearGreaterThanEqual(course,lectureYear);
+		Lecture lecture = lectureRepo.findByCourseAndLecturePlanYear(course,lectureYear).get();
 		return lecture;
 	}
 	
@@ -97,7 +97,7 @@ public class CourseService {
 			});
 			result = true;
 		}
-		 
 		return result;
 	}
+	
 }

@@ -123,4 +123,16 @@ public class CourseController {
 	public void userInfo() {
 		
 	}
+	
+	//>>userInsert 각종 체크
+	@ResponseBody
+	@PostMapping("/user/userIdChk")
+	public int userIdChk(String userId) {
+		System.out.println(userId);
+		int result;
+		result = cservice.findUserByUserID(userId)==null?0:1;
+		System.out.println(result);
+		return result;
+	}
+	
 }

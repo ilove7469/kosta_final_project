@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<th:block layout:fragment="script1">
+<<th:block layout:fragment="script1">
   <script>
-  	$(function(){
-  		 //값 초기화. 회원가입 버튼 비활성화
+  $(function(){
+	    //값 초기화. 회원가입 버튼 비활성화
 	    $("#btnConfirm").prop("disabled",true);
 	    var idOk = false;
-	    var pw1Ok = true;
-	    var pw2Ok = true;
-	    var nameOk = true;
-	    var emailOk = true;
+	    var pw1Ok = false;
+	    var pw2Ok = false;
+	    var nameOk = false;
+	    var emailOk = false;
 	    var isOk = false;    
 	    
 	    //정규식 활용 id 체크(영소문자+숫자 5자 이상)
@@ -34,7 +34,8 @@
 	            //Ajax 활용 ID 중복체크, 중복이 아니면? true = 사용가능 ID            
 	            var varIsNotDupId = false;
 	            //초기값 valid 적용
-	            
+	            $("#inputUserId").removeClass("is-invalid");
+	            $("#inputUserId").addClass("is-valid");
 	            $.ajax({
 	                type: "POST"
 	                //동기식으로 변경 >> ajax에서 리턴값을 이용하기 위해
@@ -45,11 +46,11 @@
 	                , data: JSON.stringify(viewData)
 	                , success: function( data ){
 	 
-	                    if( data === 0 ){
+	                    if( data === '0' ){
 	                        //컨트롤러에서 넘어온 결과가 0인 경우 사용 가능한 아이디로 판단
 	                        //alert('ok data 트루라고 했다');
-	                        $("#idEnable").removeClass("is-invalid");
-	                        $("#idDisable").addClass("is-valid");
+	                        $("#inputIdInSignup").removeClass("is-invalid");
+	                        $("#inputIdInSignup").addClass("is-valid");
 	                        varIsNotDupId = true;
 	                        idOk = true;
 	                        $("#signupWarn").text( '　' );            
@@ -60,8 +61,8 @@
 	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
 	                    }else{
 	                        //중복된 ID인 경우
-	                        $("#idEnable").removeClass("is-valid");
-	                        $("#idDisable").addClass("is-invalid");
+	                        $("#inputIdInSignup").removeClass("is-valid");
+	                        $("#inputIdInSignup").addClass("is-invalid");
 	                        idOk = false;
 	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
 	                        $("#signupWarn").text( '중복된 ID입니다. 다른 ID를 입력해 주세요.' );
@@ -80,8 +81,111 @@
 	            $("#inputIdInSignup").addClass("is-invalid");
 	        }
 	    });
-  		
-  	});
+	    
+	    //이름 길이 체크. 2자~20자까지
+	    $("#inputName").keyup(function(){
+	        var inputLen = $("#inputName").val().length;
+	        var chkBlank = /\s/g;
+	        var chkResult = chkBlank.test( $("#inputName").val() );
+	        
+	        //길이에 맞지 않거나 공백이 포함되어 있는 경우
+	        if((inputLen < 2 || inputLen > 20) || chkResult ){            
+	            nameOk = false;            
+	            $("#btnSignupInSignupModal").prop("disabled",true);
+	            
+	            $("#inputName").removeClass("is-valid");
+	            $("#inputName").addClass("is-invalid");
+	        }else{            
+	            nameOk = true;
+	            $("#signupWarn").text( '　' );
+	            isOk = allOk( idOk, pw1Ok, pw2Ok, nameOk, emailOk );
+	            if( isOk == true ){
+	                $("#btnConfirm").prop("disabled",false);
+	            }            
+	            $("#inputName").removeClass("is-invalid");
+	            $("#inputName").addClass("is-valid");
+	        }
+	    });
+	    
+	    //PW 길이 체크
+	    $("#inputPw1InSignup").keyup(function(){
+	        if( $("#inputPw1InSignup").val().length < 5 ){
+	            pw1Ok = false;
+	            $("#btnSignupInSignupModal").prop("disabled",true);
+	            $("#inputPw1InSignup").removeClass("is-valid");
+	            $("#inputPw1InSignup").addClass("is-invalid");
+	        }else{
+	            pw1Ok = true;
+	            $("#signupWarn").text( '　' );            
+	            isOk = allOk( idOk, pw1Ok, pw2Ok, nameOk, emailOk );
+	            if( isOk == true ){
+	                $("#btnConfirm").prop("disabled",false);
+	            }
+	            $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
+	            $("#inputPw1InSignup").removeClass("is-invalid");
+	            $("#inputPw1InSignup").addClass("is-valid");
+	        }
+	    });
+	    
+	    //PW 확인 체크
+	    $("#inputPw2InSignup").keyup(function(){
+	        var pw1 = $("#inputPw1InSignup").val();
+	        var pw2 = $("#inputPw2InSignup").val();
+	        if( pw1 == pw2 ){
+	            pw2Ok = true;            
+	            $("#signupWarn").text( '　' );            
+	            isOk = allOk( idOk, pw1Ok, pw2Ok, nameOk, emailOk );
+	            if( isOk == true ){
+	                $("#btnConfirm").prop("disabled",false);
+	            }
+	            $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk + '마지막 idOk:' + isOk );
+	            $("#inputPw2InSignup").removeClass("is-invalid");
+	            $("#inputPw2InSignup").addClass("is-valid");
+	        }else{
+	            pw2Ok = false;
+	            $("#btnSignupInSignupModal").prop("disabled",true);
+	            $("#inputPw2InSignup").removeClass("is-valid");
+	            $("#inputPw2InSignup").addClass("is-invalid");
+	        }
+	    });
+	    
+	    //E-mail 체크
+	    $("#inputEmailInSignup").keyup(function(){
+	        var inputTxt = $("#inputEmailInSignup").val();
+	        var chkEmail = /^[a-zA-Z0-9]+@([a-zA-Z0-9]{1,10})\.([a-zA-Z]{1,10})+$/;
+	        if( chkEmail.test(inputTxt) ){
+	            emailOk = true;
+	            $("#signupWarn").text( '　' );
+	            isOk = allOk( idOk, pw1Ok, pw2Ok, nameOk, emailOk );
+	            if( isOk == true ){
+	                $("#btnConfirm").prop("disabled",false);
+	            }
+	            //$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + nameOk + ', ' + emailOk);
+	            $("#inputEmailInSignup").removeClass("is-invalid");
+	            $("#inputEmailInSignup").addClass("is-valid");
+	        }else{
+	            emailOk = false;
+	            $("#btnSignupInSignupModal").prop("disabled",true);
+	            $("#inputEmailInSignup").removeClass("is-valid");
+	            $("#inputEmailInSignup").addClass("is-invalid");
+	        }
+	    });
+	    
+	    //회원가입 버튼 클릭 이벤트
+	    $("#btnConfirm").click(function(){
+	        $("#frmRegistration").attr("action", ctx + "/regi/insert")
+	        $("#frmRegistration").submit();
+	    });
+	});
+	 
+	function allOk( ok1, ok2, ok3, ok4, ok5 ){
+	    if( ok1 && ok2 && ok3 && ok4 && ok5 ){
+	        return true;
+	    }else{
+	        return false;
+	    }
+	}
+
   </script>
 </th:block>
 
@@ -100,19 +204,11 @@
     .col-md-12 {
     	width: 100%;
     }
-    .isvalid{
-      display:inline-block;
-    }
-    .is-invalid{
-      display:none;
-    }
   </style>
 </th:block>
 </head>
 <body>
   <div class="panel panel-default" layout:fragment="content1">
-  <div id="signupWarn"></div>
-  <div id="chkAllOk"></div>
     <div class="register-container">
       <div class="row">
         <div class="col-md-12">
@@ -127,21 +223,18 @@
                   <div class="col-lg-6">
                       <div id="userId" class=" input-group">
                         <div class="form-group cust-form has-feedback ">
-                          <label for="inputUserId" class="control-label">
+                          <label for="userId" class="control-label">
                             아이디 
                             <span class="help-inline">*</span>
-                          </label >
-                          <input type="text" id="inputUserId" name="userId" placeholder="4~20자 소문자 또는 숫자" class="form-control" required="required" autofocus="autofocus">
+                          </label>
+                          <input type="text" id="userId" name="userId" placeholder="4~20자 소문자 또는 숫자" class="form-control">
                           <span class="help-block"></span>
                         </div>
-                        <div id="idEnable"class="is-invalid">
-                          사용 가능한 아이디입니다.
-                        </div>
-                       <div id="idDisable"class="is-invalid">
-                          사용할 수 없는 아이디입니다.
+                        <span class="kt-pl-30 input-group-btn">
+                          <button type="button" id="userIdBtn" class="ladda-button btn btn-default" style="margin-top: 24px;">중복체크</button>
+                        </span>
                       </div>
                     </div>
-                  </div>
                   <div class="col-lg-6">
                     <div class="form-group cust-form has-feedback">
                       <label for="userName" class="control-label">

@@ -1,5 +1,6 @@
 package com.kosta.springbootproject;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -28,13 +29,13 @@ public class ClassHistoryTest {
 	@Autowired
 	ClassesRepository crepo;
 	
-	@Test
+//	@Test
 	public void insertClassHistory() {
 		IntStream.range(1, 2).forEach(i -> {
 			ClassHistory ch = ClassHistory.builder()
 					//.classHistoryState(ClassHistoryEnumType.COMMIT)
-					.user(urepo.findById(73L).get())
-					.classes(crepo.findById(68L).get()) //class만들어지면
+					.user(urepo.findById(71L).get())
+					.classes(crepo.findById(125L).get()) //class만들어지면
 					.build();
 			repo.save(ch);
 			
@@ -59,5 +60,12 @@ public class ClassHistoryTest {
 //	@Test
 	public void delete() {
 		repo.deleteById(214L);
+	}
+	
+	@Test
+	public void test111() {
+		repo.FindClassHistoryCountByUser(71L).forEach(arr->{
+			System.out.println(Arrays.toString(arr));
+		});
 	}
 }

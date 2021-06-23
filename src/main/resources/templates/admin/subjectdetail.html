@@ -16,21 +16,14 @@
 	       <th:block th:unless="${subject == null}">
 	       <input type="hidden" id="subjectNo" name="subjectNo" th:value="${subject.subjectNo}">
 	       </th:block>
-	 	  <th:block th:if="${subject == null}">
-	      	<input 
-	      	type="text" 
-	      	class="form-control" 
-	      	id="subName" 
-	      	name="subName">
-	      </th:block>
-	 	  <th:block th:unless="${subject == null}">
+	       
 	      	<input 
 	      	type="text" 
 	      	class="form-control" 
 	      	id="subName" 
 	      	name="subName" 
-	      	th:value="${subject.subName}">
-	      </th:block>
+	      	th:value="${subject != null}?${subject.subName}:${null}">
+	      
 	    </div>
 	    <div class="form-group">
 	      <label for="subPriority">순서:</label>

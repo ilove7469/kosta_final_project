@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.admincontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -212,8 +213,15 @@ public class HyunController {
 	@GetMapping("/admin/userclasshistory/{userNo}")
 	public ModelAndView showUserClassHistory(@PathVariable Long userNo) {
 		ModelAndView mv = new ModelAndView("/admin/userClassHistory");
+		List<ClassHistory> ClassHistoryList = adminManageClassService.findClassHistoryByUser(userNo);
+		List<Object[]> ClassHistoryCount = adminManageClassService.selectClassHistoryCountByUser(userNo);
+		Object[] countobj = ClassHistoryCount.get(0);
 		Users user = userService.findUsersByUsersNo(userNo);
 		mv.addObject("user", user);
+		mv.addObject("classHistoryList",ClassHistoryList);
+		mv.addObject("countobj",countobj);
+
+		
 		return mv;
 	}	
 

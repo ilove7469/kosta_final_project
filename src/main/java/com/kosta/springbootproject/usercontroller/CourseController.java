@@ -1,7 +1,6 @@
 package com.kosta.springbootproject.usercontroller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -90,7 +88,7 @@ public class CourseController {
 		mv.addObject("class",classInfo);
 		//id로 유저찾기 >>repo에서 유저정보 찾아서 뿌리기 밑에꺼 시큐리티만들어지면 바꿔야함
 		//Principal principal을 매개변수로 받아서 정보 가져오면 된다고 함
-		String userId = "아이디1";
+		String userId = "SpringVeryHard";
 		Users userInfo = cservice.findUserByUserID(userId);
 		mv.addObject("user",userInfo);
 		//mv.addObject("userNo",userNo);
@@ -124,17 +122,4 @@ public class CourseController {
 	public void userInfo() {
 		
 	}
-	
-	//>>userInsert 각종 체크
-	@ResponseBody
-	@PostMapping("/user/userIdChk")
-	public int userIdChk(@RequestBody Map<String, String> userId) {
-		System.out.println(userId.get("userId"));
-		System.out.println(userId.values());
-		int result;
-		result = cservice.findUserByUserID(userId.get("userId"))==null?0:1;
-		System.out.println(result);
-		return result;
-	}
-	
 }

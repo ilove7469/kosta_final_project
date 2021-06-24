@@ -1,5 +1,11 @@
 package com.kosta.springbootproject.admincontroller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kosta.springbootproject.model.Admin;
+import com.kosta.springbootproject.model.MemberDTO;
+import com.kosta.springbootproject.model.MemberRoleEnumType;
 import com.kosta.springbootproject.persistence.AdminRepository;
 import com.kosta.springbootproject.persistence.MemberReposiroty;
 import com.kosta.springbootproject.security.MemberService;
@@ -24,6 +32,49 @@ public class AdminController {
 	
 	@Autowired
 	AdminRepository repo;
+	
+	@GetMapping("/admin/adminInsert")
+	public void adminInsert() {
+		
+	}
+	
+	@PostMapping("/admin/adminInsert")
+	public String adminInsertPost(Admin admin, HttpServletResponse response) {
+		Boolean flag = mrepo.findById(admin.getAdminId()).isEmpty();
+		
+		if(!flag) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('이미 있는 아이디입니다.'); location.href='/admin/adminInsert';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "";
+		}
+		MemberDTO new_member = MemberDTO.builder()
+				.mid(admin.getAdminId())
+				.mname(admin.getAdminName())
+				.mpassword(admin.getAdminPw())
+				.mrole(MemberRoleEnumType.ADMIN)
+				.build();
+		mservice.joinUser(new_member);
+		
+		Admin new_admin = Admin.builder()
+				.adminEmail(admin.getAdminEmail())
+				.adminName(admin.getAdminName())
+				.adminId(admin.getAdminId())
+				.adminPhone(admin.getAdminPhone())
+				.adminPw(admin.getAdminPw())
+				.build();
+		repo.save(new_admin);
+		
+		return "redirect:/admin/courseList";
+	}
+	
 	
 	@GetMapping("/admin/adminInfo")
 	public void adminInfo(Model model ) {

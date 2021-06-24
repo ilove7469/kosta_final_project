@@ -1,9 +1,13 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.CompanyRepository;
@@ -53,5 +57,8 @@ public class CompanyService {
 		return companyrepo.save(company);
 	}
 	
+	public List<Company> selectAll(){
+		return (List<Company>)companyrepo.findAll();
+	}
 	
 }

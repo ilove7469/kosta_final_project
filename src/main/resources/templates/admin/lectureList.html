@@ -10,30 +10,24 @@
 
 	<div class="panel panel-default" layout:fragment="content1">
 
-  <h1>강의계획</h1>
+ <span id="menuTitle">강의계획</span>
  	
- 		<p>[[${resultMessage}]]</p> 
+
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
 
 
-
-
-		<div id="searchType">
-			<!-- <select>
-				<option>전체</option>
-				<option value="courseCapacity" th:selected="${pagevo.type=='courseCapacity'}">정원</option>
-
-			</select> --> <input type="text" id="searchKeyword" placeholder="과정명">
-			<button id="searchBtn">조건검색</button>
-		</div>
 
 
 	<div class="pull-right">
-	<h3><a class="label label-default" th:href="@{/admin/lectureInsert}">등록</a></h3>
+	<h3><a class="btn btn-default" th:href="@{/admin/lectureInsert}">등록</a></h3>
 	</div>
 		
 		
 
 		<table border="1">
+		<thead>
 			<tr>
 				<th>과정명</th>
 				<th>강의계획년</th>
@@ -41,6 +35,8 @@
 				<th>목표정원</th>
 				<th>삭제</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr th:each="lecture:${lecturelist}">
 				<td><a th:href="@{'/admin/lectureDetail/'+${lecture.lecturePlanNo}}" th:text="${lecture.course.courseName}"></a></td>
 				<td th:text="${lecture.lecturePlanYear}"></td>
@@ -48,39 +44,9 @@
 				<td th:text="${lecture.lectureCapacity}"></td>
  	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제하기</a></td>
 			</tr>
+			</tbody>
 		</table>
 
-
-
-
-		<!-- 페이징처리 -->
-		<form id='f1' th:action="@{/admin/lectureList}" method="get">
-			<input type='hidden' name='page' th:value="${result.currentPageNum}">
-			<input type='hidden' name='size' th:value="${result.currentPage.pageSize}"> 
-			<input type='hidden' name='type' th:value="${pagevo.type}"> 
-			<input type='hidden' name='keyword' th:value="${pagevo.keyword}">
-		</form>
-
-		<!-- 페이지리스트 -->
-		<nav>
-			<div>
-				<ul class="pagination">
-
-					<li class="page-item" th:if="${result.prevPage}"><a
-						th:href="${result.prevPage.pageNumber}+1">PREV!!</a></li>
-
-					<li class="page-item" th:each="pg:${result.pageList}"
-						th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''">
-						<!-- 현재 페이지가 넘어오면 -1 --> <a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
-					</li>
-
-					<li class="page-item" th:if="${result.nextPage}"><a
-						th:href="${result.nextPage.pageNumber}+1">
-							NEXT!![[${result.nextPage.pageNumber}+1]]</a></li>
-
-				</ul>
-			</div>
-		</nav>
 
 
 

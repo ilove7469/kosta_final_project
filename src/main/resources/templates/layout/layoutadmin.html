@@ -2,11 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-
+<title>관리콘솔</title>
 <!-- 공통layout만들기 -->
 <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- 게시판 -->
+<!-- <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> -->
+<script th:src="@{/js/tablesort.js}"></script>
+<link rel="stylesheet" type="text/css"
+ href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<script>
+   $(function(){  
+      $("table").addClass("table table-striped table-bordered table-hover");
+      $("table").attr("id","tablesort");
+      $("#tablesort").dataTable();
+   });
+</script>
+<!-- 게시판 끝 -->
 
 <script>
 	$(function(){  
@@ -21,9 +35,13 @@
 body{
   background-color: #e7ebf6 !important;
 }
+
+#menuTitle{
+font-size: 30px;
+}
 #headerdiv{
   position: fixed;
-  height :50px !important;
+  height :45px !important;
   width : 100%;
   background-color: #dbdfea !important;
   color:white;
@@ -34,17 +52,17 @@ body{
   /* border-right: 2px solid #e7e7e7; */
   background: #677799;
   height: 100%;
-  width: 250px;
+  width: 230px;
   color : white;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   float: left;
 }
 
 #headerLogoDiv p{
   padding: 10px !important;
   margin:0px !important;
-  width: 250px;
+  width: 230px;
   height: 100%;
 }
 

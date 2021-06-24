@@ -23,21 +23,21 @@ body {
 /* Fixed sidenav, full height 배경 */
 .sidenav {
   height: 100%;
-  width: 250px;
+  width: 230px;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #6a7ca2;
   overflow-x: hidden;
-  padding-top: 80px;
+  padding-top: 50px;
   margin-top: 0px;
 }
 
 /* Style the sidenav links and the dropdown button  글자색*/
 .sidenav a, .dropdown-btn {
-  padding: 8px 8px 5px 20px;
+  padding: 5px 8px 5px 20px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 13px;
   color: white;
   display: block;
   border: none;
@@ -56,10 +56,10 @@ body {
 
 /* Main content */
 .main {
-  margin-top : 80px;
-  margin-left: 260px; /* Same as the width of the sidenav */
+  margin-top : 70px;
+  margin-left: 240px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
-  padding: 20px 20px 20px 20px;
+  padding: 20px 27px 20px 20px;
 }
 
 /* Add an active class to the active dropdown button */
@@ -105,6 +105,13 @@ width: 100%;
 margin: 20px 0 20px 0;
 float: left;
 }
+
+#profile{
+padding-top: 0px;
+width: 100%;
+height: 130px;
+padding: 50px;
+}
 </style>
 </th:block>
 
@@ -112,13 +119,20 @@ float: left;
 <body>
 
 <th:block th:fragment="sidebarFragment">
-
-<!-- 사이드메뉴 -->
-
-	<div class="sidenav">
+<!-- 
 	
+	<div id="profile">
+	<img class="img-circle" alt="" src="" >
+	</div>
+	 -->
+<!-- 사이드메뉴 -->
+	<div class="sidenav">
 		<a href="http://localhost:8888/admin/adminMain"><span class="glyphicon glyphicon-home"> 메인</span></a>
-		
+			
+	<!-- 메뉴분리용 div -->
+		<div id="divline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 	<!-- 드랍다운 메뉴 한셋트 -->
 		<button class="dropdown-btn"><span class="glyphicon glyphicon-folder-open"> 과정기획</span>
 		    <i class="fa fa-caret-down"></i>

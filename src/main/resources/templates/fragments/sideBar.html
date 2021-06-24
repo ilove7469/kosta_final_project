@@ -107,10 +107,17 @@ float: left;
 }
 
 #profile{
-padding-top: 0px;
 width: 100%;
-height: 130px;
-padding: 50px;
+height: 150px;
+}
+#profile img{
+margin-left: 80px;
+margin-top: 15px;
+}
+#profile p{
+color: white;
+margin-top: 10px;
+margin-left: 95px;
 }
 </style>
 </th:block>
@@ -119,14 +126,22 @@ padding: 50px;
 <body>
 
 <th:block th:fragment="sidebarFragment">
-<!-- 
+
 	
-	<div id="profile">
-	<img class="img-circle" alt="" src="" >
-	</div>
-	 -->
+
+
 <!-- 사이드메뉴 -->
 	<div class="sidenav">
+	
+	<div id="profile">
+	<img class="img-circle" src="https://event.asme.org/Events/media/library/images/ICONE/ICONE2021-logo.jpg?ext=.jpg" width="80px" height="80px">
+	<p>관리자</p>
+	</div>
+	
+	<!-- 메뉴분리용 div -->
+		<div id="divline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 		<a href="http://localhost:8888/admin/adminMain"><span class="glyphicon glyphicon-home"> 메인</span></a>
 			
 	<!-- 메뉴분리용 div -->

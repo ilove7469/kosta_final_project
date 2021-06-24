@@ -8,7 +8,12 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<h1>주제</h1>
+	<span id="menuTitle">주제</span>
+   
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 	<h3>
 		<a th:href="@{/admin/subjectInsert}">등록</a>
 	</h3>

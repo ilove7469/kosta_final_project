@@ -12,14 +12,17 @@
 	<h3>
 		<a th:href="@{/admin/educationtimeInsert}">등록</a>
 	</h3>
-	<table border="1">
+	<table>
+	<thead>
 	<tr>
 	 <th>이름</th>
 	 <th>유형</th>
 	 <th>시간대</th>
 	 <th>삭제</th>
 	</tr>
-	<tr th:each="educationTime:${EducationTimeResult.content}" >
+	</thead>
+	<tbody>
+	<tr th:each="educationTime:${EducationTimeResult}" >
 		<td> 
 		<a th:href="@{'/admin/educationTimeModify/'+${educationTime.educationTimeNo}}" th:text="${educationTime.educationTimeName}">이름</a>
 		</td>
@@ -27,63 +30,10 @@
 		<td th:if="${#strings.toString(educationTime.educationPartType)}=='NIGHT'" th:text="야간">유형</td>
 		<td th:if="${#strings.toString(educationTime.educationPartType)}=='WEEKEND'" th:text="주말">유형</td>
 		<td th:text="${educationTime.educationTimeType}">시간대</td>
-		<td><a th:href="@{/admin/educationtimeDelete(no=${educationTime.educationTimeNo})}">삭제</a></td>
+		<td><a class="btn btn-danger btn-sm" th:href="@{/admin/educationtimeDelete(no=${educationTime.educationTimeNo})}">삭제</a></td>
 	</tr>
+	</tbody>
 	</table>
-	
-		<!-- 페이징처리 -->
-	<form id="f1" th:action="@{/admin/educationTimemain}" method="get">
-		<input type="hidden" name="page" th:value=${result.currentPageNum}>
-		<input type="hidden" name="size" th:value=${result.currentPage.pageSize}>
-	</form>
-	
-		<!-- 페이지리스트 -->
-	<nav>
-		<div>
-			<ul class="pagination">
-			 <li class="page-item" th:if="${result.prevPage}">
-				<a th:href="${result.prevPage.pageNumber}+1">이전페이지[[${result.prevPage.pageNumber}+1]]</a>
-			 </li>
-			 <li class="page-item" th:each="pg:${result.pageList}" th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''"
-			 >
-				<a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
-			 </li>
-			 <li class="page-item" th:if="${result.nextPage}">
-				<a th:href="${result.nextPage.pageNumber}+1">다음페이지[[${result.nextPage.pageNumber+1}]]</a>
-			 </li>
-			</ul>
-		</div>
-	</nav>
-	
-	
 </div>
-
-	<th:block layout:fragment="script1">
-	<script>
-	$(function(){
-		
-		var formObj = $("#f1");
-		
-		$("#searchBtn").click(function(){
-			var typeStr = $("#searchType").find(":selected").val();
-			var keywordStr = $("#searchKeyword").val();
-			formObj.find("[name='type']").val(typeStr);
-			formObj.find("[name='keyword']").val(keywordStr);
-			formObj.submit();
-		});
-		
-		
-		$(".pagination a").click(function(e){
-			e.preventDefault(); //본래의 기능(link)을 취소
-			formObj.find("[name='page']").val($(this).attr("href"));
-			/*alert($(this).attr("href"));*/
-			formObj.submit();
-		});
-	
-	});
-	</script>
-	</th:block>
-
-
 </body>
 </html>

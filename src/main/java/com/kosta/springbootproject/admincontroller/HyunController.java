@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.springbootproject.adminservice.AdminManageClassService;
 import com.kosta.springbootproject.adminservice.CertificateService;
@@ -29,7 +27,6 @@ import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.ClassRoom;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.EducationTime;
-import com.kosta.springbootproject.model.Lecture;
 import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
@@ -111,11 +108,9 @@ public class HyunController {
 
 //	주제 메인
 	@GetMapping("/admin/subjectmain")
-	public void selectAllSubject(Model model, PageVO pagevo) {
-		Page<Subject> result = subjectService.selectAll(pagevo);
-		model.addAttribute("SubjectResult",result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
+	public void selectAllSubject(Model model) {
+		List<Subject> subjectlist = subjectService.selectAll();
+		model.addAttribute("SubjectResult",subjectlist);
 	}
 	
 //	주제 추가 Get
@@ -153,11 +148,9 @@ public class HyunController {
 
 //	교육시간 메인
 	@GetMapping("/admin/educationtimemain")
-	public void selectAllEducationTime(Model model, PageVO pagevo) {
-		Page<EducationTime> result = educationTimeService.selectAll(pagevo);
+	public void selectAllEducationTime(Model model) {
+		List<EducationTime> result = educationTimeService.selectAll();
 		model.addAttribute("EducationTimeResult",result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
 	
 //	교육시간 추가 Get
@@ -194,11 +187,9 @@ public class HyunController {
 	
 //	회원 메인
 	@GetMapping("/admin/usermain")
-	public void selectAllUser(Model model, PageVO pagevo) {
-		Page<Users> result = userService.selectAll(pagevo);
+	public void selectAllUser(Model model) {
+		List<Users> result = userService.selectAll();
 		model.addAttribute("UserResult",result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
 
 //	회원 상세페이지 - 회원정보
@@ -358,6 +349,5 @@ public class HyunController {
 		classRoomService.deleteClassRoom(no);
 		return "redirect:/admin/classroommain";
 	}
-	
 	
 }

@@ -14,22 +14,26 @@
 	</h3>
 	
 	<table border="1">
-	<tr>
-	 <th>번호</th>
-	 <th>수료증명</th>
-	 <th>출력문구</th>
-	 <th>등록일</th>
-	 <th>삭제</th>
-	</tr>
-	<tr th:each="certi:${certiList}" >
-		<td th:text="${certi.certiNo}">번호</td>
-		<td>
-		 <a th:href="@{'/admin/certificateModify/'+${certi.certiNo}}" th:text="${certi.certiName}">수료증명</a>
-		</td>
-		<td th:text="${certi.certiComment}">출력문구</td>
-		<td th:text="${#calendars.format(certi.certiRegDate,'yyyy-MM-dd')}">[]</td>
-		<td><a th:href="@{/admin/certificateDelete(no=${certi.certiNo})}">삭제</a></td>
-	</tr>
+	<thead>
+		<tr>
+		 <th>번호</th>
+		 <th>수료증명</th>
+		 <th>출력문구</th>
+		 <th>등록일</th>
+		 <th>삭제</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="certi:${certiList}" >
+			<td th:text="${certi.certiNo}">번호</td>
+			<td>
+			 <a th:href="@{'/admin/certificateModify/'+${certi.certiNo}}" th:text="${certi.certiName}">수료증명</a>
+			</td>
+			<td th:text="${certi.certiComment}">출력문구</td>
+			<td th:text="${#calendars.format(certi.certiRegDate,'yyyy-MM-dd')}">[]</td>
+			<td><a th:href="@{/admin/certificateDelete(no=${certi.certiNo})}">삭제</a></td>
+		</tr>
+	</tbody>
 	</table>
 </div>
 </body>

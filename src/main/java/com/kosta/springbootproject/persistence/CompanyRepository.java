@@ -4,7 +4,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
 import com.kosta.springbootproject.model.Company;
-import com.kosta.springbootproject.model.ConventionEnumType;
 import com.kosta.springbootproject.model.QCompany;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;

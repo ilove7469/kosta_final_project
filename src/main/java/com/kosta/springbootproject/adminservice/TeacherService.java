@@ -7,10 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.kosta.springbootproject.model.Certificate;
-import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.PageVO;
-import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.TeacherRepository;
 import com.querydsl.core.types.Predicate;

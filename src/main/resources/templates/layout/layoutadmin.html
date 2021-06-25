@@ -31,7 +31,11 @@
 <th:block layout:fragment="style1"></th:block>
 
 <style>
+html {
+height: 100%;
+}
 body{
+
   background-color: #e7ebf6 !important;
 }
 
@@ -118,6 +122,7 @@ margin-right: 8px;
 .panel{
   padding : 20px !important;
   box-shadow: 10px 10px 10px #c7cfe2;
+  height: 100%;
 }
 
 table.dataTable thead th, table.dataTable thead td{
@@ -158,10 +163,9 @@ text-align: center;
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
-			<footer th:replace="fragments/footeradmin::footer1"></footer>
+			
 		</div>
-
-	<div class="main"></div>
+<footer th:replace="fragments/footeradmin::footer1"></footer>
 	
 	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
 	<th:block layout:fragment="script1">

@@ -2,22 +2,18 @@ package com.kosta.springbootproject.admincontroller;
 
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +37,8 @@ import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
+import com.kosta.springbootproject.persistence.ClassesRepository;
+import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
@@ -75,16 +73,17 @@ public class TaeController {
 	ClassRoomService classRoomService;
 	
 
+//회사main
+	@RequestMapping("/admin/adminMain")
+	public void companySelectAll() {
+		return ;
+	}
 	
-
 //회사main
 	@RequestMapping("/admin/companyList")
 	public void companySelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
-		Page<Company> result = companyService.selectAll(pagevo);
-		
+		List<Company> result = companyService.selectAll();
 		model.addAttribute("companylist", result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
 	
 //회사 상세보기
@@ -134,14 +133,9 @@ public class TaeController {
 	
 //강사main
 	@RequestMapping("/admin/teacherList")
-	public void teacherSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
-		
-		Page<Teacher> result = teacherService.selectAll(pagevo);
-
-		
+	public void teacherSelectAll(Model model,  HttpServletRequest request) {
+		List<Teacher> result = teacherService.selectAll();
 		model.addAttribute("teacherlist", result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
 	
 //강사 상세보기
@@ -169,10 +163,7 @@ public class TaeController {
 	 
 	@PostMapping("/admin/teacherInsert")
 	public String teacherInsertPost(Teacher teacher, RedirectAttributes rttr) {
-		
-		
 		Teacher ins_teacher = teacherService.insertTeacher(teacher);
-		
 		rttr.addFlashAttribute("resultMessage", ins_teacher==null?"입력실패":"입력성공");
 		return "redirect:/admin/teacherList";
 	}
@@ -188,20 +179,12 @@ public class TaeController {
 	
 //과정main 
 	@RequestMapping("/admin/courseList")
-	public void courseSelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
-		Page<Course> result = courseService.selectAll(pagevo);
+	public void courseSelectAll(Model model, HttpServletRequest request ) {
+		List<Course> result = courseService.courseSelectAll();
 
-		
 		model.addAttribute("courselist", result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
-//		@RequestMapping("/admin/courseList")
-//		public void courseSelectAll(Model model, HttpServletRequest request ) {
-//		model.addAttribute("courselist", courseService.courseSelectAll());
-//		
-//	}
-	
+
 // 과정상세보기
 	@GetMapping("/admin/courseDetail")
 	public void selectById(Model model, Long cno) {
@@ -264,15 +247,9 @@ public class TaeController {
 	
 //강의계획main
 	@RequestMapping("/admin/lectureList")
-	public void lectureSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
-		
-		Page<Lecture> result = lectureService.selectAll(pagevo);
-		
-		
+	public void lectureSelectAll(Model model, HttpServletRequest request) {
+		List<Lecture> result = lectureService.selectAll();
 		model.addAttribute("lecturelist", result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
-		
 	}
 //강의계획삭제
 	
@@ -339,13 +316,9 @@ public class TaeController {
 	
 //강의main
 	@RequestMapping("/admin/classesList")
-	public void classesSelectAll(Model model, PageVO pagevo, HttpServletRequest request) {
-		System.out.println("----------------------클래시스-----------------------"+ pagevo.getKeyword() + pagevo.getType());
-		Page<Classes> result = classesService.selectAll(pagevo);
-		
+	public void classesSelectAll(Model model, HttpServletRequest request) {
+		List<Classes> result = classesService.selectAll();
 		model.addAttribute("classeslist", result);
-		model.addAttribute("pagevo",pagevo);
-		model.addAttribute("result",new PageMaker<>(result));
 	}
 //강의 상세보기
 	@GetMapping("/admin/classesDetail/{cno}")
@@ -395,8 +368,14 @@ public class TaeController {
 	      classesService.updateOrInsert(classes);
 	      return "redirect:/admin/classesList";
 	   }
+	   
+
 
 //엑셀다운로드
+	   
+	   @Autowired
+		ClassesRepository classesRepo;
+	   
 		@RequestMapping("/admin/exceldownload")
 	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
 	        
@@ -406,8 +385,14 @@ public class TaeController {
 	        OutputStream out = null;
 	        
 	        try {
-	        	
-	        	XSSFWorkbook workbook = companyService.listExcelDownload(param, model, pagevo);
+	        	 Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
+			     List<Classes> list = (List<Classes>) classesRepo.findAll(p);
+			        
+			     //System.out.println(list);
+			        
+			     String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
+			     
+	        	XSSFWorkbook workbook = classesService.listExcelDownload(list);
 	        	
 	            response.reset();
 	            response.setHeader("Content-Disposition", "attachment;filename=kosta_history.xls");

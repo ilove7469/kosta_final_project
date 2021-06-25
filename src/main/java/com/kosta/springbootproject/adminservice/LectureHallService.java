@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosta.springbootproject.model.Certificate;
-import com.kosta.springbootproject.model.EducationTime;
 import com.kosta.springbootproject.model.LectureHall;
 import com.kosta.springbootproject.persistence.LectureHallRepository;
 

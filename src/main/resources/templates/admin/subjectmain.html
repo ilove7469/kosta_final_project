@@ -14,76 +14,28 @@
 	</h3>
 	
 	<table border="1">
-	<tr>
-	 <th>순서</th>
-	 <th>주제명</th>
-	 <th>훈련대상</th>
-	 <th>설명</th>
-	</tr>
-	<tr th:each="subject:${SubjectResult.content}" >
-		<td th:text="${subject.subPriority}">순서</td>
-		<td>
-		 <a th:href="@{'/admin/subjectModify/'+${subject.subjectNo}}" th:text="${subject.subName}">주제명</a>
-		 </td>
-		<td th:text="${subject.trainee.traineeName}">훈련대상</td>
-		<td th:if="${not #strings.isEmpty(subject.subExplain)}" th:text="${subject.subExplain}">설명</td>
-		<td th:if="${#strings.isEmpty(subject.subExplain)}" th:text=" ">설명빈칸출력</p>
-	</tr>
+	  <thead>
+		<tr>
+		 <th>순서</th>
+		 <th>주제명</th>
+		 <th>훈련대상</th>
+		 <th>설명</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr th:each="subject:${SubjectResult}" >
+			<td th:text="${subject.subPriority}">순서</td>
+			<td>
+			 <a th:href="@{'/admin/subjectModify/'+${subject.subjectNo}}" th:text="${subject.subName}">주제명</a>
+			 </td>
+			<td th:text="${subject.trainee.traineeName}">훈련대상</td>
+			<td th:if="${not #strings.isEmpty(subject.subExplain)}" th:text="${subject.subExplain}">설명</td>
+			<td th:if="${#strings.isEmpty(subject.subExplain)}" th:text=" ">설명빈칸출력</p>
+		</tr>
+	  </tbody>
 	</table>
-	
-		<!-- 페이징처리 -->
-	<form id="f1" th:action="@{/admin/subjectmain}" method="get">
-		<input type="hidden" name="page" th:value=${result.currentPageNum}>
-		<input type="hidden" name="size" th:value=${result.currentPage.pageSize}>
-	</form>
-	
-		<!-- 페이지리스트 -->
-	<nav>
-		<div>
-			<ul class="pagination">
-			 <li class="page-item" th:if="${result.prevPage}">
-				<a th:href="${result.prevPage.pageNumber}+1">이전페이지[[${result.prevPage.pageNumber}+1]]</a>
-			 </li>
-			 <li class="page-item" th:each="pg:${result.pageList}" th:classappend="${pg.pageNumber==result.currentPageNum-1}?active:''"
-			 >
-				<a th:href="${pg.pageNumber}+1">[[${pg.pageNumber}+1]]</a>
-			 </li>
-			 <li class="page-item" th:if="${result.nextPage}">
-				<a th:href="${result.nextPage.pageNumber}+1">다음페이지[[${result.nextPage.pageNumber+1}]]</a>
-			 </li>
-			</ul>
-		</div>
-	</nav>
 	
 	
 </div>
-
-	<th:block layout:fragment="script1">
-	<script>
-	$(function(){
-		
-		var formObj = $("#f1");
-		
-		$("#searchBtn").click(function(){
-			var typeStr = $("#searchType").find(":selected").val();
-			var keywordStr = $("#searchKeyword").val();
-			formObj.find("[name='type']").val(typeStr);
-			formObj.find("[name='keyword']").val(keywordStr);
-			formObj.submit();
-		});
-		
-		
-		$(".pagination a").click(function(e){
-			e.preventDefault(); //본래의 기능(link)을 취소
-			formObj.find("[name='page']").val($(this).attr("href"));
-			/*alert($(this).attr("href"));*/
-			formObj.submit();
-		});
-	
-	});
-	</script>
-	</th:block>
-
-
 </body>
 </html>

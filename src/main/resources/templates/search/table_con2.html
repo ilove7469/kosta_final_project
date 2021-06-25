@@ -3,10 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script th:src="@{/js/tablesort.js}"></script>
+	<link rel="stylesheet" type="text/css"
+		href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	<script>
+		$(function() {
+			$("table").addClass(
+					"table table-striped table-bordered table-hover");
+			$("table").attr("id", "tablesort");
+			$("#tablesort").dataTable();
+		});
+	</script>
 </head>
 <body>
 
 	<table>
+	<thead>
 		<tr>
 			<th>과정명</th>
 			<th>개강일</th>
@@ -14,6 +26,8 @@
 			<th>교육시간</th>
 			<th>강의장</th>
 		</tr>
+		</thead>
+		<tbody>
 		<tr th:each="class:${result}">
 			<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
 				th:text=${class.lecture.course.courseName}></a></td>
@@ -22,6 +36,7 @@
 			<td th:text=${class.educationTime.educationTimeType}></td>
 			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
 		</tr>
+		</tbody>
 	</table>
 
 </body>

@@ -3,10 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script th:src="@{/js/tablesort.js}"></script>
+	<link rel="stylesheet" type="text/css"
+		href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	<script>
+		$(function() {
+			$("table").addClass(
+					"table table-striped table-bordered table-hover");
+			$("table").attr("id", "tablesort");
+			$("#tablesort").dataTable();
+		});
+	</script>
 <script>
 	$(function() {
 
-		$(".space ul li.hmenu2").click(function() {
+		$(".space .hmenu2").click(function() {
+			
+			hallNo = $(this).attr("value");
+			
+			$(".space .hmenu2").each(function(idx, item) {
+				$(item).removeClass('active');
+			});
+
+			$(".space .hmenu2").each(function(idx, item) {
+				if ($(item).val() == hallNo) {
+					$(item).addClass('active');
+				}
+			});
 			
 			$.ajax({
 				url : "searchHall",
@@ -27,19 +50,18 @@
 <body>
 
 	<div class="space">
-		<span>강의장</span>
-		<ul>
-			<th:block th:each="hall:${hlist}">
-				<li class="hmenu2" th:text="${hall.lectureHallName}"
-					th:value="${hall.lectureHallNo}"></li>
-			</th:block>
-		</ul>
-	</div>
+				<span>강의장</span>
+					<th:block th:each="hall:${hlist}">
+						<button type="button" class="hmenu2 btn btn-default" th:text="${hall.lectureHallName}"
+							th:value="${hall.lectureHallNo}"></button>
+					</th:block>
+			</div>
 
 	<hr>
 
 	<div id="final_content">
 		<table>
+		<thead>
 			<tr>
 				<th>과정명</th>
 				<th>개강일</th>
@@ -47,6 +69,8 @@
 				<th>교육시간</th>
 				<th>강의장</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr th:each="class:${result}">
 				<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
 					th:text=${class.lecture.course.courseName}></a></td>
@@ -55,6 +79,7 @@
 				<td th:text=${class.educationTime.educationTimeType}></td>
 				<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
 			</tr>
+			</tbody>
 		</table>
 	</div>
 

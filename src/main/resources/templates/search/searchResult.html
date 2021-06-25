@@ -11,11 +11,21 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<title>Insert title here</title>
+	<script th:src="@{/js/tablesort.js}"></script>
+	<link rel="stylesheet" type="text/css"
+		href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 	<script>
-
+		$(function() {
+			$("table").addClass(
+					"table table-striped table-bordered table-hover");
+			$("table").attr("id", "tablesort");
+			$("#tablesort").dataTable();
+		});
+	</script>
+	<script>
 		$(function() {
 			var formObj = $(".form2");
-			
+
 			$(".searchBtn2").click(function() {
 				var keyword = $(".searchKeyword2").val();
 
@@ -27,12 +37,21 @@
 
 		$(function() {
 			var formObj = $(".form2");
-			
-			
-			$("#sub ul li.smenu").click(function() {
-		
+
+			$("#sub .smenu").click(function() {
+
 				subNo = $(this).attr("value");
-				
+
+				$("#sub .smenu").each(function(idx, item) {
+					$(item).removeClass('active');
+				});
+
+				$("#sub .smenu").each(function(idx, item) {
+					if ($(item).val() == subNo) {
+						$(item).addClass('active');
+					}
+				});
+
 				$.ajax({
 					url : "searchSubject",
 					data : {
@@ -46,17 +65,29 @@
 				});
 			});
 		});
-		
-		$(function(){
+
+		$(function() {
 			var formObj = $(".form2");
-			
-			$(".space ul li.hmenu").click(function(){
+
+			$(".space .hmenu").click(function() {
 				
+				hallNo = $(this).attr("value");
+				
+				$(".space .hmenu").each(function(idx, item) {
+					$(item).removeClass('active');
+				});
+
+				$(".space .hmenu").each(function(idx, item) {
+					if ($(item).val() == hallNo) {
+						$(item).addClass('active');
+					}
+				});
+
 				$.ajax({
-					url: "searchHall",
+					url : "searchHall",
 					data : {
 						"subNo" : "[[${subNo}]]",
-						"lecHallNo" : $(this).attr("value"),
+						"lecHallNo" : hallNo,
 						"keyword" : "[[${word}]]"
 					},
 					method : "get",
@@ -122,12 +153,10 @@
 
 		<div id="sub">
 			<span>주제명</span>
-			<ul>
 			<th:block th:each="subject:${sublist}">
-				<li class="smenu" th:text="${subject.subName}"
-						th:value="${subject.subjectNo}"></li>
+				<button type="button" class="smenu btn btn-default"
+					th:text="${subject.subName}" th:value="${subject.subjectNo}"></button>
 			</th:block>
-			</ul>
 		</div>
 
 		<hr>
@@ -135,33 +164,35 @@
 		<div id="table_content">
 			<div class="space">
 				<span>강의장</span>
-				<ul>
 				<th:block th:each="hall:${hlist}">
-						<li class="hmenu" th:text="${hall.lectureHallName}"
-							th:value="${hall.lectureHallNo}"></li>
+					<button type="button" class="hmenu btn btn-default"
+						th:text="${hall.lectureHallName}" th:value="${hall.lectureHallNo}"></button>
 				</th:block>
-				</ul>
 			</div>
 
 			<hr>
 
 			<div id="final_content">
 				<table>
-					<tr>
-						<th>과정명</th>
-						<th>개강일</th>
-						<th>종강일</th>
-						<th>교육시간</th>
-						<th>강의장</th>
-					</tr>
-					<tr th:each="class:${result}">
-						<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
-							th:text=${class.lecture.course.courseName}></a></td>
-						<td th:text=${class.classOpenDate}></td>
-						<td th:text=${class.classCloseDate}></td>
-						<td th:text=${class.educationTime.educationTimeType}></td>
-						<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-					</tr>
+					<thead>
+						<tr>
+							<th>과정명</th>
+							<th>개강일</th>
+							<th>종강일</th>
+							<th>교육시간</th>
+							<th>강의장</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="class:${result}">
+							<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+								th:text=${class.lecture.course.courseName}></a></td>
+							<td th:text=${class.classOpenDate}></td>
+							<td th:text=${class.classCloseDate}></td>
+							<td th:text=${class.educationTime.educationTimeType}></td>
+							<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 

@@ -43,7 +43,6 @@ $(function(){
 	                , datatype: "json"
 	                , data: JSON.stringify(viewData)
 	                , success: function(data){
-	 
 	                    if( data === 0 ){
 	                        //컨트롤러에서 넘어온 결과가 0인 경우 사용 가능한 아이디로 판단
 	                        //alert('ok data 트루라고 했다');
@@ -126,7 +125,7 @@ $(function(){
 						},
 					dataType :'json',
 				});
-				alert("인증번호가 전송되었습니다.");
+				alert("인증번호가 전송되었습니다.","info");
 				emailOk = false;
 				if(AuthTimer!=0){
 					AuthTimer.fnStop();
@@ -148,13 +147,14 @@ $(function(){
 					emailOk = item.emailOk;
 					if(emailOk){
 						AuthTimer.fnStop();
+						$("#email").attr("readonly","readonly");
 					}
 					isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk );
 					if( isOk == true ){
 	                  $("#insertBtn").prop("disabled",false);
 	                }
 					$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
-					$("#email").attr("readonly","readonly");
+					
 				}
 			});
 		});

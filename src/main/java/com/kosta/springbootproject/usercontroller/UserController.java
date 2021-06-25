@@ -1,6 +1,7 @@
 package com.kosta.springbootproject.usercontroller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -12,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.MemberDTO;
 import com.kosta.springbootproject.model.MemberRoleEnumType;
 import com.kosta.springbootproject.model.Users;
@@ -36,11 +39,14 @@ public class UserController {
 	
 	//유저조회
 	@GetMapping("/user/userInfo")
-	public void userInfo() {
+	public void userInfo(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails)principal;
 		String userId = userDetails.getUsername();
-		//Users user = uservice.findUser();
+		Users userInfo = uservice.findUserByUserId(userId);
+		List<Company> companyList = uservice.findCompanyAll();
+		model.addAttribute("user",userInfo);
+		model.addAttribute("companyList",companyList);
 	}
 	//유저가입
 	@GetMapping("/user/userInsert")
@@ -75,7 +81,6 @@ public class UserController {
 	@PostMapping("/user/email/send")
 	public void sendmail(String email, HttpServletRequest request) throws MessagingException {
 		HttpSession session = request.getSession();
-		System.out.println("왔니?");
 		System.out.println(email);
 		//코드 생성
 		//난수 생성을 위한 랜덤 클래스
@@ -121,8 +126,6 @@ public class UserController {
 		emailcontent.append("</body>");
 		emailcontent.append("</html>");
 		emailService.checkMain(email, "[KOSTA 이메일 인증]", emailcontent.toString());
-		System.out.println("보내기");
-		System.out.println(key);
 		session.setAttribute("key", key);
 		System.out.println(session.getAttribute("key"));
 	}

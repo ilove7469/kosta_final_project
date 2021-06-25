@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,7 +90,9 @@ public class CourseController {
 		mv.addObject("class",classInfo);
 		//id로 유저찾기 >>repo에서 유저정보 찾아서 뿌리기 밑에꺼 시큐리티만들어지면 바꿔야함
 		//Principal principal을 매개변수로 받아서 정보 가져오면 된다고 함
-		String userId = "SpringVeryHard";
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails)principal;
+		String userId = userDetails.getUsername();
 		Users userInfo = cservice.findUserByUserID(userId);
 		mv.addObject("user",userInfo);
 		//mv.addObject("userNo",userNo);

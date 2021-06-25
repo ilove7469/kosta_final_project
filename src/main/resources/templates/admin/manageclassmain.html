@@ -37,7 +37,7 @@
 			<td th:text="${classes.classRoom.lectureHall.lectureHallName}">강의장명</td>
 			<td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
 			<td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
-			<td th:if="${#strings.toString(classes.classState)}=='ClOSE'" th:text="종강">상태</td>
+			<td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
 			<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>
 			<td th:text="${classes.waitCount}+'/'+${classes.commitCount}+'/'+${classes.cancelCount}">대기/확정/취소</td>
 		</tr>

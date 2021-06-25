@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,15 @@ public class ClassHistroyService {
 		return classHistory.getClasses().getClassNo();
 	}
 	
-
-	
+//  classes의 closedate날짜가 지나면 모든 commit을 complete로 변환
+	public void commitToComplete() {
+		List<ClassHistory> classHistroyList = (List<ClassHistory>)classHistoryRepo.findAll();
+		for(ClassHistory classHistory : classHistroyList) {
+			if(classHistory.getClasses().getClassCloseDate().compareTo(new Date())<0 && classHistory.getClassHistoryState().equals(ClassHistoryEnumType.COMMIT)) {
+				classHistory.setClassHistoryState(ClassHistoryEnumType.COMPLETED);
+				classHistoryRepo.save(classHistory);
+			}
+		}
+	}
 
 }

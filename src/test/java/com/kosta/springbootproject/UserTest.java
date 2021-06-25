@@ -30,6 +30,25 @@ public class UserTest {
 	TraineeRepository trepo;
 	
 	@Test
+	public void insertUserOne() {
+		Users user = Users.builder()
+	               .userName("윤테스트")
+	               .userId("SpringVeryHard")
+	               .userPw("1234")
+	               .userPhone("010-1299-1993")
+	               .userEmail("buchonsi@naver.com")
+	               .sex('M')
+	               .zipCode("15149")
+	               .userAddress("서울시")
+	               .detailAddress("청담동")
+	               .userBirth(Date.valueOf("1995-03-19"))
+	               .company(crepo.findById(38L).get())
+	               .trainee(trepo.findById(11L).get())
+	               .build();
+	         repo.save(user);
+	}
+	
+	//@Test
 	   public void insertUser() {
 	      IntStream.range(1, 21).forEach(i -> {
 	         Users user = Users.builder()

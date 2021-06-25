@@ -8,7 +8,9 @@
 <th:block layout:fragment="script1">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script th:src="@{/js/addressPop.js}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
   <script th:src="@{/js/userInsert.js}"></script>
+  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </th:block>
 
 <th:block layout:fragment="style1">
@@ -215,12 +217,12 @@
                         <div class="form-group cust-form">
                           <label for="authNum" class="control-label">
                             인증번호
-                            <code class="help-inline ng-binding">(03:00)</code>
+                            <code id="emailTimer"class="help-inline ng-binding"></code>
                           </label>
                           <input type="text" id="authNum" name="authNum" class="form-control" placeholder="인증번호를 입력해 주세요.">
                         </div>
                         <span class="kt-pl-30 input-group-btn">
-                          <button type="button" id="btnConfirm" class="ladda-button btn btn-default" style="margin-top: 24px;">
+                          <button type="button" id="emailConfirm" class="ladda-button btn btn-default" style="margin-top: 24px;">
                             인증
                           </button>
                         </span>

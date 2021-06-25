@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Trainee;
 import com.kosta.springbootproject.model.Users;
@@ -23,7 +24,17 @@ public class UserService {
 	TraineeRepository traineerepo;
 	
 	public List<Users> selectAll(){
-		return (List<Users>) userrepo.findAll();
+		 List<Users> resultlist = (List<Users>) userrepo.findAll();
+		 for(Users result:resultlist) {
+			 if(result.getCompany()==null){
+				 Company company = Company
+						 .builder()
+						 .companyName(" ")
+						 .build();
+				 result.setCompany(company);
+			 }
+		 }
+		 return resultlist;
 	}
 	
 	public Page<Users> selectAll(PageVO pvo) {

@@ -1,5 +1,7 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.kosta.springbootproject.model.ClassStateEnumType;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.ClassesRepository;
@@ -34,7 +38,6 @@ public class ClassesService {
 	public Classes selectById(Long classNo) {
 		return classesRepo.findById(classNo).get();
 	}
-	
 
 	public Classes updateOrInsert(Classes classes) {
 		return classesRepo.save(classes);
@@ -59,7 +62,8 @@ public class ClassesService {
 	}
 	
 	public List<Classes> selectAll(){
-		return (List<Classes>)classesRepo.findAll();
+		List<Classes> classesList = (List<Classes>)classesRepo.findAll();
+		return classesList;
 	}
 
 	
@@ -124,5 +128,27 @@ public class ClassesService {
 		        return workbook;
 		    }
 		 //엑셀다운로드
-		 
+	
+//  Scheduler에서 classState를 바꿔주기 위한 메서드
+	public void manageClassState() {
+		List<Classes> classesList = (List<Classes>)classesRepo.findAll();
+		for(Classes classes:classesList) {
+			Calendar cal = Calendar.getInstance();
+			Date Today = new Date();
+			cal.setTime(Today);
+			cal.add(Calendar.DATE, 60);
+			
+			// 개강일 - 현재날짜 +60일 < 0 [60일도 안남았다면]
+			if(classes.getClassOpenDate().compareTo(cal.getTime())<=0) {
+				classes.setClassState(ClassStateEnumType.APPLY);
+				classesRepo.save(classes);
+			}
+			// 개강일 - 현재날짜 < 0 [마감]
+			
+			if(classes.getClassOpenDate().compareTo(Today)<=0){
+				classes.setClassState(ClassStateEnumType.CLOSE);
+				classesRepo.save(classes);
+			}
+		}
+	}
 }

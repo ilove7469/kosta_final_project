@@ -9,7 +9,12 @@
 <body>
 <div class="panel panel-default" layout:fragment="content1">
 	
-	<h1>강의장</h1>
+   <span id="menuTitle">강의장</span>
+   
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 	<h3>
 		<a th:href="@{/admin/lecturehallInsert}">등록</a>
 	</h3>

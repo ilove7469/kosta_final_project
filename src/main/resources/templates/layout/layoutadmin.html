@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+<link rel="shortcut icon" type="image/png" href='/img/favicon.png'/>
 <meta charset="UTF-8">
-<title>관리콘솔</title>
+<title>KOSTA관리콘솔</title>
+<script>
+    document.title = "KOSTA관리콘솔" ;
+</script>
 <!-- 공통layout만들기 -->
 <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -18,6 +22,7 @@
       $("table").addClass("table table-striped table-bordered table-hover");
       $("table").attr("id","tablesort");
       $("#tablesort").dataTable();
+      $("a:contains('삭제')").addClass("btn btn-danger btn-sm");
    });
 </script>
 <!-- 게시판 끝 -->
@@ -84,6 +89,15 @@ font-size: 30px;
   width : 300px;
   margin: 20px 0 0 15px;
 }
+#topLogo{
+  float : left;
+  margin-left: 15%;
+}
+#topLogo img{
+  width: 120px;
+  height: auto;
+  opacity:0.5;
+}
 
 .page-header h1{
   margin:0px;
@@ -101,6 +115,21 @@ font-size: 30px;
   padding : 20px !important;
   box-shadow: 10px 10px 10px #c7cfe2;
 }
+
+table.dataTable thead th, table.dataTable thead td{
+font-size: 14px;
+padding-left: 5px;
+/* font-weight: bold; */
+}
+
+table.dataTable tbody th, table.dataTable tbody td{
+font-size: 12px;
+font-weight: bold;
+padding-right: 2px;
+padding-left: 5px;
+}
+
+
 </style>
 
 </head>

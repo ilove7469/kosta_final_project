@@ -52,7 +52,7 @@
 				<td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
 				<td th:if="${#strings.toString(classes.classState)}=='ClOSE'" th:text="종강">상태</td>
 				<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>	
-				<td><a th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제하기</a></td>
+				<td><a th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제</a></td>
 			</tr>
 		</tbody>
 		</table>

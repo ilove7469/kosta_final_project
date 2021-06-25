@@ -3,7 +3,7 @@
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KOSTA관리콘솔</title>
 <style>
 html {
   margin-left: 0px !important;
@@ -18,16 +18,21 @@ html {
 
 		<div id="headerdiv">
 			<div id="headerLogoDiv">
-				<p>BOB 관리콘솔 <span class="label label-success" style="font-size: 2px">v001</span></p>
+				<p>KOSTA 관리콘솔 <span class="label label-success" style="font-size: 2px">v001</span></p>
 			</div>
-
 				<div id="headerDivCenter">
 					<p id="time-result"></p>
 				</div>
-			<div id="headerDivRight">
-				<a href="/admin/adminInfo"><p>관리자<span class="glyphicon glyphicon-user"></span></p></a>
-        <span><a href="/admin/adminInfo">관리자페이지</a></span>
-				<span><a href="/admin/adminInsert">관리자등록</a></span>
+					<div id="topLogo">
+					<img class="img-circle" src="/img/logo4.png">
+					</div>
+
+			<div id="headerDivRight"><p>
+				<a href="/user/userMain">코스타에듀<span class="glyphicon glyphicon-pencil"></span> | </a>
+				<a href="/admin/adminInfo">관리자정보<span class="glyphicon glyphicon-user"></span> | </a>
+				<a href="/admin/adminInsert">관리자등록<span> | </a>
+            	<a href="/logout">로그아웃<span></span></a></span>
+				</p>
 			</div>
 		</div>
 		
@@ -36,7 +41,7 @@ html {
 var d = new Date(); 
 var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
 /* var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";  */
-var result = document.getElementById("time-result"); result.innerHTML = "오늘 날짜는 " + currentDate + " 입니다."; 
+var result = document.getElementById("time-result"); result.innerHTML = "오늘은 " + currentDate + " 입니다."; 
 </script> 
 	
 	</header>

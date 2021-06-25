@@ -1,6 +1,5 @@
 package com.kosta.springbootproject.usercontroller;
 
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -10,11 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kosta.springbootproject.model.MemberDTO;
+import com.kosta.springbootproject.model.MemberRoleEnumType;
+import com.kosta.springbootproject.model.Users;
+import com.kosta.springbootproject.security.MemberService;
 import com.kosta.springbootproject.userservice.EmailService;
 import com.kosta.springbootproject.userservice.UserPageUserService;
 
@@ -24,7 +30,36 @@ public class UserController {
 	@Autowired
 	UserPageUserService uservice;
 	@Autowired
+	MemberService mservice;
+	@Autowired
 	private EmailService emailService;
+	
+	//유저조회
+	@GetMapping("/user/userInfo")
+	public void userInfo() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails)principal;
+		String userId = userDetails.getUsername();
+		//Users user = uservice.findUser();
+	}
+	//유저가입
+	@GetMapping("/user/userInsert")
+	public void userInsert() {
+		
+	}
+	
+	@PostMapping("/user/userInsert")
+	public String userInsert(Users user) {
+		MemberDTO new_member = MemberDTO.builder()
+				.mid(user.getUserId())
+				.mname(user.getUserName())
+				.mpassword(user.getUserPw())
+				.mrole(MemberRoleEnumType.USER)
+				.build();
+		mservice.joinUser(new_member);
+		uservice.insertUser(user);
+		return "redirect:/user/userMain";
+	}
 	
 	//>>userInsert 각종 체크
 	@ResponseBody

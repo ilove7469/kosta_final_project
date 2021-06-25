@@ -8,9 +8,8 @@
 <th:block layout:fragment="script1">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script th:src="@{/js/addressPop.js}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script th:src="@{/js/userInsert.js}"></script>
-  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </th:block>
 
 <th:block layout:fragment="style1">
@@ -57,7 +56,7 @@
             <h3>회원가입</h3>
           </div>
           <!-- 유저정보 입력 부분 -->
-          <form action="/signup" method="POST" id="signupForm" novalidate="novalidate">
+          <form action="" method="POST" id="signupForm" novalidate="novalidate">
             <div class="hpanel">
               <div class="panel-body">
                 <div class="row">
@@ -86,7 +85,7 @@
                         이름 
                         <span class="help-inline">*</span>
                       </label> 
-                      <input type="text" id="name" name="userName" value="" class="form-control" placeholder="ex) 홍길동">
+                      <input type="text" id="name" name="userName" value="" class="form-control" placeholder="ex) 홍길동" required="required">
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -97,7 +96,7 @@
                         <span class="help-inline">*</span>
                       </label>
                       <!-- 대소문자 구분 안할때는 placeholder  삭제 --> 
-                      <input type="password" id="newPassword" name="userPw" class="form-control" placeholder="8~16자 숫자,소문자,대문자를 포함"> 
+                      <input type="password" id="newPassword" name="userPw" class="form-control" placeholder="8~16자 숫자,소문자,대문자를 포함" required="required"> 
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -113,8 +112,7 @@
                           비밀번호가 일치하지 않습니다.
                        </span>
                       </label>
-                      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="8~16자 숫자,소문자,대문자를 포함">
-                      
+                      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required="required">
                      <span class="help-block"></span>
                     </div>
                   </div>
@@ -124,7 +122,7 @@
                         휴대전화 번호
                         <span class="help-inline">*</span>
                       </label>
-                      <input type="text" id="cellPhone" name="userPhone" value="" class="form-control" placeholder="ex) 01012341234 숫자만 가능">
+                      <input type="text" id="cellPhone" name="userPhone" value="" class="form-control" placeholder="ex) 010-1234-1234" required="required">
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -161,7 +159,7 @@
                             주소 
                             <span class="help-inline">*</span>
                           </label>
-                          <input type="text" id="address" name="address" value="" class="form-control " readonly="readonly">
+                          <input type="text" id="address" name="userAddress" value="" class="form-control " readonly="readonly">
                           <span class="help-block"></span>
                         </div>
                       </div>
@@ -171,7 +169,7 @@
                             상세주소
                             <span class="help-inline">*</span>
                           </label> 
-                          <input type="text" id="detailAddress" name="detailAddress" value="" class="form-control ">
+                          <input type="text" id="detailAddress" name="detailAddress" value="" class="form-control " required="required">
                           <span class="help-block"></span>
                         </div>
                       </div>
@@ -186,7 +184,7 @@
                         생년월일 
                         <span class="help-inline">*</span>
                       </label>
-                      <input type="date" id="birthDate" name="userBirth" value="" class="form-control">
+                      <input type="date" id="birthDate" name="userBirth" value="" class="form-control" required="required">
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -204,7 +202,7 @@
                             이메일 
                             <span class="help-inline">*</span>
                           </label>
-                          <input type="text" id="email" name="userEmail" placeholder="ex) user@kosta.or.kr" class="form-control">
+                          <input type="text" id="email" name="userEmail" placeholder="ex) user@kosta.or.kr" class="form-control" required="required">
                           <span class="help-block"></span>
                         </div>
                         <span class="kt-pl-30 input-group-btn">
@@ -219,7 +217,7 @@
                             인증번호
                             <code id="emailTimer"class="help-inline ng-binding"></code>
                           </label>
-                          <input type="text" id="authNum" name="authNum" class="form-control" placeholder="인증번호를 입력해 주세요.">
+                          <input type="text" id="authNum" name="authNum" class="form-control" placeholder="인증번호를 입력해 주세요." required="required">
                         </div>
                         <span class="kt-pl-30 input-group-btn">
                           <button type="button" id="emailConfirm" class="ladda-button btn btn-default" style="margin-top: 24px;">
@@ -233,8 +231,8 @@
               </div>
             </div>
             <div class="text-center kt-mb-50">
-              <button class="btn btn-success">회원가입</button>
-              <a href="/login" class="btn btn-default">취소</a>
+              <button id="insertBtn" class="btn btn-success">회원가입</button>
+              <a href="/user/userMain" class="btn btn-default">취소</a>
             </div>
           </form>
         </div>

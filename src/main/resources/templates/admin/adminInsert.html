@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutadmin}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content1">
+
+		<div class="tab-content tab-pane">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hpanel">
+						<div class="panel-body">
+							<form action="/admin/adminInsert" method="POST" id="updateForm"
+								novalidate="novalidate">
+								<div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a role="button" data-toggle="collapse"
+													data-parent="#accordion" href="#collapseOne"
+													aria-expanded="true" aria-controls="collapseOne"> 관리자
+													정보<span class="caret"></span>
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in">
+
+											<!-- 개인정보 수정 -->
+											<div class="panel-body">
+												<div class="form-group cust-form has-feedback ">
+													<label for="userId" class="control-label"> 아이디 <span
+														class="help-inline">*</span>
+													</label> <input type="hidden" id="adminNo" name="adminNo"
+														class="form-control" readonly="readonly"> <input
+														type="text" id="adminId" name="adminId"
+														class="form-control"> <span
+														class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="name" class="control-label"> 비밀번호 <span
+														class="help-inline">*</span>
+													</label> <input type="text" id="adminPw" name="adminPw"
+														class="form-control"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="name" class="control-label"> 이름 <span
+														class="help-inline">*</span>
+													</label> <input type="text" id="adminName" name="adminName"
+														class="form-control"> <span class="help-block"></span>
+												</div>
+
+												<div class="form-group cust-form has-feedback ">
+													<label for="cellPhone" class="control-label"> 휴대전화
+														번호 <span class="help-inline">*</span>
+													</label> <input type="text" id="adminPhone" name="adminPhone"
+														class="form-control"> <span class="help-block"></span>
+												</div>
+
+												<div class="row">
+													<div class="col-md-10">
+														<div class="form-group cust-form has-feedback ">
+															<label for="email" class="control-label"> 이메일 <span
+																class="help-inline">*</span>
+															</label> <input type="text" id="adminEmail" name="adminEmail"
+																class="form-control"> <span class="help-block"></span>
+														</div>
+													</div>
+												</div>
+
+												<input type="submit" value="등록하기">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

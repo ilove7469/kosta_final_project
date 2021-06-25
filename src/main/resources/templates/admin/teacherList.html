@@ -9,9 +9,7 @@
 <body>
 	<div class="panel panel-default" layout:fragment="content1">
 
-<span id="menuTitle">강사리스트</span>
-
-
+	<div id="menuTitleIco"><span class="glyphicon glyphicon-education"></span></div><span id="menuTitle">강사</span>
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
@@ -36,8 +34,8 @@
 			</thead>
 			<tbody>
 			<tr th:each="teacher:${teacherlist}">
-				<td><a th:href="@{'/admin/teacherDetail/'+${teacher.teacherNo}}" th:text="${teacher.teacherNo}"></a></td>
-				<td th:text="${teacher.teacherId}"></td>
+				<td th:text="${teacher.teacherNo}"></td>
+				<td><a th:href="@{'/admin/teacherDetail/'+${teacher.teacherNo}}" th:text="${teacher.teacherId}"></a></td>
 				<td th:text="${teacher.teacherName}"></td>
 				<td th:text="${teacher.teacherPhone}"></td>
 				<td th:text="${teacher.teacherEmail}"></td>

@@ -8,6 +8,13 @@
 </head>
 <body>
 <div layout:fragment="content1">
+
+   <div id="menuTitleIco"><span class="glyphicon glyphicon-user"></span></div><span id="menuTitle">회원 상세보기</span>
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
+	
 <ul class="nav nav-tabs">
   <li class="active"><a class="btn-link" th:href="@{'/admin/userdetail/'+${user.userNo}}">
     <i class="fa fa-user text-info"></i>회원정보</a></li>
@@ -61,11 +68,11 @@
         성별
         <span class="help-inline">*</span>
       </label>
-      <span class="buttonset" id="sex">
-        <input type="radio" id="sex_true" name="sex" value="true" checked="checked" class="radio-inline">
+ 		<span class="buttonset" id="sex">
+        <input type="radio" id="sex_true" name="sex" value="true" class="radio-inline" th:checked="${#strings.toString(user.sex)}=='M'">
         <label for="sex_true">남</label>
       
-        <input type="radio" id="sex_false" name="sex" value="false" class="radio-inline">
+        <input type="radio" id="sex_false" name="sex" value="false" class="radio-inline" th:checked="${#strings.toString(user.sex)}=='F'">
         <label for="sex_false">여</label>
       </span>
       <span class="help-block"></span>

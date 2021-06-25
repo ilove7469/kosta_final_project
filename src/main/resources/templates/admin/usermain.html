@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-   <span id="menuTitle">회원</span>
-   
+
+   <div id="menuTitleIco"><span class="glyphicon glyphicon-user"></span></div><span id="menuTitle">회원</span>
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
@@ -35,8 +35,7 @@
 				<td th:text="${user.userName}">이름</td>
 				<td th:text="${user.userPhone}">전화번호</td>
 				<td th:text="${user.userEmail}">이메일</td>
-				<td th:if="${not #strings.isEmpty(user.company.companyName)}" th:text="${user.company.companyName}">소속회사</td>
-				<td th:if="${#strings.isEmpty(user.company.companyName)}" th:text=" ">빈칸출력</p>
+				<td th:text="${user.company.companyName}">소속회사</td>
 				<td th:text="${#calendars.format(user.userRegDate,'yyyy-MM-dd')}">등록일</td>
 			</tr>
 		</tbody>

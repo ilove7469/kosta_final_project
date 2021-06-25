@@ -8,7 +8,15 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<h4>강의장 신규등록</h4>
+
+    <div id="menuTitleIco"><span class="glyphicon glyphicon-home"></span></div><span id="menuTitle">
+    <th:block th:if="${lectureHall == null}">강의장 등록</th:block>
+    <th:block th:unless="${lectureHall == null}">강의장 상세보기</th:block>
+    </span>
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 	<form th:action="@{/admin/lecturehallInsert}" method="post">
 	
 	<th:block th:unless="${lectureHall == null}">

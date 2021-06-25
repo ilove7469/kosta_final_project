@@ -92,37 +92,44 @@ padding-left: 40px;
 }
 
 #divline{
-background-color: #939db3;
-height: 1px;
-width: 200px;
-margin: auto;
+  background-color: #939db3;
+  height: 1px;
+  width: 200px;
+  margin: auto;
 }
 
 #divContentline{
-background-color: #939db3;
-height: 1px;
-width: 100%;
-margin: 20px 0 20px 0;
-float: left;
+  background-color: #939db3;
+  height: 1px;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  float: left;
+}
+
+form label{
+  float:left;
 }
 
 #profile{
-width: 100%;
-height: 150px;
+  width: 100%;
+  height: 150px;
 }
+
 #profile img{
-margin-left: 80px;
-margin-top: 15px;
+  margin-left: 80px;
+  margin-top: 15px;
 }
+
 #profile p{
-color: white;
-margin-top: 10px;
-margin-left: 95px;
+  color: white;
+  margin-top: 10px;
+  margin-left: 85px;
 }
+
 footer p{
-float : right;
-margin: 0 auto;
-color :grey;
+  float : right;
+  margin: 0 auto;
+  color :grey;
 }
 
 /* width */
@@ -152,15 +159,13 @@ color :grey;
 
 <th:block th:fragment="sidebarFragment">
 
-	
-
 
 <!-- 사이드메뉴 -->
 	<div class="sidenav">
 	
 	<div id="profile">
 	<img class="img-circle" src="/img/logo2.png" width="80px" height="80px">
-	<p>관리자</p>
+	<p><span id="loggingName">관리자</span> 님</p>
 	</div>
 	
 	<!-- 메뉴분리용 div -->
@@ -231,25 +236,40 @@ color :grey;
 </th:block>
 
 
-<!-- 사이드메뉴 스크립트-->
-	<script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-  this.classList.toggle("active");
-  var dropdownContent = this.nextElementSibling;
-  if (dropdownContent.style.display === "block") {
-  dropdownContent.style.display = "none";
-  } else {
-  dropdownContent.style.display = "block";
-  }
-  });
-}
+<script>
+	/* 사이드메뉴 스크립트 */
+	/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+	var dropdown = document.getElementsByClassName("dropdown-btn");
+	var i;
+
+	for (i = 0; i < dropdown.length; i++) {
+		dropdown[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var dropdownContent = this.nextElementSibling;
+			if (dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else {
+				dropdownContent.style.display = "block";
+			}
+		});
+	}
+	/* 사이드메뉴 스크립트 여기까지 */
+	
+
+	(function() {
+		$.ajax({
+			url : "/admin/loggingId",
+			async : false,
+			contentType : "application/json",
+			method : "GET",
+			dataType : "json",
+			success : function(result) {
+				$("#loggingName").html(result.naver);
+			}
+		})
+	})();
 </script>
-<!-- 사이드메뉴 스크립트 여기까지-->
 
 </body>
 </html>

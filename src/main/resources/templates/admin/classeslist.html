@@ -11,23 +11,21 @@
 	<div class="panel panel-default" layout:fragment="content1">
 
 	
-		<span id="menuTitle">강의</span>
-
-		
+		<div id="menuTitleIco"><span class="glyphicon glyphicon-bullhorn"></span></div><span id="menuTitle">강의</span>
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
 	
+	
+		<div class="pull-right">
+		<h3><a class="btn btn-default" th:href="@{/admin/classesInsert}">등록</a></h3>
+		</div>
 
 	<!-- 엑셀 다운용 코드 -->
 		<div class="pull-right">
 		<h3><a class="btn btn-default" th:href="@{/admin/exceldownload}">엑셀저장</a></h3>
 		</div>
 	<!-- 엑셀 다운용 코드 끝-->
-
-		<div class="pull-right">
-		<h3><a class="btn btn-default" th:href="@{/admin/classesInsert}">등록</a></h3>
-		</div>
 
 		<table class="table table-striped table-bordered table-hover">
 		<thead>
@@ -50,7 +48,7 @@
 				<td th:text="${classes.classRoom.lectureHall.lectureHallName}">강의장명</td> 
 				<td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
 				<td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
-				<td th:if="${#strings.toString(classes.classState)}=='ClOSE'" th:text="종강">상태</td>
+				<td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
 				<td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>	
 				<td><a class="btn btn-danger btn-sm" th:href="@{/admin/classesDelete(cno=${classes.classNo})}">삭제</a></td>
 			</tr>

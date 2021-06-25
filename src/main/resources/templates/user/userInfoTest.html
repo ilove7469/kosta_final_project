@@ -10,18 +10,6 @@
   <script th:src="@{/js/addressPop.js}"></script>
   <script th:src="@{/js/userInfo.js}"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script th:src="@{/js/tablesort.js}"></script>
-  <script>
-     $(function(){  
-        $("table").addClass("table table-striped table-bordered table-hover");
-        $("table").attr("id","tablesort");
-        $("#tablesort").dataTable();
-        $("a:contains('삭제')").addClass("btn btn-danger btn-sm");
-     });
-  </script>
-</th:block>
-<th:block layout:fragment="style1">
-  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 </th:block>
 </head>
 <body>
@@ -268,9 +256,7 @@
                               <input type="hidden" name="companyNo" th:value="${user.company.companyNo}" autocomplete="off">
                             </div>
                             <div class="col-md-3">
-                              <button type="button" id="searchCorp" class="btn btn-default" style="margin-top: 24px;" data-toggle="modal" data-target="#myModal">
-                                회사검색
-                              </button>
+                              <button type="button" id="searchCorp" class="btn btn-default" style="margin-top: 24px;" >회사검색</button>
                               <button type="button" id="initBtn" class="btn btn-outline btn-danger" style="margin-top: 24px;">
                                 <i class="fa fa-remove"></i>
                                 <span class="hidden-xs">&nbsp;삭제</span>
@@ -278,45 +264,6 @@
                             </div>
                           
                             <!-- Modal -->
-                            <div id="myModal" class="modal fade" role="dialog">
-                              <div class="modal-dialog">
-                            
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Modal Header</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div>
-                              		  <input type="text" class="searchKeyword">
-                              		  <button class="searchBtn">검색</button>
-                                      <hr>
-                                      <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                          <tr>
-                                            <th>회사명</th>
-                                            <th id="tdCenter">선택</th>
-                                          </tr>
-                                          </thead>
-                                          <tbody>
-                                          <tr th:each="company:${companyList}">
-                                            <td><a th:href="@{'/admin/companyDetail/'+${company.companyNo}}" th:text="${company.companyName}"></a></td>
-                                            <td id="tdCenter"><a class="btn btn-success btn-sm" th:href="@{/admin/companyDelete(cno=${company.companyNo})}">선택</a></td>
-                                          </tr>
-                                          </tbody>
-                                        </table>
-                                	</div>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" id="modalButton" class="btn btn-default" data-dismiss="modal">입력/수정</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- modal 끝 -->
-                            
                           </div>
 <span class="help-block kt-mb-15">회사를 추가하거나 삭제하고 저장버튼을 눌러야 반영됩니다.</span>
 

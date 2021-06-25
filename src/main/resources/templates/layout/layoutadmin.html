@@ -27,12 +27,6 @@
 </script>
 <!-- 게시판 끝 -->
 
-<script>
-	$(function(){  
-		$("table").addClass("table table-striped table-bordered table-hover");
-	});
-</script>
-
 <!-- 하위 html에서 css 재정의할 예정 -->
 <th:block layout:fragment="style1"></th:block>
 
@@ -43,6 +37,7 @@ body{
 
 #menuTitle{
 font-size: 30px;
+color : grey;
 }
 #headerdiv{
   position: fixed;
@@ -125,10 +120,22 @@ padding-left: 5px;
 table.dataTable tbody th, table.dataTable tbody td{
 font-size: 12px;
 font-weight: bold;
+padding-top : 2px;
 padding-right: 2px;
 padding-left: 5px;
+padding-bottom: 2px;
+/* text-align: center; */
 }
 
+.btn-group-sm>.btn, .btn-sm{
+font-size : 5px;
+text-align: center;
+margin: 1px !important;
+}
+
+#tdCenter{
+text-align: center;
+}
 
 </style>
 

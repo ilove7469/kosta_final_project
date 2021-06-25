@@ -32,8 +32,7 @@
 			$("#sub ul li.smenu").click(function() {
 		
 				subNo = $(this).attr("value");
-				alert("[[${word}]]")
-				alert($(this).attr("value"))
+				
 				$.ajax({
 					url : "searchSubject",
 					data : {
@@ -52,9 +51,7 @@
 			var formObj = $(".form2");
 			
 			$(".space ul li.hmenu").click(function(){
-				alert("[[${word}]]")
-				alert($(this).attr("value"))
-				alert("[[${subNo}]]")
+				
 				$.ajax({
 					url: "searchHall",
 					data : {

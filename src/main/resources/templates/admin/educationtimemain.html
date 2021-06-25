@@ -14,16 +14,17 @@
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
 	
-	<h3>
-		<a th:href="@{/admin/educationtimeInsert}">등록</a>
-	</h3>
+	<div class="pull-right">
+	<h3><a class="btn btn-default" th:href="@{/admin/educationtimeInsert}">등록</a></h3>
+	</div>
+	
 	<table>
 	<thead>
 	<tr>
 	 <th>이름</th>
 	 <th>유형</th>
 	 <th>시간대</th>
-	 <th>삭제</th>
+	 <th id="tdCenter">삭제</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -35,7 +36,7 @@
 		<td th:if="${#strings.toString(educationTime.educationPartType)}=='NIGHT'" th:text="야간">유형</td>
 		<td th:if="${#strings.toString(educationTime.educationPartType)}=='WEEKEND'" th:text="주말">유형</td>
 		<td th:text="${educationTime.educationTimeType}">시간대</td>
-		<td><a class="btn btn-danger btn-sm" th:href="@{/admin/educationtimeDelete(no=${educationTime.educationTimeNo})}">삭제</a></td>
+		<td id="tdCenter"><a class="btn btn-danger btn-sm" th:href="@{/admin/educationtimeDelete(no=${educationTime.educationTimeNo})}">삭제</a></td>
 	</tr>
 	</tbody>
 	</table>

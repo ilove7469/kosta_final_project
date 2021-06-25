@@ -36,7 +36,7 @@
 				<th>사업자번호</th>
 				<th>대표자명</th>
 				<th>협약사</th>
-				<th>삭제</th>
+				<th id="tdCenter">삭제</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -47,7 +47,7 @@
 				<!-- <td th:text="${company.companyConvention}"></td> -->
 				<td th:if="${#strings.toString(company.companyConvention)}=='Convention'" th:text="협약사">상태</td>
 				<td th:if="${#strings.toString(company.companyConvention)}=='NoConvention'" th:text="비협약사">상태</td>
-				<td><a th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제</a></td>
+				<td id="tdCenter"><a class="btn btn-danger btn-sm" th:href="@{/admin/companyDelete(cno=${company.companyNo})}">삭제</a></td>
 			</tr>
 			</tbody>
 		</table>

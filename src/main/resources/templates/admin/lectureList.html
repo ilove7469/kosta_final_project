@@ -33,7 +33,7 @@
 				<th>강의계획년</th>
 				<th>연간개설횟수</th>
 				<th>목표정원</th>
-				<th>삭제</th>
+				<th id="tdCenter">삭제</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -42,7 +42,7 @@
 				<td th:text="${lecture.lecturePlanYear}"></td>
 				<td th:text="${lecture.lectureOpenCount}"></td>
 				<td th:text="${lecture.lectureCapacity}"></td>
- 	 			<td><a th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제</a></td>
+ 	 			<td id="tdCenter"><a class="btn btn-danger btn-sm" th:href="@{/admin/lectureDelete(cno=${lecture.lecturePlanNo})}">삭제</a></td>
 			</tr>
 			</tbody>
 		</table>

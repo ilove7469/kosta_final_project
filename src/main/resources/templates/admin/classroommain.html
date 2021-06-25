@@ -14,10 +14,10 @@
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
-	<h3>
-		<a th:href="@{/admin/classroomInsert}">등록</a>
-	</h3>
-	
+
+	<div class="pull-right">
+	<h3><a class="btn btn-default" th:href="@{/admin/classroomInsert}">등록</a></h3>
+	</div>
 	
 	<table>
 	<thead>
@@ -25,7 +25,7 @@
 		 <th>강의장</th>
 		 <th>강의실 번호</th>
 		 <th>강의실 정원</th>
-		 <th>삭제</th>
+		 <th id="tdCenter">삭제</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,7 +35,7 @@
 				<a th:href="@{'/admin/classRoomModify/'+${classRoom.classRoomNo}}" th:text="${classRoom.classRoomName}">강의실 번호</a>
 			</td>
 			<td th:text="${classRoom.classRoomCapacity}">강의실 정원</td>
-			<td><a th:href="@{/admin/classRoomDelete(no=${classRoom.classRoomNo})}">삭제</a></td>
+			<td id="tdCenter"><a class="btn btn-danger btn-sm" th:href="@{/admin/classRoomDelete(no=${classRoom.classRoomNo})}">삭제</a></td>
 		</tr>
 	</tbody>
 	</table>

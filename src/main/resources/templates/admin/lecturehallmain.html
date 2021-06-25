@@ -15,16 +15,16 @@
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
 	
-	<h3>
-		<a th:href="@{/admin/lecturehallInsert}">등록</a>
-	</h3>
+	<div class="pull-right">
+	<h3><a class="btn btn-default" th:href="@{/admin/lecturehallInsert}">등록</a></h3>
+	</div>
 	
 	<table>
 	<thead>
 		<tr>
 		 <th>이름</th>
 		 <th>주소</th>
-		 <th>삭제</th>
+		 <th id="tdCenter">삭제</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,7 +33,7 @@
 			<a th:href="@{'/admin/lectureHallModify/'+${lectureHall.lectureHallNo}}" th:text="${lectureHall.lectureHallName}">이름</a>
 			</td>
 			<td th:text="${lectureHall.lectureHallAddress}">주소</td>
-			<td><a th:href="@{/admin/lectureHallDelete(no=${lectureHall.lectureHallNo})}">삭제</a></td>
+			<td id="tdCenter"><a class="btn btn-danger btn-sm" th:href="@{/admin/lectureHallDelete(no=${lectureHall.lectureHallNo})}">삭제</a></td>
 		</tr>
 	</tbody>
 	</table>

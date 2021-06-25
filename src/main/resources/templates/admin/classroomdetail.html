@@ -8,13 +8,21 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<h4>강의실 신규등록</h4>
+
+	<div id="menuTitleIco"><span class="glyphicon glyphicon-home"></span></div><span id="menuTitle">
+	<th:block th:if="${classRoom == null}">강의실 등록</th:block>
+	<th:block th:unless="${classRoom == null}">강의실 상세보기</th:block>
+	</span>
+   
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
 	
 	<form th:action="@{/admin/classroomInsert}" method="post">
     <div class="form-group">
       <label>강의장 이름:</label>
       <th:block th:if="${classRoom == null}">
-	      <select name="lectureHall">
+	      <select class="form-control" name="lectureHall">
 				<option 
 				th:each="lectureHall:${lectureHallList}" 
 				th:value="${lectureHall.lectureHallNo}" 
@@ -23,7 +31,7 @@
 		  </select>
 	  </th:block>
 	  <th:block th:unless="${classRoom == null}">
-	      <select name="lectureHall">
+	      <select class="form-control" name="lectureHall">
 				<option 
 				th:each="lectureHall:${lectureHallList}" 
 				th:value="${lectureHall.lectureHallNo}" 

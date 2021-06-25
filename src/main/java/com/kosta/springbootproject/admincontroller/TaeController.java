@@ -2,7 +2,9 @@ package com.kosta.springbootproject.admincontroller;
 
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +33,7 @@ import com.kosta.springbootproject.adminservice.LectureService;
 import com.kosta.springbootproject.adminservice.SubjectService;
 import com.kosta.springbootproject.adminservice.TeacherService;
 import com.kosta.springbootproject.adminservice.TraineeService;
+import com.kosta.springbootproject.model.Admin;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
@@ -37,6 +42,7 @@ import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
+import com.kosta.springbootproject.persistence.AdminRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
@@ -221,9 +227,7 @@ public class TaeController {
 	@ResponseBody
 	@GetMapping("/admin/courseInsert1")
 	public Subject findtraineeName(Long no) {
-		System.out.println("-------------"+no);
 		Subject traineeName = subjectservice.selectById(no);
-		System.out.println("-------------"+traineeName);
 		return traineeName;
 	}
 	 
@@ -370,17 +374,33 @@ public class TaeController {
 	   }
 	   
 
+	 //사이드바에 현재 로그인 사용자 이름 확인용 ajax 메소드
+		@Autowired
+		AdminRepository adminrepository;
+		
+		@ResponseBody
+		@GetMapping("/admin/loggingId")
+		public Map<String, String> loggingId() {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			UserDetails userDetails = (UserDetails)principal;
+			
+			String mid = userDetails.getUsername();
+			Admin admin = adminrepository.findByAdminId(mid);
+			String loggingId = admin.getAdminName();
+			Map<String, String> loggingid2 = new HashMap<>();
+			loggingid2.put("naver", loggingId);
+
+			return loggingid2;
+		}
+		
 
 //엑셀다운로드
-	   
 	   @Autowired
 		ClassesRepository classesRepo;
 	   
 		@RequestMapping("/admin/exceldownload")
 	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
 	        
-			//System.out.println("--------------------엑셀확인------------------");
-			//System.out.println(pagevo.getKeyword() +"----------------"+pagevo.getType());
 			 
 	        OutputStream out = null;
 	        

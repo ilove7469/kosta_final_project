@@ -8,7 +8,15 @@
 </head>
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-	<h4>교육시간 신규등록</h4>
+
+<div id="menuTitleIco"><span class="glyphicon glyphicon-time"></span></div><span id="menuTitle">
+<th:block th:if="${EducationTime == null}">교육시간 등록</th:block>
+<th:block th:unless="${EducationTime == null}">교육시간 상세보기</th:block>
+</span>
+   
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
 	
 	<form th:action="@{/admin/educationtimeInsert}" method="post">
 	    <div class="form-group">
@@ -40,14 +48,14 @@
 	      <label for="educationPartType">유형:</label>
 	      
 			<th:block th:if="${EducationTime == null}">
-		      <select class="select" name="educationPartType" id="educationPartType">
+		      <select class="form-control" name="educationPartType" id="educationPartType">
 					<option th:value="DAY" th:utext="주간"></option>
 					<option th:value="NIGHT" th:utext="야간"></option>
 					<option th:value="WEEKEND" th:utext="주말"></option>
 			  </select>
 		    </th:block>
 			<th:block th:unless="${EducationTime == null}">
-		      <select class="select" name="educationPartType" id="educationPartType">
+		      <select class="form-control" name="educationPartType" id="educationPartType">
 					<option th:value="DAY" th:utext="주간" th:selected="${#strings.toString(EducationTime.educationPartType)}=='DAY'"></option>
 					<option th:value="NIGHT" th:utext="야간" th:selected="${#strings.toString(EducationTime.educationPartType)}=='NIGHT'"></option>
 					<option th:value="WEEKEND" th:utext="주말" th:selected="${#strings.toString(EducationTime.educationPartType)}=='WEEKEND'"></option>

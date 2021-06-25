@@ -17,7 +17,10 @@ font-weight :bold;
 
 	<div class="panel panel-default" layout:fragment="content1">
 
-	<h1>강의계획등록</h1>
+ <div id="menuTitleIco"><span class="glyphicon glyphicon-calendar"></span></div><span id="menuTitle">강의계획 등록</span>
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
 
 
 	<form th:action="@{/admin/lectureInsert}" method="post">

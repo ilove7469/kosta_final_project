@@ -70,9 +70,9 @@
 			var formObj = $(".form2");
 
 			$(".space .hmenu").click(function() {
-				
+
 				hallNo = $(this).attr("value");
-				
+
 				$(".space .hmenu").each(function(idx, item) {
 					$(item).removeClass('active');
 				});
@@ -102,75 +102,75 @@
 </th:block>
 <th:block layout:fragment="style1">
 	<style>
-#sub ul li {
-	display: inline-block;
-	width: 120px;
-	color: #2F55AA;
-	border: 2.5px solid #2F55AA;
+.cencen {
+	margin: 0 auto;
+	text-align: center;
 }
 
-#sub ul li:hover {
-	background-color: #2F55AA;
-	color: white;
+.searchKeyword2 {
+	width: 600px;
+	height: 40px;
 }
 
-#sub a {
-	display: block;
+.searchBtn2 {
+	height: 40px;
 }
 
-.space ul li {
-	display: inline-block;
-	width: 120px;
-	color: #2F55AA;
-	border: 2.5px solid #2F55AA;
+.category {
+	font-size:32px;
 }
 
-.space ul li:hover {
-	background-color: #2F55AA;
-	color: white;
+#final_content {
+margin-left:200px;
+margin-right:200px;
 }
 
-.space a {
-	display: block;
-}
 </style>
 </th:block>
 </head>
 <body>
 	<div layout:fragment="content1">
-		<div>
-			<input type="text" class="searchKeyword2" th:value=${word}>
+		<div class="cencen">
+
+			<input type="text" class="searchKeyword2" th:value=${word}
+				placeholder="과정명, 강사명, 주제 검색어를 입력해 주세요">
 			<button class="searchBtn2">검색</button>
 		</div>
 
+		<br>
+		
 		<form class="form2" th:action="@{/search/searchResult}" method="get">
 			<input type="hidden" name="keyword" value="">
 
 		</form>
 
-
-		<hr>
-
-		<div id="sub">
-			<span>주제명</span>
-			<th:block th:each="subject:${sublist}">
-				<button type="button" class="smenu btn btn-default"
-					th:text="${subject.subName}" th:value="${subject.subjectNo}"></button>
-			</th:block>
-		</div>
-
-		<hr>
-
-		<div id="table_content">
-			<div class="space">
-				<span>강의장</span>
-				<th:block th:each="hall:${hlist}">
-					<button type="button" class="hmenu btn btn-default"
-						th:text="${hall.lectureHallName}" th:value="${hall.lectureHallNo}"></button>
+		<div id="sub" class="cencen">
+			<div class="category">주제명</div>
+			<br>
+			<div>
+				<th:block th:each="subject:${sublist}">
+					<button type="button" class="smenu btn btn-default"
+						th:text="${subject.subName}" th:value="${subject.subjectNo}"></button>
 				</th:block>
 			</div>
+		</div>
+		
+		<br>
 
-			<hr>
+		<div id="table_content">
+			<div class="space cencen">
+				<div class="category">강의장</div>
+				<br>
+				<div>
+					<th:block th:each="hall:${hlist}">
+						<button type="button" class="hmenu btn btn-default"
+							th:text="${hall.lectureHallName}"
+							th:value="${hall.lectureHallNo}"></button>
+					</th:block>
+				</div>
+			</div>
+
+			<br>
 
 			<div id="final_content">
 				<table>

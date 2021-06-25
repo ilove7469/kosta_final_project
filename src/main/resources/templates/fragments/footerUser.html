@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
 <head>
 <meta charset="UTF-8">
+<!-- <th:block layout:fragment="style1">
+	<style>
+.user-foot {
+	margin-left: 300px;
+	text-align: center;
+}
+</style>
+</th:block> -->
+
 </head>
 <body>
 	<footer th:fragment="footer1">
-		footer입니다. &copy; KOSTA 코스타(가산디지털단지)
+		<div class="user-foot">
+			<br><br><br><br><br><br>
+			<p>&copy; 2021 KOSTA All rights reserved.</p>
+			<p>[산업계 주도 맞춤형] 재직자:02-6278-9352 / 채용예정자:031-606-9304</p>
+			<p>[컨소시엄] 재직자:031-606-9337 / 채용예정자:031-606-9319</p>
+		</div>
 	</footer>
 
 </body>

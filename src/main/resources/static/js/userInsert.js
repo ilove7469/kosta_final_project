@@ -3,117 +3,18 @@
  */
 $(function(){
 		//값 초기화. 회원가입 버튼 비활성화
-	    $("#btnConfirm").prop("disabled",true);
+	    $("#insertBtn").prop("disabled",true);
 	    var idOk = false;
 	    var pw1Ok = false;
 	    var pw2Ok = false;
 	    var emailOk = false;
 	    var isOk = false;   
-	
-	
-		var AuthTimer=0;
-		//이메일 인증
-		$("#emailSendBtn").click(function() {// 메일 입력 유효성 검사
-			var mail = $("#email").val(); //사용자의 이메일 입력값. 
-			if (mail == "") {
-				alert("메일 주소가 입력되지 않았습니다.");
-			} else {
-				//mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
-				$.ajax({
-					type : "post",
-					url : "/user/email/send",
-					data : {
-						email:mail
-						},
-					dataType :'json',
-				});
-				alert("인증번호가 전송되었습니다.");
-				emailOk = false;
-				if(AuthTimer!=0){
-					AuthTimer.fnStop();
-				}
-				timerStarter();
-			}
-		});
-		
-		//이메일 코드 일치 확인
-		$("#emailConfirm").click(function() {
-			var authNum = $("#authNum").val();
-			$.ajax({
-				type:"post",
-				url:"/user/email/certificate",
-				data:{"authNum":authNum},
-				dataType :'json',
-				success:function(item){
-					alert(item.message,item.info);
-					emailOk = item.emailOk;
-					if(emailOk){
-						AuthTimer.fnStop();
-					}
-					$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
-				}
-			});
-		});
-		//이메일 타이머
-		// 타이머 구현_daldal
-		function $ComTimer(){
-		    //prototype extend
-		}
-		
-		$ComTimer.prototype = {
-		    comSecond : ""
-		    , fnCallback : function(){}
-		    , timer : ""
-		    , domId : ""
-		    , fnTimer : function(){
-		        var m = Math.floor(this.comSecond / 60) + "분 " + (this.comSecond % 60) + "초";	// 남은 시간 계산
-		        this.comSecond--;					// 1초씩 감소
-		        console.log(m);
-		        this.domId.innerText = m;
-		        if (this.comSecond < 0) {			// 시간이 종료 되었으면..
-		            clearInterval(this.timer);		// 타이머 해제
-		            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.","warning");
-					$.ajax({
-						type:"post",
-						url:"/user/email/end",
-					});
-		        }
-		    }
-		    ,fnStop : function(){
-		        clearInterval(this.timer);
-		    }
-		}
-		
-		function timerStarter(){
-			AuthTimer = new $ComTimer()
-			AuthTimer.comSecond = 10; // 제한 시간
-			AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.","warning")}; // 제한 시간 만료 메세지
-			AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000); 
-			
-			AuthTimer.domId = document.getElementById("emailTimer"); 	
-		}
-		
-		
-		//이메일 인증 알림창
-		var alert = function(msg, info) {
-			swal({
-				title : "인증 결과",
-				text : msg,
-				icon : info,
-				timer : 1500,
-				customClass : "sweet-size",
-				confirmButtonText : "확인",
-				showConfirmButton : true,
-				closeOnConfirm : true
-			});
-		}
 		
 		//주소 검색
 		$("#searchAddress").click(function(){
 			addressSearch();
 		});
 	
-	    
 	    //정규식 활용 id 체크(영소문자+숫자 5자 이상)------------------
 	    $("#inputUserId").keyup(function(){    
 	        
@@ -153,7 +54,7 @@ $(function(){
 	                        $("#signupWarn").text( '　' );            
 	                        isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk );
 	                        if( isOk == true ){
-	                            $("#btnConfirm").prop("disabled",false);
+	                            $("#insertBtn").prop("disabled",false);
 	                        }
 	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok +  ', ' + emailOk + '마지막 idOk:' + isOk );
 	                    }else{
@@ -172,14 +73,14 @@ $(function(){
 	        }else{
 	            //조건에 맞지 않는 경우
 	            idOk = false;
-	            $("#btnConfirm").prop("disabled",true);
+	            $("#insertBtn").prop("disabled",true);
 	            $("#idEnable").attr("class","is-invalid");
 	            $("#idDisable").text("4~20자 소문자 또는 숫자를 넣어주세요");
 	            $("#idDisable").attr("class","is-valid");
 	        }
 	    });
 	    
-	  	//pw 체크(영소문자+숫자 5자 이상)------------------
+	  	//pw 체크()------------------
 	    $("#confirmPassword").keyup(function(){
 	        var pw1 = $("#newPassword").val();
 			pw1Ok = true;
@@ -190,9 +91,8 @@ $(function(){
 	            pw2Ok = true;            
 	            $("#signupWarn").text( '　' );
 				isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk ); 
-				alert(isOk);        
 	            if( isOk == true ){
-	                $("#btnConfirm").prop("disabled",false);
+	                $("#insertBtn").prop("disabled",false);
 	            }
 	            $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', '  + emailOk + '마지막 idOk:' + isOk );
 	            $("#pwDisable").removeClass("is-valid");
@@ -202,18 +102,130 @@ $(function(){
 	            
 	        }else{
 	            pw2Ok = false;
+				$("#insertBtn").prop("disabled",true);
 	            $("#pwEnable").removeClass("is-valid");
 	            $("#pwEnable").addClass("is-invalid");
 	            $("#pwDisable").removeClass("is-invalid");
 	            $("#pwDisable").addClass("is-valid");
 	        }
 	    });
-	function allOk( ok1, ok2, ok3, ok4 ){
-		    if( ok1 && ok2 && ok3 && ok4 ){
-		        return true;
-		    }else{
-		        return false;
-    		}
-	}
+
+		//이메일 인증
+		var AuthTimer=0;
+		$("#emailSendBtn").click(function() {// 메일 입력 유효성 검사
+			var mail = $("#email").val(); //사용자의 이메일 입력값. 
+			if (mail == "") {
+				alert("메일 주소가 입력되지 않았습니다.","info");
+			} else {
+				//mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
+				$.ajax({
+					type : "post",
+					url : "/user/email/send",
+					data : {
+						email:mail
+						},
+					dataType :'json',
+				});
+				alert("인증번호가 전송되었습니다.");
+				emailOk = false;
+				if(AuthTimer!=0){
+					AuthTimer.fnStop();
+				}
+				timerStarter();
+			}
+		});
+		
+		//이메일 코드 일치 확인
+		$("#emailConfirm").click(function() {
+			var authNum = $("#authNum").val();
+			$.ajax({
+				type:"post",
+				url:"/user/email/certificate",
+				data:{"authNum":authNum},
+				dataType :'json',
+				success:function(item){
+					alert(item.message,item.info);
+					emailOk = item.emailOk;
+					if(emailOk){
+						AuthTimer.fnStop();
+					}
+					isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk );
+					if( isOk == true ){
+	                  $("#insertBtn").prop("disabled",false);
+	                }
+					$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
+					$("#email").attr("readonly","readonly");
+				}
+			});
+		});
+		
+		//이메일 타이머
+		// 타이머 구현_daldal
+		function $ComTimer(){
+		    //prototype extend
+		}
+		//타이머 로직
+		$ComTimer.prototype = {
+		    comSecond : ""
+		    , fnCallback : function(){}
+		    , timer : ""
+		    , domId : ""
+		    , fnTimer : function(){
+		        var m = Math.floor(this.comSecond / 60) + "분 " + (this.comSecond % 60) + "초";	// 남은 시간 계산
+		        this.comSecond--;					// 1초씩 감소
+		        console.log(m);
+		        this.domId.innerText = m;
+		        if (this.comSecond < 0) {			// 시간이 종료 되었으면..
+		            clearInterval(this.timer);		// 타이머 해제
+		            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.","warning");
+					$.ajax({
+						type:"post",
+						url:"/user/email/end",
+					});
+		        }
+		    }
+		    ,fnStop : function(){
+		        clearInterval(this.timer);
+		    }
+		}
+		//타이머 설정
+		function timerStarter(){
+			AuthTimer = new $ComTimer()
+			AuthTimer.comSecond = 180; // 제한 시간
+			AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.","warning")}; // 제한 시간 만료 메세지
+			AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000); 
+			
+			AuthTimer.domId = document.getElementById("emailTimer"); 	
+		}
+		
+		//이메일 인증 알림창
+		var alert = function(msg, ifo) {
+			swal({
+				title : "인증 결과",
+				text : msg,
+				icon : ifo,
+				timer : 3000,
+				customClass : "sweet-size",
+				 button: {
+  					 text: "확인"
+  				},
+				showConfirmButton : true,
+				closeOnConfirm : true
+			});
+		}
+		
+		//회원가입 버튼 클릭 이벤트
+	    $("#insertBtn").click(function(){
+	        $("#signupForm").attr("action", "/user/userInsert")
+	        $("#signupForm").submit();
+	    });
   	});
+	//서밋 버튼 활성화 체크
+	function allOk( ok1, ok2, ok3, ok4 ){
+	    if( ok1 && ok2 && ok3 && ok4 ){
+	        return true;
+	    }else{
+	        return false;
+		}
+	}
 	

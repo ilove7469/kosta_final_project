@@ -114,12 +114,4 @@ public class CourseController {
 		model.addAttribute("class",classInfo);
 		return "/user/userEnrollSidebar";
 	}
-	@GetMapping("/user/userInsert")
-	public void userInsert() {
-		
-	}
-	@GetMapping("/user/userInfo")
-	public void userInfo() {
-		
-	}
 }

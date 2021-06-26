@@ -31,11 +31,6 @@
 <th:block layout:fragment="style1"></th:block>
 
 <style>
-html {
-height: 100%;
-margin: 0px;
-padding: 0px;
-}
 
 body{
   background-color: #e7ebf6 !important;
@@ -68,7 +63,7 @@ margin-right: 8px;
 #headerLogoDiv{
   background: #677799;
   height: 100%;
-  width: 205px;
+  width: 195px;
   color : white;
   text-align: center;
   font-size: 14px;
@@ -78,8 +73,9 @@ margin-right: 8px;
 #headerLogoDiv p{
   padding: 10px !important;
   margin:0px !important;
-  width: 230px;
+  width: 195px;
   height: 100%;
+
 }
 
 #headerDivRight{
@@ -126,8 +122,11 @@ margin-right: 8px;
 .panel{
   padding : 20px !important;
   box-shadow: 10px 10px 10px #c7cfe2;
-  height: 100%;
-  float:left
+  height: 80%;
+  width : 81%;
+  float : left;
+  margin-left: 240px;
+  margin-top : 80px;
 }
 
 table.dataTable thead th, table.dataTable thead td{
@@ -151,7 +150,10 @@ table.dataTable tbody th, table.dataTable tbody td{
 
 #tdCenter{
   text-align: center;
+
+  
 }
+
 
 </style>
 
@@ -161,12 +163,12 @@ table.dataTable tbody th, table.dataTable tbody td{
         <div th:block th:replace="fragments/sideBar"></div>
 		<!-- 헤더 -->
 		<header th:replace="fragments/headeradmin::header1"></header>
-        <div class="main">
+
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
 			
-		</div>
+
 <footer th:replace="fragments/footeradmin::footer1"></footer>
 	
 	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->

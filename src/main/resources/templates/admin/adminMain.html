@@ -21,48 +21,53 @@
   padding : 0px;
   width :100%;
   color : grey;
-  float :left;
 }
 
 #contentLeft{
   float : left;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   background: url(/img/logoOp.png);
   background-size : 150px;
   background-repeat:no-repeat;
   background-position: center; 
   width: 63%;
-  height :465px;
+  height :370px;
   float : left;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 5px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  
 
 }
 
 #contentRight{
-  width: 36%;
-  height :480px;
+  width: 37%;
+  height :430px;
   float : right;
+    margin-bottom: 0px;
+    padding :0px;
 }
 
 #contentRight1, #contentRight2, #contentRight3, #contentRight4{
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-  margin : 3px;
-  width : 200px;
-  height : auto;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  margin : 8px;
+  margin-bottom : 8px;
+  width : 203px;
+  height : 175px;
   float: left;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .count1, .count2, .count3, .count4 {
   width: 150px;
   height: 80px;
   margin: 0 auto;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-right: 10px;
-  font-size: 60px;
+  font-size: 55px;
   list-style: none;
   text-align: right;
   color: grey;
@@ -72,13 +77,13 @@
 #countTitle{
 margin-top:18px;
 margin-left: 16px;
-font-size: 20px;
+font-size: 18px;
 color: grey;
 }
 
 #contentRight1 span{
 margin-right: 2px;
-border-radius: 50%;
+border-radius: 5px;
 padding : 7px;
 background-color: #dceedf;
 color : #71f887;
@@ -86,7 +91,7 @@ color : #71f887;
 
 #contentRight2 span{
 margin-right: 4px;
-border-radius: 50%;
+border-radius: 5px;
 padding : 7px;
 background-color: #fbd39c;
 color : #ffb44e;
@@ -94,7 +99,7 @@ color : #ffb44e;
 
 #contentRight3 span{
 margin-right: 4px;
-border-radius: 50%;
+border-radius: 5px;
 padding : 7px;
 background-color: #feed75;
 color : #ffe52a;
@@ -102,7 +107,7 @@ color : #ffe52a;
 
 #contentRight4 span{
 margin-right: 4px;
-border-radius: 50%;
+border-radius: 55px;
 padding : 7px;
 background-color: #b9e9ff;
 color : #62ceff;
@@ -122,8 +127,8 @@ color : #62ceff;
   float : left;
   height :465px;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   padding : 5px;
 
 }
@@ -131,7 +136,7 @@ color : #62ceff;
 #content2Right{
   margin-right : 8px;
   float : right;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   background: url(/img/logoOp.png);
   background-size : 150px;
   background-repeat:no-repeat;
@@ -139,7 +144,7 @@ color : #62ceff;
   width: 68%;
   height :465px;
   border: 1px solid #dcdcdc;
-  border-radius: 10px;
+  border-radius: 5px;
   }
   
 .twitter-timeline{
@@ -148,6 +153,40 @@ color : #62ceff;
   height : 100% !important;
   }
 
+#contentLeft div{     /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
+float : left;
+width : 160px;
+height : 160px;
+margin: 10px;
+}
+
+#contentLeft :hover {
+  background-color: #dcdcdc;
+}
+
+#contentLeft span{
+font-size: 50px;
+padding : 50px;
+padding-bottom : 10px;
+padding-left : 55px;
+padding-top : 40px;
+margin-right: 20px;
+}
+
+#contentLeft img{
+margin-top : 26px;
+margin-left : 42px;
+width : 75px;
+height : auto;
+}
+
+#contentLeft p{
+font-size: 12px;
+margin: 10px;
+text-align: center;
+
+
+}
 
 </style>
 <script>
@@ -207,12 +246,18 @@ $(function() {
 <body>
 
 	<div class="panel panel-default" layout:fragment="content1">
-				<div id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</div>
-		<div id="mainView">
-
-			<div id="contentLeft">
 				
+		<div id="mainView">
+<div id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</div>
+			<div id="contentLeft">
+				<div id="contentLeft1" onclick="location.href='/admin/adminInsert';"><span class="glyphicon glyphicon-edit"></span><p>관리자 등록</p></div>
+				<div id="contentLeft1" onclick="location.href='/admin/adminInfo';"><span class="glyphicon glyphicon-user"></span><p>관리자 정보</p></div>
+				<div id="contentLeft1" onclick="location.href='/user/userMain';"><img src ="/img/kostaEduLogo.png"><p>코스타에듀</p></div>
+				<div id="contentLeft4"><span class="glyphicon glyphicon-list-alt"></span><p>직원주소록</p></div>
+				<div id="contentLeft5"><span class="glyphicon glyphicon-folder-close"></span><p>샘플1</p></div>
+				<div id="contentLeft6"><span class="glyphicon glyphicon-book"></span><p>샘플2</p></div>
 			</div>
+			
 			<div id="contentRight">
 				<div id = "contentRight1">
 				<p id="countTitle"><span class="glyphicon glyphicon-user"></span>등록회원수</p>

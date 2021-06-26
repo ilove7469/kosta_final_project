@@ -11,72 +11,46 @@
   width: 100%;
   height: 100%;
   float : left;
+  padding : 0;
+  margin : 0;
 }
 
-#viewNotice{
-  margin-top : 10px !important;
-  color : grey;
 
+#viewNotice{
+  margin : 0px;
+  padding : 0px;
+  width :100%;
+  color : grey;
+  float :left;
 }
 
 #contentLeft{
-float : left;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  float : left;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
   background: url(/img/logoOp.png);
   background-size : 150px;
   background-repeat:no-repeat;
   background-position: center; 
-  width: 58%;
+  width: 63%;
   height :465px;
   float : left;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
   margin-top: 5px;
-  margin-left: 5px;
+
 }
 
 #contentRight{
-  padding : 0px;
-  width: 40%;
+  width: 36%;
   height :480px;
   float : right;
 }
 
-#contentRight1{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+#contentRight1, #contentRight2, #contentRight3, #contentRight4{
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
   margin : 3px;
-  width : 230px;
-  height :230px;
-  float: left;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-}
-
-#contentRight2{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin : 3px;
-  width : 230px;
-  height :230px;
-  float: left;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-}
-
-#contentRight3{
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin : 3px;
-  width : 230px;
-  height :230px;
-  float: left;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-}
-
-#contentRight4{
-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin : 3px;
-  width : 230px;
-  height :230px;
+  width : 200px;
+  height : auto;
   float: left;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
@@ -86,24 +60,24 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   width: 150px;
   height: 80px;
   margin: 0 auto;
+  margin-top: 80px;
+  margin-right: 10px;
   font-size: 60px;
   list-style: none;
   text-align: right;
-  margin-top: 80px;
-  margin-right: 10px;
   color: grey;
   float :right;
 }
 
 #countTitle{
-margin-top:20px;
-margin-left: 20px;
-font-size: 25px;
+margin-top:18px;
+margin-left: 16px;
+font-size: 20px;
 color: grey;
 }
 
 #contentRight1 span{
-margin-right: 4px;
+margin-right: 2px;
 border-radius: 50%;
 padding : 7px;
 background-color: #dceedf;
@@ -133,6 +107,46 @@ padding : 7px;
 background-color: #b9e9ff;
 color : #62ceff;
 }
+
+#mainview2{
+  width: 100%;
+  height: 100%;
+  float : left;
+  padding : 0;
+  margin : 0;
+  
+}
+
+#content2Left{
+  width: 30%;
+  float : left;
+  height :465px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  padding : 5px;
+
+}
+
+#content2Right{
+  margin-right : 8px;
+  float : right;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  background: url(/img/logoOp.png);
+  background-size : 150px;
+  background-repeat:no-repeat;
+  background-position: center; 
+  width: 68%;
+  height :465px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  }
+  
+.twitter-timeline{
+  float : left;
+  width : 100%;
+  height : 100% !important;
+  }
 
 
 </style>
@@ -193,6 +207,7 @@ $(function() {
 <body>
 
 	<div class="panel panel-default" layout:fragment="content1">
+				<div id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</div>
 		<div id="mainView">
 
 			<div id="contentLeft">
@@ -201,25 +216,34 @@ $(function() {
 			<div id="contentRight">
 				<div id = "contentRight1">
 				<p id="countTitle"><span class="glyphicon glyphicon-user"></span>등록회원수</p>
-						<li class="count1">오류</li>
+						<li class="count1">error</li>
 				</div>
 				<div id = "contentRight2">
 				<p id="countTitle"><span class="glyphicon glyphicon-home"></span>협약사</p>
-						<li class="count2">오류</li>
+						<li class="count2">error</li>
 				</div>
 				<div id = "contentRight3">
 				<p id="countTitle"><span class="glyphicon glyphicon-volume-up"></span>등록강사</p>
-						<li class="count3">오류</li>
+						<li class="count3">error</li>
 				</div>
 				<div id = "contentRight4">
 				<p id="countTitle"><span class="glyphicon glyphicon-education"></span>수료생</p>
-						<li class="count4">오류</li>
+						<li class="count4">error</li>
 				</div>
 			</div>
+		<div id="mainview2">
+			<div id="content2Left">
+				<a class="twitter-timeline" href="https://twitter.com/swkosta?ref_src=twsrc%5Etfw">Tweets by swkosta</a> 
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+			<div id="content2Right">
+				
+			</div>
+		</div>
 		
 			
 		</div>
-			<span id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</span>
+
 	</div>
 
 

@@ -8,84 +8,218 @@
 
 <style>
 #mainView { 
-  background: url(/img/logo3.png);
-  background-size : 150px;
-  background-repeat:no-repeat;
-  background-position: center; 
-  opacity: 0.1; 
   width: 100%;
-  height: 500px;
+  height: 100%;
+  float : left;
 }
 
 #viewNotice{
-  color : red !important;
+  margin-top : 10px !important;
+  color : grey;
+
 }
+
 #contentLeft{
-  background-color: grey;
-  width: 60%;
-  height :480px;
+float : left;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background: url(/img/logoOp.png);
+  background-size : 150px;
+  background-repeat:no-repeat;
+  background-position: center; 
+  width: 58%;
+  height :465px;
   float : left;
-  border: 1px solid black;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
+
 #contentRight{
-  padding : 5px;
-  background-color: lightgrey;
+  padding : 0px;
   width: 40%;
   height :480px;
   float : right;
 }
+
 #contentRight1{
-  margin : 2px;
-  background-color: red;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin : 3px;
   width : 230px;
   height :230px;
   float: left;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
 }
+
 #contentRight2{
-  margin : 2px;
-  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin : 3px;
   width : 230px;
   height :230px;
   float: left;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
 }
+
 #contentRight3{
-  margin : 2px;
-  background-color: blue;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin : 3px;
   width : 230px;
   height :230px;
   float: left;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
 }
+
 #contentRight4{
-  margin : 2px;
-  background-color: orange;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin : 3px;
   width : 230px;
   height :230px;
   float: left;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+}
+
+.count1, .count2, .count3, .count4 {
+  width: 150px;
+  height: 80px;
+  margin: 0 auto;
+  font-size: 60px;
+  list-style: none;
+  text-align: right;
+  margin-top: 80px;
+  margin-right: 10px;
+  color: grey;
+  float :right;
+}
+
+#countTitle{
+margin-top:20px;
+margin-left: 20px;
+font-size: 25px;
+color: grey;
+}
+
+#contentRight1 span{
+margin-right: 4px;
+border-radius: 50%;
+padding : 7px;
+background-color: #dceedf;
+color : #71f887;
+}
+
+#contentRight2 span{
+margin-right: 4px;
+border-radius: 50%;
+padding : 7px;
+background-color: #fbd39c;
+color : #ffb44e;
+}
+
+#contentRight3 span{
+margin-right: 4px;
+border-radius: 50%;
+padding : 7px;
+background-color: #feed75;
+color : #ffe52a;
+}
+
+#contentRight4 span{
+margin-right: 4px;
+border-radius: 50%;
+padding : 7px;
+background-color: #b9e9ff;
+color : #62ceff;
 }
 
 
 </style>
+<script>
+$(function() {
+
+	  var usercount = '[[${usercount}]]';
+	  var companycount = '[[${companycount}]]';
+	  var teachercount = '[[${teachercount}]]';
+
+	  var cnt0 = 0;
+	  counterFn1();
+	  function counterFn1() {
+	    id0 = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt0++;
+	      if (cnt0 > usercount) {
+	        clearInterval(id0);
+	      } else {
+	        $(".count1").text(cnt0);
+	      }
+	    }
+	  }
+	  
+	  var cnt2 = 2;
+	  counterFn2();
+	  function counterFn2() {
+	    id0 = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt2++;
+	      if (cnt2 > companycount) {
+	        clearInterval(id0);
+	      } else {
+	        $(".count2").text(cnt2);
+	      }
+	    }
+	  }
+	  
+	  var cnt3 = 0;
+	  counterFn3();
+	  function counterFn3() {
+	    ide = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt3++;
+	      if (cnt3 > teachercount) {
+	        clearInterval(ide);
+	      } else {
+	        $(".count3").text(cnt3);
+	      }
+	    }
+	  }
+
+	  
+	});
+
+</script>
 </head>
 <body>
 
 	<div class="panel panel-default" layout:fragment="content1">
-
-
 		<div id="mainView">
-	  
+
 			<div id="contentLeft">
-				<span id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</span>
+				
 			</div>
 			<div id="contentRight">
-				<div id = "contentRight1"></div>
-				<div id = "contentRight2"></div>
-				<div id = "contentRight3"></div>
-				<div id = "contentRight4"></div>
+				<div id = "contentRight1">
+				<p id="countTitle"><span class="glyphicon glyphicon-user"></span>등록회원수</p>
+						<li class="count1">오류</li>
+				</div>
+				<div id = "contentRight2">
+				<p id="countTitle"><span class="glyphicon glyphicon-home"></span>협약사</p>
+						<li class="count2">오류</li>
+				</div>
+				<div id = "contentRight3">
+				<p id="countTitle"><span class="glyphicon glyphicon-volume-up"></span>등록강사</p>
+						<li class="count3">오류</li>
+				</div>
+				<div id = "contentRight4">
+				<p id="countTitle"><span class="glyphicon glyphicon-education"></span>수료생</p>
+						<li class="count4">오류</li>
+				</div>
 			</div>
 		
 			
 		</div>
-
+			<span id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</span>
 	</div>
 
 

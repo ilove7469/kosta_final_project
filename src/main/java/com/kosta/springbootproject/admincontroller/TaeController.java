@@ -44,6 +44,9 @@ import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.AdminRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
+import com.kosta.springbootproject.persistence.CompanyRepository;
+import com.kosta.springbootproject.persistence.TeacherRepository;
+import com.kosta.springbootproject.persistence.UserRepository;
 import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
@@ -79,10 +82,20 @@ public class TaeController {
 	ClassRoomService classRoomService;
 	
 
-//회사main
+	@Autowired
+	UserRepository userrepository;
+	@Autowired
+	TeacherRepository teacherrepository;
+	@Autowired
+	CompanyRepository companyrepository;
+	
+//main 통계
 	@RequestMapping("/admin/adminMain")
-	public void companySelectAll() {
-		return ;
+	public void adminMain(Model model) {
+		model.addAttribute("usercount", userrepository.userCount());
+		model.addAttribute("teachercount", teacherrepository.teacherCount());
+		model.addAttribute("companycount", companyrepository.companyCount());
+		System.out.println(model);
 	}
 	
 //회사main
@@ -117,9 +130,7 @@ public class TaeController {
 	 
 	@PostMapping("/admin/companyInsert")
 	public String companyInsertPost(Company company, RedirectAttributes rttr) {
-		
-	
-		
+
 		Company ins_company = companyService.insertCompany(company);
 		
 		rttr.addFlashAttribute("resultMessage", ins_company==null?"입력실패":"입력성공");

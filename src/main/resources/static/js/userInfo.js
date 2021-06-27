@@ -2,14 +2,16 @@
  * 
  */
 $(function(){
-	//회사정보 넣기
-	
-	//주민번호 합치기
-	
+	//모달 버튼 선택으로 회사정보 넣기
+	//회사정보 삭제
+	$("#deleteCompany").click(function(){
+		$("#companyName").removeAttr("value");
+		$("#companyNo").removeAttr("value");
+	});
 	//주소찾기
 	$("#searchAddress").click(function(){
 		addressSearch();
-	})
+	});
 	
 	//이메일 인증
 	var AuthTimer=0;

@@ -9,13 +9,9 @@ html {
   margin-left: 0px !important;
   padding: 0 !important;
 }
-
-
 </style>
 </head>
-
 <body>
-
 	<header class="page-header" th:fragment="header1">
 
 		<div id="headerdiv">
@@ -33,19 +29,18 @@ html {
 				<a href="/user/userMain" target='_blank'><span id="headerMenuStyle">코스타에듀</span><span class="glyphicon glyphicon-pencil"></span> | </a>
 				<a href="/admin/adminInfo"><span id="headerMenuStyle">관리자정보</span><span class="glyphicon glyphicon-user"></span> | </a>
 				<a href="/admin/adminInsert"><span id="headerMenuStyle">관리자등록</span><span class="glyphicon glyphicon-edit"></span> | </a>
-            	<a href="/logout"><span id="headerMenuStyle">로그아웃</span><span class="glyphicon glyphicon-log-out"></span></a></span>
+            	<a href="/logout"><span id="headerMenuStyle">로그아웃</span><span class="glyphicon glyphicon-log-out"></span></a>
 				</p>
 			</div>
 		</div>
 		
-		
-<script type="text/javascript"> 
-var d = new Date(); 
-var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
-/* var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";  */
-var result = document.getElementById("time-result"); result.innerHTML = "오늘은 " + currentDate + " 입니다."; 
-</script> 
-	
+				
+		<script type="text/javascript"> 
+		var d = new Date(); 
+		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
+		/* var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";  */
+		var result = document.getElementById("time-result"); result.innerHTML = "오늘은 " + currentDate + " 입니다."; 
+		</script> 
 	</header>
 
 </body>

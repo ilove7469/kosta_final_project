@@ -37,18 +37,18 @@ body{
 }
 
 #menuTitle{
-font-size: 28px;
-color : grey;
-padding:0;
-float: left;
+  font-size: 28px;
+  color : grey;
+  padding:0;
+  float: left;
 }
 
 #menuTitleIco{
-float: left;
-font-size: 28px;
-color : grey;
-margin-top: 3px;
-margin-right: 8px;
+  float: left;
+  font-size: 28px;
+  color : grey;
+  margin-top: 3px;
+  margin-right: 8px;
 }
 
 #headerdiv{
@@ -150,11 +150,7 @@ table.dataTable tbody th, table.dataTable tbody td{
 
 #tdCenter{
   text-align: center;
-
-  
 }
-
-
 </style>
 
 </head>
@@ -167,14 +163,12 @@ table.dataTable tbody th, table.dataTable tbody td{
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
+			<footer th:replace="fragments/footeradmin::footer1"></footer>
 			
-
-<footer th:replace="fragments/footeradmin::footer1"></footer>
-	
-	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
-	<th:block layout:fragment="script1">
-
-	</th:block>
+			<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
+			<th:block layout:fragment="script1">
+		
+			</th:block>
 	
 </body>
 </html>

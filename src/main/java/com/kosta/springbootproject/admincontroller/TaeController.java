@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,6 @@ import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
-import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
@@ -95,12 +93,18 @@ public class TaeController {
 		model.addAttribute("usercount", userrepository.userCount());
 		model.addAttribute("teachercount", teacherrepository.teacherCount());
 		model.addAttribute("companycount", companyrepository.companyCount());
-		System.out.println(model);
 	}
+	
+	//직원 주소록
+		@RequestMapping("/admin/adminList")
+		public void adminList(Model model, HttpServletRequest request ) {
+			List<Admin> result = adminService.selectAll();
+			model.addAttribute("adminlist", result);
+		}
 	
 //회사main
 	@RequestMapping("/admin/companyList")
-	public void companySelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
+	public void companySelectAll(Model model, HttpServletRequest request ) {
 		List<Company> result = companyService.selectAll();
 		model.addAttribute("companylist", result);
 	}
@@ -147,7 +151,7 @@ public class TaeController {
 	
 //강사main
 	@RequestMapping("/admin/teacherList")
-	public void teacherSelectAll(Model model,  HttpServletRequest request) {
+	public void teacherSelectAll(Model model, HttpServletRequest request) {
 		List<Teacher> result = teacherService.selectAll();
 		model.addAttribute("teacherlist", result);
 	}
@@ -183,7 +187,7 @@ public class TaeController {
 	
 //강사삭제
 	@GetMapping("/admin/teacherDelete")
-	public String teacherDelete(Long tno,  RedirectAttributes rttr) {
+	public String teacherDelete(Long tno, RedirectAttributes rttr) {
 		int ret = teacherService.deleteteacher(tno);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/teacherList";
@@ -212,7 +216,7 @@ public class TaeController {
 	
 //과정삭제
 	@GetMapping("/admin/courseDelete")
-	public String courseDelete(Long cno,  RedirectAttributes rttr) {
+	public String courseDelete(Long cno, RedirectAttributes rttr) {
 		int ret = courseService.deleteCourse(cno);
 		System.out.println("삭제:" + ret);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");

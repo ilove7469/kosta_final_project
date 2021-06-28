@@ -46,4 +46,10 @@ public interface UserRepository extends CrudRepository<Users, Long>,QuerydslPred
 	
 	@Query("select count(*) from Users")
 	public int userCount();
+	
+	@Query("select count(*) from Users u join Trainee t on (u.trainee = t.traineeNo) where t.traineeName='재직자'") 
+	public int traineeCount();
+	
+	@Query("select count(*) from Users u join Trainee t on (u.trainee = t.traineeNo) where t.traineeName='채용예정자'")
+	public int traineeworkerCount();
 }

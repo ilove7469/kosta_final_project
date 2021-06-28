@@ -4,6 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8" />
+
 <th:block layout:fragment="script1">
 
 </th:block>
@@ -13,12 +14,24 @@
 	<th:block layout:fragment="style1">
 
 	</th:block>
-	<h1>
-		<img src="/img/logo4.png">
-		KOSTA프로젝트 <small>Designed by yoon</small>
-	</h1>
+
+	<img src="/img/logo4_new.png">
+	<!-- KOSTA프로젝트 <small>Designed by yoon</small> -->
+
+	<div id="sign">
+		<div sec:authorize="isAuthenticated()">
+			<a href="/user/userInfo">마이페이지<span
+				class="glyphicon glyphicon-user"></span><span> | </span></a> <a
+				href="/logout">로그아웃<span class="glyphicon glyphicon-log-out"></span></a>
+		</div>
+		<div sec:authorize="!isAuthenticated()">
+			<a href="/user/userInsert">회원가입<span
+				class="glyphicon glyphicon-edit"></span><span> | </span></a> <a
+				href="/auth/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
+		</div>
+	</div>
 	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
+		<div id="base" class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/user/userMain">Kosta Logo</a>
 			</div>
@@ -41,15 +54,6 @@
 
 		</div>
 	</nav>
-	<div>
-		<div sec:authorize="isAuthenticated()">
-			<a href="/user/userInfo">마이페이지<span class="glyphicon glyphicon-user"></span><span> | </span></a>
-			<a href="/logout">로그아웃<span class="glyphicon glyphicon-log-out"></span></a>
-		</div>
-		<div sec:authorize="!isAuthenticated()">
-			<a href="/user/userInsert">회원가입<span class="glyphicon glyphicon-edit"></span><span> | </span></a>
-			<a href="/auth/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
-		</div>
-	</div>
+
 </header>
 </html>

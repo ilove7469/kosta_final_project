@@ -41,10 +41,12 @@ import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.AdminRepository;
+import com.kosta.springbootproject.persistence.ClassHistoryRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CompanyRepository;
 import com.kosta.springbootproject.persistence.TeacherRepository;
 import com.kosta.springbootproject.persistence.UserRepository;
+import com.kosta.springbootproject.usercontroller.CourseController;
 import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
@@ -86,6 +88,8 @@ public class TaeController {
 	TeacherRepository teacherrepository;
 	@Autowired
 	CompanyRepository companyrepository;
+	@Autowired
+	ClassHistoryRepository classhistoryrepository;
 	
 //main 통계
 	@RequestMapping("/admin/adminMain")
@@ -93,14 +97,22 @@ public class TaeController {
 		model.addAttribute("usercount", userrepository.userCount());
 		model.addAttribute("teachercount", teacherrepository.teacherCount());
 		model.addAttribute("companycount", companyrepository.companyCount());
+		model.addAttribute("classhistorywaitcount", classhistoryrepository.classHistoryWaitCount());
+		model.addAttribute("classhistorycompletedcount", classhistoryrepository.classHistoryCompletedCount());
+		model.addAttribute("traineecount", userrepository.traineeCount());
+		model.addAttribute("traineeworkercount", userrepository.traineeworkerCount());
+		
+	    model.addAttribute("openExpectedList",classesService.selectRecentOpenClasses());
+	    model.addAttribute("closeExpectedList",classesService.selectRecentCloseClasses());
+		
 	}
 	
 	//직원 주소록
-		@RequestMapping("/admin/adminList")
-		public void adminList(Model model, HttpServletRequest request ) {
-			List<Admin> result = adminService.selectAll();
-			model.addAttribute("adminlist", result);
-		}
+	@RequestMapping("/admin/adminList")
+	public void adminList(Model model, HttpServletRequest request ) {
+		List<Admin> result = adminService.selectAll();
+		model.addAttribute("adminlist", result);
+	}
 	
 //회사main
 	@RequestMapping("/admin/companyList")
@@ -110,21 +122,21 @@ public class TaeController {
 	}
 	
 //회사 상세보기
-		@GetMapping("/admin/companyDetail/{cno}")
-		public ModelAndView companySelectById(@PathVariable Long cno) {
-			ModelAndView mv = new ModelAndView("/admin/companyDetail");
-			Company company = companyService.selectById(cno);
-			mv.addObject("company",company);
-			return mv;
-		}
+	@GetMapping("/admin/companyDetail/{cno}")
+	public ModelAndView companySelectById(@PathVariable Long cno) {
+		ModelAndView mv = new ModelAndView("/admin/companyDetail");
+		Company company = companyService.selectById(cno);
+		mv.addObject("company",company);
+		return mv;
+	}
 //회사수정
-		@PostMapping("/admin/companyUpdate")
-		public String companyUpdate(Company company, RedirectAttributes rttr) {
-			Company update_company = companyService.updateCourse(company);
-			rttr.addFlashAttribute("resultMessage", update_company==null?"수정실패":"수정성공");
+	@PostMapping("/admin/companyUpdate")
+	public String companyUpdate(Company company, RedirectAttributes rttr) {
+		Company update_company = companyService.updateCourse(company);
+		rttr.addFlashAttribute("resultMessage", update_company==null?"수정실패":"수정성공");
 
-			return "redirect:/admin/companyList";
-		}
+		return "redirect:/admin/companyList";
+	}
 	
 //회사추가
 	@GetMapping("/admin/companyInsert")
@@ -275,10 +287,21 @@ public class TaeController {
 	@GetMapping("/admin/lectureInsert")
 	public void lectureInsert(Lecture lecture, Model model) {
 		model.addAttribute("courselist", courseService.courseSelectAll());
-		
 		model.addAttribute("lecture", lecture);
 	}
-	 
+	
+//강의 계획 추가 목표정원 계산을 위한 ajax 메소드
+	@ResponseBody
+	@GetMapping("/admin/lectureInsert1")
+	public int resultLectureCapacity(Long no) {
+		int coursecapacity = courseService.selectById(no).getCourseCapacity();
+		
+		return coursecapacity;
+		//연간 개설횟수 곱하기 과정정원 는 목표정원
+		//lectureOpenCount  * courseCapacity = lectureCapacity 
+	}
+	
+	
 	@PostMapping("/admin/lectureInsert")
 	   public String lectureInsertPost(Lecture lecture, RedirectAttributes rttr) {
 	      boolean lecture_check = lectureService.insertOrUpdate(lecture);

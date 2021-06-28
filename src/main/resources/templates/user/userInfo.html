@@ -204,7 +204,6 @@
                               </div>
                             </div>
                           </div>
-                          
                           <div class="form-group cust-form has-feedback ">
                             <label for="bank" class="control-label">
                               은행
@@ -222,7 +221,7 @@
                             <input type="text" id="bankAccount" name="userBankNoString" th:value="${user.userBankNoString}" class="form-control" placeholder="ex) 111111111111 -없이">
                             <span class="help-block"></span>
                           </div>
-                          
+                           
                           <div class="row">
                             <div class="col-md-12">
                               <div class="form-group cust-form has-feedback ">
@@ -232,10 +231,10 @@
                                 </label>
                                 <div class="row" id="totalssn">
                                   <div class="col-md-3">
-                                    <input type="text" id="ssn1" name="ssn1" th:value="${#strings.substring(user.userIdentity,0,6)}" class="form-control" maxlength="6">
+                                    <input type="text" id="ssn1" name="ssn1" th:value="${user.userIdentity == ''}?'':'${#strings.substring(user.userIdentity,0,6)}'" class="form-control" maxlength="6">
                                   </div>
                                   <div class="col-md-3">
-                                    <input type="password" id="ssn2" name="ssn2" th:value="${#strings.substring(user.userIdentity,6,13)}" class="form-control" maxlength="7">
+                                    <input type="password" id="ssn2" name="ssn2" th:value="${user.userIdentity == ''}?'':'${#strings.substring(user.userIdentity,6,13)}'"  class="form-control" maxlength="7">
                                   </div>
                                 </div>
                                 <span class="help-block"></span>
@@ -256,6 +255,7 @@
                           </a>
                         </h4>
                       </div>
+                      
                       <!-- 회사 입력부분 -->
                       <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -362,6 +362,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="hr-line-dashed"></div>
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary" id="submitBtn">

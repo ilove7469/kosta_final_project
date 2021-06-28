@@ -105,6 +105,27 @@ public class HyunController {
 		mv.addObject("classHistoryList",classhistorylist );
 		return mv;
 	}
+	
+//	수강신청 관리 상세페이지 - 미수료
+	@GetMapping("/admin/manageClassDetailUncomplete/{classHistoryNo}")
+	public ModelAndView unCompleteManageClassDetail(@PathVariable Long classHistoryNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		Long classNo = classHistroyService.uncompleteManageClassDetail(classHistoryNo);
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList",classhistorylist );
+		return mv;
+	}
+	
+//	수강신청 관리 상세페이지 - 수료
+	@GetMapping("/admin/manageClassDetailComplete/{classHistoryNo}")
+	public ModelAndView completeManageClassDetail(@PathVariable Long classHistoryNo) {
+		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		Long classNo = classHistroyService.completeManageClassDetail(classHistoryNo);
+		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
+		mv.addObject("classHistoryList",classhistorylist );
+		return mv;
+	}
+	
 
 //	주제 메인
 	@GetMapping("/admin/subjectmain")

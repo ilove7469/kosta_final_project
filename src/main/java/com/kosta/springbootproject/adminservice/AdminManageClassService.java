@@ -81,7 +81,7 @@ public class AdminManageClassService {
 	}
 	
 	public List<Object[]> selectClassHistoryCountByUser(Long userNo){
-		List<Object[]> classHistoryCount = classhistoryrepo.FindClassHistoryCountByUser(userNo);
+		List<Object[]> classHistoryCount = classhistoryrepo.findClassHistoryCountByUser(userNo);
 		return classHistoryCount;
 	}
 	

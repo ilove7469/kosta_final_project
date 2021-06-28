@@ -232,10 +232,10 @@
                                 </label>
                                 <div class="row" id="totalssn">
                                   <div class="col-md-3">
-                                    <input type="text" id="ssn1" name="ssn1" th:value="${#strings.substring(user.userIdentity,0,6)}" class="form-control" maxlength="6">
+                                    <input type="text" id="ssn1" name="ssn1" th:value="${user.userIdentity == ''}?'':'${#strings.substring(user.userIdentity,0,6)}'" class="form-control" maxlength="6">
                                   </div>
                                   <div class="col-md-3">
-                                    <input type="password" id="ssn2" name="ssn2" th:value="${#strings.substring(user.userIdentity,6,13)}" class="form-control" maxlength="7">
+                                    <input type="password" id="ssn2" name="ssn2" th:value="${user.userIdentity == ''}?'':'${#strings.substring(user.userIdentity,6,13)}'"  class="form-control" maxlength="7">
                                   </div>
                                 </div>
                                 <span class="help-block"></span>

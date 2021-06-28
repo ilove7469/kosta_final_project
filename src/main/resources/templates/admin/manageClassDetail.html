@@ -18,8 +18,9 @@
 	
 	
 	
-	<table border="1">
+	<table>
 	<tr>
+	<thead>
 	 <th>상태</th>
 	 <th>아이디</th>
 	 <th>이름</th>
@@ -31,13 +32,16 @@
 	 <th>협약사</th>
 	 <th>소속회사</th>
 	 <th>수강신청일</th>
-	 <th>상태변경</th>
+ 	 <th>상태변경</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr th:each="classHistory:${classHistoryList}" >
 		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'" th:text="대기">상태</td>
 		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='CANCEL'" th:text="취소">상태</td>
 		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMMIT'" th:text="확정">상태</td>
-		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'" th:text="수강완료">상태</td>
+		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'" th:text="수료">상태</td>
+		<td th:if="${#strings.toString(classHistory.classHistoryState)}=='UNCOMPLETED'" th:text="미수료">상태</td>
 		<td th:text="${classHistory.user.userId}">아이디</td>
 		<td th:text="${classHistory.user.userName}">이름</td>
 		<td th:text="${classHistory.user.userJob}">직무</td>
@@ -47,8 +51,10 @@
 		<td th:text="${classHistory.user.userIdentity}">주민번호</td>
 		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='Convention'" th:text="협약사">협약사</td>
 		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='NoConvention'" th:text="비협약사">협약사</td>
+		<td th:if="${#strings.toString(classHistory.user.company.companyConvention)}=='None'" th:text=" ">없음</td>
 		<td th:text="${classHistory.user.company.companyName}">소속회사</td>
 		<td th:text="${#temporals.format(classHistory.classHistoryDate,'yyyy-MM-dd hh:mm:ss')}">수강신청일</td>
+		
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'">
 			<td>
 				<a th:href="@{'/admin/manageClassDetailCommit/'+${classHistory.classHistoryNo}}" th:text="확정"></a>
@@ -68,10 +74,17 @@
 			</td>
 		</th:block>
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'">
-			<td><div>완료</div></td>
+			<td>
+				<a th:href="@{'/admin/manageClassDetailUncomplete/'+${classHistory.classHistoryNo}}" th:text="미수료"></a>
+			</td>
+		</th:block>
+		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='UNCOMPLETED'">
+			<td>
+				<a th:href="@{'/admin/manageClassDetailComplete/'+${classHistory.classHistoryNo}}" th:text="수료"></a>
+			</td>
 		</th:block>
 	</tr>
+	</tbody>
 	</table>
 </div>
-</body>
 </html>

@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -150,5 +151,45 @@ public class ClassesService {
 				classesRepo.save(classes);
 			}
 		}
+	}
+
+//관리자 메인페이지 - 최근 개강예정 강의출력
+	public List<Classes> selectRecentOpenClasses() {
+		//줄 수 
+		Integer rownum = 5;
+		List<Classes> classesList = (List<Classes>)classesRepo.findAllByOrderByClassOpenDateAsc();
+		List<Classes> selectList = new ArrayList<>();
+		Date Today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(Today);
+		cal.add(Calendar.DATE, 30);
+		for(Classes classes : classesList) {
+			//오늘 이후 && 오늘로부터 30일 이내 개강예정인 강의
+			if(classes.getClassOpenDate().compareTo(Today)>=0 && classes.getClassOpenDate().compareTo(cal.getTime())<=0) {
+				if(selectList.size()>=rownum) break;
+				selectList.add(classes);
+			}
+		}
+		return selectList;
+	}
+	
+	//관리자 메인페이지 - 최근 종강예정 강의출력	
+	public List<Classes> selectRecentCloseClasses() {
+		//줄 수 
+		Integer rownum = 5;
+		List<Classes> classesList = (List<Classes>)classesRepo.findAllByOrderByClassCloseDateAsc();
+		List<Classes> selectList = new ArrayList<>();
+		Date Today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(Today);
+		cal.add(Calendar.DATE, 30);
+		for(Classes classes : classesList) {
+			//오늘 이후 && 오늘로부터 30일 이내 개강예정인 강의
+			if(classes.getClassCloseDate().compareTo(Today)>=0 && classes.getClassCloseDate().compareTo(cal.getTime())<=0) {
+				if(selectList.size()>=rownum) break;
+				selectList.add(classes);
+			}
+		}
+		return selectList;
 	}
 }

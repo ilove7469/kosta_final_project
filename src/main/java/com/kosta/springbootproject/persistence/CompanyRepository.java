@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.persistence;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -36,5 +37,8 @@ QuerydslPredicateExecutor<Company>
 		return builder;
 		
 	}
+	
+	@Query("select count(*) from Company WHERE company_convention='Convention'")
+	public int companyCount();
 	
 }

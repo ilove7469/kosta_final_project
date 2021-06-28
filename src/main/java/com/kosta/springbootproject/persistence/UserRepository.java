@@ -1,5 +1,8 @@
 package com.kosta.springbootproject.persistence;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -40,4 +43,7 @@ public interface UserRepository extends CrudRepository<Users, Long>,QuerydslPred
 		}
 		return builder;
 	}
+	
+	@Query("select count(*) from Users")
+	public int userCount();
 }

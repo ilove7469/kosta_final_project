@@ -23,7 +23,7 @@ body {
 /* Fixed sidenav, full height 배경 */
 .sidenav {
   height: 100%;
-  width: 230px;
+  width: 195px;
   position: fixed;
   top: 0;
   left: 0;
@@ -54,12 +54,14 @@ body {
   background-color: #e7f1ed;
 }
 
-/* Main content */
+/* Main content *//* dddddddddddddddddddddddddddddddddddddddddddd */
 .main {
   margin-top : 70px;
   margin-left: 240px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
-  padding: 20px 27px 20px 20px;
+  height : 100% !important;
+  width :100%;
+  float : left;
 }
 
 /* Add an active class to the active dropdown button */
@@ -76,7 +78,7 @@ body {
 }
 .dropdown-container a{
 /* color :red; */
-padding-left: 40px;
+  padding-left: 40px;
 }
 
 /* Optional: Style the caret down icon */
@@ -112,24 +114,31 @@ form label{
 
 #profile{
   width: 100%;
-  height: 150px;
+  height: 140px;
 }
 
 #profile img{
-  margin-left: 80px;
-  margin-top: 15px;
+  margin-left: 58px;
+  margin-top: 13px;
 }
 
 #profile p{
   color: white;
   margin-top: 10px;
-  margin-left: 85px;
+  margin-left: 68px;
+}
+
+footer{
+  padding-right : 10px;
+  margin-bottom : 30px;
+  height: 20px;
 }
 
 footer p{
   float : right;
   margin: 0 auto;
   color :grey;
+  padding : 10px;
 }
 
 /* width */
@@ -150,6 +159,10 @@ footer p{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+#headerMenuStyle{
+  font-size: 12px !important;
 }
 </style>
 </th:block>

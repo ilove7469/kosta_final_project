@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -38,12 +37,14 @@ import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
-import com.kosta.springbootproject.model.PageMaker;
 import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.AdminRepository;
 import com.kosta.springbootproject.persistence.ClassesRepository;
+import com.kosta.springbootproject.persistence.CompanyRepository;
+import com.kosta.springbootproject.persistence.TeacherRepository;
+import com.kosta.springbootproject.persistence.UserRepository;
 import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
@@ -79,15 +80,31 @@ public class TaeController {
 	ClassRoomService classRoomService;
 	
 
-//회사main
+	@Autowired
+	UserRepository userrepository;
+	@Autowired
+	TeacherRepository teacherrepository;
+	@Autowired
+	CompanyRepository companyrepository;
+	
+//main 통계
 	@RequestMapping("/admin/adminMain")
-	public void companySelectAll() {
-		return ;
+	public void adminMain(Model model) {
+		model.addAttribute("usercount", userrepository.userCount());
+		model.addAttribute("teachercount", teacherrepository.teacherCount());
+		model.addAttribute("companycount", companyrepository.companyCount());
 	}
+	
+	//직원 주소록
+		@RequestMapping("/admin/adminList")
+		public void adminList(Model model, HttpServletRequest request ) {
+			List<Admin> result = adminService.selectAll();
+			model.addAttribute("adminlist", result);
+		}
 	
 //회사main
 	@RequestMapping("/admin/companyList")
-	public void companySelectAll(Model model, PageVO pagevo, HttpServletRequest request ) {
+	public void companySelectAll(Model model, HttpServletRequest request ) {
 		List<Company> result = companyService.selectAll();
 		model.addAttribute("companylist", result);
 	}
@@ -112,14 +129,11 @@ public class TaeController {
 //회사추가
 	@GetMapping("/admin/companyInsert")
 	public void companyInsert() {
-		
 	}
 	 
 	@PostMapping("/admin/companyInsert")
 	public String companyInsertPost(Company company, RedirectAttributes rttr) {
-		
-	
-		
+
 		Company ins_company = companyService.insertCompany(company);
 		
 		rttr.addFlashAttribute("resultMessage", ins_company==null?"입력실패":"입력성공");
@@ -135,11 +149,9 @@ public class TaeController {
 		return "redirect:/admin/companyList";
 	}
 	
-	
-	
 //강사main
 	@RequestMapping("/admin/teacherList")
-	public void teacherSelectAll(Model model,  HttpServletRequest request) {
+	public void teacherSelectAll(Model model, HttpServletRequest request) {
 		List<Teacher> result = teacherService.selectAll();
 		model.addAttribute("teacherlist", result);
 	}
@@ -164,7 +176,6 @@ public class TaeController {
 //강사추가
 	@GetMapping("/admin/teacherInsert")
 	public void teacherInsert() {
-		
 	} 
 	 
 	@PostMapping("/admin/teacherInsert")
@@ -176,12 +187,11 @@ public class TaeController {
 	
 //강사삭제
 	@GetMapping("/admin/teacherDelete")
-	public String teacherDelete(Long tno,  RedirectAttributes rttr) {
+	public String teacherDelete(Long tno, RedirectAttributes rttr) {
 		int ret = teacherService.deleteteacher(tno);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/teacherList";
 	}
-	
 	
 //과정main 
 	@RequestMapping("/admin/courseList")
@@ -202,15 +212,11 @@ public class TaeController {
 			
 		model.addAttribute("subjectlist", subjectservice.selectById(course.getSubject().getSubjectNo()));
 		model.addAttribute("subjectlistall", subjectservice.selectAll());
-		
-	}
-	
-	
-	
+	}	
 	
 //과정삭제
 	@GetMapping("/admin/courseDelete")
-	public String courseDelete(Long cno,  RedirectAttributes rttr) {
+	public String courseDelete(Long cno, RedirectAttributes rttr) {
 		int ret = courseService.deleteCourse(cno);
 		System.out.println("삭제:" + ret);
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
@@ -255,8 +261,8 @@ public class TaeController {
 		List<Lecture> result = lectureService.selectAll();
 		model.addAttribute("lecturelist", result);
 	}
-//강의계획삭제
 	
+//강의계획삭제
 	@GetMapping("/admin/lectureDelete")
 	public String lectureDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = lectureService.deleteLecture(cno);
@@ -271,7 +277,6 @@ public class TaeController {
 		model.addAttribute("courselist", courseService.courseSelectAll());
 		
 		model.addAttribute("lecture", lecture);
-
 	}
 	 
 	@PostMapping("/admin/lectureInsert")
@@ -292,18 +297,14 @@ public class TaeController {
 	    	  rttr.addFlashAttribute("resultMessage", message);
 	    	  rd = "redirect:/admin/lectureList";
 	      }
-	      return rd;
-	      
-	      
+	      return rd;  
 	      //업데이트는 무조건 가능  업데이트는 실패가 불가능
 	     
 			/*
 			 * if(!lecture_check) { return "redirect:/admin/lectureInsert"; }else {
 			 * 
 			 * }
-			 */
-	    
-	    
+			 */ 
 	   }
 	
 //강의계획 상세보기
@@ -317,13 +318,13 @@ public class TaeController {
 		return mv;
 	}
 	
-	
 //강의main
 	@RequestMapping("/admin/classesList")
 	public void classesSelectAll(Model model, HttpServletRequest request) {
 		List<Classes> result = classesService.selectAll();
 		model.addAttribute("classeslist", result);
 	}
+	
 //강의 상세보기
 	@GetMapping("/admin/classesDetail/{cno}")
 	public ModelAndView SelectByIdteacher(@PathVariable Long cno) {
@@ -356,7 +357,6 @@ public class TaeController {
 		return "redirect:/admin/classesList";
 	}
 	
-	
 //강의추가
 	@GetMapping("/admin/classesInsert")
 	   public void classesInsert(Model model) {
@@ -373,8 +373,7 @@ public class TaeController {
 	      return "redirect:/admin/classesList";
 	   }
 	   
-
-	 //사이드바에 현재 로그인 사용자 이름 확인용 ajax 메소드
+//사이드바에 현재 로그인 사용자 이름 확인용 ajax 메소드
 		@Autowired
 		AdminRepository adminrepository;
 		
@@ -428,6 +427,6 @@ public class TaeController {
 	            if(out != null) out.close();
 	        }    
 	    }
-		//엑셀다운로드 여기까지
+//엑셀다운로드 여기까지
 	
 }

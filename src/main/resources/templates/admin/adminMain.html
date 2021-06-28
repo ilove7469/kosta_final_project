@@ -16,8 +16,9 @@
   margin-bottom: 20px;
   margin-top: 5px;
 }
-#mainView0 div{ 
-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+
+#content1, #content2, #content3{ 
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   border-radius: 5px;
   background-color : #6a7ca2;
   width: 19%;
@@ -29,7 +30,22 @@ box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   color :white;
   font-size: 25px;
 }
-#mainView0ContentTitlte{
+
+#content4, #content5{ 
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background-color : #fbd39c;
+  width: 19%;
+  height: 70px;
+  float : left;
+  padding : 0;
+  margin : 3px 5px 0px 5px;
+  text-align: center;
+  color :grey;
+  font-size: 25px;
+}
+
+#mainView0ContentTitlte1, #mainView0ContentTitlte2,#mainView0ContentTitlte3{
   margin-left : 10px;
   margin-top : 8px;
   margin-bottom : 0px;
@@ -37,7 +53,14 @@ box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
   font-size: 15px;
   color : white;
 }
-
+#mainView0ContentTitlte4, #mainView0ContentTitlte5{
+  margin-left : 10px;
+  margin-top : 8px;
+  margin-bottom : 0px;
+  text-align: left;
+  font-size: 15px;
+  color : grey;
+}
 
 #mainView { 
   width: 100%;
@@ -278,12 +301,12 @@ $(function() {
 	<div id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</div>
 	<div id="mainView0">
 	
-		<div id="content1"><p id="mainView0ContentTitlte">수강생현황</p><p></p></div>
-		<div id="content2"><p id="mainView0ContentTitlte">대기</p><p>미구현</p></div>
-		<div id="content3"><p id="mainView0ContentTitlte">확정</p><p>미구현</p></div>
-		<div id="content4"><p id="mainView0ContentTitlte">수료</p><p>미구현</p></div>
-		<div id="content5"><p id="mainView0ContentTitlte">취소</p><p>미구현</p></div>
-
+		<div id="content1"><p id="mainView0ContentTitlte1">수강생현황</p><p></p></div>
+		<div id="content2"><p id="mainView0ContentTitlte2">대기</p><p>[[${classhistorywaitcount}]]</p></div>
+		<div id="content3"><p id="mainView0ContentTitlte3">총 수료</p><p>[[${classhistorycompletedcount}]]</p></div>
+		<div id="content4"><p id="mainView0ContentTitlte4">재직자</p>[[${traineecount}]]<p> </p></div>
+		<div id="content5"><p id="mainView0ContentTitlte5">채용예정자</p>[[${traineeworkercount}]]<p> </p></div>
+		
 	</div>
 
 		<div id="mainView">
@@ -297,13 +320,13 @@ $(function() {
 					<span class="glyphicon glyphicon-user"></span>
 					<p>관리자 정보</p>
 				</div>
-				<div id="contentLeft1" onclick="location.href='/user/userMain';">
-					<img src="/img/kostaEduLogo.png">
-					<p>코스타에듀</p>
-				</div>
 				<div id="contentLeft4">
 					<span class="glyphicon glyphicon-list-alt" onclick="location.href='/admin/adminList';"></span>
 					<p>직원주소록</p>
+				</div>
+				<div id="contentLeft1" onclick="location.href='/user/userMain';">
+					<img src="/img/kostaEduLogo.png">
+					<p>코스타에듀</p>
 				</div>
 				<div id="contentLeft5">
 					<span class="glyphicon glyphicon-folder-close"></span>
@@ -350,6 +373,45 @@ $(function() {
 					<script async src="https://platform.twitter.com/widgets.js"charset="utf-8"></script>
 				</div>
 				<div id="content2Right">
+		
+		
+		               <table class="table table-striped table-bordered table-hover">
+		                  <thead>
+		                     <tr>
+		                        <th>개강예정일</th>
+		                        <th>강의명</th>
+		                     </tr>
+		                  </thead>
+		                  <tbody>
+		                     <tr th:each="classes:${openExpectedList}">
+		                        <td th:text="${classes.classOpenDate}">개강예정일</td>
+		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>   
+		                     </tr>
+		                  </tbody>
+		               </table>
+		               
+		               <table class="table table-striped table-bordered table-hover">
+		                  <thead>
+		                     <tr>
+		                        <th>종강예정일</th>
+		                        <th>강의명</th>
+		                     </tr>
+		                  </thead>
+		                  <tbody>
+		                     <tr th:each="classes:${closeExpectedList}">
+		                        <td th:text="${classes.classCloseDate}">종강예정일</td>
+		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>   
+		                     </tr>
+		                  </tbody>
+		               </table>
 		
 				</div>
 			</div>

@@ -28,4 +28,10 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 			+ " FROM class_history"
 			+ " WHERE user_user_no = ?1", nativeQuery = true)
 	public List<Object[]> FindClassHistoryCountByUser(Long userNo);
+	
+	@Query("select count(*) from ClassHistory where classHistoryState='wait'")
+	public int classHistoryWaitCount();
+	
+	@Query("select count(*) from ClassHistory where classHistoryState='completed'")
+	public int classHistoryCompletedCount();
 }

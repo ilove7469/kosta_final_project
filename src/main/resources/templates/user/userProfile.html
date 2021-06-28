@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/layoutUser}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body class="landing-page" data-google-affiliate-annotated="1">
+<div layout:fragment="content1">
+
+		<div class="container kt-mt-22">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hpanel">
+						<ul class="nav nav-tabs">
+							<li>
+								<a class="btn-link" th:href="@{'/user/userInfo'}">
+									<i class="fa fa-user text-info"></i>
+									회원정보
+								</a>
+							</li>
+							<li class="active">
+								<a class="btn-link" th:href="@{'/user/userProfile/'+${user.userNo}}">
+									<i class="fa fa-id-card-o text-success"></i>
+									수강현황
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content tab-pane">
+							<div class="panel-body">
+								<table class="table table-read">
+									<colgroup>
+										<col width="15%">
+										<col width="35%">
+										<col width="15%">
+										<col width="35%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="text-center readTh">이름</td>
+											<td colspan="3">[[${user.userName}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">아이디</td>
+											<td colspan="3">[[${user.userId}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">휴대전화 번호</td>
+											<td colspan="3">[[${user.userPhone}]]</td>
+										</tr>
+										<tr>
+											<td class="text-center readTh">이메일</td>
+											<td colspan="3">[[${user.userEmail}]]</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="font-bold m-b-sm">
+			   수강정보
+			</div>
+			
+<div class="row">
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>전체</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-info" th:text="${countobj[0] != null}?${countobj[0]}+${countobj[1]}+${countobj[2]}+${countobj[3]}:'0'">전체</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>미수료</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success" th:text="${countobj[0] != null}?${countobj[0]}:'0'">미수료카운트</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>수강중</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success" id="CommitCount" th:text="${countobj[1] != null}?${countobj[1]}:'0'">수강중카운트</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+				<div class="stats-title pull-left">
+					<h4>신청중</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-success" id="WaitCount" th:text="${countobj[2] != null}?${countobj[2]}:'0'">대기카운트</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="hpanel hgreen">
+			<div class="panel-body h-100">
+
+				<div class="stats-title pull-left">
+					<h4>취소</h4>
+				</div>
+				<div class="stats-icon pull-right">
+					<i class="pe-7s-display2 fa-4x"></i>
+				</div>
+				<div class="m-t-xl">
+					<h1 class="text-danger" id="CancelCount" th:text="${countobj[3] != null}?${countobj[3]}:'0'">취소카운트</h1>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+			<div class="row">
+				  <div class="col-md-12">
+					
+
+
+
+
+<div class="hpanel hgreen kt-mb-30">
+	<div class="panel-heading">
+	수강신청목록
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover table-striped">
+			<colgroup>
+				<col width="30%">
+				<col width="15%">
+				<col width="25%">
+				<col width="10%">
+				<col width="20%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">강의명</th>
+					<th scope="col" class="text-center">강사명</th>
+					<th scope="col" class="text-center">기간</th>
+					<th scope="col" class="text-center">신청상태</th>
+					<th scope="col" class="text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="classHistory:${classHistoryList}"> 
+					<td th:text="${classHistory.classes.lecture.course.courseName}" class="text-center"><a class="btn-link" href="#">과정명</a></td>
+					<td th:text="${classHistory.classes.teacher.teacherName}" class="text-center">강사명</td>
+					<td th:text="${classHistory.classes.classOpenDate}+' ~ '+${classHistory.classes.classOpenDate}" class="text-center">기간</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'" th:text="대기" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='CANCEL'" th:text="취소" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMMIT'" th:text="확정" class="text-center">신청상태</td>
+					<td th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'" th:text="수강완료" class="text-center">신청상태</td>
+					<td class="text-center"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+			 </div>
+		 </div>
+	 </div>
+  </div>
+<th:block layout:fragment="script1">
+	<script>
+		
+	</script>
+</th:block>
+</body>
+</html>

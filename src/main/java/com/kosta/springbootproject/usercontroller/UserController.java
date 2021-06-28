@@ -15,10 +15,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kosta.springbootproject.model.ClassHistory;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.MemberDTO;
 import com.kosta.springbootproject.model.MemberRoleEnumType;
@@ -37,6 +40,21 @@ public class UserController {
 	@Autowired
 	private EmailService emailService;
 	
+	//유저프로필
+	@GetMapping("user/userProfile/{userNo}")
+	public ModelAndView userProfile(@PathVariable Long userNo) {
+		ModelAndView mv = new ModelAndView("/user/userProfile");
+		List<ClassHistory> classHistoryList = uservice.findClassHistoryByUser(userNo);
+		List<Object[]> ClassHistoryCount = uservice.selectClassHistoryCountByUser(userNo);
+		Object[] countobj = ClassHistoryCount.get(0);
+		Users user = uservice.findUsersByUsersNo(userNo);
+		mv.addObject("user", user);
+		mv.addObject("classHistoryList",classHistoryList);
+		mv.addObject("countobj",countobj);
+		return mv;
+	}
+	
+	
 	//유저조회
 	@GetMapping("/user/userInfo")
 	public void userInfo(Model model) {
@@ -47,6 +65,37 @@ public class UserController {
 		List<Company> companyList = uservice.findCompanyAll();
 		model.addAttribute("user",userInfo);
 		model.addAttribute("companyList",companyList);
+	}
+
+	//재직자 채용예정자 전환
+	@GetMapping("/user/changetrainee/{userNo}")
+	public String changeTrainee(@PathVariable Long userNo) {
+		Users user = uservice.findUsersByUsersNo(userNo);
+		String userTraineeName = user.getTrainee().getTraineeName();
+		if(userTraineeName.equals("채용예정자")) {
+			uservice.changeToEmp(userNo);
+		}else if(userTraineeName.equals("재직자")){
+			uservice.changeToUnemp(userNo);
+		}
+		return "redirect:/user/userInfo";
+	}
+	
+	//유저삭제
+	@GetMapping("/user/deleteUser/{userNo}/{userId}")
+	public String userDelete(@PathVariable Long userNo,@PathVariable String userId, HttpServletRequest request) {
+		uservice.deleteUser(userNo);
+		mservice.deleteMember(userId);
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/user/userMain";
+	}
+	//유저 업데이트
+	@PostMapping("/user/update")
+	public String userUpdate(Users user, Long companyNo) {
+		System.out.println(user);
+		uservice.updateUserAndCompany(user, companyNo);
+		mservice.updateMember(user);
+		return "redirect:/user/userInfo";
 	}
 	//유저가입
 	@GetMapping("/user/userInsert")
@@ -130,6 +179,7 @@ public class UserController {
 		System.out.println(session.getAttribute("key"));
 	}
 	
+	//이메일인증 키확인
 	@ResponseBody
 	@PostMapping("/user/email/certificate")
 	public Map<String, Object> emailCertificate(String authNum, HttpServletRequest request) {
@@ -161,6 +211,7 @@ public class UserController {
 		return map;
 	}
 	
+	//이메일인증 키 세션저장
 	@ResponseBody
 	@PostMapping("/user/email/end")
 	public void deleteSession(HttpServletRequest request) {

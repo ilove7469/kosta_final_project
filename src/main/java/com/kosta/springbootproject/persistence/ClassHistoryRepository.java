@@ -27,5 +27,5 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 			+ " SUM(if(class_history_state='CANCEL',1,0)) AS 'cancelcount'"
 			+ " FROM class_history"
 			+ " WHERE user_user_no = ?1", nativeQuery = true)
-	public List<Object[]> FindClassHistoryCountByUser(Long userNo);
+	public List<Object[]> findClassHistoryCountByUser(Long userNo);
 }

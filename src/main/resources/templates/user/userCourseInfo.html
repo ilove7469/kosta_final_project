@@ -14,16 +14,88 @@
     </script>
   </th:block>
   <th:block layout:fragment="style1">
+  <style>
+#contentWrap{
+  width : 100%;
+  height : 100%;
+  }
+
+#contentCenter{
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  }
+  
+#topBanner{
+  padding : 0 px;
+  margin : 0 px;
+  width:100%;
+  height : 300px;
+  background-color: #6a7ca2;
+  text-align: center;
+  vertical-align: center;
+  }
+  
+#topBannerTitleText{
+  padding-top : 130px;
+  color:white;
+  font-size : 30px;
+  }
+  
+#courseTitle{
+  color : #6a7ca2;
+  font-size: 30px !important;
+  }
+  
+#divContentline{
+  background-color: #939db3;
+  height: 1px;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  float: left;
+}
+
+#divContentlineBlue{
+  background-color: #6a7ca2;
+  height: 4px;
+  width: 100%;
+  }
+#classes{
+  width : 95%;
+  margin : 0 auto;
+}
+
+#classesWrap{
+  margin-bottom: 20px;
+}
+
+  </style>
   </th:block>
 </head>
 <body>
 <div layout:fragment="content1">
 
+<div id="contentWrap">
+<div id="topBanner">
 
-<h1 th:text="${lecture.course.courseName}"></h1>
+<div id="topBannerTitle">
+<div id="topBannerTitleText">[[${lecture.course.courseName}]]</div>
+</div>
+</div>
+
+<div id="contentCenter">
+
+<div id="classesWrap">
+    <p id="courseTitle">교육일정</p>
+    	<!-- 메뉴분리용 div -->
+		<div id="divContentlineBlue"></div>
+		<!-- 메뉴분리용 div 끝-->
 <!-- 강의정보 출력 -->
+
   <div id="classes">
-    <p>교육일정</p>
+
+
     <table class="table">
       <tr th:each="class:${classList}">
         <td th:text="${class.classOpenDate}+${class.educationTime.educationTimeName}"></td>
@@ -44,31 +116,53 @@
         <td th:if="${class.classState.toString.equals('CLOSE')}">종강</td>
       </tr>
     </table>
+
   </div>
 <!-- 강의정보 출력끝 -->
+    	<!-- 메뉴분리용 div -->
+		<div id="divContentlineBlue"></div>
+		<!-- 메뉴분리용 div 끝-->
+</div>
 
+	
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+	
 <!-- 과정+강의계획정보 출력 -->
 <div id="course">
   <div id="courPurpose">
-    <p>교육목표</p>
+    <p id="courseTitle">교육목표</p>
     <!-- <span th:utext="${#strings.replace(lecture.course.coursePurpose,T(System).getProperty('line.separator'),'&lt;br /&gt;')}"></span> -->
     <p class="preBox" th:text="${lecture.course.coursePurpose}"></p>
   </div>
+  	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
   <div id="courContent">
-    <p>교육내용</p>
+    <p id="courseTitle">교육내용</p>
     <p class="preBox" th:text="${lecture.course.courseContent}"></p>
   </div>
+  	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
   <div id="courTarget">
-    <p>교육대상</p>
+    <p id="courseTitle">교육대상</p>
     <p class="preBox" th:text="${lecture.course.courseTarget}"></p>
   </div>
+  	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
   <div id="courAsk">
       <!-- 셀렉트로 강의계획에서 문자열으로 합치는지? >> 그럼 그냥 ask에서 가져오기  -->
-    <p>문의센터</p>
+    <p id="courseTitle">문의센터</p>
     <p class="preBox" th:text="${lecture.lectureAsk}"></p>
   </div>
+  	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
   <div id="courPenalty" th:if="${lecture.lecturePenalty!=null}">
-    <p>패널티안내</p>
+    <p id="courseTitle">패널티안내</p>
     <p class="preBox" th:text="${lecture.lecturePenalty}"></p>
   </div>
   
@@ -79,6 +173,11 @@
   </div> -->
 </div>
 <!-- 과정+강의계획정보 출력끝 -->
+</div>
+
+
+
+</div>
 </div>
 </body>
 </html>

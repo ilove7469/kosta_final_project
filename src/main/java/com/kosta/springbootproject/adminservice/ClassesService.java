@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.kosta.springbootproject.model.ClassStateEnumType;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.persistence.ClassesRepository;
-import com.querydsl.core.types.Predicate;
 
 @Service
 public class ClassesService {
@@ -55,67 +54,55 @@ public class ClassesService {
 	}
 
 	
-	//엑셀다운로드
-		 public XSSFWorkbook listExcelDownload(List<Classes> list) throws Exception {
-		        
-			 //System.out.println("--------------------엑셀확인------------------");
-			 //System.out.println(pvo.getKeyword() +"----------------"+pvo.getType());
-			 
-			 XSSFWorkbook workbook = new XSSFWorkbook();
-		        
-			 XSSFSheet sheet = workbook.createSheet("엑셀시트명");
-		        
-			 XSSFRow row = null;
-		        
-		     XSSFCell cell = null;
-	   
-		     //param.setPager(false);
-		     //param.setNullText(NULL_TEXT);
-		     //param.setSeparator(DELI_EXCEL);
-		    // Predicate p = classesRepo.makePredicateClasses(pvo.getType(),pvo.getKeyword()); 
-		    // List<Classes> list = (List<Classes>) classesRepo.findAll(p);
-		        
-		     System.out.println(list);
-		        
-		     row = sheet.createRow(0);
-		    String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
-		        
-		        for(int i=0; i<headerKey.length; i++) {
-		            cell = row.createCell(i);
-		            cell.setCellValue(headerKey[i]);
-		        }
-		        
-		        for(int i=0; i<list.size(); i++) {
-		            row = sheet.createRow(i + 1);
-		            Classes vo = list.get(i);
-		            
-		       
-		            cell = row.createCell(0);
-		            cell.setCellValue(vo.getLecture().getCourse().getSubject().getSubName());
-		            
-		            cell = row.createCell(1);
-		           cell.setCellValue(vo.getLecture().getCourse().getCourseName());
-		            
-		            cell = row.createCell(2);
-		            cell.setCellValue(vo.getTeacher().getTeacherName());
-		            
-		            cell = row.createCell(3);
-		            cell.setCellValue(vo.getClassOpenDate().toString());
-		            
-		            cell = row.createCell(4);
-		            cell.setCellValue(vo.getClassCloseDate().toString());
-		            
-		            cell = row.createCell(5);
-		            cell.setCellValue(vo.getClassRoom().getLectureHall().getLectureHallName());
-		            
-		            cell = row.createCell(6);
-		           cell.setCellValue(vo.getClassState().toString());
+	public XSSFWorkbook listExcelDownload(List<Classes> list) throws Exception {
+		
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();  
+		XSSFSheet sheet = workbook.createSheet("kosta"); 
+		XSSFRow row = null;
+		XSSFCell cell = null;
+		
+		System.out.println(list);
+		
+		row = sheet.createRow(0);
+		String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
+		
+		for(int i=0; i<headerKey.length; i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(headerKey[i]);
+		}
+		
+		for(int i=0; i<list.size(); i++) {
+			row = sheet.createRow(i + 1);
+			Classes vo = list.get(i);
+			
+			
+			cell = row.createCell(0);
+			cell.setCellValue(vo.getLecture().getCourse().getSubject().getSubName());
+			
+			cell = row.createCell(1);
+			cell.setCellValue(vo.getLecture().getCourse().getCourseName());
+			
+			cell = row.createCell(2);
+			cell.setCellValue(vo.getTeacher().getTeacherName());
+			
+			cell = row.createCell(3);
+			cell.setCellValue(vo.getClassOpenDate().toString());
+			
+			cell = row.createCell(4);
+			cell.setCellValue(vo.getClassCloseDate().toString());
+			
+			cell = row.createCell(5);
+			cell.setCellValue(vo.getClassRoom().getLectureHall().getLectureHallName());
+			
+			cell = row.createCell(6);
+			cell.setCellValue(vo.getClassState().toString());
+			
+		}
+		
+		return workbook;
+	}
 
-		        }
-		        
-		        return workbook;
-		    }
-		 //엑셀다운로드
 	
 //  Scheduler에서 classState를 바꿔주기 위한 메서드
 	public void manageClassState() {

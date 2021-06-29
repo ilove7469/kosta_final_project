@@ -416,12 +416,10 @@ public class AdminController1 {
 	        OutputStream out = null;
 	        
 	        try {
-//	        	 Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
-			     List<Classes> list = (List<Classes>) classesRepo.findAll();
-			        
-			     //System.out.println(list);
-			        
-			     //String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
+	        	//Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
+			    List<Classes> list = (List<Classes>) classesRepo.findAll();
+
+			    //String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
 			     
 	        	XSSFWorkbook workbook = classesService.listExcelDownload(list);
 	        	
@@ -439,6 +437,5 @@ public class AdminController1 {
 	            if(out != null) out.close();
 	        }    
 	    }
-//엑셀다운로드 여기까지
 	
 }

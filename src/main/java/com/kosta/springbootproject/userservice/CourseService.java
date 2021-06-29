@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.springbootproject.model.ClassHistory;
-import com.kosta.springbootproject.model.ClassHistoryEnumType;
 import com.kosta.springbootproject.model.ClassStateEnumType;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;

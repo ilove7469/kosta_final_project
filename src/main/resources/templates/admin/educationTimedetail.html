@@ -20,8 +20,8 @@
 	
 	<form th:action="@{/admin/educationtimeInsert}" method="post">
 	    <div class="form-group">
-	      <th:block th:unless="${subject == null}">
-	      	<input type="hidden" id="subjectNo" name="subjectNo" th:value="${EducationTime.educationTimeNo}">
+	      <th:block th:unless="${EducationTime == null}">
+	      	<input type="hidden" id="educationTimeNo" name="educationTimeNo" th:value="${EducationTime.educationTimeNo}">
 	      </th:block>	
 	        
 	      <label for="educationTimeName">이름:</label>

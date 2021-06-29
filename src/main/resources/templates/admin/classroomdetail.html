@@ -20,6 +20,10 @@
 	
 	<form th:action="@{/admin/classroomInsert}" method="post">
     <div class="form-group">
+      <th:block th:unless="${classRoom == null}">
+	     <input type="hidden" id="classRoomNo" name="classRoomNo" th:value="${classRoom.classRoomNo}">
+	  </th:block>	
+
       <label>강의장 이름:</label>
       <th:block th:if="${classRoom == null}">
 	      <select class="form-control" name="lectureHall">

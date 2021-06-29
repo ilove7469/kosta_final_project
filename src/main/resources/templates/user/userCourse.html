@@ -6,22 +6,80 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<th:block layout:fragment="style1">
+ <style>
+#contentWrap{
+  width : 100%;
+  height : 100%;
+  }
+
+#contentCenter{
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+  }
+  
+#topBanner{
+  padding : 0 px;
+  margin : 0 px;
+  width:100%;
+  height : 300px;
+  background-color: #6a7ca2;
+  text-align: center;
+  vertical-align: center;
+  }
+  
+#topBannerTitleText{
+  padding-top : 130px;
+  color:white;
+  font-size : 30px;
+  }
+#divContentlineBlue{
+  background-color: #6a7ca2;
+  height: 4px;
+  width: 100%;
+  }
+#courseTitle{
+  color : #6a7ca2;
+  font-size: 30px !important;
+  }
+</style>
+</th:block>
+
 <body>
 <div class="panel panel-default" layout:fragment="content1">
-  <table class="table">
-    <tr>
-      <th>과목명</th>
-      <th>연간횟수</th>
-      <th>훈련시간</th>
-    </tr>
-    <tr id="course" th:each="CourseInfo,i:${CourseList}">
-      <td>
-        <a th:href="@{'/courseInfo/'+${CourseInfo[3]}+'/'+${CourseInfo[4]}}" th:text="${CourseInfo[0]}"></a>
-      </td>
-      <td th:text="${CourseInfo[1]}"/>
-      <td th:text="${CourseInfo[2]}"/>
-    </tr>
-  </table>
- </div> 
+
+	<div id="contentWrap">
+		<div id="topBanner">
+		<div id="topBannerTitle">
+		<div id="topBannerTitleText">ddddddasdfsdfffdd</div>
+		</div>
+		</div>
+		
+		<div id="contentCenter">
+			<p id="courseTitle">dddasdfsdfaddd</p>
+			    	<!-- 메뉴분리용 div -->
+					<div id="divContentlineBlue"></div>
+					<!-- 메뉴분리용 div 끝-->
+			  <table class="table">
+			    <tr>
+			      <th>과목명</th>
+			      <th>연간횟수</th>
+			      <th>훈련시간</th>
+			    </tr>
+			    <tr id="course" th:each="CourseInfo,i:${CourseList}">
+			      <td>
+			        <a th:href="@{'/courseInfo/'+${CourseInfo[3]}+'/'+${CourseInfo[4]}}" th:text="${CourseInfo[0]}"></a>
+			      </td>
+			      <td th:text="${CourseInfo[1]}"/>
+			      <td th:text="${CourseInfo[2]}"/>
+			    </tr>
+			  </table>
+		  
+		</div>
+	</div>
+</div> 
 </body>
 </html>

@@ -10,13 +10,10 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kosta.springbootproject.model.ClassStateEnumType;
 import com.kosta.springbootproject.model.Classes;
-import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.querydsl.core.types.Predicate;
 
@@ -25,16 +22,6 @@ public class ClassesService {
 
 	@Autowired
 	ClassesRepository classesRepo;
-	
-	public Page<Classes> selectAll(PageVO pvo) { 
-		Predicate p = classesRepo.makePredicateClasses(pvo.getType(),pvo.getKeyword()); 
-	
-		Pageable pageable = pvo.makePaging(0, "classNo");
-		
-		Page<Classes> result = classesRepo.findAll(p, pageable);
-
-		return result;
-	}
 	
 	public Classes selectById(Long classNo) {
 		return classesRepo.findById(classNo).get();
@@ -147,7 +134,7 @@ public class ClassesService {
 			// 개강일 - 현재날짜 < 0 [마감]
 			
 			if(classes.getClassOpenDate().compareTo(Today)<=0){
-				classes.setClassState(ClassStateEnumType.CLOSE);
+				classes.setClassState(ClassStateEnumType.END);
 				classesRepo.save(classes);
 			}
 		}
@@ -157,11 +144,13 @@ public class ClassesService {
 	public List<Classes> selectRecentOpenClasses() {
 		//줄 수 
 		Integer rownum = 5;
+		// ClassesList를 "개강일을 기준"으로 오름차순 정렬
 		List<Classes> classesList = (List<Classes>)classesRepo.findAllByOrderByClassOpenDateAsc();
 		List<Classes> selectList = new ArrayList<>();
 		Date Today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Today);
+		//오늘 날짜에서 30일을 더한다.
 		cal.add(Calendar.DATE, 30);
 		for(Classes classes : classesList) {
 			//오늘 이후 && 오늘로부터 30일 이내 개강예정인 강의
@@ -175,16 +164,18 @@ public class ClassesService {
 	
 	//관리자 메인페이지 - 최근 종강예정 강의출력	
 	public List<Classes> selectRecentCloseClasses() {
-		//줄 수 
+		//줄 수 5줄만 출력
 		Integer rownum = 5;
+		// ClassesList를 "종강일을 기준"으로 오름차순 정렬
 		List<Classes> classesList = (List<Classes>)classesRepo.findAllByOrderByClassCloseDateAsc();
 		List<Classes> selectList = new ArrayList<>();
 		Date Today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Today);
+		//오늘 날짜에서 30일을 더한다.
 		cal.add(Calendar.DATE, 30);
 		for(Classes classes : classesList) {
-			//오늘 이후 && 오늘로부터 30일 이내 개강예정인 강의
+			//오늘 이후이면서 && 오늘로부터 30일 이내 개강예정인 강의
 			if(classes.getClassCloseDate().compareTo(Today)>=0 && classes.getClassCloseDate().compareTo(cal.getTime())<=0) {
 				if(selectList.size()>=rownum) break;
 				selectList.add(classes);

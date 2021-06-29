@@ -13,11 +13,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!-- 게시판 -->
-<!-- <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> -->
+<!-- table sorting, paging, searching을 위한 jQuery tablesorter 추가-->
 <script th:src="@{/js/tablesort.js}"></script>
 <link rel="stylesheet" type="text/css"
  href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 <script>
+/* 
+
+	<table sort,search,paging을 위한 script> 
+ 	
+ 	table에 table table-striped table-bordered table-hover 클래스 추가
+ 	tablesort 클래스 추가
+ 	dataTable 함수를 사용해서 실행
+	
+	
+*/
    $(function(){  
       $("table").addClass("table table-striped table-bordered table-hover");
       $("table").addClass("tablesort");

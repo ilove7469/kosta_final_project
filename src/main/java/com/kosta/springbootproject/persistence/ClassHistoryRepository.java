@@ -20,6 +20,7 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 	
 	public List<ClassHistory> findByUser(Users user);
 	
+	// 미수료, 확정, 대기, 취소 인원 카운트를 위한 natviequery사용
 	@Query(value = " SELECT"
 			+ " SUM(if(class_history_state='UNCOMPLETED',1,0)) AS 'uncompletedcount',"
 			+ " SUM(if(class_history_state='COMMIT',1,0)) AS 'commitcount',"

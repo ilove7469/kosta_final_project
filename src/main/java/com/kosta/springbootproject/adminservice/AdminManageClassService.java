@@ -1,6 +1,5 @@
 package com.kosta.springbootproject.adminservice;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,12 +28,14 @@ public class AdminManageClassService {
 		for(Classes classes:classList) {
 			Integer capa= classes.getLecture().getCourse().getCourseCapacity();
 			Date Today = new Date();
-			// 강의상태 = APPLY(OPENREADY때문에 넣어주었다.) && 목표정원 <= 확정인원 && 개강일 > 오늘날짜
+			// 강의상태 == APPLY && 목표정원 <= 확정인원 && 개강일 > 오늘날짜
+			// (강의상태 == APPLY는 OPENREADY때문에 넣어줌.)
  			if(classes.getClassState()==ClassStateEnumType.APPLY
  			   &&capa <= classes.getCommitCount()
  			   &&classes.getClassOpenDate().compareTo(Today)>0) {
 					classes.setClassState(ClassStateEnumType.END);
 					classrepo.save(classes);
+			// 강의상태 == END && 목표정원 > 확정인원 && 개강일 > 오늘날짜
 			} else if(classes.getClassState()==ClassStateEnumType.END
 		 			   &&capa > classes.getCommitCount()
 		 			   &&classes.getClassOpenDate().compareTo(Today)>0){
@@ -51,6 +52,15 @@ public class AdminManageClassService {
 				.classNo(classNo)
 				.build();
 		List<ClassHistory> HistoryList = classhistoryrepo.findByClasses(classes);
+		for(ClassHistory history : HistoryList) {
+			if(history.getUser().getCompany() == null) {
+				Company emptyCompany = Company.builder()
+						.companyConvention(ConventionEnumType.None)
+						.companyName(" ")
+						.build();
+				history.getUser().setCompany(emptyCompany);
+			}
+		}
 		return HistoryList;
 	}
 	

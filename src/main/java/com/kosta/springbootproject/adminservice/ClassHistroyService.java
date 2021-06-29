@@ -104,7 +104,7 @@ public class ClassHistroyService {
 		return classHistory.getClasses().getClassNo();
 	}
 	
-//  classes의 closedate날짜가 지나면 모든 commit을 complete로 변환
+//  classes의 closedate날짜가 지나면 모든 commit을 completed로 변환
 	public void commitToComplete() {
 		List<ClassHistory> classHistroyList = (List<ClassHistory>)classHistoryRepo.findAll();
 		for(ClassHistory classHistory : classHistroyList) {

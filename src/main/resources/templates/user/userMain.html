@@ -14,12 +14,19 @@
 <title>Insert title here</title>
 <th:block layout:fragment="style1">
   <style>
-      
+     #mainImg{
+      width:100%;
+      height: 500px;
+      background-image: url('/img/bg-masthead.jpg');
+     }
   </style>
 </th:block>
 </head>
 <body>
   <div class="panel panel-default" layout:fragment="content1">
+    <div id="mainImg">
+       <!-- 메인 이미지 -->
+    </div>
   </div>
 </body>
 </html>

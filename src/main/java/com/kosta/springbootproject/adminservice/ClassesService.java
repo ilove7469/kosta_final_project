@@ -113,13 +113,13 @@ public class ClassesService {
 			cal.setTime(Today);
 			cal.add(Calendar.DATE, 60);
 			
-			// 개강일 - 현재날짜 +60일 < 0 [60일도 안남았다면]
+			// 개강일 - (현재날짜+60일) <= 0 [60일도 안남았다면]
 			if(classes.getClassOpenDate().compareTo(cal.getTime())<=0) {
 				classes.setClassState(ClassStateEnumType.APPLY);
 				classesRepo.save(classes);
 			}
-			// 개강일 - 현재날짜 < 0 [마감]
 			
+			// 개강일 - 현재날짜 <= 0 [마감]
 			if(classes.getClassOpenDate().compareTo(Today)<=0){
 				classes.setClassState(ClassStateEnumType.END);
 				classesRepo.save(classes);

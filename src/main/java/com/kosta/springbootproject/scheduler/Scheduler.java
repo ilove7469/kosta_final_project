@@ -1,4 +1,4 @@
-package com.kosta.springbootproject;
+package com.kosta.springbootproject.scheduler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

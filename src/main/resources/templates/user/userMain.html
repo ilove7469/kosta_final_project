@@ -14,6 +14,7 @@
 <title>Insert title here</title>
 <th:block layout:fragment="style1">
   <style>
+  
      #mainImg{
       width:100%;
       height: 500px;
@@ -70,6 +71,50 @@
      .iconInfo:last-child{
       float: right;
      }
+     
+   .showcase .showcase-img {
+      min-height: 30rem;
+      background-size: cover;
+    }
+    .order-lg-2 {
+        order: 2 !important;
+    }
+    .text-white {
+        color: #fff !important;
+    }
+    .col-lg-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .row > * {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--bs-gutter-x) / 2);
+        padding-left: calc(var(--bs-gutter-x) / 2);
+        margin-top: var(--bs-gutter-y);
+    }
+    
+    .showcase .showcase-text {
+    padding: 7rem;
+    }
+    .order-lg-1 {
+        order: 1 !important;
+    }
+    .my-auto {
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+    .col-lg-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .g-0, .gy-0 {
+    --bs-gutter-y: 0;
+}
+.g-0, .gx-0 {
+    --bs-gutter-x: 0;
+}
   </style>
 </th:block>
 </head>

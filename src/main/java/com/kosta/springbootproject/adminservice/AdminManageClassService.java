@@ -44,7 +44,6 @@ public class AdminManageClassService {
 			}
 		}
 		return classList;
-		
 	}
 	
 	public List<ClassHistory> findClassHistoryByClasses(Long classNo){

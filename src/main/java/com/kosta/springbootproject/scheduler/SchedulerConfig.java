@@ -1,4 +1,4 @@
-package com.kosta.springbootproject;
+package com.kosta.springbootproject.scheduler;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;

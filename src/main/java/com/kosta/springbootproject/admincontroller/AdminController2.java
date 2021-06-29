@@ -1,10 +1,8 @@
 package com.kosta.springbootproject.admincontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +27,11 @@ import com.kosta.springbootproject.model.ClassRoom;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.EducationTime;
 import com.kosta.springbootproject.model.LectureHall;
-import com.kosta.springbootproject.model.PageMaker;
-import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Users;
 
 @Controller
-public class HyunController {
+public class AdminController2 {
 	
 	@Autowired
 	UserService userService;
@@ -61,14 +57,8 @@ public class HyunController {
 //	수강신청 관리메인
 	@GetMapping("/admin/manageclassmain")
 	public void selectAllClassHistory(Model model) {
-
 		List<Classes> classesResult = adminManageClassService.selectAll();
-		List<ClassHistory> classHistroyResult = classHistroyService.selectAll();
 		model.addAttribute("ClassesList",classesResult);
-		for(ClassHistory classhistroy : classHistroyResult) {
-			classhistroy.getClasses().getClassNo();
-		}
-		model.addAttribute("ClassHistroyList",classHistroyResult);
 	}
 	
 //	수강신청 관리 강의 상세페이지
@@ -86,18 +76,24 @@ public class HyunController {
 	@GetMapping("/admin/manageClassDetailCommit/{classHistoryNo}")
 	public ModelAndView commitManageClassDetail(@PathVariable Long classHistoryNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		//commit으로 바꿔주는 메서드
 		Long classNo = classHistroyService.commitManageClassDetail(classHistoryNo);
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList",classhistorylist );
+		mv.addObject("classes",classes);
 		return mv;
 	}
+	
 //	수강신청 관리 상세페이지 - 대기
 	@GetMapping("/admin/manageClassDetailWait/{classHistoryNo}")
 	public ModelAndView waitManageClassDetail(@PathVariable Long classHistoryNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.waitManageClassDetail(classHistoryNo);
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList",classhistorylist );
+		mv.addObject("classes",classes);
 		return mv;
 	}
 	
@@ -106,8 +102,10 @@ public class HyunController {
 	public ModelAndView cancelManageClassDetail(@PathVariable Long classHistoryNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.cancelManageClassDetail(classHistoryNo);
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList",classhistorylist );
+		mv.addObject("classes",classes);
 		return mv;
 	}
 	
@@ -116,8 +114,10 @@ public class HyunController {
 	public ModelAndView unCompleteManageClassDetail(@PathVariable Long classHistoryNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.uncompleteManageClassDetail(classHistoryNo);
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList",classhistorylist );
+		mv.addObject("classes",classes);
 		return mv;
 	}
 	
@@ -126,8 +126,10 @@ public class HyunController {
 	public ModelAndView completeManageClassDetail(@PathVariable Long classHistoryNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
 		Long classNo = classHistroyService.completeManageClassDetail(classHistoryNo);
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList",classhistorylist );
+		mv.addObject("classes",classes);
 		return mv;
 	}
 	

@@ -37,7 +37,6 @@ import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Company;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
-import com.kosta.springbootproject.model.PageVO;
 import com.kosta.springbootproject.model.Subject;
 import com.kosta.springbootproject.model.Teacher;
 import com.kosta.springbootproject.persistence.AdminRepository;
@@ -46,14 +45,13 @@ import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CompanyRepository;
 import com.kosta.springbootproject.persistence.TeacherRepository;
 import com.kosta.springbootproject.persistence.UserRepository;
-import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
  
 
 @Controller
-public class TaeController {
+public class AdminController1 {
 	
 	@Autowired
 	CompanyService companyService;
@@ -106,14 +104,14 @@ public class TaeController {
 	    model.addAttribute("closeExpectedList",classesService.selectRecentCloseClasses());	
 	}
 	
-	//직원 주소록
+//직원 주소록
 	@RequestMapping("/admin/adminList")
 	public void adminList(Model model, HttpServletRequest request ) {
 		List<Admin> result = adminService.selectAll();
 		model.addAttribute("adminlist", result);
 	}
 	
-//회사main
+//회사 main
 	@RequestMapping("/admin/companyList")
 	public void companySelectAll(Model model, HttpServletRequest request ) {
 		List<Company> result = companyService.selectAll();
@@ -128,7 +126,7 @@ public class TaeController {
 		mv.addObject("company",company);
 		return mv;
 	}
-//회사수정
+//회사 수정
 	@PostMapping("/admin/companyUpdate")
 	public String companyUpdate(Company company, RedirectAttributes rttr) {
 		Company update_company = companyService.updateCourse(company);
@@ -137,7 +135,7 @@ public class TaeController {
 		return "redirect:/admin/companyList";
 	}
 	
-//회사추가
+//회사 추가
 	@GetMapping("/admin/companyInsert")
 	public void companyInsert() {
 	}
@@ -151,7 +149,7 @@ public class TaeController {
 		return "redirect:/admin/companyList";
 	}
 	
-//회사삭제
+//회사 삭제
 	@GetMapping("/admin/companyDelete")
 	public String companyDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = companyService.deleteCompany(cno);
@@ -160,7 +158,7 @@ public class TaeController {
 		return "redirect:/admin/companyList";
 	}
 	
-//강사main
+//강사 main
 	@RequestMapping("/admin/teacherList")
 	public void teacherSelectAll(Model model, HttpServletRequest request) {
 		List<Teacher> result = teacherService.selectAll();
@@ -184,7 +182,7 @@ public class TaeController {
 		return "redirect:/admin/teacherList";
 	}
  
-//강사추가
+//강사 추가
 	@GetMapping("/admin/teacherInsert")
 	public void teacherInsert() {
 	} 
@@ -196,7 +194,7 @@ public class TaeController {
 		return "redirect:/admin/teacherList";
 	}
 	
-//강사삭제
+//강사 삭제
 	@GetMapping("/admin/teacherDelete")
 	public String teacherDelete(Long tno, RedirectAttributes rttr) {
 		int ret = teacherService.deleteteacher(tno);
@@ -204,7 +202,7 @@ public class TaeController {
 		return "redirect:/admin/teacherList";
 	}
 	
-//과정main 
+//과정 main 
 	@RequestMapping("/admin/courseList")
 	public void courseSelectAll(Model model, HttpServletRequest request ) {
 		List<Course> result = courseService.courseSelectAll();
@@ -212,7 +210,7 @@ public class TaeController {
 		model.addAttribute("courselist", result);
 	}
 
-// 과정상세보기
+//과정 상세보기
 	@GetMapping("/admin/courseDetail")
 	public void selectById(Model model, Long cno) {
 		Course course = courseService.selectById(cno);
@@ -225,7 +223,7 @@ public class TaeController {
 		model.addAttribute("subjectlistall", subjectservice.selectAll());
 	}	
 	
-//과정삭제
+//과정 삭제
 	@GetMapping("/admin/courseDelete")
 	public String courseDelete(Long cno, RedirectAttributes rttr) {
 		int ret = courseService.deleteCourse(cno);
@@ -233,7 +231,7 @@ public class TaeController {
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/courseList";
 	}
-//과정추가
+//과정 추가
 	@GetMapping("/admin/courseInsert")
 	public void courseInsert(Model model) {
 		model.addAttribute("certificatelist", certificateservice.selectAll());
@@ -248,7 +246,7 @@ public class TaeController {
 		return traineeName;
 	}
 	 
-//과정추가
+//과정 추가
 	@PostMapping("/admin/courseInsert")
 	public String courseInsertPost(Course course, RedirectAttributes rttr) {
 		
@@ -258,7 +256,7 @@ public class TaeController {
 		return "redirect:/admin/courseList";
 	}
 	
-//과정수정
+//과정 수정
 	@PostMapping("/admin/courseUpdate")
 	public String courseUpdate(Course course, RedirectAttributes rttr) {
 		Course update_course = courseService.updateCourse(course);
@@ -266,14 +264,14 @@ public class TaeController {
 		return "redirect:/admin/courseList";
 	}
 	
-//강의계획main
+//강의계획 main
 	@RequestMapping("/admin/lectureList")
 	public void lectureSelectAll(Model model, HttpServletRequest request) {
 		List<Lecture> result = lectureService.selectAll();
 		model.addAttribute("lecturelist", result);
 	}
 	
-//강의계획삭제
+//강의계획 삭제
 	@GetMapping("/admin/lectureDelete")
 	public String lectureDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = lectureService.deleteLecture(cno);
@@ -300,7 +298,6 @@ public class TaeController {
 		//lectureOpenCount  * courseCapacity = lectureCapacity 
 	}
 	
-	
 	@PostMapping("/admin/lectureInsert")
 	   public String lectureInsertPost(Lecture lecture, RedirectAttributes rttr) {
 	      boolean lecture_check = lectureService.insertOrUpdate(lecture);
@@ -320,13 +317,6 @@ public class TaeController {
 	    	  rd = "redirect:/admin/lectureList";
 	      }
 	      return rd;  
-	      //업데이트는 무조건 가능  업데이트는 실패가 불가능
-	     
-			/*
-			 * if(!lecture_check) { return "redirect:/admin/lectureInsert"; }else {
-			 * 
-			 * }
-			 */ 
 	   }
 	
 //강의계획 상세보기
@@ -340,7 +330,7 @@ public class TaeController {
 		return mv;
 	}
 	
-//강의main
+//강의 main
 	@RequestMapping("/admin/classesList")
 	public void classesSelectAll(Model model, HttpServletRequest request) {
 		List<Classes> result = classesService.selectAll();
@@ -370,7 +360,7 @@ public class TaeController {
 		return "redirect:/admin/classesList";
 	}
 
-//강의삭제
+//강의 삭제
 	@GetMapping("/admin/classesDelete")
 	public String classesDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = classesService.deleteClasses(cno);
@@ -379,7 +369,7 @@ public class TaeController {
 		return "redirect:/admin/classesList";
 	}
 	
-//강의추가
+//강의 추가
 	@GetMapping("/admin/classesInsert")
 	   public void classesInsert(Model model) {
 	      model.addAttribute("lecturelist", lectureService.selectAll());
@@ -420,18 +410,18 @@ public class TaeController {
 		ClassesRepository classesRepo;
 	   
 		@RequestMapping("/admin/exceldownload")
-	    public void excelDownload(Model model, PageVO pagevo, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
+	    public void excelDownload(Model model, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
 	        
 			 
 	        OutputStream out = null;
 	        
 	        try {
-	        	 Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
-			     List<Classes> list = (List<Classes>) classesRepo.findAll(p);
+//	        	 Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
+			     List<Classes> list = (List<Classes>) classesRepo.findAll();
 			        
 			     //System.out.println(list);
 			        
-			     String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
+			     //String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
 			     
 	        	XSSFWorkbook workbook = classesService.listExcelDownload(list);
 	        	

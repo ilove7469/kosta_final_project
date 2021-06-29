@@ -28,9 +28,7 @@ $(function(){
 	        if( chkOnlyEngNum.test(inputTxt) && inputTxt.length > 3){
 	        	
 	            //정규식 조건을 통과한 경우
-	            $("#signupWarn").text( '　' );    
-	            //Ajax 활용 ID 중복체크, 중복이 아니면? true = 사용가능 ID            
-	            var varIsNotDupId = false;
+	            //$("#signupWarn").text( '　' );    
 	            //초기값 valid 적용
 	            $("#idEnable").attr("class","is-invalid");
 	            $("#idDisable").attr("class","is-invalid");
@@ -48,20 +46,19 @@ $(function(){
 	                        //alert('ok data 트루라고 했다');
 	                        $("#idEnable").removeClass("is-invalid");
 	                        $("#idEnable").addClass("is-valid");
-	                        varIsNotDupId = true;
 	                        idOk = true;
-	                        $("#signupWarn").text( '　' );            
+	                        //$("#signupWarn").text( '　' );            
 	                        isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk );
 	                        if( isOk == true ){
 	                            $("#insertBtn").prop("disabled",false);
 	                        }
-	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok +  ', ' + emailOk + '마지막 idOk:' + isOk );
+	                        //$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok +  ', ' + emailOk + '마지막 idOk:' + isOk );
 	                    }else{
 	                        //중복된 ID인 경우
 	                        $("#idDisable").removeClass("is-invalid");
 	                        $("#idDisable").addClass("is-valid");
 	                        idOk = false;
-	                        $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
+	                        //$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
 	                        $("#idDisable").text( '중복된 ID입니다. 다른 ID를 입력해 주세요.' );
 	                        $("#btnConfirm").prop("disabled",true);
 	                    }
@@ -88,12 +85,12 @@ $(function(){
    			//var regExpPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
 	        if( pw1 == pw2 ){
 	            pw2Ok = true;            
-	            $("#signupWarn").text( '　' );
+	            //$("#signupWarn").text( '　' );
 				isOk = allOk( idOk, pw1Ok, pw2Ok, emailOk ); 
 	            if( isOk == true ){
 	                $("#insertBtn").prop("disabled",false);
 	            }
-	            $("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', '  + emailOk + '마지막 idOk:' + isOk );
+	            //$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', '  + emailOk + '마지막 idOk:' + isOk );
 	            $("#pwDisable").removeClass("is-valid");
 	            $("#pwDisable").addClass("is-invalid");
 	            $("#pwEnable").removeClass("is-invalid");
@@ -153,7 +150,7 @@ $(function(){
 					if( isOk == true ){
 	                  $("#insertBtn").prop("disabled",false);
 	                }
-					$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
+					//$("#chkAllOk").text(idOk + ', ' + pw1Ok + ', ' + pw2Ok + ', ' + emailOk + '마지막 idOk:' + isOk );
 					
 				}
 			});

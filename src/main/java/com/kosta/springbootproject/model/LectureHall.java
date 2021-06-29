@@ -37,6 +37,7 @@ public class LectureHall implements Comparable<LectureHall>{
 	@Column(nullable = false)
 	private String lectureHallPhone;
 
+	//정렬을 위해 override
 	@Override
 	public int compareTo(LectureHall o) {
 		return Long.compare(this.lectureHallNo, o.lectureHallNo);

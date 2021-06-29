@@ -33,21 +33,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("security config..........");
+		//url 패턴에 대한 접근 허용
 		http.authorizeRequests()
 				.antMatchers("/auth/**","/search/**", "/fragments/**", "/user/**", "/courseInfo/**").permitAll()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/course/enroll/**").hasRole("USER")
 				.anyRequest().authenticated()
 			.and()
+			//로그인 처리
 				.formLogin()
 				.loginPage("/auth/login")
 				.defaultSuccessUrl("/loginSuccess")
 			.and()
+			//로그아웃
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/user/userMain")
 				.invalidateHttpSession(true)
 			.and().csrf().disable();
+		//잘못된 권한으로 접근 했을 때
 		http.exceptionHandling().accessDeniedPage("/accessDenied");
 	}
 

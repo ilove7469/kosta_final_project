@@ -26,6 +26,9 @@ public class SearchController {
 		
 	}
 	
+	
+	//옵션 검색에 주제명과 강의장을 구현하기 위해
+	//Set에 넣어 중복을 제거하고, List로 변환하여 정렬을 함
 	@GetMapping("/search/searchResult")
 	public void searchResult(Model model, String keyword) {
 		List<Classes> result = service.selectOption(keyword);

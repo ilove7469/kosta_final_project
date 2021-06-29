@@ -46,7 +46,6 @@ import com.kosta.springbootproject.persistence.ClassesRepository;
 import com.kosta.springbootproject.persistence.CompanyRepository;
 import com.kosta.springbootproject.persistence.TeacherRepository;
 import com.kosta.springbootproject.persistence.UserRepository;
-import com.kosta.springbootproject.usercontroller.CourseController;
 import com.querydsl.core.types.Predicate;
 import com.kosta.springbootproject.adminservice.AdminService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
@@ -97,14 +96,14 @@ public class TaeController {
 		model.addAttribute("usercount", userrepository.userCount());
 		model.addAttribute("teachercount", teacherrepository.teacherCount());
 		model.addAttribute("companycount", companyrepository.companyCount());
+		
 		model.addAttribute("classhistorywaitcount", classhistoryrepository.classHistoryWaitCount());
 		model.addAttribute("classhistorycompletedcount", classhistoryrepository.classHistoryCompletedCount());
 		model.addAttribute("traineecount", userrepository.traineeCount());
 		model.addAttribute("traineeworkercount", userrepository.traineeworkerCount());
-		
+
 	    model.addAttribute("openExpectedList",classesService.selectRecentOpenClasses());
-	    model.addAttribute("closeExpectedList",classesService.selectRecentCloseClasses());
-		
+	    model.addAttribute("closeExpectedList",classesService.selectRecentCloseClasses());	
 	}
 	
 	//직원 주소록

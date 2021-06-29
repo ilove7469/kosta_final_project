@@ -328,9 +328,6 @@ public class AdminController2 {
 		return mv;
 	}	
 	
-	
-	
-	
 //	강의장 삭제
 	@GetMapping("/admin/lectureHallDelete")
 	public String deleteLectureHall(Long no) {
@@ -369,7 +366,6 @@ public class AdminController2 {
 		mv.addObject("classRoom", classRoom);
 		return mv;
 	}
-
 	
 //	강의실 삭제
 	@GetMapping("/admin/classRoomDelete")

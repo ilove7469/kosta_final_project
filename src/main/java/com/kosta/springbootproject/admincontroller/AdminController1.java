@@ -330,6 +330,14 @@ public class AdminController1 {
 		return mv;
 	}
 	
+//강의계획 수정
+	@PostMapping("/admin/lectureUpdate")
+	public String lectureUpdate(Lecture lecture, RedirectAttributes rttr) {
+		lectureService.insertOrUpdate(lecture);
+		return "redirect:/admin/lectureList";
+	}
+	
+	
 //강의 main
 	@RequestMapping("/admin/classesList")
 	public void classesSelectAll(Model model, HttpServletRequest request) {

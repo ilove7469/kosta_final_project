@@ -32,6 +32,8 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 		// 주제
 		builder.or(classes.lecture.course.subject.subName.contains(keyword));
 		
+		//과정명과 주제의 classes로의 깊이가 2단계 이상이기 때문에 @QueryInit을 사용해야 한다.
+		
 		if(subNo != null) {
 			builder.and(classes.lecture.course.subject.subjectNo.eq(subNo));
 		}

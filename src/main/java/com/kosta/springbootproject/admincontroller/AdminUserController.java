@@ -22,7 +22,7 @@ import com.kosta.springbootproject.persistence.MemberReposiroty;
 import com.kosta.springbootproject.security.MemberService;
 
 @Controller
-public class AdminController {
+public class AdminUserController {
 
 	@Autowired
 	MemberService mservice;
@@ -40,6 +40,7 @@ public class AdminController {
 	
 	@PostMapping("/admin/adminInsert")
 	public String adminInsertPost(Admin admin, HttpServletResponse response) {
+		//Optinal이 null을 가지면 에러가 난다. 그래서 isEmpty()를 사용한다.
 		Boolean flag = mrepo.findById(admin.getAdminId()).isEmpty();
 		
 		if(!flag) {
@@ -78,6 +79,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/adminInfo")
 	public void adminInfo(Model model ) {
+		//로그인 정보를 SecurityContextHolder가 가지고있다.
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails)principal;
 		

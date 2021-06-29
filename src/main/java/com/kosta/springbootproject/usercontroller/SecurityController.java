@@ -32,7 +32,7 @@ public class SecurityController {
 		String Role = authorities.toArray()[0].toString();
 		
 		if(Role.equals("ROLE_ADMIN")) {
-			return "redirect:/admin/courseList";
+			return "redirect:/admin/adminMain";
 		}
 		return "redirect:/user/userMain";
 	}

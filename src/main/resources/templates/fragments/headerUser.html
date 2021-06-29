@@ -8,17 +8,20 @@
 <th:block layout:fragment="script1">
 
 </th:block>
+<th:block layout:fragment="style1">
+  <style>
+
+  </style>
+</th:block>
 </head>
 
 <header class="page-header" th:fragment="header1">
-	<th:block layout:fragment="style1">
-
-	</th:block>
-
-	<img src="/img/logo4_new.png">
+	
+    <div id="headerInfo">
+  	 <img src="/img/logo1.png" width="190px" height="60px;"> 
 	<!-- KOSTA프로젝트 <small>Designed by yoon</small> -->
-
-	<div id="sign">
+    
+	 <div id="sign">
 		<div sec:authorize="isAuthenticated()">
 			<a href="/user/userInfo">마이페이지<span
 				class="glyphicon glyphicon-user"></span><span> | </span></a> <a
@@ -29,7 +32,9 @@
 				class="glyphicon glyphicon-edit"></span><span> | </span></a> <a
 				href="/auth/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
 		</div>
+      
 	</div>
+  </div>
 	<nav class="navbar navbar-inverse">
 		<div id="base" class="container-fluid">
 			<div class="navbar-header">

@@ -92,7 +92,6 @@ public class UserController {
 	//유저 업데이트
 	@PostMapping("/user/update")
 	public String userUpdate(Users user, Long companyNo) {
-		System.out.println(user);
 		uservice.updateUserAndCompany(user, companyNo);
 		mservice.updateMember(user);
 		return "redirect:/user/userInfo";
@@ -130,7 +129,6 @@ public class UserController {
 	@PostMapping("/user/email/send")
 	public void sendmail(String email, HttpServletRequest request) throws MessagingException {
 		HttpSession session = request.getSession();
-		System.out.println(email);
 		//코드 생성
 		//난수 생성을 위한 랜덤 클래스
 		Random random=new Random();  
@@ -176,14 +174,12 @@ public class UserController {
 		emailcontent.append("</html>");
 		emailService.checkMain(email, "[KOSTA 이메일 인증]", emailcontent.toString());
 		session.setAttribute("key", key);
-		System.out.println(session.getAttribute("key"));
 	}
 	
 	//이메일인증 키확인
 	@ResponseBody
 	@PostMapping("/user/email/certificate")
 	public Map<String, Object> emailCertificate(String authNum, HttpServletRequest request) {
-		System.out.println(authNum);
 		String emailKey="";
 		String message="";
 		String info="";
@@ -191,7 +187,8 @@ public class UserController {
 		Map<String, Object> map = new HashMap<>();
 		HttpSession session = request.getSession();
 		emailKey = (String)session.getAttribute("key");
-		System.out.println(session.getAttribute("key"));
+		//테스트용 콘솔창 키 표시
+		//System.out.println(session.getAttribute("key"));
 		if(authNum.equals("")){
 			message = "메일 주소가 입력되지 않았습니다.";
 			info = "warning";

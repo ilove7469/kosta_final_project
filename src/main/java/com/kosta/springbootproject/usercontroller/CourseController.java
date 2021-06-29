@@ -30,6 +30,13 @@ public class CourseController {
 	@Autowired
 	CourseService cservice;
 	
+	//mainTest
+	@GetMapping("/user/userMainTest")
+	public void userMainTest() {
+		
+	}
+	
+	
 	//해더
 	@ResponseBody
 	@GetMapping("/fragments/headerUser")
@@ -51,7 +58,7 @@ public class CourseController {
 	}
 	
 	//과목
-	@GetMapping("/courseInfo/{subjectNo}")	//주소 네이밍 어떻게 할지
+	@GetMapping("/courseInfo/{subjectNo}")
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
 		ModelAndView mv = new ModelAndView("/user/userCourse");
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
@@ -88,25 +95,19 @@ public class CourseController {
 		mv = new ModelAndView("/user/userEnrollDetail");
 		Classes classInfo = cservice.findClassByClassNO(classNo);
 		mv.addObject("class",classInfo);
-		//id로 유저찾기 >>repo에서 유저정보 찾아서 뿌리기 밑에꺼 시큐리티만들어지면 바꿔야함
-		//Principal principal을 매개변수로 받아서 정보 가져오면 된다고 함
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails)principal;
 		String userId = userDetails.getUsername();
 		Users userInfo = cservice.findUserByUserID(userId);
 		mv.addObject("user",userInfo);
-		//mv.addObject("userNo",userNo);
-		//id 없으면
-		//mv = new ModelAndView("/user/login");
 		return mv;
 	}
 	
 	@PostMapping("/course/enroll/info")
 	public String insertClassHistory(ClassHistory ch) {
-		//System.out.println(ch.getUser());
 		Boolean check = cservice.updateClassHistory(ch);
 		if(!check) {
-			//주소 변경 고려(나중에 수강신청 이미 했다고 메세지 창 or 다른 페이지) 
 			return "redirect:/course/enroll/info/"+ch.getClasses().getClassNo();
 		}
 		return "/user/userEnrollSuccess";

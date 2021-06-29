@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:fragment="head1">
 <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"></title>
@@ -8,9 +8,9 @@
 
 <!--공통 스크립트 -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
   $(function(){
       $.ajax({
@@ -37,24 +37,24 @@
         var str="";
         $.getJSON("/user/userMain/"+trainee.traineeNo,function(subject){
           $.each(subject,function(idx,subject){
-          	str += `<li><a href='/courseInfo/${subject.subjectNo}'>${subject.subName}</a></li>`; 
+             str += `<li><a href='/courseInfo/${subject.subjectNo}'>${subject.subName}</a></li>`; 
           });
           $("#dropdown-manu"+trainee.traineeNo).html(str);
         });
     }
   });
   
-	$(function() {
-		var formObj = $(".form1");
+   $(function() {
+      var formObj = $(".form1");
 
-		$(".searchBtn").click(function() {
-			var keyword = $(".searchKeyword").val();
+      $(".searchBtn").click(function() {
+         var keyword = $(".searchKeyword").val();
 
-			formObj.find("[name='keyword']").val(keyword);
-			formObj.submit();
-		});
+         formObj.find("[name='keyword']").val(keyword);
+         formObj.submit();
+      });
 
-	});
+   });
   </script>
 
 <!--개별 스크립트 -->
@@ -63,34 +63,34 @@
 
 <!-- 공통적인 css -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
 .dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0;
+   display: block;
+   margin-top: 0;
 }
 
 #course div p:first-child {
-	font-size: 40px;
+   font-size: 40px;
 }
 
 .preBox {
-	white-space: pre-wrap;
+   white-space: pre-wrap;
 }
 
 .user-foot {
-	margin-left: 300px;
+   margin-left: 300px;
 }
 
 #base {
-	position:static;
+   position:static;
 }
 
 #sign {
-	position: relative;
-	top:60px;
-	right: 20px;
-	float: right;
+   position: relative;
+   top:60px;
+   right: 20px;
+   float: right;
 }
 #headerInfo{
   margin-left:130px;

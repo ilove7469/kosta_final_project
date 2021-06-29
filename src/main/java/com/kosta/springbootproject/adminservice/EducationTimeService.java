@@ -1,6 +1,5 @@
 package com.kosta.springbootproject.adminservice;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

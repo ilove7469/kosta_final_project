@@ -412,26 +412,22 @@ public class AdminController1 {
 		}
 		
 
-//엑셀다운로드
+//강의내역 엑셀다운로드
 	   @Autowired
 		ClassesRepository classesRepo;
 	   
 		@RequestMapping("/admin/exceldownload")
-	    public void excelDownload(Model model, HttpServletRequest request ,HttpServletResponse response ,HttpSession session, Company param) throws Exception {
-	        
-			 
+	    public void excelDownload(Model model, HttpServletRequest request ,HttpServletResponse response ,HttpSession session) throws Exception {
+
 	        OutputStream out = null;
 	        
 	        try {
-	        	//Predicate p = classesRepo.makePredicateClasses(pagevo.getType(),pagevo.getKeyword()); 
 			    List<Classes> list = (List<Classes>) classesRepo.findAll();
-
-			    //String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
 			     
 	        	XSSFWorkbook workbook = classesService.listExcelDownload(list);
 	        	
 	            response.reset();
-	            response.setHeader("Content-Disposition", "attachment;filename=kosta_history.xls");
+	            response.setHeader("Content-Disposition", "attachment;filename=kosta_history.xls"); //엑셀 파일 명
 	            response.setContentType("application/vnd.ms-excel");
 	            out = new BufferedOutputStream(response.getOutputStream());
 	            

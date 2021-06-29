@@ -41,8 +41,6 @@ public class TeacherService {
 		return teacherRepository.findById(id).get();
 	}
 	
-	
-	
 //	teacher List 전체조회	
 	public List<Teacher> selectAll(){
 		return (List<Teacher>) teacherRepository.findAll();

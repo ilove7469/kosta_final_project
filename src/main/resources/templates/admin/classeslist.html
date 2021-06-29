@@ -7,15 +7,12 @@
 <title>강의리스트</title>
 </head>
 <body>
-
 	<div class="panel panel-default" layout:fragment="content1">
-
-	
 		<div id="menuTitleIco"><span class="glyphicon glyphicon-bullhorn"></span></div><span id="menuTitle">강의</span>
+	
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
-	
 	
 		<div class="pull-right">
 		<h3><a class="btn btn-default" th:href="@{/admin/classesInsert}">등록</a></h3>
@@ -55,16 +52,7 @@
 		</tbody>
 		</table>
 
-
-	
-
-
 	</div>
-
-
-
-
-
 
 	<th:block layout:fragment="script1">
 		<script>
@@ -108,7 +96,6 @@
 											.append("<input type='hidden' name='bno' value='" + bno +"'>")
 									formObj.submit();
 								});
-
 			});
 		</script>
 	</th:block>

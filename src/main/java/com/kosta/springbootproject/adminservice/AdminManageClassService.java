@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.adminservice;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,25 +51,6 @@ public class AdminManageClassService {
 				.classNo(classNo)
 				.build();
 		List<ClassHistory> HistoryList = classhistoryrepo.findByClasses(classes);
-		for(ClassHistory history:HistoryList) {
-			 if(history.getUser().getCompany()==null){
-				 Company company = Company
-						 .builder()
-						 .companyName(" ")
-						 .companyConvention(ConventionEnumType.None)
-						 .build();
-				 history.getUser().setCompany(company);
-			 }
-			 if(history.getUser().getUserJob() == null) {
-				 history.getUser().setUserJob(" ");
-			 }
-			 if(history.getUser().getUserPosition() == null) {
-				 history.getUser().setUserPosition(" ");
-			 }
-			 if(history.getUser().getUserIdentity() == null) {
-				 history.getUser().setUserIdentity(" ");
-			 }
-		 }
 		return HistoryList;
 	}
 	

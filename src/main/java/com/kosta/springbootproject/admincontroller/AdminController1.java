@@ -153,7 +153,7 @@ public class AdminController1 {
 	@GetMapping("/admin/companyDelete")
 	public String companyDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = companyService.deleteCompany(cno);
-		System.out.println("삭제:" + ret);
+		
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/companyList";
 	}
@@ -227,7 +227,7 @@ public class AdminController1 {
 	@GetMapping("/admin/courseDelete")
 	public String courseDelete(Long cno, RedirectAttributes rttr) {
 		int ret = courseService.deleteCourse(cno);
-		System.out.println("삭제:" + ret);
+		
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/courseList";
 	}
@@ -275,7 +275,7 @@ public class AdminController1 {
 	@GetMapping("/admin/lectureDelete")
 	public String lectureDelete(Long cno,  RedirectAttributes rttr) {
 		int ret = lectureService.deleteLecture(cno);
-		System.out.println("삭제:" + ret);
+
 		rttr.addFlashAttribute("resultMessage", ret==0?"삭제실패":"삭제성공");
 		return "redirect:/admin/lectureList";
 	}
@@ -301,7 +301,6 @@ public class AdminController1 {
 	@PostMapping("/admin/lectureInsert")
 	   public String lectureInsertPost(Lecture lecture, RedirectAttributes rttr) {
 	      boolean lecture_check = lectureService.insertOrUpdate(lecture);
-	      
 
 	      String rd ="";
 	      String message = "";

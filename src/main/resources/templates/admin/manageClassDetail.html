@@ -144,30 +144,30 @@
 		
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='WAIT'">
 			<td>
-				<a th:href="@{'/admin/manageClassDetailCommit/'+${classHistory.classHistoryNo}}" th:text="확정"></a>
-				<a th:href="@{'/admin/manageClassDetailCancel/'+${classHistory.classHistoryNo}}" th:text="취소"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailCommit/'+${classHistory.classHistoryNo}}" th:text="확정"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailCancel/'+${classHistory.classHistoryNo}}" th:text="취소"></a>
 			</td>
 		</th:block>
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='CANCEL'">
 			<td>
-				<a th:href="@{'/admin/manageClassDetailCommit/'+${classHistory.classHistoryNo}}" th:text="확정"></a>
-				<a th:href="@{'/admin/manageClassDetailWait/'+${classHistory.classHistoryNo}}" th:text="대기"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailCommit/'+${classHistory.classHistoryNo}}" th:text="확정"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailWait/'+${classHistory.classHistoryNo}}" th:text="대기"></a>
 			</td>
 		</th:block>
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='COMMIT'">
 			<td>
-				<a th:href="@{'/admin/manageClassDetailWait/'+${classHistory.classHistoryNo}}" th:text="대기"></a>
-				<a th:href="@{'/admin/manageClassDetailCancel/'+${classHistory.classHistoryNo}}" th:text="취소"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailWait/'+${classHistory.classHistoryNo}}" th:text="대기"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailCancel/'+${classHistory.classHistoryNo}}" th:text="취소"></a>
 			</td>
 		</th:block>
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='COMPLETED'">
 			<td>
-				<a th:href="@{'/admin/manageClassDetailUncomplete/'+${classHistory.classHistoryNo}}" th:text="미수료"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailUncomplete/'+${classHistory.classHistoryNo}}" th:text="미수료"></a>
 			</td>
 		</th:block>
 		<th:block th:if="${#strings.toString(classHistory.classHistoryState)}=='UNCOMPLETED'">
 			<td>
-				<a th:href="@{'/admin/manageClassDetailComplete/'+${classHistory.classHistoryNo}}" th:text="수료"></a>
+				<a class="btn btn-default btn-sm" th:href="@{'/admin/manageClassDetailComplete/'+${classHistory.classHistoryNo}}" th:text="수료"></a>
 			</td>
 		</th:block>
 	</tr>

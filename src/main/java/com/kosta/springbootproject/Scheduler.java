@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.kosta.springbootproject.adminservice.ClassHistroyService;
 import com.kosta.springbootproject.adminservice.ClassesService;
-import com.kosta.springbootproject.model.ClassHistory;
 
 @Component
 public class Scheduler {

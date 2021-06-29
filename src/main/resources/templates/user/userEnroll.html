@@ -33,12 +33,23 @@
   height : 100%;
   }
 
+#contentWrap{
+width : 100%;
+height : 100%;
+
+}
 #contentCenter{
   width: 60%;
   height: 100%;
   margin: 0 auto;
   padding-top: 20px;
+  float: left;
   }
+
+#contentCenterRight{
+  width : 250px;
+  float: left;
+}
   
 #topBanner{
   padding : 0 px;
@@ -74,7 +85,7 @@
 <body>
   <div class="panel panel-default" layout:fragment="content1">
   
-  <div id="contentWrap">
+<div id="contentWrap">
 <div id="topBanner">
 
 <div id="topBannerTitle">
@@ -124,9 +135,7 @@
     </table>
     
     
-        <!-- 오른쪽 사이드바 -->
-    <div id="right-sidebar">
-    </div>
+
     
     
     <!-- 과정+강의계획정보 출력 -->
@@ -171,6 +180,12 @@
     </div>
     <!-- 과정+강의계획정보 출력끝 -->
 
+  </div>
+  
+  <div id="contentCenterRight">
+          <!-- 오른쪽 사이드바 -->
+    <div id="right-sidebar">
+    </div>
   </div>
 
 </div>

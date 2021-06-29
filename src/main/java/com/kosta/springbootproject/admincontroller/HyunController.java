@@ -17,6 +17,7 @@ import com.kosta.springbootproject.adminservice.AdminManageClassService;
 import com.kosta.springbootproject.adminservice.CertificateService;
 import com.kosta.springbootproject.adminservice.ClassHistroyService;
 import com.kosta.springbootproject.adminservice.ClassRoomService;
+import com.kosta.springbootproject.adminservice.ClassesService;
 import com.kosta.springbootproject.adminservice.EducationTimeService;
 import com.kosta.springbootproject.adminservice.LectureHallService;
 import com.kosta.springbootproject.adminservice.SubjectService;
@@ -54,7 +55,9 @@ public class HyunController {
 	ClassHistroyService classHistroyService;
 	@Autowired
 	TraineeService traineeService;
-
+	@Autowired
+	ClassesService classesService;
+	
 //	수강신청 관리메인
 	@GetMapping("/admin/manageclassmain")
 	public void selectAllClassHistory(Model model) {
@@ -72,8 +75,10 @@ public class HyunController {
 	@GetMapping("/admin/manageclassdetail/{classNo}")
 	public ModelAndView searchClassDetail(@PathVariable Long classNo) {
 		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList", classhistorylist);
+		mv.addObject("classes",classes);
 		return mv;
 	}
 

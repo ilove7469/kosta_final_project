@@ -34,7 +34,7 @@
 #topBannerTitleText{
   padding-top : 130px;
   color:white;
-  font-size : 30px;
+  font-size : 40px;
   }
 #divContentlineBlue{
   background-color: #6a7ca2;
@@ -43,7 +43,7 @@
   }
 #courseTitle{
   color : #6a7ca2;
-  font-size: 30px !important;
+  font-size: 22px !important;
   }
 </style>
 </th:block>
@@ -54,12 +54,12 @@
 	<div id="contentWrap">
 		<div id="topBanner">
 		<div id="topBannerTitle">
-		<div id="topBannerTitleText">ddddddasdfsdfffdd</div>
+		<div id="topBannerTitleText" th:text="${subject.subName}"></div>
 		</div>
 		</div>
 		
 		<div id="contentCenter">
-			<p id="courseTitle">dddasdfsdfaddd</p>
+			<p id="courseTitle" th:text="${subject.subName}+과정"></p>
 			    	<!-- 메뉴분리용 div -->
 					<div id="divContentlineBlue"></div>
 					<!-- 메뉴분리용 div 끝-->

@@ -55,6 +55,7 @@ public class CourseController {
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
 		ModelAndView mv = new ModelAndView("/user/userCourse");
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
+		mv.addObject("subject",cservice.findSubjectById(subjectNo));
 		mv.addObject("CourseList", CourseList);
 		return mv;
 	}

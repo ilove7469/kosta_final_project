@@ -21,6 +21,9 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 	//강의를 종강일 순으로 정렬해서 조회
 	public List<Classes> findAllByOrderByClassCloseDateAsc();
 	
+	//강의를 넘버순으로 정렬해서 조회
+	public List<Classes> findAllByOrderByClassNoDesc();
+	
 	
 	public default Predicate makePredicateSubHallClasses(String keyword, Long subNo, Long lecHallNo) {
 		BooleanBuilder builder = new BooleanBuilder();

@@ -49,7 +49,7 @@ public class ClassesService {
 	}
 	
 	public List<Classes> selectAll(){
-		List<Classes> classesList = (List<Classes>)classesRepo.findAll();
+		List<Classes> classesList = (List<Classes>)classesRepo.findAllByOrderByClassNoDesc();
 		return classesList;
 	}
 

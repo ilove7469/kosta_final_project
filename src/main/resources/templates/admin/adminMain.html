@@ -421,6 +421,7 @@ $(function() {
 		                     <tr>
 		                        <th>개강예정일</th>
 		                        <th>강의명</th>
+		                        <th>강사명</th>
 		                        <th>상태</th>
 		                     </tr>
 		                  </thead>
@@ -428,6 +429,7 @@ $(function() {
 		                     <tr th:each="classes:${openExpectedList}">
 		                        <td th:text="${classes.classOpenDate}">개강예정일</td>
 		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:text="${classes.teacher.teacherName}">강사명</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
@@ -446,6 +448,7 @@ $(function() {
 		                     <tr>
 		                        <th>종강예정일</th>
 		                        <th>강의명</th>
+		                        <th>강사명</th>
 		                        <th>상태</th>
 		                     </tr>
 		                  </thead>
@@ -453,6 +456,7 @@ $(function() {
 		                     <tr th:each="classes:${closeExpectedList}">
 		                        <td th:text="${classes.classCloseDate}">종강예정일</td>
 		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:text="${classes.teacher.teacherName}">강사명</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
 		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>

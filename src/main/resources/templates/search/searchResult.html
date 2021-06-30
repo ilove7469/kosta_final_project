@@ -20,6 +20,7 @@
 					"table table-striped table-bordered table-hover");
 			$("table").attr("id", "tablesort");
 			$("#tablesort").dataTable();
+			$(".dataTables_filter").remove();
 		});
 	</script>
 	<script>
@@ -98,14 +99,15 @@
 					}
 				});
 			});
+			
 		});
 		
-		
+
 	</script>
 
 </th:block>
 <th:block layout:fragment="style1">
-	<style>
+<style>
 .cencen {
 	margin: 0 auto;
 	text-align: center;
@@ -114,6 +116,7 @@
 .searchKeyword2 {
 	width: 600px;
 	height: 40px;
+	margin: 25px;
 }
 
 .searchBtn2 {
@@ -127,7 +130,29 @@
 #final_content {
 	margin-left: 200px;
 	margin-right: 200px;
+	margin-bottom: 25px;
 }
+
+#topBanner{
+  padding : 0 px;
+  margin : 0 px;
+  width:100%;
+  height : 300px;
+  background-color: #6a7ca2;
+  text-align: center;
+  vertical-align: center;
+  }
+  
+#topBannerTitleText{
+  padding-top : 130px;
+  color:white;
+  font-size : 30px;
+  }
+#topBannerTitleText span{
+  padding-top : 130px;
+  color:white;
+  font-size : 20px;
+  }
 </style>
 </th:block>
 </head>
@@ -137,7 +162,13 @@
 	<br><br><br><br>
 	
 		<div class="cencen">
-
+		
+	    <div id="topBanner">
+		<div id="topBannerTitle">
+		<div id="topBannerTitleText"><p>강의 검색</p><span>강의명, 강사를 입력해 주세요.</span></div>
+		</div>
+		</div>
+		
 			<input type="text" class="searchKeyword2" th:value=${word}
 				placeholder="과정명, 강사명, 주제 검색어를 입력해 주세요">
 			<button class="searchBtn2">검색</button>

@@ -64,18 +64,6 @@
 					formObj.submit();
 				});
 
-				$(".boardLink")
-						.click(
-								function(e) {
-									e.preventDefault();
-									var bno = $(this).attr("href"); /*  href 읽어와서  */
-									/* 	수정하고 바꿔라 */
-									formObj.attr("action",
-											"[[@{/webboard/boarddetail}]]");
-									formObj
-											.append("<input type='hidden' name='bno' value='" + bno +"'>")
-									formObj.submit();
-								});
 			});
 		</script>
 	</th:block>

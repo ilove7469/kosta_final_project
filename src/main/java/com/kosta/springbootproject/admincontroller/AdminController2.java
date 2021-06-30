@@ -148,7 +148,7 @@ public class AdminController2 {
 		return "/admin/subjectdetail";
 	}
 	
-//	주제 추가 Post
+//	주제 추가 및 수정 Post
 	@PostMapping("/admin/subjectInsert")
 	public String insertSubject(Subject subject) {
 
@@ -187,7 +187,7 @@ public class AdminController2 {
 		return "/admin/educationTimedetail";
 	}
 	
-//	교육시간 추가 Post
+//	교육시간 추가 및 수정 Post
 	@PostMapping("/admin/educationtimeInsert")
 	public String insertEducationTime(EducationTime educationTime) {
 
@@ -269,7 +269,7 @@ public class AdminController2 {
 		return "/admin/certificatedetail";
 	}
 	
-//	수료증 추가 Post
+//	수료증 추가 및 수정 Post
 	@PostMapping("/admin/certificateInsert")
 	public String insertCerti(Certificate certi) {
 		certiService.updateOrInsert(certi);
@@ -312,7 +312,7 @@ public class AdminController2 {
 		return "/admin/lecturehalldetail";
 	}
 	
-//	강의장 추가 Post
+//	강의장 추가 및 수정 Post
 	@PostMapping("/admin/lecturehallInsert")
 	public String insertLectureHall(LectureHall lectureHall) {
 		lectureHallService.updateOrInsert(lectureHall);
@@ -349,7 +349,7 @@ public class AdminController2 {
 		return "/admin/classroomdetail";
 	}
 
-//	강의실 추가 Post
+//	강의실 추가 및 수정 Post
 	@PostMapping("/admin/classroomInsert")
 	public String insertClassRoom(ClassRoom classRoom) {
 		classRoomService.updateOrInsert(classRoom);

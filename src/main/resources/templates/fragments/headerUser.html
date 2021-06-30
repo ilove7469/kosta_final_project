@@ -18,7 +18,9 @@
 <header class="page-header" th:fragment="header1">
 	
     <div id="headerInfo">
-  	 <img src="/img/logo1.png" width="190px" height="80px;"> 
+    <a href="/user/userMain">
+  	   <img src="/img/logo1.png" width="190px"> 
+     </a>
 	<!-- KOSTA프로젝트 <small>Designed by yoon</small> -->
     
 	 <div id="sign">
@@ -37,10 +39,8 @@
   </div>
 	<nav class="navbar navbar-inverse">
 		<div id="base" class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/user/userMain">Kosta Logo</a>
-			</div>
-			<ul id="navber-manu" class="nav navbar-nav">
+            <!-- 대주제 메뉴 들어가는 구간 -->
+			<ul id="navbar-manu" class="nav navbar-nav">
 			</ul>
 			<form class="navbar-form navbar-right form1"
 				th:action="@{/search/searchResult}" method="get">

@@ -30,13 +30,6 @@ public class CourseController {
 	@Autowired
 	CourseService cservice;
 	
-	//mainTest
-	@GetMapping("/user/userMainTest")
-	public void userMainTest() {
-		
-	}
-	
-	
 	//해더
 	@ResponseBody
 	@GetMapping("/fragments/headerUser")

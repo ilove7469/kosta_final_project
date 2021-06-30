@@ -47,7 +47,9 @@
   color : #6a7ca2;
   font-size: 30px !important;
   }
-  
+#classTable{
+  margin-bottom: 0px;
+}  
 #divContentline{
   background-color: #939db3;
   height: 1px;
@@ -94,17 +96,16 @@
 <!-- 강의정보 출력 -->
 
   <div id="classes">
-
-
-    <table class="table">
+    <table id="classTable" class="table">
       <tr th:each="class:${classList}">
-        <td th:text="${class.classOpenDate}+${class.educationTime.educationTimeName}"></td>
+        <td th:utext="${#dates.format(class.classOpenDate,'MM월dd일')}+'~'+${#dates.format(class.classCloseDate,'MM월dd일')}+'<br>'
+            +${class.educationTime.educationTimeName}+' '+${class.educationTime.educationTimeType}"></td>
         <!-- 비대면인지 아닌지 -->
-        <th:block th:if="${class.lecture.course.courseName.contains('비대면')}">
-          <td th:text="'비대면강의-강의실/'+${class.classRoom.classRoomCapacity}"></td>
+        <th:block th:if="${class.classRoom.classRoomName.contains('비대면')}">
+          <td th:text="${class.classRoom.lectureHall.lectureHallName}"></td>
         </th:block>
-        <th:block th:unless="${class.lecture.course.courseName.contains('비대면')}">
-          <td th:text="${class.classRoom.classRoomName}+'/'+${class.classRoom.classRoomCapacity}"></td>
+        <th:block th:unless="${class.classRoom.classRoomName.contains('비대면')}">
+          <td th:text="${class.classRoom.classRoomName}+' / '+${class.classRoom.classRoomCapacity}+'명'"></td>
         </th:block>
         <!-- 비대면체크 끝 -->
         <td th:text="${class.teacher.teacherName}"></td>

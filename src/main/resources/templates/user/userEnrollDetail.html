@@ -92,13 +92,14 @@
   	  		method:"get",
   	  		success:function(response){
   	  			$("#right-sidebar").html(response);
+  	  			$("#enrollBtn").text("접수하기");
   	  		}
   	  	});
   	});
   	 $(document).on("click","#enrollBtn",function(){
 		$("#enrollfrm").submit();
 	});
-  	
+  	 
   </script>
 </th:block>
 
@@ -139,7 +140,7 @@
   </div>
         
     <div id=right-sidebar class="contentBox">
-
+    </div>
     
 
       
@@ -148,7 +149,7 @@
       <input type="hidden" name="classes" th:value="${class.classNo}">
       <input type="hidden" name="user" th:value="${user.userNo}">
     </form>
-        </div>
+        
   </div>
 
   </div>

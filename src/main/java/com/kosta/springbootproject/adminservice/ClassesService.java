@@ -55,17 +55,14 @@ public class ClassesService {
 
 	
 	public XSSFWorkbook listExcelDownload(List<Classes> list) throws Exception {
-		
-		
+			
 		XSSFWorkbook workbook = new XSSFWorkbook();  
 		XSSFSheet sheet = workbook.createSheet("kosta"); 
 		XSSFRow row = null;
 		XSSFCell cell = null;
 		
-		System.out.println(list);
-		
 		row = sheet.createRow(0);
-		String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"};
+		String[] headerKey = {"주제명", "강의명", "강사명", "개강", "종강", "강의장명", "상태"}; //엑셀 칼럼명
 		
 		for(int i=0; i<headerKey.length; i++) {
 			cell = row.createCell(i);
@@ -75,7 +72,6 @@ public class ClassesService {
 		for(int i=0; i<list.size(); i++) {
 			row = sheet.createRow(i + 1);
 			Classes vo = list.get(i);
-			
 			
 			cell = row.createCell(0);
 			cell.setCellValue(vo.getLecture().getCourse().getSubject().getSubName());
@@ -97,9 +93,7 @@ public class ClassesService {
 			
 			cell = row.createCell(6);
 			cell.setCellValue(vo.getClassState().toString());
-			
 		}
-		
 		return workbook;
 	}
 

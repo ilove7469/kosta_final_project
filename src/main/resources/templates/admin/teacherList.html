@@ -9,17 +9,19 @@
 <body>
 	<div class="panel panel-default" layout:fragment="content1">
 
-	<div id="menuTitleIco"><span class="glyphicon glyphicon-education"></span></div><span id="menuTitle">강사</span>
+	<div id="menuTitleIco">
+	<span class="glyphicon glyphicon-education"></span>
+	</div>
+	<span id="menuTitle">강사</span>
+	
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
-		
 		
 		<div class="pull-right">
 		<h3><a class="btn btn-default" th:href="@{/admin/teacherInsert}">등록</a></h3>
 		</div>
 		
-
 		<table border="1">
 		<thead>
 			<tr>
@@ -44,18 +46,7 @@
 			</tr>
 			</tbody>
 		</table>
-
-
-
-
-
-
 	</div>
-
-
-
-
-
 
 	<th:block layout:fragment="script1">
 		<script>
@@ -89,12 +80,10 @@
 											.append("<input type='hidden' name='bno' value='" + bno +"'>")
 									formObj.submit();
 								});
-
 			});
 		</script>
 	</th:block>
 
 
-	</div>
 </body>
 </html>

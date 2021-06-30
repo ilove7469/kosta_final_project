@@ -20,6 +20,7 @@
 					"table table-striped table-bordered table-hover");
 			$("table").attr("id", "tablesort");
 			$("#tablesort").dataTable();
+			$(".dataTables_filter").remove();
 		});
 	</script>
 	<script>
@@ -96,7 +97,9 @@
 					}
 				});
 			});
+			
 		});
+		
 	</script>
 
 </th:block>

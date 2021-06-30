@@ -112,8 +112,7 @@
           <button class="enrollBtn" th:value="'/course/enroll/'+${class.classNo}">수강신청</button>
         </td>
         <td th:if="${class.classState.toString.equals('OPENREADY')}">개설예정</td>
-        <td th:if="${class.classState.toString.equals('END')}">정원추가</td>
-        <td th:if="${class.classState.toString.equals('CLOSE')}">종강</td>
+        <td th:if="${class.classState.toString.equals('END')}">마감</td>
       </tr>
     </table>
 

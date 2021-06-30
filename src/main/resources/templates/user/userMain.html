@@ -13,9 +13,6 @@
 <title>Insert title here</title>
 <th:block layout:fragment="script1">
   <script>
-  $("#button-submit").click(function(){
-		$("#searchForm").submit();  
-  });
   $.ajax({
       url:"/fragments/headerUser",
       type:"get",
@@ -49,6 +46,10 @@
         });
         $("#subjectBox"+trainee.traineeNo).html(str);
       });
+      
+    $("#buttonSubmit").click(function(){
+		$("#searchForm").submit();  
+    });
   }
   </script>
 </th:block>
@@ -75,7 +76,7 @@
      #textsearchBox{
       display:inline-block;
       width:800px;
-      margin-top: 220px;
+      margin-top: 180px;
      }
      #searchForm{
       display:inline-block;
@@ -91,7 +92,7 @@
       width: 400px;
       float: left;
      }
-     #button-submit{
+     #buttonSubmit{
       width: 80px;
       height: 44px;
       float: left;
@@ -99,10 +100,6 @@
      }
      
      /*본믄 영역 */
-     .panel {
-      border: 0px;
-      box-shadow: none;
-     }
      
      #container{
       width: 100%;
@@ -196,7 +193,7 @@
        <form id="searchForm" action="/search/searchResult" method="get">
           <div class="input-group input-group-lg" style=" width:500px;">
               <input id="mainSearch" name="keyword" class="form-control" type="text" placeholder="과정명,강사명,주제 검색어를 입력해 주세요" aria-label="Enter your email..." aria-describedby="button-submit" />
-              <button class="btn btn-primary" id="button-submit" type="button">검색</button>
+              <button class="btn btn-primary" id="buttonSubmit" type="button">검색</button>
           </div>
         </form>
       </div>

@@ -25,31 +25,22 @@
 	
     <div class="form-group">
       <label for="lectureHallName">강의장 이름:</label>
-      <th:block th:if="${lectureHall == null}">
-      	<input type="text" class="form-control" id="lectureHallName" name="lectureHallName">
-      </th:block>
-      <th:block th:unless="${lectureHall == null}">
-      	<input type="text" class="form-control" id="lectureHallName" name="lectureHallName" th:value="${lectureHall.lectureHallName}">
-      </th:block>
+      	<input type="text" class="form-control" id="lectureHallName" name="lectureHallName" th:value="${lectureHall != null}?${lectureHall.lectureHallName}:${null}">
     </div>
     <div class="form-group">
       <label for="lectureHallAddress">강의장 주소:</label>
-      <th:block th:if="${lectureHall == null}">
-	  	<textarea class="form-control" rows="5" cols="" id="lectureHallAddress" name="lectureHallAddress"></textarea>    
-	  </th:block>
-	  <th:block th:unless="${lectureHall == null}">
-	  	<textarea class="form-control" rows="5" cols="" id="lectureHallAddress" name="lectureHallAddress">[[${lectureHall.lectureHallAddress}]]</textarea>    
-	  </th:block>
+	  	<textarea 
+	  	class="form-control" 
+	  	rows="5" 
+	  	cols="" 
+	  	id="lectureHallAddress" 
+	  	name="lectureHallAddress"
+	  	th:text="${lectureHall != null}?${lectureHall.lectureHallAddress}:${null}"
+	  	></textarea>    
     </div>
     <div class="form-group">
       <label for="lectureHallPhone">강의장 전화번호:</label>
-      <th:block th:if="${lectureHall == null}">
-      	<input type="text" class="form-control" id="lectureHallPhone" name="lectureHallPhone">
-      </th:block>
-      <th:block th:unless="${lectureHall == null}">
-      	<input type="text" class="form-control" id="lectureHallPhone" name="lectureHallPhone" th:value="${lectureHall.lectureHallPhone}">
-      </th:block>
-      
+      	<input type="text" class="form-control" id="lectureHallPhone" name="lectureHallPhone" th:value="${lectureHall != null}?${lectureHall.lectureHallPhone}:${null}">
     </div>
     <button type="button" class="btn btn-success" onclick = "location.href = '/admin/lecturehallmain'">취소</button>
     <button type="submit" class="btn btn-success">등록하기</button>

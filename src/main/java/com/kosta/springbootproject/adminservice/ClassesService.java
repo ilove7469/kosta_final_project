@@ -75,22 +75,16 @@ public class ClassesService {
 			
 			cell = row.createCell(0);
 			cell.setCellValue(vo.getLecture().getCourse().getSubject().getSubName());
-			
 			cell = row.createCell(1);
 			cell.setCellValue(vo.getLecture().getCourse().getCourseName());
-			
 			cell = row.createCell(2);
 			cell.setCellValue(vo.getTeacher().getTeacherName());
-			
 			cell = row.createCell(3);
 			cell.setCellValue(vo.getClassOpenDate().toString());
-			
 			cell = row.createCell(4);
 			cell.setCellValue(vo.getClassCloseDate().toString());
-			
 			cell = row.createCell(5);
 			cell.setCellValue(vo.getClassRoom().getLectureHall().getLectureHallName());
-			
 			cell = row.createCell(6);
 			cell.setCellValue(vo.getClassState().toString());
 		}

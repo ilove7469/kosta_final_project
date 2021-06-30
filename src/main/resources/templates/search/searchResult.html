@@ -23,6 +23,8 @@
 		});
 	</script>
 	<script>
+	
+		//키워드로 검색
 		$(function() {
 			var formObj = $(".form2");
 
@@ -35,17 +37,17 @@
 
 		});
 
+		//과목 검색
 		$(function() {
 			var formObj = $(".form2");
-
+			
 			$("#sub .smenu").click(function() {
-
 				subNo = $(this).attr("value");
-
+				
+				//선택한 버튼만 활성화
 				$("#sub .smenu").each(function(idx, item) {
 					$(item).removeClass('active');
 				});
-
 				$("#sub .smenu").each(function(idx, item) {
 					if ($(item).val() == subNo) {
 						$(item).addClass('active');
@@ -66,17 +68,17 @@
 			});
 		});
 
+		//강의장 검색
 		$(function() {
 			var formObj = $(".form2");
 
 			$(".space .hmenu").click(function() {
-
 				hallNo = $(this).attr("value");
 
+				//선택한 버튼만 활성화
 				$(".space .hmenu").each(function(idx, item) {
 					$(item).removeClass('active');
 				});
-
 				$(".space .hmenu").each(function(idx, item) {
 					if ($(item).val() == hallNo) {
 						$(item).addClass('active');
@@ -97,6 +99,8 @@
 				});
 			});
 		});
+		
+		
 	</script>
 
 </th:block>
@@ -129,6 +133,9 @@
 </head>
 <body>
 	<div layout:fragment="content1">
+	
+	<br><br><br><br>
+	
 		<div class="cencen">
 
 			<input type="text" class="searchKeyword2" th:value=${word}

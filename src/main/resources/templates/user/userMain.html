@@ -25,10 +25,9 @@
         str += `<div id="traineeBox${idx}" class="row kt-p-25 border-top">
         		  <h3 class="topic-title"><b>${trainee.traineeName}</b></h3>
                   <div class="col-md-12 kt-plr-50" id="subjectBox${trainee.traineeNo}">
-                      
-                      </div>
                   </div>
-                </div>`;
+                </div>
+              </div>`;
              
         $("#topics").html(str);
         subjectList(trainee);
@@ -158,6 +157,9 @@
     }
      #topics{
       color: #151515;
+      width: 100%;
+      margin-left: 0px;
+      margin-right: 0px;
      }
      a {
         cursor: pointer;

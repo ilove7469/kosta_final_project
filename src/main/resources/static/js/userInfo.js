@@ -2,14 +2,11 @@
  * 
  */
 $(function(){
-	//회사정보 넣기
-	
-	//주민번호 합치기
 	
 	//주소찾기
 	$("#searchAddress").click(function(){
 		addressSearch();
-	})
+	});
 	
 	//이메일 인증
 	var AuthTimer=0;
@@ -117,5 +114,57 @@ $(function(){
 			closeOnConfirm : true
 		});
 	}
-
+	
+	//모달 버튼 선택으로 회사정보 넣기
+	$(".tdCenter").on("click",function(){
+		var companyNo = $(this).find("button").val();
+		var companyName = $(this).parent().find(".modalCompany").text();
+		$("#companyName").attr("value",companyName);
+		$("#companyNo").val(companyNo);
+	})
+	//회사정보 삭제
+	$("#initBtn").click(function(){
+		$("#companyName").attr("value","");
+		$("#companyNo").removeAttr("value");
+		$("#department").removeAttr("value");
+		$("#position").removeAttr("value");
+		$("#duty").removeAttr("value");
+		$("#officePhone").removeAttr("value");
+	});
+	
+	//저장버튼 이벤트 추가
+	$("#submitBtn").click(function(e){
+		e.preventDefault();
+		var ss1 = $("#ssn1").val();
+		var ss2 = $("#ssn2").val();
+		var total = ""+ss1+ss2;
+		$("#userIdentity").val(total);
+		$("#updateForm").submit();
+	})
+	
+	//재직자 채용예정자 변환
+	$("#roleChange").click(function(){
+		var userNo  = $("#userNoInfo").val();
+		var hrefURI = "/user/changetrainee/"+userNo;
+    	if($("#roleChange").text()=="채용예정자 전환"){
+    		location.href=hrefURI;
+    	}else if($("#roleChange").text()=="재직자 전환"){
+			if($("#companyInfo").val()==0){
+				alert("회사정보가 저장되어야합니다. \n업데이트 후 다시 시도 해주세요","info");
+			}else{
+				location.href=hrefURI;
+			}
+		}
+	})
+	
+	//회원탈퇴
+	$("#userDeleteBtn").click(function(){
+		var userNo  = $("#userNoInfo").val();
+		var userId = $("#userId").val();
+		var hrefURI ="/user/deleteUser/"+userNo+"/"+userId;
+		alert(hrefURI);
+		
+		location.href=hrefURI;
+	});
+	
 });

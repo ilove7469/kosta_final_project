@@ -61,11 +61,16 @@ public class Classes {
 	@Column
 	private Integer commitCount;
 	
+	//Querydsl은 처음 2레벨의 깊이까지만 초기화한다.
+	//더 깊은 경로로 초기화 해야한다면 @QueryInit으로 초기화 시켜줘야한다.
 	@ManyToOne
 	@QueryInit("course.*")
 	private Lecture lecture;
 	@ManyToOne
 	private Teacher teacher;
+	
+	//Querydsl은 처음 2레벨의 깊이까지만 초기화한다.
+	//더 깊은 경로로 초기화 해야한다면 @QueryInit으로 초기화 시켜줘야한다.
 	@ManyToOne
 	@QueryInit("lectureHall.*")
 	private ClassRoom classRoom;

@@ -10,11 +10,14 @@
 
 	<div class="panel panel-default" layout:fragment="content1">
 
-    <div id="menuTitleIco"><span class="glyphicon glyphicon-tasks" ></span></div><span id="menuTitle">과정 등록</span>		
+    <div id="menuTitleIco">
+    <span class="glyphicon glyphicon-tasks" ></span>
+    </div>
+    <span id="menuTitle">과정 등록</span>		
+	
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
-
 
 	<form th:action="@{/admin/courseInsert}" method="post" onSubmit="return sub()">
 		<div class="form-group">
@@ -57,17 +60,17 @@
 		
 		<div class="form-group">
 		    <label for="content">교육대상권고사항:</label>
-		    <textarea class="form-control" rows="3" cols="" id="courseTarget"  name="courseTarget" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="courseTarget"  name="courseTarget" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="content">교육목표:</label>
-		    <textarea class="form-control" rows="3" cols="" id="coursePurpose"  name="coursePurpose" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="coursePurpose"  name="coursePurpose" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="content">교육내용:</label>
-		    <textarea class="form-control" rows="3" cols="" id="courseContent"  name="courseContent" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="courseContent"  name="courseContent" wrap="hard"></textarea>
 		</div>
 
 		<div class="form-group">
@@ -84,9 +87,6 @@
 	</form>
 
 <script>
-
-
-
 	function sub(){
 		var a=document.getElementById('traineeName').value;
 		var b=document.getElementById('courseName1').value;
@@ -94,7 +94,6 @@
 		$('#tranineeCourseName').val(c);
 		document.form.submit();
 		}
-	
 	
 	$(function(){
 		var no1 =  $("#subjectNo").val();
@@ -111,8 +110,6 @@
 				});
 	}); 
 	
-
-
 	$("#subjectNo").change(function(){
 	    var no1 =  $(this).val();
 		/* alert(no1); */
@@ -126,13 +123,9 @@
 				$("#traineeName").attr("value",'['+traineename+']');
 					}
 				});
-	
-		
-		
 	});
-
-
 </script>
+
 </div>
 </body>
 </html>

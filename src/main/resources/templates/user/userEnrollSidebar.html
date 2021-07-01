@@ -5,9 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <th:block layout:fragment="script1">
-    <script>
-    </script>
-  </th:block>
+</th:block>
+  
+<th:block layout:fragment="style1">
+<style>
+  #enrollBtn{
+  float: right;
+  width: 100%;
+  font-size:20px;
+  }
+  th{
+  width : 80px;
+  }
+</style>
+</th:block>
 </head>
 <body>
   <!-- <div class="panel panel-default" layout:fragment="content1"> -->
@@ -38,6 +49,8 @@
           <td th:text="${class.lecture.lectureAsk}"></td>
         </tr>
       </table>
-      <button id="enrollBtn" th:value="${class.classNo}">수강신청</button>      
+
+      <button id="enrollBtn" class="btn btn-info" th:value="${class.classNo}">수강신청</button>    
+
 </body>
 </html>

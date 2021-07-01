@@ -8,7 +8,6 @@
 <title>KOSTA관리콘솔</title>
 
 <th:block layout:fragment="style1">
-
 <style>
 .page-header{
   background-color:white;
@@ -23,7 +22,7 @@ body {
 /* Fixed sidenav, full height 배경 */
 .sidenav {
   height: 100%;
-  width: 230px;
+  width: 195px;
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +58,9 @@ body {
   margin-top : 70px;
   margin-left: 240px; /* Same as the width of the sidenav */
  /* font-size: 20px;  Increased text to enable scrolling */
-  padding: 20px 27px 20px 20px;
+  height : 100% !important;
+  width :100%;
+  float : left;
 }
 
 /* Add an active class to the active dropdown button */
@@ -76,7 +77,7 @@ body {
 }
 .dropdown-container a{
 /* color :red; */
-padding-left: 40px;
+  padding-left: 40px;
 }
 
 /* Optional: Style the caret down icon */
@@ -112,24 +113,31 @@ form label{
 
 #profile{
   width: 100%;
-  height: 150px;
+  height: 140px;
 }
 
 #profile img{
-  margin-left: 80px;
-  margin-top: 15px;
+  margin-left: 58px;
+  margin-top: 13px;
 }
 
 #profile p{
   color: white;
   margin-top: 10px;
-  margin-left: 85px;
+  margin-left: 68px;
+}
+
+footer{
+  padding-right : 10px;
+  margin-bottom : 30px;
+  height: 20px;
 }
 
 footer p{
   float : right;
   margin: 0 auto;
   color :grey;
+  padding : 10px;
 }
 
 /* width */
@@ -151,6 +159,10 @@ footer p{
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+#headerMenuStyle{
+  font-size: 12px !important;
+}
 </style>
 </th:block>
 
@@ -158,7 +170,6 @@ footer p{
 <body>
 
 <th:block th:fragment="sidebarFragment">
-
 
 <!-- 사이드메뉴 -->
 	<div class="sidenav">
@@ -172,7 +183,7 @@ footer p{
 		<div id="divline"></div>
 	<!-- 메뉴분리용 div 끝-->
 	
-		<a href="http://localhost:8888/admin/adminMain"><span class="glyphicon glyphicon-home"> 메인</span></a>
+		<a href="/admin/adminMain"><span class="glyphicon glyphicon-home"> 메인</span></a>
 			
 	<!-- 메뉴분리용 div -->
 		<div id="divline"></div>
@@ -183,9 +194,9 @@ footer p{
 		    <i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-		    <a href="http://localhost:8888/admin/courseList">과정</a>
-		    <a href="http://localhost:8888/admin/lectureList">강의계획</a>
-		    <a href="http://localhost:8888/admin/classesList">강의</a>
+		    <a href="/admin/courseList">과정</a>
+		    <a href="/admin/lectureList">강의계획</a>
+		    <a href="/admin/classesList">강의</a>
 		</div>
 	<!-- 드랍다운 메뉴 한셋트 여기까지-->
 	
@@ -197,12 +208,12 @@ footer p{
 		    <i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-		    <a href="http://localhost:8888/admin/usermain">회원</a>
-		    <a href="http://localhost:8888/admin/teacherList">강사</a>
-		    <a href="http://localhost:8888/admin/companyList">회사</a>
-		    <a href="http://localhost:8888/admin/lecturehallmain">강의장</a>
-		    <a href="http://localhost:8888/admin/classroommain">강의실</a>
-		    <a href="http://localhost:8888/admin/certificatemain">수료증</a>
+		    <a href="/admin/usermain">회원</a>
+		    <a href="/admin/teacherList">강사</a>
+		    <a href="/admin/companyList">회사</a>
+		    <a href="/admin/lecturehallmain">강의장</a>
+		    <a href="/admin/classroommain">강의실</a>
+		    <a href="/admin/certificatemain">수료증</a>
 		</div>
 		
 	<!-- 메뉴분리용 div -->
@@ -213,8 +224,8 @@ footer p{
 		    <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-	    <a href="http://localhost:8888/admin/subjectmain">주제</a>
-	    <a href="http://localhost:8888/admin/educationtimemain">교육시간</a>
+	    <a href="/admin/subjectmain">주제</a>
+	    <a href="/admin/educationtimemain">교육시간</a>
 	</div>
 	
 	<!-- 메뉴분리용 div -->
@@ -225,7 +236,7 @@ footer p{
 	    <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-	    <a href="http://localhost:8888/admin/manageclassmain">수강신청 관리</a>
+	    <a href="/admin/manageclassmain">수강신청 관리</a>
 	</div>
  
 		<!-- 메뉴추가시사용 -->
@@ -234,8 +245,6 @@ footer p{
 	<!-- 사이드메뉴 여기까지-->
 
 </th:block>
-
-
 
 <script>
 	/* 사이드메뉴 스크립트 */
@@ -256,7 +265,6 @@ footer p{
 	}
 	/* 사이드메뉴 스크립트 여기까지 */
 	
-
 	(function() {
 		$.ajax({
 			url : "/admin/loggingId",

@@ -20,6 +20,7 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 	
 	public List<ClassHistory> findByUser(Users user);
 	
+	// 미수료, 확정, 대기, 취소 인원 카운트를 위한 natviequery사용
 	@Query(value = " SELECT"
 			+ " SUM(if(class_history_state='UNCOMPLETED',1,0)) AS 'uncompletedcount',"
 			+ " SUM(if(class_history_state='COMMIT',1,0)) AS 'commitcount',"
@@ -27,5 +28,13 @@ public interface ClassHistoryRepository extends CrudRepository<ClassHistory, Lon
 			+ " SUM(if(class_history_state='CANCEL',1,0)) AS 'cancelcount'"
 			+ " FROM class_history"
 			+ " WHERE user_user_no = ?1", nativeQuery = true)
-	public List<Object[]> FindClassHistoryCountByUser(Long userNo);
+  
+	public List<Object[]> findClassHistoryCountByUser(Long userNo);
+	
+	@Query("select count(*) from ClassHistory where classHistoryState='wait'")
+	public int classHistoryWaitCount();
+	
+	@Query("select count(*) from ClassHistory where classHistoryState='completed'")
+	public int classHistoryCompletedCount();
+  
 }

@@ -14,7 +14,17 @@ import com.querydsl.core.types.Predicate;
 public interface ClassesRepository extends CrudRepository<Classes, Long>, QuerydslPredicateExecutor<Classes> {
 
 	public List<Classes> findByLecture(Lecture lecture);
-
+	
+	//강의를 개강일 순으로 정렬해서 조회
+	public List<Classes> findAllByOrderByClassOpenDateAsc();
+	
+	//강의를 종강일 순으로 정렬해서 조회
+	public List<Classes> findAllByOrderByClassCloseDateAsc();
+	
+	//강의를 넘버순으로 정렬해서 조회
+	public List<Classes> findAllByOrderByClassNoDesc();
+	
+	
 	public default Predicate makePredicateSubHallClasses(String keyword, Long subNo, Long lecHallNo) {
 		BooleanBuilder builder = new BooleanBuilder();
 		QClasses classes = QClasses.classes;
@@ -24,6 +34,8 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 		builder.or(classes.lecture.course.courseName.contains(keyword));
 		// 주제
 		builder.or(classes.lecture.course.subject.subName.contains(keyword));
+		
+		//과정명과 주제의 classes로의 깊이가 2단계 이상이기 때문에 @QueryInit을 사용해야 한다.
 		
 		if(subNo != null) {
 			builder.and(classes.lecture.course.subject.subjectNo.eq(subNo));
@@ -93,5 +105,7 @@ public interface ClassesRepository extends CrudRepository<Classes, Long>, Queryd
 		return builder;
 
 	}
+	
+
 
 }

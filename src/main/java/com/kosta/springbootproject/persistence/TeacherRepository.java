@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.persistence;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -40,5 +41,8 @@ QuerydslPredicateExecutor<Teacher>
 		return builder;
 		
 	}
+	
+	@Query("select count(*) from Teacher")
+	public int teacherCount();
 
 }

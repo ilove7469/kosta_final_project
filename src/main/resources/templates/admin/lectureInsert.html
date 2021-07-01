@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>강의계획등록</title>
-
 <style>
 #resultMessage{
 color: red;
@@ -13,15 +12,18 @@ font-weight :bold;
 }
 </style>
 </head>
-<body>
 
+<body>
 	<div class="panel panel-default" layout:fragment="content1">
 
- <div id="menuTitleIco"><span class="glyphicon glyphicon-calendar"></span></div><span id="menuTitle">강의계획 등록</span>
+	<div id="menuTitleIco">
+	<span class="glyphicon glyphicon-calendar"></span>
+	</div>
+	<span id="menuTitle">강의계획 등록</span>
+ 
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
-
 
 	<form th:action="@{/admin/lectureInsert}" method="post">
 
@@ -43,23 +45,23 @@ font-weight :bold;
 		</div>
 		
 		<div class="form-group">
-			<label for="writer">목표정원:</label> 
-			<input type="number" class="form-control" id="lectureCapacity" name="lectureCapacity" th:value ="${lecture.lectureCapacity}" required>
+			<label for="writer">목표정원:<sub>   (과정정원*연간개설횟수)</sub></label> 
+			<input type="number" class="form-control" id="lectureCapacity" name="lectureCapacity" readonly>
 		</div>
 
 		<div class="form-group">
 		    <label for="writer">교육대상:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureTarget" name="lectureTarget" th:text ="${lecture.lectureTarget}" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="lectureTarget" name="lectureTarget" th:text ="${lecture.lectureTarget}" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">패널티안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lecturePenalty" name="lecturePenalty" th:text ="${lecture.lecturePenalty}" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="lecturePenalty" name="lecturePenalty" th:text ="${lecture.lecturePenalty}" wrap="hard"></textarea>
 		</div>
 		
 		<div class="form-group">
 		    <label for="writer">비대면안내:</label>
-		    <textarea class="form-control" rows="3" cols="" id="lectureOnline" name="lectureOnline" th:text ="${lecture.lectureOnline}" wrap="hard"></textarea>
+		    <textarea class="form-control" rows="10" cols="" id="lectureOnline" name="lectureOnline" th:text ="${lecture.lectureOnline}" wrap="hard"></textarea>
 		</div>
 
 		<div class="form-group">
@@ -67,11 +69,26 @@ font-weight :bold;
 			<input type="text" class="form-control" id="lectureAsk" name="lectureAsk" th:value ="${lecture.lectureAsk}" required>
 		</div>
 
-
-			
 		<button type="submit" class="btn btn-success">등록하기</button>
 		<button type="reset" class="btn btn-primary">Reset</button>
 	</form>
+
+	<script>
+	$("#lectureOpenCount").change(function(){
+	    var courseno =  $("#courseNo").val();
+	    var lectureopencount=$("#lectureOpenCount").val();
+		
+			 $.ajax({
+				url:"/admin/lectureInsert1",
+				data:{"no":courseno},
+				type:"get",
+				success:function(responseData){
+					var coursecapacity = responseData;
+				$("#lectureCapacity").attr("value",lectureopencount*coursecapacity);
+					}
+				});
+	});
+	</script>
 
 </div>
 

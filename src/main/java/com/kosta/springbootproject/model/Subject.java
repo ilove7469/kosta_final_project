@@ -38,6 +38,7 @@ public class Subject implements Comparable<Subject> {
 	@ManyToOne
 	private Trainee trainee;
 
+	//정렬을 위해서 override
 	@Override
 	public int compareTo(Subject o) {
 		return Long.compare(this.subjectNo, o.subjectNo);

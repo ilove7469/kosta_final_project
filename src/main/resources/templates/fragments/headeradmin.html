@@ -13,14 +13,13 @@ html {
 </head>
 
 <body>
-
 	<header class="page-header" th:fragment="header1">
 
 		<div id="headerdiv">
 			<div id="headerLogoDiv">
 				<p>KOSTA 관리콘솔 <span class="label label-success" style="font-size: 2px">v001</span></p>
 			</div>
-				<div id="headerDivCenter">
+				<div id="headerDivCenterTime">
 					<p id="time-result"></p>
 				</div>
 					<div id="topLogo">
@@ -28,23 +27,20 @@ html {
 					</div>
 
 			<div id="headerDivRight"><p>
-				<a href="/user/userMain" target='_blank'>코스타에듀<span class="glyphicon glyphicon-pencil"></span> | </a>
-				<a href="/admin/adminInfo">관리자정보<span class="glyphicon glyphicon-user"></span> | </a>
-				<a href="/admin/adminInsert">관리자등록<span class="glyphicon glyphicon-edit"></span> | </a>
-            	<a href="/logout">로그아웃<span class="glyphicon glyphicon-log-out"></span></a></span>
+				<a href="/logout" target='_blank'><span id="headerMenuStyle">코스타에듀</span><span class="glyphicon glyphicon-pencil"></span> | </a>
+				<a href="/admin/adminInfo"><span id="headerMenuStyle">관리자정보</span><span class="glyphicon glyphicon-user"></span> | </a>
+				<a href="/admin/adminInsert"><span id="headerMenuStyle">관리자등록</span><span class="glyphicon glyphicon-edit"></span> | </a>
+            	<a href="/logout"><span id="headerMenuStyle">로그아웃</span><span class="glyphicon glyphicon-log-out"></span></a>
 				</p>
 			</div>
 		</div>
-		
-		
-<script type="text/javascript"> 
-var d = new Date(); 
-var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
-/* var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";  */
-var result = document.getElementById("time-result"); result.innerHTML = "오늘은 " + currentDate + " 입니다."; 
-</script> 
-	
+				
+		<script type="text/javascript"> 
+		var d = new Date(); 
+		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
+		/* var currentTime = d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초";  */
+		var result = document.getElementById("time-result"); result.innerHTML = "오늘은 " + currentDate + " 입니다."; 
+		</script> 
 	</header>
-
 </body>
 </html>

@@ -13,16 +13,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!-- 게시판 -->
-<!-- <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> -->
+<!-- table sorting, paging, searching을 위한 jQuery tablesorter 추가-->
 <script th:src="@{/js/tablesort.js}"></script>
 <link rel="stylesheet" type="text/css"
  href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 <script>
+/* 
+
+	<table sort,search,paging을 위한 script> 
+ 	
+ 	table에 table table-striped table-bordered table-hover 클래스 추가
+ 	tablesort 클래스 추가
+ 	dataTable 함수를 사용해서 실행
+	
+	
+*/
    $(function(){  
       $("table").addClass("table table-striped table-bordered table-hover");
-      $("table").attr("id","tablesort");
-      $("#tablesort").dataTable();
-      $("a:contains('삭제')").addClass("btn btn-danger btn-sm");
+      $("table").addClass("tablesort");
+      $(".tablesort").dataTable();
    });
 </script>
 <!-- 게시판 끝 -->
@@ -31,48 +40,51 @@
 <th:block layout:fragment="style1"></th:block>
 
 <style>
+
 body{
   background-color: #e7ebf6 !important;
 }
 
 #menuTitle{
-font-size: 30px;
-color : grey;
-padding:0;
-float: left;
+  font-size: 28px;
+  color : grey;
+  padding:0;
+  float: left;
 }
+
 #menuTitleIco{
-float: left;
-font-size: 30px;
-color : grey;
-margin-top: 3px;
-margin-right: 8px;
+  float: left;
+  font-size: 28px;
+  color : grey;
+  margin-top: 3px;
+  margin-right: 8px;
 }
+
 #headerdiv{
   position: fixed;
-  height :45px !important;
+  height :40px !important;
   width : 100%;
   background-color: #dbdfea !important;
   color:white;
   z-index: 1;
-
 }
+
 #headerLogoDiv{
-  /* border-right: 2px solid #e7e7e7; */
   background: #677799;
   height: 100%;
-  width: 230px;
+  width: 195px;
   color : white;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   float: left;
 }
 
 #headerLogoDiv p{
   padding: 10px !important;
   margin:0px !important;
-  width: 230px;
+  width: 195px;
   height: 100%;
+
 }
 
 #headerDivRight{
@@ -86,29 +98,30 @@ margin-right: 8px;
   height: 100%;
 }
 
-#headerDivCenter{
+#headerDivCenterTime{
   color : #6a7ca2;
   float : left;
   height : 100%;
   width : 300px;
-  margin: 20px 0 0 15px;
+  margin: 17px 0 0 12px;
+  font-size: 13px;
 }
 #topLogo{
   float : left;
   margin-left: 15%;
 }
 #topLogo img{
-  width: 120px;
+  width: 110px;
   height: auto;
   opacity:0.5;
 }
 
 .page-header h1{
   margin:0px;
-  font-size: 20px;
+  font-size: 16px;
 }
 .page-header {
-  background-color: greay !important;
+  background-color: grey !important;
 }
 
 .sidenav{
@@ -118,34 +131,41 @@ margin-right: 8px;
 .panel{
   padding : 20px !important;
   box-shadow: 10px 10px 10px #c7cfe2;
+  height: 80%;
+  width : 81%;
+  float : left;
+  margin-left: 240px;
+  margin-top : 80px;
 }
 
 table.dataTable thead th, table.dataTable thead td{
-font-size: 14px;
-padding-left: 5px;
-/* font-weight: bold; */
+  font-size: 15px;
+  padding-left: 5px;
 }
 
 table.dataTable tbody th, table.dataTable tbody td{
-font-size: 12px;
-font-weight: bold;
-padding-top : 2px;
-padding-right: 2px;
-padding-left: 5px;
-padding-bottom: 2px;
-/* text-align: center; */
+  font-size: 13px;
+  padding-top : 2px;
+  padding-right: 2px;
+  padding-left: 5px;
+  padding-bottom: 2px;
 }
 
 .btn-group-sm>.btn, .btn-sm{
-font-size : 5px;
-text-align: center;
-margin: 1px !important;
+  font-size : 5px;
+  text-align: center;
+  margin: 1px !important;
 }
 
 #tdCenter{
-text-align: center;
+  text-align: center;
 }
 
+.panel-group .panel{
+margin-left: 0px;
+margin-top : 0px;
+width : 100%;
+}
 </style>
 
 </head>
@@ -154,19 +174,16 @@ text-align: center;
         <div th:block th:replace="fragments/sideBar"></div>
 		<!-- 헤더 -->
 		<header th:replace="fragments/headeradmin::header1"></header>
-        <div class="main">
+
 			<!-- 하위 HTML에서 Content를 재정의할 예정이다. -->
 			<div class="panel panel-default" layout:fragment="content1"></div>
 			<!-- 푸터 -->
 			<footer th:replace="fragments/footeradmin::footer1"></footer>
-		</div>
-
-	<div class="main"></div>
-	
-	<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
-	<th:block layout:fragment="script1">
-
-	</th:block>
+			
+			<!-- 하위 HTML에서 javascript 재정의할 예정 th:block은 없어지는 태그이다. -->
+			<th:block layout:fragment="script1">
+		
+			</th:block>
 	
 </body>
 </html>

@@ -84,7 +84,27 @@ public class ClassHistroyService {
 		return classHistory.getClasses().getClassNo();
 	}
 	
-//  classes의 closedate날짜가 지나면 모든 commit을 complete로 변환
+//  신청상태를 Uncompleted으로 변경
+	public Long uncompleteManageClassDetail(Long classHistoryNo) {
+		ClassHistory classHistory = classHistoryRepo.findById(classHistoryNo).get();
+		Classes classes = classesRepo.findById(classHistory.getClasses().getClassNo()).get();
+		classHistory.setClassHistoryState(ClassHistoryEnumType.UNCOMPLETED);
+		classHistoryRepo.save(classHistory);
+		classesRepo.save(classes);
+		return classHistory.getClasses().getClassNo();
+	}
+	
+//  신청상태를 Completed으로 변경
+	public Long completeManageClassDetail(Long classHistoryNo) {
+		ClassHistory classHistory = classHistoryRepo.findById(classHistoryNo).get();
+		Classes classes = classesRepo.findById(classHistory.getClasses().getClassNo()).get();
+		classHistory.setClassHistoryState(ClassHistoryEnumType.COMPLETED);
+		classHistoryRepo.save(classHistory);
+		classesRepo.save(classes);
+		return classHistory.getClasses().getClassNo();
+	}
+	
+//  classes의 closedate날짜가 지나면 모든 commit을 completed로 변환
 	public void commitToComplete() {
 		List<ClassHistory> classHistroyList = (List<ClassHistory>)classHistoryRepo.findAll();
 		for(ClassHistory classHistory : classHistroyList) {

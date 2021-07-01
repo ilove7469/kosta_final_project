@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:fragment="head1">
 <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE"></title>
@@ -8,10 +8,11 @@
 
 <!--공통 스크립트 -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
+	document.title = "KOSTA EDU" ;
   $(function(){
       $.ajax({
         url:"/fragments/headerUser",
@@ -29,7 +30,7 @@
                     </a>
                     <ul id="dropdown-manu${trainee.traineeNo}" class="dropdown-menu"></ul>
                   </li>`;
-          $("#navber-manu").html(str);
+          $("#navbar-manu").html(str);
           subjectList(trainee);
         });
       }
@@ -37,24 +38,24 @@
         var str="";
         $.getJSON("/user/userMain/"+trainee.traineeNo,function(subject){
           $.each(subject,function(idx,subject){
-          	str += `<li><a href='/courseInfo/${subject.subjectNo}'>${subject.subName}</a></li>`; 
+             str += `<li><a href='/courseInfo/${subject.subjectNo}'>${subject.subName}</a></li>`; 
           });
           $("#dropdown-manu"+trainee.traineeNo).html(str);
         });
     }
   });
   
-	$(function() {
-		var formObj = $(".form1");
+   $(function() {
+      var formObj = $(".form1");
 
-		$(".searchBtn").click(function() {
-			var keyword = $(".searchKeyword").val();
+      $(".searchBtn").click(function() {
+         var keyword = $(".searchKeyword").val();
 
-			formObj.find("[name='keyword']").val(keyword);
-			formObj.submit();
-		});
-
-	});
+         formObj.find("[name='keyword']").val(keyword);
+         formObj.submit();
+      });
+      
+   });
   </script>
 
 <!--개별 스크립트 -->
@@ -63,21 +64,102 @@
 
 <!-- 공통적인 css -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="shortcut icon" type="image/png" href='/img/favicon.png'/>
 <style>
 .dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0;
+   display: block;
+   margin-top: 0;
 }
-#course div p:first-child {
-	font-size: 40px;
-}
-.preBox{
-  white-space:pre-wrap;
+/* #course div p:first-child {
+   font-size: 40px;
+} */
+.panel {
+      border: 0px;
+      box-shadow: none;
+     }
+
+.preBox {
+   white-space: pre-wrap;
 }
 
-.user-foot {
-	margin-left: 300px;
+#base {
+  margin-left:130px;
+  margin-right:130px;
+   position:static;
+}
+
+#sign {
+   position: relative;
+   font-size: 1em;
+   top:30px;
+   right: 20px;
+   float: right;
+}
+#headerInfo{
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:130px;
+  margin-right:130px;
+  text-align: center;
+}
+#headerInfo img{
+  margin-left: 165px;
+}
+.navbar{
+  margin-bottom: 0px;
+  border-radius: 0px;
+  border:0px;
+}
+
+#navbar-manu{
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+.navbar .navbar-nav>.open>a, 
+.navbar .navbar-nav>.open>a:focus, 
+.navbar .navbar-nav>.open>a:hover {
+    background-color: #e7e7e7;
+}
+
+.navbar-inverse {
+    background-color: #e7e7e7;
+    border-color: white;
+}
+
+.page-header{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border-bottom: 0px;
+}
+#userFooter{
+  width: 100%;
+  height: 150px;
+   background-color: lightgray;
+   float:left;
+}
+.userFoot {
+   float:left ;
+   width: 800px;
+   left: 50%;
+   margin-top: 30px;
+   margin-left:-400px;
+   position: absolute;
+  
+}
+.footerBox{
+  display:inline-block ;
+  width: 100%;
+  
+}
+#footerLogo{
+  margin-left: 50px;
+  padding-right: 50px;
+  float:left;
+}
+#footerInfo{
+  float:left;
 }
 
 </style>

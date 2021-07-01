@@ -4,38 +4,50 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script th:src="@{/js/tablesort.js}"></script>
-	<link rel="stylesheet" type="text/css"
-		href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-	<script>
-		$(function() {
-			$("table").addClass(
-					"table table-striped table-bordered table-hover");
-			$("table").attr("id", "tablesort");
-			$("#tablesort").dataTable();
-		});
-	</script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<script>
+	$(function() {
+		$("table").addClass("table table-striped table-bordered table-hover");
+		$("table").attr("id", "tablesort");
+		$("#tablesort").dataTable();
+		$(".dataTables_filter").remove();
+	});
+</script>
 </head>
 <body>
 
 	<table>
-	<thead>
-		<tr>
-			<th>과정명</th>
-			<th>개강일</th>
-			<th>종강일</th>
-			<th>교육시간</th>
-			<th>강의장</th>
-		</tr>
+		<thead>
+			<tr>
+				<th>과정명</th>
+				<th>개강일</th>
+				<th>종강일</th>
+				<th>교육시간</th>
+				<th>강의장</th>
+				<th>상태</th>
+			</tr>
 		</thead>
 		<tbody>
-		<tr th:each="class:${result}">
-			<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
-				th:text=${class.lecture.course.courseName}></a></td>
-			<td th:text=${class.classOpenDate}></td>
-			<td th:text=${class.classCloseDate}></td>
-			<td th:text=${class.educationTime.educationTimeType}></td>
-			<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
-		</tr>
+			<tr th:each="class:${result}">
+				<td th:if="${#strings.toString(class.classState)}=='APPLY'"><a
+					th:href="@{'/course/enroll/'+${class.classNo}}"
+					th:text=${class.lecture.course.courseName}></a></td>
+				<td th:unless="${#strings.toString(class.classState)}=='APPLY'"
+					th:text=${class.lecture.course.courseName}></td>
+				<td th:text=${class.classOpenDate}></td>
+				<td th:text=${class.classCloseDate}></td>
+				<td th:text=${class.educationTime.educationTimeType}></td>
+				<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+				<td th:if="${#strings.toString(class.classState)}=='APPLY'"><a
+					th:href="@{'/course/enroll/'+${class.classNo}}" th:text="수강신청"></a></td>
+				<td th:if="${#strings.toString(class.classState)}=='END'"
+					th:text="마감">상태</td>
+				<td th:if="${#strings.toString(class.classState)}=='CLOSE'"
+					th:text="마감">상태</td>
+				<td th:if="${#strings.toString(class.classState)}=='OPENREADY'"
+					th:text="개설예정">상태</td>
+			</tr>
 		</tbody>
 	</table>
 

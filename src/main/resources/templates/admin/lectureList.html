@@ -8,21 +8,20 @@
 </head>
 <body>
 
-	<div class="panel panel-default" layout:fragment="content1">
+<div class="panel panel-default" layout:fragment="content1">
 
- <div id="menuTitleIco"><span class="glyphicon glyphicon-calendar"></span></div><span id="menuTitle">강의계획</span>
+ <div id="menuTitleIco">
+ <span class="glyphicon glyphicon-calendar"></span>
+ </div>
+ <span id="menuTitle">강의계획</span>
+ 
 	<!-- 메뉴분리용 div -->
 		<div id="divContentline"></div>
 	<!-- 메뉴분리용 div 끝-->
 
-
-
-
 	<div class="pull-right">
 	<h3><a class="btn btn-default" th:href="@{/admin/lectureInsert}">등록</a></h3>
 	</div>
-		
-		
 
 		<table border="1">
 		<thead>
@@ -45,13 +44,6 @@
 			</tbody>
 		</table>
 
-
-
-
-
-
-
-
 	<th:block layout:fragment="script1">
 		<script>
 			$(function() {
@@ -72,24 +64,10 @@
 					formObj.submit();
 				});
 
-				$(".boardLink")
-						.click(
-								function(e) {
-									e.preventDefault();
-									var bno = $(this).attr("href"); /*  href 읽어와서  */
-									/* 	수정하고 바꿔라 */
-									formObj.attr("action",
-											"[[@{/webboard/boarddetail}]]");
-									formObj
-											.append("<input type='hidden' name='bno' value='" + bno +"'>")
-									formObj.submit();
-								});
-
 			});
 		</script>
 	</th:block>
-  
-  
+
   </div>
 </body>
 </html>

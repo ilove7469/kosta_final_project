@@ -4,25 +4,43 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8" />
+
 <th:block layout:fragment="script1">
 
+</th:block>
+<th:block layout:fragment="style1">
+  <style>
+
+  </style>
 </th:block>
 </head>
 
 <header class="page-header" th:fragment="header1">
-	<th:block layout:fragment="style1">
-
-	</th:block>
-	<h1>
-		<img src="/img/logo4.png">
-		KOSTA프로젝트 <small>Designed by yoon</small>
-	</h1>
+	
+    <div id="headerInfo">
+    <a href="/user/userMain">
+  	   <img src="/img/logo5.png" width="190px"> 
+     </a>
+	<!-- KOSTA프로젝트 <small>Designed by yoon</small> -->
+    
+	 <div id="sign">
+		<div sec:authorize="isAuthenticated()">
+			<a href="/user/userInfo">마이페이지<span
+				class="glyphicon glyphicon-user"></span><span> | </span></a> <a
+				href="/logout">로그아웃<span class="glyphicon glyphicon-log-out"></span></a>
+		</div>
+		<div sec:authorize="!isAuthenticated()">
+			<a href="/user/userInsert">회원가입<span
+				class="glyphicon glyphicon-edit"></span><span> | </span></a> <a
+				href="/auth/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
+		</div>
+      
+	</div>
+  </div>
 	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/user/userMain">Kosta Logo</a>
-			</div>
-			<ul id="navber-manu" class="nav navbar-nav">
+		<div id="base" class="container-fluid">
+            <!-- 대주제 메뉴 들어가는 구간 -->
+			<ul id="navbar-manu" class="nav navbar-nav">
 			</ul>
 			<form class="navbar-form navbar-right form1"
 				th:action="@{/search/searchResult}" method="get">
@@ -35,21 +53,11 @@
 							<i class="glyphicon glyphicon-search"></i>
 						</button>
 					</div>
-
 				</div>
 			</form>
 
 		</div>
 	</nav>
-	<div>
-		<div sec:authorize="isAuthenticated()">
-			<a href="/user/userInfo">마이페이지<span class="glyphicon glyphicon-user"></span><span> | </span></a>
-			<a href="/logout">로그아웃<span class="glyphicon glyphicon-log-out"></span></a>
-		</div>
-		<div sec:authorize="!isAuthenticated()">
-			<a href="/user/userInsert">회원가입<span class="glyphicon glyphicon-edit"></span><span> | </span></a>
-			<a href="/auth/login">로그인<span class="glyphicon glyphicon-log-in"></span></a>
-		</div>
-	</div>
+
 </header>
 </html>

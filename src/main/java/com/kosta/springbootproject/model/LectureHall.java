@@ -1,12 +1,10 @@
 package com.kosta.springbootproject.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +37,7 @@ public class LectureHall implements Comparable<LectureHall>{
 	@Column(nullable = false)
 	private String lectureHallPhone;
 
+	//정렬을 위해 override
 	@Override
 	public int compareTo(LectureHall o) {
 		return Long.compare(this.lectureHallNo, o.lectureHallNo);

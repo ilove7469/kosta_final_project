@@ -1,6 +1,5 @@
 package com.kosta.springbootproject.model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -14,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

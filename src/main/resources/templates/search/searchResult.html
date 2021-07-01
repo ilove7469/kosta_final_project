@@ -20,9 +20,12 @@
 					"table table-striped table-bordered table-hover");
 			$("table").attr("id", "tablesort");
 			$("#tablesort").dataTable();
+			$(".dataTables_filter").remove();
 		});
 	</script>
 	<script>
+	
+		//키워드로 검색
 		$(function() {
 			var formObj = $(".form2");
 
@@ -35,17 +38,17 @@
 
 		});
 
+		//과목 검색
 		$(function() {
 			var formObj = $(".form2");
-
+			
 			$("#sub .smenu").click(function() {
-
 				subNo = $(this).attr("value");
-
+				
+				//선택한 버튼만 활성화
 				$("#sub .smenu").each(function(idx, item) {
 					$(item).removeClass('active');
 				});
-
 				$("#sub .smenu").each(function(idx, item) {
 					if ($(item).val() == subNo) {
 						$(item).addClass('active');
@@ -66,17 +69,17 @@
 			});
 		});
 
+		//강의장 검색
 		$(function() {
 			var formObj = $(".form2");
 
 			$(".space .hmenu").click(function() {
-
 				hallNo = $(this).attr("value");
 
+				//선택한 버튼만 활성화
 				$(".space .hmenu").each(function(idx, item) {
 					$(item).removeClass('active');
 				});
-
 				$(".space .hmenu").each(function(idx, item) {
 					if ($(item).val() == hallNo) {
 						$(item).addClass('active');
@@ -96,12 +99,15 @@
 					}
 				});
 			});
+			
 		});
+		
+
 	</script>
 
 </th:block>
 <th:block layout:fragment="style1">
-	<style>
+<style>
 .cencen {
 	margin: 0 auto;
 	text-align: center;
@@ -110,6 +116,7 @@
 .searchKeyword2 {
 	width: 600px;
 	height: 40px;
+	margin: 25px;
 }
 
 .searchBtn2 {
@@ -117,28 +124,56 @@
 }
 
 .category {
-	font-size:32px;
+	font-size: 32px;
 }
 
 #final_content {
-margin-left:200px;
-margin-right:200px;
+	margin-left: 200px;
+	margin-right: 200px;
+	margin-bottom: 25px;
 }
 
+#topBanner{
+  padding : 0 px;
+  margin : 0 px;
+  width:100%;
+  height : 300px;
+  background-color: #6a7ca2;
+  text-align: center;
+  vertical-align: center;
+  }
+  
+#topBannerTitleText{
+  padding-top : 130px;
+  color:white;
+  font-size : 30px;
+  }
+#topBannerTitleText span{
+  padding-top : 130px;
+  color:white;
+  font-size : 20px;
+  }
 </style>
 </th:block>
 </head>
 <body>
 	<div layout:fragment="content1">
+		    <div id="topBanner">
+		<div id="topBannerTitle">
+		<div id="topBannerTitleText"><p>강의 검색</p><span>강의명, 강사를 입력해 주세요.</span></div>
+		</div>
+		</div>
 		<div class="cencen">
+		
 
+		
 			<input type="text" class="searchKeyword2" th:value=${word}
 				placeholder="과정명, 강사명, 주제 검색어를 입력해 주세요">
 			<button class="searchBtn2">검색</button>
 		</div>
 
-		<br>
-		
+		<br> <br>
+
 		<form class="form2" th:action="@{/search/searchResult}" method="get">
 			<input type="hidden" name="keyword" value="">
 
@@ -154,8 +189,8 @@ margin-right:200px;
 				</th:block>
 			</div>
 		</div>
-		
-		<br>
+
+		<br> <br>
 
 		<div id="table_content">
 			<div class="space cencen">
@@ -170,7 +205,7 @@ margin-right:200px;
 				</div>
 			</div>
 
-			<br>
+			<br> <br> <br> <br>
 
 			<div id="final_content">
 				<table>
@@ -181,16 +216,29 @@ margin-right:200px;
 							<th>종강일</th>
 							<th>교육시간</th>
 							<th>강의장</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="class:${result}">
-							<td><a th:href="@{'/course/enroll/'+${class.classNo}}"
+							<td th:if="${#strings.toString(class.classState)}=='APPLY'"><a
+								th:href="@{'/course/enroll/'+${class.classNo}}"
 								th:text=${class.lecture.course.courseName}></a></td>
+							<td th:unless="${#strings.toString(class.classState)}=='APPLY'"
+								th:text=${class.lecture.course.courseName}></td>
 							<td th:text=${class.classOpenDate}></td>
 							<td th:text=${class.classCloseDate}></td>
 							<td th:text=${class.educationTime.educationTimeType}></td>
 							<td th:text=${class.classRoom.lectureHall.lectureHallName}></td>
+							<td th:if="${#strings.toString(class.classState)}=='APPLY'"><a
+								th:href="@{'/course/enroll/'+${class.classNo}}"
+								th:text="수강신청"></a></td>
+							<td th:if="${#strings.toString(class.classState)}=='END'"
+								th:text="마감">상태</td>
+							<td th:if="${#strings.toString(class.classState)}=='CLOSE'"
+								th:text="마감">상태</td>
+							<td th:if="${#strings.toString(class.classState)}=='OPENREADY'"
+								th:text="개설예정">상태</td>
 						</tr>
 					</tbody>
 				</table>

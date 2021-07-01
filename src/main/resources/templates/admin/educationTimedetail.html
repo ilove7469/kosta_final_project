@@ -20,67 +20,39 @@
 	
 	<form th:action="@{/admin/educationtimeInsert}" method="post">
 	    <div class="form-group">
-	      <th:block th:unless="${subject == null}">
-	      	<input type="hidden" id="subjectNo" name="subjectNo" th:value="${EducationTime.educationTimeNo}">
+	    
+	      <th:block th:unless="${EducationTime == null}">
+	      	<input type="hidden" id="educationTimeNo" name="educationTimeNo" th:value="${EducationTime.educationTimeNo}">
 	      </th:block>	
 	        
 	      <label for="educationTimeName">이름:</label>
-	       <th:block th:if="${EducationTime == null}">
-	      	<input 
-	      	type="text" 
-	      	class="form-control" 
-	      	id="educationTimeName"
-	      	name="educationTimeName"
-	      	placeholder="예) 주간(8시간)">
-	      </th:block>
-	 	  <th:block th:unless="${EducationTime == null}">
 	      	<input 
 	      	type="text" 
 	      	class="form-control" 
 	      	id="educationTimeName" 
 	      	name="educationTimeName"
 	      	placeholder="예) 주간(8시간)"
-	      	th:value="${EducationTime.educationTimeName}">
-	      </th:block>
-	      
+	      	th:value="${EducationTime != null}?${EducationTime.educationTimeName}:${null}">
 	    </div>
+	    
 	    <div class="form-group">
 	      <label for="educationPartType">유형:</label>
-	      
-			<th:block th:if="${EducationTime == null}">
 		      <select class="form-control" name="educationPartType" id="educationPartType">
-					<option th:value="DAY" th:utext="주간"></option>
-					<option th:value="NIGHT" th:utext="야간"></option>
-					<option th:value="WEEKEND" th:utext="주말"></option>
+					<option th:value="DAY" th:utext="주간" th:selected="${EducationTime != null and #strings.toString(EducationTime.educationPartType)=='DAY'}"></option>
+					<option th:value="NIGHT" th:utext="야간" th:selected="${EducationTime != null and #strings.toString(EducationTime.educationPartType)=='NIGHT'}"></option>
+					<option th:value="WEEKEND" th:utext="주말" th:selected="${EducationTime != null and #strings.toString(EducationTime.educationPartType)=='WEEKEND'}"></option>
 			  </select>
-		    </th:block>
-			<th:block th:unless="${EducationTime == null}">
-		      <select class="form-control" name="educationPartType" id="educationPartType">
-					<option th:value="DAY" th:utext="주간" th:selected="${#strings.toString(EducationTime.educationPartType)}=='DAY'"></option>
-					<option th:value="NIGHT" th:utext="야간" th:selected="${#strings.toString(EducationTime.educationPartType)}=='NIGHT'"></option>
-					<option th:value="WEEKEND" th:utext="주말" th:selected="${#strings.toString(EducationTime.educationPartType)}=='WEEKEND'"></option>
-			  </select>
-		    </th:block> 
 	    </div>
+	    
 	    <div class="form-group">
 	      <label for="educationTimeType">시간대:</label>
-		   <th:block th:if="${EducationTime == null}">
-	      	<input 
-	      	type="text" 
-	      	class="form-control" 
-	      	id="educationTimeType"
-	      	name="educationTimeType"
-	      	placeholder="예) 09:00~17:00">
-	      </th:block>
-	 	  <th:block th:unless="${EducationTime == null}">
 	      	<input 
 	      	type="text" 
 	      	class="form-control" 
 	      	id="educationTimeType" 
 	      	name="educationTimeType"
 	      	placeholder="예) 09:00~17:00"
-	      	th:value="${EducationTime.educationTimeType}">
-	      </th:block>
+	      	th:value="${EducationTime != null}?${EducationTime.educationTimeType}:${null}">
 		 
 	    </div>
 	    <button type="button" class="btn btn-success" onclick = "location.href = '/admin/educationtimemain'">취소</button>

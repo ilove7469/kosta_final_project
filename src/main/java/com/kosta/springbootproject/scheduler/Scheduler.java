@@ -1,4 +1,4 @@
-package com.kosta.springbootproject;
+package com.kosta.springbootproject.scheduler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import com.kosta.springbootproject.adminservice.ClassHistroyService;
 import com.kosta.springbootproject.adminservice.ClassesService;
-import com.kosta.springbootproject.model.ClassHistory;
 
 @Component
 public class Scheduler {

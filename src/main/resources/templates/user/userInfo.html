@@ -26,10 +26,11 @@
 </head>
 <body>
 <div layout:fragment="content1">
+  <div class="container kt-mt-22">
   <ul class="nav nav-tabs">
     <li class="active"><a class="btn-link" href="/user/userInfo">
       <i class="fa fa-user text-info"></i> 회원정보</a></li>
-    <li><a class="btn-link" href="/user/userInfo">
+    <li><a class="btn-link" th:href="@{'/user/userProfile/'+${user.userNo}}">
       <i class="fa fa-id-card-o text-success"></i> 수강현황</a></li>
   </ul>
 
@@ -46,8 +47,9 @@
                       </div>
                     </div>
                   </div>
+                 
                   <!-- 회원 정보 수정 -->
-                  <form action="/profile/update" method="POST" enctype="multipart/form-data" id="updateForm" novalidate="novalidate">
+                  <form action="/user/update" method="POST" id="updateForm" novalidate="novalidate">
                     <!-- 드롭박스탭부분 -->
                     <div class="panel-group" id="accordion">
                       <div class="panel panel-default">
@@ -74,7 +76,7 @@
                                 이름
                                 <span class="help-inline">*</span>
                               </label>
-                              <input type="text" id="name" name="name" th:value=${user.userName} class="form-control">
+                              <input type="text" id="name" name="userName" th:value=${user.userName} class="form-control">
                               <span class="help-block"></span>
                             </div>
     
@@ -156,7 +158,7 @@
                                   이메일
                                   <span class="help-inline">*</span>
                                 </label>
-                                <input type="text" id="email" name="email" th:value="${user.userEmail}" class="form-control" readonly="readonly">
+                                <input type="text" id="email" name="userEmail" th:value="${user.userEmail}" class="form-control" readonly="readonly">
                                 <span class="help-block"></span>
                               </div>
                             </div>
@@ -202,7 +204,6 @@
                               </div>
                             </div>
                           </div>
-                          
                           <div class="form-group cust-form has-feedback ">
                             <label for="bank" class="control-label">
                               은행
@@ -220,7 +221,7 @@
                             <input type="text" id="bankAccount" name="userBankNoString" th:value="${user.userBankNoString}" class="form-control" placeholder="ex) 111111111111 -없이">
                             <span class="help-block"></span>
                           </div>
-                          
+                           
                           <div class="row">
                             <div class="col-md-12">
                               <div class="form-group cust-form has-feedback ">
@@ -228,12 +229,12 @@
                                   주민번호
                                   <span class="help-inline"></span>
                                 </label>
-                                <div class="row">
+                                <div class="row" id="totalssn">
                                   <div class="col-md-3">
-                                    <input type="text" id="ssn1" name="ssn1" th:value="${#strings.substring(user.userIdentity,0,6)}" class="form-control" maxlength="6">
+                                    <input type="text" id="ssn1" name="ssn1" th:value="${user.userIdentity == ''}?'':${#strings.substring(user.userIdentity,0,6)}" class="form-control" maxlength="6">
                                   </div>
                                   <div class="col-md-3">
-                                    <input type="password" id="ssn2" name="ssn2" th:value="${#strings.substring(user.userIdentity,6,13)}" class="form-control" maxlength="7">
+                                    <input type="password" id="ssn2" name="ssn2" th:value="${user.userIdentity == ''}?'':${#strings.substring(user.userIdentity,6,13)}"  class="form-control" maxlength="7">
                                   </div>
                                 </div>
                                 <span class="help-block"></span>
@@ -254,6 +255,7 @@
                           </a>
                         </h4>
                       </div>
+                      
                       <!-- 회사 입력부분 -->
                       <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -263,9 +265,9 @@
                                 <label for="corpName" class="control-label">
                                   소속회사
                                 </label>
-                                <input type="text" name="companyName" th:value="${user.company.companyName}" class="form-control" readonly="readonly">
+                                <input type="text" id="companyName" name="companyName" th:value="${user.company.companyName}" class="form-control" readonly="readonly">
                               </div>
-                              <input type="hidden" name="companyNo" th:value="${user.company.companyNo}" autocomplete="off">
+                              <input type="hidden" id="companyNo" name="companyNo" th:value="${user.company.companyNo}" autocomplete="off">
                             </div>
                             <div class="col-md-3">
                               <button type="button" id="searchCorp" class="btn btn-default" style="margin-top: 24px;" data-toggle="modal" data-target="#myModal">
@@ -289,270 +291,107 @@
                                   </div>
                                   <div class="modal-body">
                                     <div>
-                              		  <input type="text" class="searchKeyword">
-                              		  <button class="searchBtn">검색</button>
-                                      <hr>
                                       <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                           <tr>
                                             <th>회사명</th>
-                                            <th id="tdCenter">선택</th>
+                                            <th>선택</th>
                                           </tr>
                                           </thead>
                                           <tbody>
                                           <tr th:each="company:${companyList}">
-                                            <td><a th:href="@{'/admin/companyDetail/'+${company.companyNo}}" th:text="${company.companyName}"></a></td>
-                                            <td id="tdCenter"><a class="btn btn-success btn-sm" th:href="@{/admin/companyDelete(cno=${company.companyNo})}">선택</a></td>
+                                            <td>
+                                              <a th:class="modalCompany" th:text="${company.companyName}"></a>
+                                            </td>
+                                            <td class="tdCenter">
+                                              <button class="btn btn-success btn-sm" th:value="${company.companyNo}" data-dismiss="modal">
+                                                선택
+                                              </button>
+                                            </td>
                                           </tr>
                                           </tbody>
                                         </table>
                                 	</div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" id="modalButton" class="btn btn-default" data-dismiss="modal">입력/수정</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             <!-- modal 끝 -->
-                            
                           </div>
-<span class="help-block kt-mb-15">회사를 추가하거나 삭제하고 저장버튼을 눌러야 반영됩니다.</span>
+                          <span class="help-block kt-mb-15">회사를 추가하거나 삭제하고 저장버튼을 눌러야 반영됩니다.</span>
+                          <!-- 회사정보 끝 -->
+                          <div class="form-group cust-form has-feedback ">
+                            <label for="department" class="control-label">
+                              소속부서
+                              <span class="help-inline"></span>
+                            </label>
+                            <input type="text" id="department" name="userDept" th:value="${user.userDept}" class="form-control">
+                            <span class="help-block"></span>
+                          </div>
 
-    <div class="form-group cust-form has-feedback ">
-      <label for="department" class="control-label">
-          소속부서
-        <span class="help-inline"></span>
-      </label>
-    <input type="text" id="department" name="department" value="" class="form-control">
-      <span class="help-block"></span>
-    </div>
+                          <div class="form-group cust-form has-feedback ">
+                            <label for="position" class="control-label">
+                              직함
+                              <span class="help-inline"></span>
+                            </label>
+                            <input type="text" id="position" name="userPosition" th:value="${user.userPosition}" class="form-control">
+                            <span class="help-block"></span>
+                          </div>
 
-    <div class="form-group cust-form has-feedback ">
-      <label for="position" class="control-label">
-          직함
-        <span class="help-inline"></span>
-      </label>
-    <input type="text" id="position" name="position" value="" class="form-control">
-      <span class="help-block"></span>
-    </div>
+                          <div class="form-group cust-form has-feedback ">
+                            <label for="duty" class="control-label">
+                              직무
+                              <span class="help-inline"></span>
+                            </label>
+                            <input type="text" id="duty" name="userJob" th:value="${user.userJob}" class="form-control">
+                            <span class="help-block"></span>
+                          </div>
 
-    <div class="form-group cust-form has-feedback ">
-      <label for="duty" class="control-label">
-          직무
-        <span class="help-inline"></span>
-      </label>
-    <input type="text" id="duty" name="duty" value="" class="form-control">
-      <span class="help-block"></span>
-    </div>
-
-    <div class="form-group cust-form has-feedback ">
-      <label for="officePhone" class="control-label">
-          사무실전화번호
-        <span class="help-inline"></span>
-      </label>
-    <input type="text" id="officePhone" name="officePhone" value="" class="form-control">
-      <span class="help-block"></span>
-    </div>
+                        <div class="form-group cust-form has-feedback ">
+                          <label for="officePhone" class="control-label">
+                            사무실전화번호
+                            <span class="help-inline"></span>
+                          </label>
+                       	  <input type="text" id="officePhone" name="deptPhone" th:value="${user.deptPhone}" class="form-control">
+                          <span class="help-block"></span>
+                        </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  
                   <div class="hr-line-dashed"></div>
                   <div class="text-right">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i><span class="hidden-xs">&nbsp;저장</span></button>
-<a class="btn btn-success" role="button" onclick="return traineeBtn_isConfirmed();" id="traineeBtn" )=""><i class="fa fa-exchange"></i><span class="hidden-xs">&nbsp;채용예정자 전환</span></a>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                      <i class="fa fa-save"></i>
+                      <span class="hidden-xs">&nbsp;저장</span>
+                    </button>
+                    <a class="btn btn-success" role="button" id="roleChange" th:text="${user.trainee.traineeName == '채용예정자'}?'재직자 전환':'채용예정자 전환'"></a>
 
-<script type="text/javascript">
-        function traineeBtn_isConfirmed(){
-
-            console.log("채용예정자로 전환하시겠습니까?");
-
-            swal({
-                title: '채용예정자로 전환하시겠습니까?',
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: '예',
-                cancelButtonText: '아니오',
-                closeOnConfirm: false,
-                closeOnCancel: true},
-            function (isConfirm) {
-                console.log(isConfirm);
-                if (isConfirm) {
-                    location.href = '/member/changetrainee/80339';
-                }
-            });
-        }
-</script>
-                    
-                    
-
-<a class="btn btn-info" role="button" onclick="return enrollBtn_isConfirmed();" id="enrollBtn" )=""><i class="fa fa-sign-out"></i><span class="hidden-xs">&nbsp;회원탈퇴</span></a>
-
-<script type="text/javascript">
-        function enrollBtn_isConfirmed(){
-
-            console.log("회원탈퇴하시겠습니까?");
-
-            swal({
-                title: '회원탈퇴하시겠습니까?',
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: '예',
-                cancelButtonText: '아니오',
-                closeOnConfirm: false,
-                closeOnCancel: true},
-            function (isConfirm) {
-                console.log(isConfirm);
-                if (isConfirm) {
-                    location.href = '/member/withdrawal/80339';
-                }
-            });
-        }
-</script>
+                    <a class="btn btn-info" role="button" id="userDeleteBtn">
+                      <i class="fa fa-sign-out"></i>
+                      <span class="hidden-xs">&nbsp;회원탈퇴</span>
+                    </a>
                   </div>
-
-              </form></div>
+                   <!-- 데이터용 히든박스 -->
+                  <div id="hiddenBox">
+                    <input type="hidden" id="companyInfo" th:value="${user.company.companyNo}">
+                    <input type="hidden" id="userNoInfo" name="userNo" th:value="${user.userNo}">
+                    <input type="hidden" name="userPw" th:value="${user.userPw}">
+                    <input type="hidden" id="userIdentity" name="userIdentity" th:value="${user.userIdentity}">
+                    <input type="hidden" id="userRegDate" name="userRegDate" th:value="${user.userRegDate}">
+                    <input type="hidden" id="trainee" name="trainee" th:value="${user.trainee.traineeNo}">
+                  </div>
+              </form>
             </div>
           </div>
         </div>
-        
-
-<script>
-    $(function(){
-      $.validator.addMethod("regex", function(value, element, regexpr) {          
-          return regexpr.test(value);
-      });
-      
-        $("#updateForm").validate({
-          ignore: [],
-            rules: {
-              userId: {
-                required: true
-              },
-              birthDate: {
-                required: true
-                },
-                zipCode: {
-                  required: true
-                },
-                address: {
-                  required: true
-                },
-                detailAddress: {
-                  required: true
-                },
-                name: {
-                    required: true
-                },
-                newPassword: {
-                    required: true,
-                    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
-                },
-                confirmPassword: {
-                    required: true,
-                    equalTo: "#newPassword" 
-                },
-                cellPhone: {
-                    required: true,
-                    regex: /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/
-                },
-                email: {
-                    email: true
-                },
-                ssn: {
-                  number: true
-                },
-                bankAccount: {
-                  number: true
-                }
-            },
-            messages: {
-              userId: {
-                required: "필수 입력 항목입니다."
-              },
-              birthDate: {
-                required: "필수 입력 항목입니다."
-                },
-                zipCode: {
-                  required: "필수 입력 항목입니다."
-                },
-                address: {
-                  required: "필수 입력 항목입니다."
-                },
-                detailAddress: {
-                  required: "필수 입력 항목입니다."
-                },
-                name: {
-                    required: "필수 입력 항목입니다."
-                },
-                newPassword: {
-                    required: "필수 입력 항목입니다.",
-                    regex: "8~16자 숫자,소문자, 대문자를 포함 해야 합니다."
-                },
-                confirmPassword: {
-                    required: "필수 입력 항목입니다.",
-                    equalTo: "비밀번호가 일치하지 않습니다."
-                },
-                cellPhone: {
-                    required: "필수 입력 항목입니다.",
-                    regex: "휴대전화 번호를 다시 확인해 주세요."
-                },
-                email: {
-                    email: "이메일 주소를 다시 확인해 주세요."
-                },
-                ssn:{
-                  number: "숫자만 입력 가능합니다."
-                },
-                bankAccount:{
-                  number: "숫자만 입력 가능합니다."
-                }
-            },
-            invalidHandler: function(event, validator){
-              var errorEl = validator.findLastActive() || validator.errorList.length && validator.errorList[0].element;
-              if(errorEl){
-                $(errorEl).closest('.panel-collapse').collapse('show');
-              }
-            },
-            submitHandler: function(form) {
-                form.submit();
-            },
-            errorPlacement: function(error, element) {
-                $( element )
-                        .closest( "form" )
-                        .find( "label[for='" + element.attr( "id" ) + "']" )
-                        .append( error );
-            },
-            errorElement: "span",
-        });
-
-
-    });
-  </script>
-        
-
-
-      
-            </div>
-            </div>
-<!-- <div class="panel panel-default" layout:fragment="content1">
-  <table class="table">
-    <tr>
-      <th>과목명</th>
-      <th>연간횟수</th>
-      <th>훈련시간</th>
-    </tr>
-    <tr id="course" th:each="CourseInfo,i:${CourseList}">
-      <td>
-        <a th:href="@{'/courseInfo/'+${CourseInfo[3]}+'/'+${CourseInfo[4]}}" th:text="${CourseInfo[0]}"></a>
-      </td>
-      <td th:text="${CourseInfo[1]}"/>
-      <td th:text="${CourseInfo[2]}"/>
-    </tr>
-  </table>
- </div>  -->
+      </div>
+     </div>   
+    </div>
+  </div>
 </body>
 </html>

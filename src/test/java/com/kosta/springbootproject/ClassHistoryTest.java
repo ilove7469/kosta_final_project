@@ -65,7 +65,7 @@ public class ClassHistoryTest {
 	
 	@Test
 	public void test111() {
-		List<Object[]> list = repo.FindClassHistoryCountByUser(71L);
+		List<Object[]> list = repo.findClassHistoryCountByUser(71L);
 		Object[] objarr = list.get(0);
 		System.out.println(Arrays.toString(objarr));
 		

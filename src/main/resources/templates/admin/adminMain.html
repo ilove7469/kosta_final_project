@@ -7,53 +7,467 @@
 <title>메인</title>
 
 <style>
+#mainView0{ 
+  width: 100%;
+  height: 80px;
+  float : left;
+  padding : 0;
+  margin : 0;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+#content1, #content2, #content3{ 
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background-color : #6a7ca2;
+  width: 19%;
+  height: 70px;
+  float : left;
+  padding : 0;
+  margin : 3px 5px 0px 5px;
+  text-align: center;
+  color :white;
+  font-size: 25px;
+}
+
+#content4, #content5{ 
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background-color : #fbd39c;
+  width: 19%;
+  height: 70px;
+  float : left;
+  padding : 0;
+  margin : 3px 5px 0px 5px;
+  text-align: center;
+  color :grey;
+  font-size: 25px;
+}
+#mainView0ContentTitlte1{
+  margin-top : 18px;
+  margin-bottom : 0px;
+  text-align: center;
+  font-size: 23px;
+  color : white;
+}
+
+#mainView0ContentTitlte2,#mainView0ContentTitlte3{
+  margin-left : 10px;
+  margin-top : 8px;
+  margin-bottom : 0px;
+  text-align: left;
+  font-size: 15px;
+  color : white;
+}
+#mainView0ContentTitlte4, #mainView0ContentTitlte5{
+  margin-left : 10px;
+  margin-top : 8px;
+  margin-bottom : 0px;
+  text-align: left;
+  font-size: 15px;
+  color : grey;
+}
+
 #mainView { 
-  background: url(/img/logo3.png);
+  width: 100%;
+  height: 100%;
+  float : left;
+  padding : 0;
+  margin : 0;
+}
+
+
+#viewNotice{
+  margin : 0px;
+  padding : 0px;
+  width :100%;
+  color : grey;
+  font-size: 7px;
+  text-align: right;
+}
+
+#contentLeft{
+  float : left;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  background: url(/img/logoOp.png);
   background-size : 150px;
   background-repeat:no-repeat;
   background-position: center; 
-  opacity: 0.1; 
-  width: 100%;
-  height: 500px;
-}
-#contentLeft{
-  background-color: grey;
-  width: 60%;
-  height :500px;
+  width: 63%;
+  height :370px;
   float : left;
-  border: 1px solid black;
-}
-#contentRight{
-  background-color: lightgrey;
-  width: 40%;
-  height :500px;
-  float : right;
-}
-#viewNotice{
-  color : red !important;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-right: 0px;
 }
 
+#contentRight{
+  width: 37%;
+  height :100%;
+  float : right;
+  margin-bottom: 0px;
+  padding :0px;
+}
+
+#contentRight1, #contentRight2, #contentRight3, #contentRight4{
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  margin : 8px;
+  margin-bottom : 8px;
+  width : 203px;
+  height : 175px;
+  float: left;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+}
+
+.count1, .count2, .count3, .count4 {
+  width: 150px;
+  height: 80px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-right: 10px;
+  font-size: 55px;
+  list-style: none;
+  text-align: right;
+  color: grey;
+  float :right;
+}
+
+#countTitle0{
+  margin-top:60px;
+  font-size: 25px;
+  color: grey;
+  text-align: center;
+}
+
+#countTitle{
+  margin-top : 18px;
+  text-align : left;
+  font-size: 18px;
+  color: grey;
+  margin-left : 20px;
+}
+
+#contentRight1 span{
+  margin-right: 2px;
+  border-radius: 5px;
+  padding : 7px;
+  background-color: #dceedf;
+  color : #71f887;
+}
+
+#contentRight2 span{
+  margin-right: 4px;
+  border-radius: 5px;
+  padding : 7px;
+  background-color: #fbd39c;
+  color : #ffb44e;
+}
+
+#contentRight3 span{
+  margin-right: 4px;
+  border-radius: 5px;
+  padding : 7px;
+  background-color: #feed75;
+  color : #ffe52a;
+}
+
+#contentRight4 span{
+  margin-right: 4px;
+  border-radius: 55px;
+  padding : 7px;
+  background-color: #b9e9ff;
+  color : #62ceff;
+}
+
+#mainview2{
+  width: 100%;
+  height: 100%;
+  float : left;
+  padding : 0;
+  margin : 0;
+  
+}
+
+#content2Left{
+  width: 30%;
+  float : left;
+  height :465px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  padding : 5px;
+
+}
+
+#content2Right{
+  margin-right : 8px;
+  float : right;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  background: url(/img/logoOp.png);
+  background-size : 150px;
+  background-repeat:no-repeat;
+  background-position: center; 
+  width: 68%;
+  height :465px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  }
+  
+#content2Right p{
+ font-size: 20px; 
+ color : grey;
+ margin-top: 10px;
+ margin-left: 10px;
+}
+
+#content2Right td, #content2Right th{
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+table.dataTable thead th, table.dataTable thead td{
+border-bottom : 0px !important;
+}
+
+table.dataTable{
+border-collapse : collapse !important;
+}
+  
+.twitter-timeline{
+  float : left;
+  width : 100%;
+  height : 100% !important;
+  }
+
+#contentLeft div{
+  float : left;
+  width : 160px;
+  height : 160px;
+  margin: 10px;
+}
+
+#contentLeft :hover {
+  background-color: #dcdcdc;
+}
+
+#contentLeft span{
+  font-size: 50px;
+  padding : 50px;
+  padding-bottom : 10px;
+  padding-left : 55px;
+  padding-top : 40px;
+  margin-right: 20px;
+}
+
+#contentLeft img{
+  margin-top : 26px;
+  margin-left : 42px;
+  width : 75px;
+  height : auto;
+}
+
+#contentLeft p{
+  font-size: 12px;
+  margin: 10px;
+  text-align: center;
+}
 </style>
+
+<script>
+$(function() {
+	
+	$(".dataTables_filter").remove();
+    $(".dataTables_length").remove();
+    $(".dataTables_info").remove();
+    $("#DataTables_Table_0_paginate").remove();
+    $("#DataTables_Table_1_paginate").remove();
+
+	  var usercount = '[[${usercount}]]';
+	  var companycount = '[[${companycount}]]';
+	  var teachercount = '[[${teachercount}]]';
+
+	  var cnt0 = 0;
+	  counterFn1();
+	  function counterFn1() {
+	    id0 = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt0++;
+	      if (cnt0 > usercount) {
+	        clearInterval(id0);
+	      } else {
+	        $(".count1").text(cnt0);
+	      }
+	    }
+	  }
+	  
+	  var cnt2 = 2;
+	  counterFn2();
+	  function counterFn2() {
+	    id0 = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt2++;
+	      if (cnt2 > companycount) {
+	        clearInterval(id0);
+	      } else {
+	        $(".count2").text(cnt2);
+	      }
+	    }
+	  }
+	  
+	  var cnt3 = 0;
+	  counterFn3();
+	  function counterFn3() {
+	    ide = setInterval(count0Fn, 40);
+	    function count0Fn() {
+	      cnt3++;
+	      if (cnt3 > teachercount) {
+	        clearInterval(ide);
+	      } else {
+	        $(".count3").text(cnt3);
+	      }
+	    }
+	  }
+
+	});
+</script>
+
 </head>
 <body>
 
 	<div class="panel panel-default" layout:fragment="content1">
-
-
-		<div id="mainView">
-		<!--  
-			<div id="contentLeft">
-				<span id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</span>
-			</div>
-			<div id="contentRight">
-			
-			</div>
-			-->
-			
-		</div>
-
+	<div id="viewNotice">크롬브라우저(해상도 1920 * 1080)에 최적화 되어있습니다.</div>
+	<div id="mainView0">
+	
+		<div id="content1"><p id="mainView0ContentTitlte1">수강생현황</p><p></p></div>
+		<div id="content2"><p id="mainView0ContentTitlte2">대기</p><p>[[${classhistorywaitcount}]]</p></div>
+		<div id="content3"><p id="mainView0ContentTitlte3">총 수료</p><p>[[${classhistorycompletedcount}]]</p></div>
+		<div id="content4"><p id="mainView0ContentTitlte4">재직자</p>[[${traineecount}]]<p> </p></div>
+		<div id="content5"><p id="mainView0ContentTitlte5">채용예정자</p>[[${traineeworkercount}]]<p> </p></div>
+		
 	</div>
 
+		<div id="mainView">
+			
+			<div id="contentLeft">
+				<div id="contentLeft1" onclick="location.href='/admin/adminInsert';">
+					<span class="glyphicon glyphicon-edit"></span>
+					<p>관리자 등록</p>
+				</div>
+				<div id="contentLeft1" onclick="location.href='/admin/adminInfo';">
+					<span class="glyphicon glyphicon-user"></span>
+					<p>관리자 정보</p>
+				</div>
+				<div id="contentLeft4">
+					<span class="glyphicon glyphicon-list-alt" onclick="location.href='/admin/adminList';"></span>
+					<p>직원주소록</p>
+				</div>
+				<div id="contentLeft1" onclick="location.href='/logout';">
+					<img src="/img/kostaEduLogo.png">
+					<p>코스타에듀</p>
+				</div>
+				<div id="contentLeft5">
+					<span class="glyphicon glyphicon-folder-close"></span>
+					<p>샘플1</p>
+				</div>
+				<div id="contentLeft6">
+					<span class="glyphicon glyphicon-book"></span>
+					<p>샘플2</p>
+				</div>
+			</div>
+
+			<div id="contentRight">
+				<div id="contentRight1">
+					<p id="countTitle0">KOSTA회원</p>
+					<li class="count4"></li>
+					
+				</div>
+				<div id="contentRight2">
+					<p id="countTitle">
+						<span class="glyphicon glyphicon-home"></span>협약사
+					</p>
+					<li class="count2">error</li>
+				</div>
+				<div id="contentRight3">
+					<p id="countTitle">
+						<span class="glyphicon glyphicon-volume-up"></span>등록강사
+					</p>
+					<li class="count3">error</li>
+				</div>
+				<div id="contentRight4">
+					<p id="countTitle">
+						<span class="glyphicon glyphicon-user"></span>등록회원수
+					</p>
+					<li class="count1">error</li>
+				</div>
+			</div>
+			
+			
+			<div id="mainview2">
+				<div id="content2Left">
+					<a class="twitter-timeline" href="https://twitter.com/swkosta?ref_src=twsrc%5Etfw">Tweets by swkosta</a>
+					<script async src="https://platform.twitter.com/widgets.js"charset="utf-8"></script>
+				</div>
+				<div id="content2Right">
+		
+					<p>개강임박강의</p>
+
+		               <table>
+		                  <thead>
+		                     <tr>
+		                        <th>개강예정일</th>
+		                        <th>강의명</th>
+		                        <th>강사명</th>
+		                        <th>상태</th>
+		                     </tr>
+		                  </thead>
+		                  <tbody>
+		                     <tr th:each="classes:${openExpectedList}">
+		                        <td th:text="${classes.classOpenDate}">개강예정일</td>
+		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:text="${classes.teacher.teacherName}">강사명</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>   
+		                     </tr>
+		                  </tbody>
+						</table>
+
+	<!-- 메뉴분리용 div -->
+		<div id="divContentline"></div>
+	<!-- 메뉴분리용 div 끝-->
+				<p>종강예정강의</p>
+	
+						<table>
+		                  <thead>
+		                     <tr>
+		                        <th>종강예정일</th>
+		                        <th>강의명</th>
+		                        <th>강사명</th>
+		                        <th>상태</th>
+		                     </tr>
+		                  </thead>
+		                  <tbody>
+		                     <tr th:each="classes:${closeExpectedList}">
+		                        <td th:text="${classes.classCloseDate}">종강예정일</td>
+		                        <td th:text="${classes.lecture.course.courseName}">강의명</td>
+		                        <td th:text="${classes.teacher.teacherName}">강사명</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='APPLY'" th:text="수강신청">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='END'" th:text="마감">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='CLOSE'" th:text="종강">상태</td>
+		                        <td th:if="${#strings.toString(classes.classState)}=='OPENREADY'" th:text="개설예정">상태</td>   
+		                     </tr>
+		                  </tbody>
+		               </table>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

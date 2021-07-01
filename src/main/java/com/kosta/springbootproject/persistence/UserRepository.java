@@ -1,5 +1,8 @@
 package com.kosta.springbootproject.persistence;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -40,4 +43,13 @@ public interface UserRepository extends CrudRepository<Users, Long>,QuerydslPred
 		}
 		return builder;
 	}
+	
+	@Query("select count(*) from Users")
+	public int userCount();
+	
+	@Query("select count(*) from Users u join Trainee t on (u.trainee = t.traineeNo) where t.traineeName='재직자'") 
+	public int traineeCount();
+	
+	@Query("select count(*) from Users u join Trainee t on (u.trainee = t.traineeNo) where t.traineeName='채용예정자'")
+	public int traineeworkerCount();
 }

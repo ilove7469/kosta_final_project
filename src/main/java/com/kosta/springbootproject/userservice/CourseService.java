@@ -1,5 +1,6 @@
 package com.kosta.springbootproject.userservice;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.springbootproject.model.ClassHistory;
-import com.kosta.springbootproject.model.ClassHistoryEnumType;
+import com.kosta.springbootproject.model.ClassStateEnumType;
 import com.kosta.springbootproject.model.Classes;
 import com.kosta.springbootproject.model.Course;
 import com.kosta.springbootproject.model.Lecture;
@@ -43,13 +44,14 @@ public class CourseService {
 	public List<Trainee> findTraineeAll() {
 		return (List<Trainee>)traineeRepo.findAll();
 	}
+	
 	public List<Subject> findSubjectByTraineeNo(Long traineeNo) {
 		Trainee trainee = Trainee.builder()
 				.traineeNo(traineeNo)
 				.build();
-		 
 		return subjectRepo.findByTraineeOrderBySubPriorityAsc(trainee);
 	}
+	
 	public Subject findSubjectById(Long subjectId) {
 		Subject subject = subjectRepo.findById(subjectId).get();
 		return subject;
@@ -69,6 +71,22 @@ public class CourseService {
 	
 	public List<Classes> findClassByLecture(Lecture lecture){
 		List<Classes> classList = classRepo.findByLecture(lecture);
+		for(Classes classes:classList) {
+			Integer capa= classes.getLecture().getCourse().getCourseCapacity();
+			Date Today = new Date();
+			// 강의상태 = APPLY(OPENREADY때문에 넣어주었다.) && 목표정원 <= 확정인원 && 개강일 > 오늘날짜
+ 			if(classes.getClassState()==ClassStateEnumType.APPLY
+ 			   &&capa <= classes.getCommitCount()
+ 			   &&classes.getClassOpenDate().compareTo(Today)>0) {
+					classes.setClassState(ClassStateEnumType.END);
+					classRepo.save(classes);
+			} else if(classes.getClassState()==ClassStateEnumType.END
+		 			   &&capa > classes.getCommitCount()
+		 			   &&classes.getClassOpenDate().compareTo(Today)>0){
+					classes.setClassState(ClassStateEnumType.APPLY);
+					classRepo.save(classes);
+			}
+		}
 		return classList;
 	}
 	

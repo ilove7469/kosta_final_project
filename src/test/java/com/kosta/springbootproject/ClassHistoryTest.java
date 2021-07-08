@@ -63,7 +63,7 @@ public class ClassHistoryTest {
 		repo.deleteById(214L);
 	}
 	
-	@Test
+//	@Test
 	public void test111() {
 		List<Object[]> list = repo.findClassHistoryCountByUser(71L);
 		Object[] objarr = list.get(0);

@@ -30,7 +30,7 @@ public class CourseTest {
 		});
 	}
 	
-	@Test
+	//@Test
 	public void insertCourse() {
 		Subject sub = new Subject();
 		sub.setSubjectNo(15L);

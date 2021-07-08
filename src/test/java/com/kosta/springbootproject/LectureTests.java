@@ -19,7 +19,7 @@ public class LectureTests {
 	@Autowired
 	CourseRepository courseRepo;
 	
-	@Test
+//	@Test
 	public void insertClassRoom() {
 		Lecture lecture = new Lecture();
 		//강의계획년

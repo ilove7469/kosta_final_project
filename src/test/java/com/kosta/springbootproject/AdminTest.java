@@ -15,7 +15,7 @@ public class AdminTest {
 	@Autowired
 	AdminRepository repo;
 	
-	@Test
+	//@Test
 	public void insertAdmin() {
 		IntStream.range(1, 10).forEach(i->{
 			Admin admin = Admin.builder()

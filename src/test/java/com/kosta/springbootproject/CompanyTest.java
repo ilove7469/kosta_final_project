@@ -20,7 +20,7 @@ public class CompanyTest {
 	@Autowired
 	CompanyRepository repo;
 	
-	@Test
+	//@Test
 	public void insertCompany() {
 		IntStream.range(1, 20).forEach(i -> {
 			Company c = Company.builder()

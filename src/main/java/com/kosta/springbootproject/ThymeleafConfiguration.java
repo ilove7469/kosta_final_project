@@ -18,7 +18,12 @@
 //		return templateEngine;
 //	}
 //
-//	@Bean public ThymeleafViewResolver viewResolver(){ final ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); viewResolver.setTemplateEngine(templateEngine()); viewResolver.setViewNames(new String[]{"*.html,*.xhtml,*.txt"}); return viewResolver; }
+//	@Bean public ThymeleafViewResolver viewResolver(){ 
+//		final ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); 
+//		viewResolver.setTemplateEngine(templateEngine()); 
+//		viewResolver.setViewNames(new String[]{"*.html,*.xhtml,*.txt"}); 
+//		return viewResolver; 
+//		}
 //
 //	@Bean
 //    public SpringResourceTemplateResolver templateResolver() {

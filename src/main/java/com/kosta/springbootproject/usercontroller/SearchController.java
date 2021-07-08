@@ -66,7 +66,7 @@ public class SearchController {
 		model.addAttribute("subNo", subNo);
 		model.addAttribute("hlist", hlist);
 		model.addAttribute("result", result);
-		return "/search/table_con";
+		return "search/table_con";
 	}
 	
 	@GetMapping("/search/searchHall")
@@ -77,6 +77,6 @@ public class SearchController {
 		model.addAttribute("subNo", subNo);
 		model.addAttribute("lecHallNo", lecHallNo);
 		model.addAttribute("result", result);
-		return "/search/table_con2";
+		return "search/table_con2";
 	}
 }

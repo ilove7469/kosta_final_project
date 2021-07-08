@@ -122,7 +122,7 @@ public class AdminController1 {
 //회사 상세보기
 	@GetMapping("/admin/companyDetail/{cno}")
 	public ModelAndView companySelectById(@PathVariable Long cno) {
-		ModelAndView mv = new ModelAndView("/admin/companyDetail");
+		ModelAndView mv = new ModelAndView("admin/companyDetail");
 		Company company = companyService.selectById(cno);
 		mv.addObject("company", company);
 		return mv;
@@ -170,7 +170,7 @@ public class AdminController1 {
 //강사 상세보기
 	@GetMapping("/admin/teacherDetail/{tno}")
 	public ModelAndView teacherSelectById(@PathVariable Long tno) {
-		ModelAndView mv = new ModelAndView("/admin/teacherDetail");
+		ModelAndView mv = new ModelAndView("admin/teacherDetail");
 		Teacher teacher = teacherService.selectById(tno);
 		mv.addObject("teacher", teacher);
 		return mv;
@@ -323,7 +323,7 @@ public class AdminController1 {
 //강의계획 상세보기
 	@GetMapping("/admin/lectureDetail/{lno}")
 	public ModelAndView selectById(@PathVariable Long lno) {
-		ModelAndView mv = new ModelAndView("/admin/lectureDetail");
+		ModelAndView mv = new ModelAndView("admin/lectureDetail");
 		Lecture lectrue = lectureService.selectById(lno);
 		// Course course = courseService.selectById();
 		mv.addObject("lecture", lectrue);
@@ -348,7 +348,7 @@ public class AdminController1 {
 //강의 상세보기
 	@GetMapping("/admin/classesDetail/{cno}")
 	public ModelAndView SelectByIdteacher(@PathVariable Long cno) {
-		ModelAndView mv = new ModelAndView("/admin/classesDetail");
+		ModelAndView mv = new ModelAndView("admin/classesDetail");
 		Classes classes = classesService.selectById(cno);
 		mv.addObject("classes", classes);
 

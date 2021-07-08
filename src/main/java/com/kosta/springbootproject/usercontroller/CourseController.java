@@ -53,10 +53,11 @@ public class CourseController {
 	//과목
 	@GetMapping("/courseInfo/{subjectNo}")
 	public ModelAndView searchLecture(@PathVariable Long subjectNo) {
-		ModelAndView mv = new ModelAndView("/user/userCourse");
+		ModelAndView mv = new ModelAndView();
 		List<Object[]> CourseList = cservice.findCourseWithLecture(subjectNo); 
 		mv.addObject("subject",cservice.findSubjectById(subjectNo));
 		mv.addObject("CourseList", CourseList);
+		mv.setViewName("/user/userCourse");
 		return mv;
 	}
 	

@@ -103,9 +103,9 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82932127/125201133-b7be0980-e2a8-11eb-8576-c44ab6db0940.PNG" width="800px" height="400px"/>
 </p>
-
- 
-  
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82932127/125201254-37e46f00-e2a9-11eb-8326-9400f60eb3d2.png" width="800px" height="400px"/>
+</p>
   
   
 ## 사용자페이지 기능

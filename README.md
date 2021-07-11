@@ -107,14 +107,11 @@
   <img src="https://user-images.githubusercontent.com/82932127/125201254-37e46f00-e2a9-11eb-8326-9400f60eb3d2.png" width="800px" height="400px"/>
 </p>
   
-  
+---------------------------------------------------------------
+참고
 ## 사용자페이지 기능
 * 회원 가입,
 * 아이디 중복 체크, 비밀번호 체크, 이메일 인증,
 * 마이페이지, 회원 수강 관리,
 * 수강 신청기능,
 * 수업 검색 기능,
-
-<div>
-<img src="https://user-images.githubusercontent.com/73854927/125059523-5d754b00-e0e6-11eb-80c6-e5e6316752fb.png" width="800px" height="600px"/>
-</div>

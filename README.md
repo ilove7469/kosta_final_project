@@ -45,6 +45,9 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125198653-c05d1280-e29d-11eb-9c63-5bfd31fe4cb1.PNG" width="800px" height="400px"/>
 </p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82932127/125198835-8a6c5e00-e29e-11eb-9389-1d1d9cfa61fc.jpg" width="800px" height="400px"/>
+</p>
 ### iii. 강의신청 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125198381-96efb700-e29c-11eb-86fb-88cb88ea936c.png" width="800px" height="900px"/>

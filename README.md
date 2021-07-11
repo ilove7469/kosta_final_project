@@ -70,7 +70,7 @@
 
 ### v. 마이페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="600px" />
+<img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="700px" />
 </p>
 
 ## 관리자페이지 기능

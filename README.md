@@ -81,7 +81,6 @@
 * 수강 신청기능,
 * 수업 검색 기능,
 <div>
-<img src="https://user-images.githubusercontent.com/73854927/125059513-5bab8780-e0e6-11eb-8cf5-74b3d4c87c50.png" width="380px" height="200px" align="left" />
-<img src="https://user-images.githubusercontent.com/73854927/125059523-5d754b00-e0e6-11eb-80c6-e5e6316752fb.png" width="380px" height="200px" align="left"/>
-<img src="https://user-images.githubusercontent.com/73854927/125059501-5a7a5a80-e0e6-11eb-8cb1-8d8f065025c8.png" width="380px" height="200px" align="left"/>
+<img src="https://user-images.githubusercontent.com/73854927/125059513-5bab8780-e0e6-11eb-8cf5-74b3d4c87c50.png" width="8000px" height="600px" />
+<img src="https://user-images.githubusercontent.com/73854927/125059523-5d754b00-e0e6-11eb-80c6-e5e6316752fb.png" width="800px" height="600px"/>
 </div>

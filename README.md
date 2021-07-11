@@ -61,8 +61,6 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125198449-dcac7f80-e29c-11eb-89b0-c1d952eff09e.PNG" width="800px" height="300px"/>
 </p>
-<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="500px" height="300px"/>
-<img src="https://user-images.githubusercontent.com/73854927/125059515-5c441e00-e0e6-11eb-8b15-a3013bd4f098.png" width="500px" height="300px"/>
 
 ### 회원가입 페이지
 <p align="center">
@@ -82,7 +80,7 @@
 
 ### 관리자 메인페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/82932127/125196235-0ca35500-e294-11eb-82b4-1a76af7b63c1.jpg" width="800px" height="1000px"/>
+<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="800px" height="600px"/>
 </p>
 
 <div>

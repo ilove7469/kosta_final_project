@@ -82,15 +82,15 @@
 
 ### 관리자 메인페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="1000px" height="800px"/>
+<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="1000px" height="700px"/>
 </p>
 
 ### 강의 페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/73854927/125059490-58b09700-e0e6-11eb-8c99-ec3a196c557f.png" width="380px" height="200px" align="left" />
+<img src="https://user-images.githubusercontent.com/73854927/125059490-58b09700-e0e6-11eb-8c99-ec3a196c557f.png" width="1000px" height="700px"/>
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="380px" height="200px" align="left"/>
+  <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="1000px" height="700px"/>
 </p>
 
 

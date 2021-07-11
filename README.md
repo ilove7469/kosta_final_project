@@ -74,7 +74,7 @@
 </p>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/82932127/125199528-90b00980-e2a1-11eb-86d4-646c3e7f88f6.png" width="800px" height="700px" />
+<img src="https://user-images.githubusercontent.com/82932127/125199528-90b00980-e2a1-11eb-86d4-646c3e7f88f6.png" width="800px" height="500px" />
 </p>
 
 ## 관리자페이지 기능

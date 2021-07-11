@@ -10,6 +10,8 @@
 * front-End : thymeleaf, JQuery, Ajax
 * back-End : Spring Boot, Spring security
 * 배포 : AWS (Ec2, RDS)
+## 개발기간
+* 2021/06/01 ~ 2021/07/09
 ## 목차
 1. 관리자 페이지
 2. 사용자 페이지

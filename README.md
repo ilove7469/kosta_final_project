@@ -65,7 +65,7 @@
 
 ### iv. 회원가입 페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="8000px" height="600px" />
+<img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="800px" height="600px" />
 </p>
 
 ## 관리자페이지 기능

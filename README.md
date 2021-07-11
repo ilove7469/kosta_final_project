@@ -28,7 +28,7 @@
     2. 강의검색 페이지
     3. 강의신청 페이지
     4. 회원가입 페이지
- 
+    5. 마이 페이지
 2. 관리자 페이지
 
 
@@ -66,6 +66,11 @@
 ### iv. 회원가입 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="800px" height="600px" />
+</p>
+
+### v. 마이페이지
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="600px" />
 </p>
 
 ## 관리자페이지 기능

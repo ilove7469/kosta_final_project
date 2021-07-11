@@ -96,7 +96,7 @@
   <img src="https://user-images.githubusercontent.com/82932127/125200844-927ccb80-e2a7-11eb-98e9-ca87e90cd5ca.png" width="800px" height="600px"/>
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/82932127/125201013-5138eb80-e2a8-11eb-8561-e24ffb462121.png" width="800px" height="600px"/>
+  <img src="https://user-images.githubusercontent.com/82932127/125201013-5138eb80-e2a8-11eb-8561-e24ffb462121.png" width="800px" height="400px"/>
 </p>
 
 ### 수강신청관리 페이지

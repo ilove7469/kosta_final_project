@@ -68,7 +68,7 @@
 <img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="800px" height="600px" />
 </p>
 
-### 마이페이지
+### 마이 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="700px" />
 </p>

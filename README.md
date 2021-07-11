@@ -100,6 +100,9 @@
 </p>
 
 ### 수강신청관리 페이지
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82932127/125201133-b7be0980-e2a8-11eb-8576-c44ab6db0940.PNG" width="800px" height="400px"/>
+</p>
 
  
   

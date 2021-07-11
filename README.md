@@ -78,11 +78,13 @@
 <img src="https://user-images.githubusercontent.com/82932127/125199528-90b00980-e2a1-11eb-86d4-646c3e7f88f6.png" width="800px" height="500px" />
 </p>
 
-## 관리자페이지 기능
-* 메타 데이터 등록, 조회, 삭제
-* 수강 신청, 관리 기능, 강의 상태 변경
-* 엑셀 변환 기능
-* 테이블 정렬 기능
+## 2. 관리자 페이지
+
+### 관리자 메인페이지
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82932127/125196235-0ca35500-e294-11eb-82b4-1a76af7b63c1.jpg" width="800px" height="1000px"/>
+</p>
+
 <div>
 <img src="https://user-images.githubusercontent.com/73854927/125059490-58b09700-e0e6-11eb-8c99-ec3a196c557f.png" width="380px" height="200px" align="left" />
 <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="380px" height="200px" align="left"/>

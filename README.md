@@ -73,6 +73,10 @@
 <img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="700px" />
 </p>
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82932127/125199528-90b00980-e2a1-11eb-86d4-646c3e7f88f6.png" width="800px" height="700px" />
+</p>
+
 ## 관리자페이지 기능
 * 메타 데이터 등록, 조회, 삭제
 * 수강 신청, 관리 기능, 강의 상태 변경

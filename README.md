@@ -24,22 +24,22 @@
 
 ## 목차
 1. 사용자 페이지
-    1. [사용자 메인페이지](#i/.사용자-메인페이지)
-    2. 강의검색 페이지
-    3. 강의신청 페이지
-    4. 회원가입 페이지
-    5. 마이 페이지
+    1. [사용자 메인페이지](#사용자-메인페이지)
+    2. [강의검색 페이지](#강의검색-페이지)
+    3. [강의신청 페이지](#강의신청-페이지)
+    4. [회원가입 페이지](#회원가입-페이지)
+    5. [마이 페이지](#마이-페이지)
 2. 관리자 페이지
 
 
 ## 1. 사용자 페이지
 
-### i.사용자 메인페이지
+### 사용자 메인페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125196235-0ca35500-e294-11eb-82b4-1a76af7b63c1.jpg" width="800px" height="1000px"/>
 </p>
 
-### ii. 강의검색 페이지
+### 강의검색 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125197524-0a8fc500-e299-11eb-8698-826ef9b38fa9.jpg" width="800px" height="900px"/>
 </p>
@@ -50,7 +50,7 @@
 <img src="https://user-images.githubusercontent.com/82932127/125198899-cb647280-e29e-11eb-89eb-2129248dfdd3.png" width="800px" height="700px"/>
 </p>
 
-### iii. 강의신청 페이지
+### 강의신청 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125198381-96efb700-e29c-11eb-86fb-88cb88ea936c.png" width="800px" height="900px"/>
 </p>
@@ -63,12 +63,12 @@
 <img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="500px" height="300px"/>
 <img src="https://user-images.githubusercontent.com/73854927/125059515-5c441e00-e0e6-11eb-8b15-a3013bd4f098.png" width="500px" height="300px"/>
 
-### iv. 회원가입 페이지
+### 회원가입 페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="800px" height="600px" />
 </p>
 
-### v. 마이페이지
+### 마이페이지
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82932127/125199411-0f587700-e2a1-11eb-8fff-e3aed6451669.png" width="800px" height="700px" />
 </p>

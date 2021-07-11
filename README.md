@@ -11,10 +11,11 @@
 * back-End : Spring Boot, Spring security
 * 배포 : AWS (Ec2, RDS)
 ## 목차
-1. 관리자 페이지
+1. 사용자 페이지
     1. 목록 1-1
+    2. 목록 1-1
  
-2. 사용자 페이지
+2. 관리자 페이지
 
 
 

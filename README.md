@@ -92,7 +92,9 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="1000px" height="700px"/>
 </p>
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/82932127/125200844-927ccb80-e2a7-11eb-98e9-ca87e90cd5ca.png" width="800px" height="600px"/>
+</p>
 
 ### 수강 페이지
 

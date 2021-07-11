@@ -80,7 +80,7 @@
 
 ### 관리자 메인페이지
 <p align="center">
-<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="800px" height="600px"/>
+<img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="1000px" height="600px"/>
 </p>
 
 <div>

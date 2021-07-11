@@ -31,6 +31,8 @@
     5. [마이 페이지](#마이-페이지)
 2. 관리자 페이지
     1. 관리자 메인페이지
+    2. 강의 외 10개 페이지(대표로 강의페이지)
+    3. 수강신청관리 
 
 
 ## 1. 사용자 페이지
@@ -83,12 +85,18 @@
 <img src="https://user-images.githubusercontent.com/73854927/125059500-59e1c400-e0e6-11eb-94b2-fafc3ebfb2fa.png" width="1000px" height="800px"/>
 </p>
 
+### 강의 페이지
 <div>
 <img src="https://user-images.githubusercontent.com/73854927/125059490-58b09700-e0e6-11eb-8c99-ec3a196c557f.png" width="380px" height="200px" align="left" />
 <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="380px" height="200px" align="left"/>
 </div>
 
+
+### 수강 페이지
+
  
+  
+  
   
 ## 사용자페이지 기능
 * 회원 가입,
@@ -96,7 +104,7 @@
 * 마이페이지, 회원 수강 관리,
 * 수강 신청기능,
 * 수업 검색 기능,
-<div>
 
+<div>
 <img src="https://user-images.githubusercontent.com/73854927/125059523-5d754b00-e0e6-11eb-80c6-e5e6316752fb.png" width="800px" height="600px"/>
 </div>

@@ -69,7 +69,7 @@
 <img src="https://user-images.githubusercontent.com/82932127/125199251-44b09500-e2a0-11eb-95a7-9fb2f66d9cd6.png" width="800px" height="600px" />
 </p>
 <p align="center">
-  <b>아이디 중복 체크, 비밀번호 체크, 이메일 인증</b>
+  <b><아이디 중복 체크, 비밀번호 체크, 이메일 인증></b>
 </p>
 
 ### 마이 페이지
@@ -109,12 +109,3 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82932127/125201254-37e46f00-e2a9-11eb-8326-9400f60eb3d2.png" width="800px" height="400px"/>
 </p>
-  
----------------------------------------------------------------
-참고
-## 사용자페이지 기능
-* 회원 가입,
-* 아이디 중복 체크, 비밀번호 체크, 이메일 인증,
-* 마이페이지, 회원 수강 관리,
-* 수강 신청기능,
-* 수업 검색 기능,

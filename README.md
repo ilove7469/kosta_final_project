@@ -98,7 +98,13 @@
 <img src="https://user-images.githubusercontent.com/73854927/125059490-58b09700-e0e6-11eb-8c99-ec3a196c557f.png" width="1000px" height="700px"/>
 </p>
 <p align="center">
+<b><전체 강의 조회><b>
+</p>
+<p align="center">
   <img src="https://user-images.githubusercontent.com/73854927/125059497-59e1c400-e0e6-11eb-8919-2ef86424c05e.png" width="1000px" height="700px"/>
+</p>
+<p align="center">
+<b><전체 강의 엑셀다운로드><b>
 </p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82932127/125200844-927ccb80-e2a7-11eb-98e9-ca87e90cd5ca.png" width="800px" height="600px"/>

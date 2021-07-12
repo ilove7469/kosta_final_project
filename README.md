@@ -126,3 +126,6 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/82932127/125201254-37e46f00-e2a9-11eb-8326-9400f60eb3d2.png" width="800px" height="400px"/>
 </p>
+<p align="center">
+<b><강의 확정, 취소, 대기처리><b>
+</p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://ultraq.net.nz/thymelaf/layout"
-	layout:decorate="~{/layout/layoutadmin}">
+	layout:decorate="~{layout/layoutadmin}">
 <head>
 <meta charset="UTF-8">
 <title>과정등록</title>
@@ -22,7 +22,7 @@
 	<form th:action="@{/admin/courseInsert}" method="post" onSubmit="return sub()">
 		<div class="form-group">
 			<label for="title">과정명:</label>
-			<input type="text" class="form-control" id="courseName1" name="courseName1" value="태웅과정추가테스트" required>
+			<input type="text" class="form-control" id="courseName1" name="courseName1" required>
 		</div>
 		
 		<div class="form-group">

@@ -64,7 +64,7 @@ public class AdminController2 {
 //	수강신청 관리 강의 상세페이지
 	@GetMapping("/admin/manageclassdetail/{classNo}")
 	public ModelAndView searchClassDetail(@PathVariable Long classNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
 		mv.addObject("classHistoryList", classhistorylist);
@@ -75,7 +75,7 @@ public class AdminController2 {
 //	수강신청 관리 상세페이지 - 확정
 	@GetMapping("/admin/manageClassDetailCommit/{classHistoryNo}")
 	public ModelAndView commitManageClassDetail(@PathVariable Long classHistoryNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		//commit으로 바꿔주는 메서드
 		Long classNo = classHistroyService.commitManageClassDetail(classHistoryNo);
 		Classes classes = classesService.selectById(classNo);
@@ -88,7 +88,7 @@ public class AdminController2 {
 //	수강신청 관리 상세페이지 - 대기
 	@GetMapping("/admin/manageClassDetailWait/{classHistoryNo}")
 	public ModelAndView waitManageClassDetail(@PathVariable Long classHistoryNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		Long classNo = classHistroyService.waitManageClassDetail(classHistoryNo);
 		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
@@ -100,7 +100,7 @@ public class AdminController2 {
 //	수강신청 관리 상세페이지 - 취소
 	@GetMapping("/admin/manageClassDetailCancel/{classHistoryNo}")
 	public ModelAndView cancelManageClassDetail(@PathVariable Long classHistoryNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		Long classNo = classHistroyService.cancelManageClassDetail(classHistoryNo);
 		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
@@ -112,7 +112,7 @@ public class AdminController2 {
 //	수강신청 관리 상세페이지 - 미수료
 	@GetMapping("/admin/manageClassDetailUncomplete/{classHistoryNo}")
 	public ModelAndView unCompleteManageClassDetail(@PathVariable Long classHistoryNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		Long classNo = classHistroyService.uncompleteManageClassDetail(classHistoryNo);
 		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
@@ -124,7 +124,7 @@ public class AdminController2 {
 //	수강신청 관리 상세페이지 - 수료
 	@GetMapping("/admin/manageClassDetailComplete/{classHistoryNo}")
 	public ModelAndView completeManageClassDetail(@PathVariable Long classHistoryNo) {
-		ModelAndView mv = new ModelAndView("/admin/manageClassDetail");
+		ModelAndView mv = new ModelAndView("admin/manageClassDetail");
 		Long classNo = classHistroyService.completeManageClassDetail(classHistoryNo);
 		Classes classes = classesService.selectById(classNo);
 		List<ClassHistory> classhistorylist = adminManageClassService.findClassHistoryByClasses(classNo);
@@ -145,7 +145,7 @@ public class AdminController2 {
 	@GetMapping("/admin/subjectInsert")
 	public String insertSubject(Model model) {
 		model.addAttribute("traineeList",traineeService.selectAll());
-		return "/admin/subjectdetail";
+		return "admin/subjectdetail";
 	}
 	
 //	주제 추가 및 수정 Post
@@ -159,7 +159,7 @@ public class AdminController2 {
 //	주제 수정 Get
 	@GetMapping("/admin/subjectModify/{subjectNo}")
 	public ModelAndView modifySubject(@PathVariable Long subjectNo,Model model) {
-		ModelAndView mv = new ModelAndView("/admin/subjectdetail");
+		ModelAndView mv = new ModelAndView("admin/subjectdetail");
 		model.addAttribute("traineeList",traineeService.selectAll());
 		Subject subject = subjectService.findSubjectBySubjectNo(subjectNo);
 		mv.addObject("subject", subject);
@@ -184,7 +184,7 @@ public class AdminController2 {
 //	교육시간 추가 Get
 	@GetMapping("/admin/educationtimeInsert")
 	public String insertEducationTime() {
-		return "/admin/educationTimedetail";
+		return "admin/educationTimedetail";
 	}
 	
 //	교육시간 추가 및 수정 Post
@@ -198,7 +198,7 @@ public class AdminController2 {
 //	교육시간 수정 Get
 	@GetMapping("/admin/educationTimeModify/{educationTimeNo}")
 	public ModelAndView modifyEducationTime(@PathVariable Long educationTimeNo) {
-		ModelAndView mv = new ModelAndView("/admin/educationTimedetail");
+		ModelAndView mv = new ModelAndView("admin/educationTimedetail");
 		EducationTime educationTime = educationTimeService.findEducationTimeByNo(educationTimeNo);
 		mv.addObject("EducationTime", educationTime);
 		return mv;
@@ -223,7 +223,7 @@ public class AdminController2 {
 //	회원 상세페이지 - 회원정보
 	@GetMapping("/admin/userdetail/{userNo}")
 	public ModelAndView showUserDetail(@PathVariable Long userNo) {
-		ModelAndView mv = new ModelAndView("/admin/userInfoAdmin");
+		ModelAndView mv = new ModelAndView("admin/userInfoAdmin");
 		Users user = userService.findUsersByUsersNo(userNo);
 		mv.addObject("user", user);
 		return mv;
@@ -232,7 +232,7 @@ public class AdminController2 {
 //	회원 상세페이지 - 수강신청 내역
 	@GetMapping("/admin/userclasshistory/{userNo}")
 	public ModelAndView showUserClassHistory(@PathVariable Long userNo) {
-		ModelAndView mv = new ModelAndView("/admin/userClassHistory");
+		ModelAndView mv = new ModelAndView("admin/userClassHistory");
 		List<ClassHistory> ClassHistoryList = adminManageClassService.findClassHistoryByUser(userNo);
 		List<Object[]> ClassHistoryCount = adminManageClassService.selectClassHistoryCountByUser(userNo);
 		Object[] countobj = ClassHistoryCount.get(0);
@@ -266,7 +266,7 @@ public class AdminController2 {
 //	수료증 추가 Get
 	@GetMapping("/admin/certificateInsert")
 	public String insertCerti() {
-		return "/admin/certificatedetail";
+		return "admin/certificatedetail";
 	}
 	
 //	수료증 추가 및 수정 Post
@@ -279,7 +279,7 @@ public class AdminController2 {
 //	수료증 수정 Get
 	@GetMapping("/admin/certificateModify/{certiNo}")
 	public ModelAndView modifyCerti(@PathVariable Long certiNo) {
-		ModelAndView mv = new ModelAndView("/admin/certificatedetail");
+		ModelAndView mv = new ModelAndView("admin/certificatedetail");
 		Certificate certi = certiService.findCertificateByNo(certiNo);
 		mv.addObject("certi", certi);
 		return mv;
@@ -309,7 +309,7 @@ public class AdminController2 {
 //	강의장 추가 Get
 	@GetMapping("/admin/lecturehallInsert")
 	public String insertLectureHall() {
-		return "/admin/lecturehalldetail";
+		return "admin/lecturehalldetail";
 	}
 	
 //	강의장 추가 및 수정 Post
@@ -322,7 +322,7 @@ public class AdminController2 {
 //	강의장 수정 Get
 	@GetMapping("/admin/lectureHallModify/{lectureHallNo}")
 	public ModelAndView modifyLectureHall(@PathVariable Long lectureHallNo) {
-		ModelAndView mv = new ModelAndView("/admin/lecturehalldetail");
+		ModelAndView mv = new ModelAndView("admin/lecturehalldetail");
 		LectureHall lectureHall = lectureHallService.findLectureHallByNo(lectureHallNo);
 		mv.addObject("lectureHall", lectureHall);
 		return mv;
@@ -346,7 +346,7 @@ public class AdminController2 {
 	public String insertClassRoom(Model model) {
 		List<LectureHall> lectureHallList = lectureHallService.selectAll();
 		model.addAttribute("lectureHallList",lectureHallList);
-		return "/admin/classroomdetail";
+		return "admin/classroomdetail";
 	}
 
 //	강의실 추가 및 수정 Post
@@ -359,7 +359,7 @@ public class AdminController2 {
 //	강의실 수정 Get
 	@GetMapping("/admin/classRoomModify/{classRoomNo}")
 	public ModelAndView modifyClassRoom(@PathVariable Long classRoomNo) {
-		ModelAndView mv = new ModelAndView("/admin/classroomdetail");
+		ModelAndView mv = new ModelAndView("admin/classroomdetail");
 		ClassRoom classRoom = classRoomService.findClassRoomByNo(classRoomNo);
 		List<LectureHall> lectureHallList = lectureHallService.selectAll();
 		mv.addObject("lectureHallList",lectureHallList);

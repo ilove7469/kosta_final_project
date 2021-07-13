@@ -41,9 +41,9 @@ public class UserController {
 	private EmailService emailService;
 	
 	//유저프로필
-	@GetMapping("user/userProfile/{userNo}")
+	@GetMapping("/user/userProfile/{userNo}")
 	public ModelAndView userProfile(@PathVariable Long userNo) {
-		ModelAndView mv = new ModelAndView("/user/userProfile");
+		ModelAndView mv = new ModelAndView("user/userProfile");
 		List<ClassHistory> classHistoryList = uservice.findClassHistoryByUser(userNo);
 		List<Object[]> ClassHistoryCount = uservice.selectClassHistoryCountByUser(userNo);
 		Object[] countobj = ClassHistoryCount.get(0);

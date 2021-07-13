@@ -11,7 +11,7 @@
 	<groupId>com.kosta</groupId>
 	<artifactId>edu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>kosta_lms</name>
 	<description>Spring Boot First</description>
 	<properties>
@@ -140,6 +140,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 

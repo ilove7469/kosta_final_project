@@ -19,7 +19,7 @@ public class ClassRoomTests {
 	@Autowired
 	LectureHallRepository lectureHallRepo;
 	
-	@Test
+	//@Test
 	public void insertClassRoom0() {
 		ClassRoom c = new ClassRoom();
 		c.setClassRoomName("11강의실");

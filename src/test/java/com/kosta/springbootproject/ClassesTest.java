@@ -31,7 +31,7 @@ public class ClassesTest {
 	@Autowired
 	AdminRepository arepo;
 	
-	@Test
+	//@Test
 	public void test() {
 		String[] s = new String[ClassStateEnumType.values().length];
 		ClassStateEnumType[] list = ClassStateEnumType.values();

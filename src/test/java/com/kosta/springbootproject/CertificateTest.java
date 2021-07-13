@@ -42,7 +42,7 @@ public class CertificateTest {
 		 });
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() {
 		 repo.findById(177L).ifPresent(d ->{
 			 repo.delete(d);

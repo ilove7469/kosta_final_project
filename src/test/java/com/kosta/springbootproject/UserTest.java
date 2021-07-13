@@ -29,7 +29,7 @@ public class UserTest {
 	@Autowired
 	TraineeRepository trepo;
 	
-	@Test
+//	@Test
 	public void insertUserOne() {
 		Users user = Users.builder()
 	               .userName("윤테스트")
